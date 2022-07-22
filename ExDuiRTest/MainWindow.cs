@@ -3,21 +3,15 @@ using ExDuiR.NET.Frameworks.Controls;
 using ExDuiR.NET.Frameworks.Graphics;
 using ExDuiR.NET.Frameworks.Utility;
 using ExDuiR.NET.Native;
-
 using static ExDuiR.NET.Native.ExConst;
-using System.Runtime.InteropServices;
 
 
 namespace ExDuiRTest
 {
     static class MainWindow
     {
-        //初始化应用程序对象
         static private ExApp theApp;
-
-        //创建ExDUI窗口
         static private ExSkin skin;
-
         static private ExButton[] buttons;
 
         static public void CreateMainWindow()
@@ -27,72 +21,24 @@ namespace ExDuiRTest
             theApp = new ExApp(theme);
             skin = new ExSkin(null, null, "ExDUIR演示,项目地址：https://gitee.com/william_lzw/ExDUIR", 0, 0, 600, 600,
             EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_BUTTON_MAX | EWS_MOVEABLE | EWS_CENTERWINDOW |
-            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, 0, MainWndProc
-            );
+            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, 0, MainWndProc);
             if (skin.Validate)
             {
                 var bitmap = Properties.Resources.editbkg;
                 byte[] img = Util.BitmapToByte(bitmap);
-                skin.SetBackgroundImage(img, 0, 0, 0, nint.Zero, 0, 255, true);
-                //var color = Util.ExRGBA(150, 150, 150, 255);
-                //skin.SetLong(EWL_CRBKG, (nint)color);
-
-                buttons = new ExButton[42];
+                skin.SetBackgroundImage(img, 0, 0, 0, 0, 0, 255, true);
+                buttons = new ExButton[4];
                 buttons[0] = new ExButton(skin, "测试按钮开关", 10, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[1] = new ExButton(skin, "测试标签", 10, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[2] = new ExButton(skin, "测试单选复选框", 10, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[3] = new ExButton(skin, "测试编辑框", 10, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[4] = new ExButton(skin, "测试列表框", 10, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[5] = new ExButton(skin, "测试菜单", 10, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[6] = new ExButton(skin, "测试自定外形", 10, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[7] = new ExButton(skin, "测试布局选项卡", 10, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[8] = new ExButton(skin, "测试分组框", 10, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[9] = new ExButton(skin, "测试绝对布局", 10, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[10] = new ExButton(skin, "测试相对布局", 10, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[11] = new ExButton(skin, "测试线性布局", 10, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[12] = new ExButton(skin, "测试流式布局", 10, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[13] = new ExButton(skin, "测试表格布局", 10, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-
-                buttons[14] = new ExButton(skin, "测试组合框", 120, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[15] = new ExButton(skin, "测试缓动窗口", 120, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[16] = new ExButton(skin, "测试异型窗口", 120, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[17] = new ExButton(skin, "测试消息框", 120, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[18] = new ExButton(skin, "测试自定义按钮", 120, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[19] = new ExButton(skin, "测试报表列表", 120, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[20] = new ExButton(skin, "测试图标列表", 120, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[21] = new ExButton(skin, "测试树形列表", 120, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[22] = new ExButton(skin, "测试矩阵", 120, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[23] = new ExButton(skin, "测试扩展按钮", 120, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[24] = new ExButton(skin, "测试扩展编辑框", 120, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[25] = new ExButton(skin, "测试自定义菜单", 120, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[26] = new ExButton(skin, "测试事件分发", 120, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[27] = new ExButton(skin, "测试加载动画", 120, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-
-                buttons[28] = new ExButton(skin, "测试滑块条", 230, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[29] = new ExButton(skin, "测试旋转图片框", 230, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[30] = new ExButton(skin, "测试拖动组件", 230, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[31] = new ExButton(skin, "测试接收拖曳", 230, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[32] = new ExButton(skin, "测试进度条", 230, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[33] = new ExButton(skin, "测试限制通知", 230, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[34] = new ExButton(skin, "测试模态窗口", 230, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[35] = new ExButton(skin, "测试标题框", 230, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[36] = new ExButton(skin, "测试日期框", 230, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[37] = new ExButton(skin, "测试调色板", 230, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[38] = new ExButton(skin, "测试月历", 230, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[39] = new ExButton(skin, "测试CEF浏览框", 230, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[40] = new ExButton(skin, "测试打分按钮", 230, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[41] = new ExButton(skin, "测试轮播", 230, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-
                 TestCustomCtrl.RegisterControl();
                 TestCustomCtrl custom = new TestCustomCtrl(skin, "test", 360, 110, 50, 50);
                 for(int i = 0; i< 4; i++)
                 {
                     buttons[i].HandleEvent(NM_CLICK, MainButtonEventProc);
                 }
-              
-                //显示
                 skin.Visible = true;
-                //运行程序
                 theApp.Run();
             }
         }
@@ -120,7 +66,7 @@ namespace ExDuiRTest
 
         static private bool MainWndProc(nint hWnd, int hExDui, int uMsg, nint wParam, nint lParam, nint pResult)
         {
-            if (uMsg == 0x0001)//WM_CREATE
+            if (uMsg == WM_CREATE)
             {
 
   
