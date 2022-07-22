@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32708.82
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExDuiR", "ExDuiR.NET\ExDuiR.csproj", "{0027993C-41B3-45B1-884C-BC8580E69504}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExDuiRTest", "ExDuiRTest\ExDuiRTest.csproj", "{5FA3F84B-DBE9-4CDB-8926-08FB5DFEAE5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0027993C-41B3-45B1-884C-BC8580E69504}.Debug|x64.ActiveCfg = Debug|x64
+		{0027993C-41B3-45B1-884C-BC8580E69504}.Debug|x64.Build.0 = Debug|x64
+		{0027993C-41B3-45B1-884C-BC8580E69504}.Release|x64.ActiveCfg = Release|x64
+		{0027993C-41B3-45B1-884C-BC8580E69504}.Release|x64.Build.0 = Release|x64
+		{5FA3F84B-DBE9-4CDB-8926-08FB5DFEAE5B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5FA3F84B-DBE9-4CDB-8926-08FB5DFEAE5B}.Debug|x64.Build.0 = Debug|Any CPU
+		{5FA3F84B-DBE9-4CDB-8926-08FB5DFEAE5B}.Release|x64.ActiveCfg = Release|Any CPU
+		{5FA3F84B-DBE9-4CDB-8926-08FB5DFEAE5B}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {40C4004E-5BF3-4164-B3D7-2F99517E7D81}
+	EndGlobalSection
+EndGlobal
