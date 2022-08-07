@@ -109,7 +109,7 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat, nint rcGrids, int dwFlags, int dwAlpha, bool fUpdate)
         {
-            return ExAPI.Ex_ObjSetBackgroundImage(m_hObj, image, image.Length, x, y, dwRepeat, rcGrids, dwFlags, dwAlpha, fUpdate);
+            return ExAPI.Ex_ObjSetBackgroundImage(m_hObj, image, image == null ? 0 : image.Length, x, y, dwRepeat, rcGrids, dwFlags, dwAlpha, fUpdate);
         }
 
         public int DestroyBackground()

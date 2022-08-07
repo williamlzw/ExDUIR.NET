@@ -332,9 +332,9 @@ namespace ExDuiRTest
                 var rtf = Properties.Resources.testrtf;
                 byte[] rtfdata = System.Text.Encoding.UTF8.GetBytes(rtf.ToCharArray());
                 //byte[] rtfdata = File.ReadAllBytes(".\\res\\test.rtf");
-                edit7.LoadRtf(rtfdata);
-                edit7.HandleEvent(NM_EN_SELCHANGE, OnEditNotifyEventProc);
-                edit7.HandleEvent(NM_EN_LINK, OnEditNotifyEventProc);
+                //edit7.LoadRtf(rtfdata);
+               // edit7.HandleEvent(NM_EN_SELCHANGE, OnEditNotifyEventProc);
+                //edit7.HandleEvent(NM_EN_LINK, OnEditNotifyEventProc);
                 skin.Visible = true;
             }
         }
