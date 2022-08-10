@@ -10,11 +10,10 @@ namespace ExDuiR.NET.Frameworks.Controls
             int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, int hTheme = 0, ExObjProcDelegate pfnObjProc = null)
         {
             m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, nint.Zero, hTheme, pfnObjProc);
-            if (m_hObj != 0)
+            if (m_hObj == 0)
             {
-
+                throw new ExException(ExStatus.HANDLE_INVALID, "创建控件失败");
             }
-            else throw new ExException(ExStatus.HANDLE_INVALID, "创建控件失败");
         }
 
         public ExControl(int hObj)

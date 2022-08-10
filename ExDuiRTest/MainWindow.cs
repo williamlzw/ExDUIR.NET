@@ -39,11 +39,12 @@ namespace ExDuiRTest
                     buttons[i].HandleEvent(NM_CLICK, MainButtonEventProc);
                 }
                 skin.Visible = true;
+               
                 theApp.Run();
             }
         }
 
-        static private bool MainButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static private nint MainButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
         {
             if (hObj == buttons[0].handle)
             {
@@ -61,17 +62,17 @@ namespace ExDuiRTest
             {
                 EditWindow.CreateEditWindow(skin);
             }
-            return false;
+            return 0;
         }
 
-        static private bool MainWndProc(nint hWnd, int hExDui, int uMsg, nint wParam, nint lParam, nint pResult)
+        static private nint MainWndProc(nint hWnd, int hExDui, int uMsg, nint wParam, nint lParam, nint pResult)
         {
             if (uMsg == WM_CREATE)
             {
 
   
             }
-            return false;
+            return 0;
         }
     }
 
@@ -123,7 +124,7 @@ namespace ExDuiRTest
             }
         }
 
-        static public bool OnButtonMsgProc(nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pResult)
+        static public nint OnButtonMsgProc(nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pResult)
         {
             if (uMsg == WM_ERASEBKGND)
             {
@@ -147,13 +148,13 @@ namespace ExDuiRTest
                 ExCanvas hCanvas = new ExCanvas(ps.hCanvas);
                 hCanvas.FillRect(hBrush, 0, 0, ps.rcPaint.nRight, ps.rcPaint.nBottom);
                 hBrush.Dispose();     
-                return true;
+                return 1;
             }
 
-            return false;
+            return 0;
         }
 
-        static public bool OnButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static public nint OnButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
         {
 
             if (hObj == buttons[0].handle)
@@ -196,7 +197,7 @@ namespace ExDuiRTest
                     hCanvas.FillRect(hBrush, 0, 0, ps.rcPaint.nRight, ps.rcPaint.nBottom);
                     hBrush.Dispose();
                 }
-                return true;
+                return 1;
             }
             else if (hObj == switchs[1].handle)
             {
@@ -210,7 +211,7 @@ namespace ExDuiRTest
                 }
             }
            
-            return false;
+            return 0;
         }
     }
 
@@ -280,7 +281,7 @@ namespace ExDuiRTest
             }
         }
 
-        static public bool OnCheckButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static public nint OnCheckButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
         {
             if (wParam != 0)
             {
@@ -291,7 +292,7 @@ namespace ExDuiRTest
             {
                 ExMessageBox.Show(skin, "取消选中啦", "取CheckButton状态", MB_ICONWARNING, EMBF_CENTEWINDOW);
             }
-            return false;
+            return 0;
         }
     }
 
@@ -323,7 +324,7 @@ namespace ExDuiRTest
                 edit4 = new ExEdit(skin, "测试只读编辑框", 10, 150, 150, 30, EOS_VISIBLE | EES_READONLY, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
                 edit5 = new ExEdit(skin, "测试透明圆角编辑框", 10, 190, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_TABSTOP | EOS_EX_CUSTOMDRAW, DT_VCENTER);
                 edit5.SetFont("微软雅黑", 16, FS_UNDERLINE, false);
-                
+
                 edit5.SetColor(COLOR_EX_BACKGROUND, Util.ExRGBA(200, 120, 130, 100), false);
                 edit5.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(23, 115, 1, 100), false);
                 edit5.SetRadius(10, 10, 10, 0, false);
@@ -331,18 +332,18 @@ namespace ExDuiRTest
                 edit7 = new ExEdit(skin, "测试透明圆角编辑框", 180, 30, 300, 300, EOS_VISIBLE | EOS_VSCROLL | EOS_HSCROLL | EES_RICHTEXT | EES_PARSEURL | EES_ALLOWTAB | EES_NEWLINE, EOS_EX_FOCUSABLE, DT_LEFT | DT_TOP);
                 var rtf = Properties.Resources.testrtf;
                 byte[] rtfdata = System.Text.Encoding.UTF8.GetBytes(rtf.ToCharArray());
-                //byte[] rtfdata = File.ReadAllBytes(".\\res\\test.rtf");
-                //edit7.LoadRtf(rtfdata);
-               // edit7.HandleEvent(NM_EN_SELCHANGE, OnEditNotifyEventProc);
-                //edit7.HandleEvent(NM_EN_LINK, OnEditNotifyEventProc);
+                // byte[] rtfdata = File.ReadAllBytes(".\\res\\test.rtf");
+                edit7.LoadRtf(rtfdata);
+                edit7.HandleEvent(NM_EN_SELCHANGE, OnEditNotifyEventProc);
+                edit7.HandleEvent(NM_EN_LINK, OnEditNotifyEventProc);
                 skin.Visible = true;
             }
         }
 
-        static public bool OnEditNotifyEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static public nint OnEditNotifyEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
         {
 
-            return false;
+            return 0;
         }
     }
 

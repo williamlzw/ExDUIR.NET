@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Runtime.InteropServices;
-using System.Drawing;
 
 namespace ExDuiR.NET.Frameworks.Utility
 {
@@ -37,17 +36,25 @@ namespace ExDuiR.NET.Frameworks.Utility
             return (T)structure;
         }
 
-        static public byte[] BitmapToByte(System.Drawing.Bitmap bitmap)
+        static public byte[] BitmapToByte(System.Drawing.Bitmap Bitmap)
         {
-            // 1.先将BitMap转成内存流
-            System.IO.MemoryStream ms = new System.IO.MemoryStream();
-            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
-            ms.Seek(0, System.IO.SeekOrigin.Begin);
-            // 2.再将内存流转成byte[]并返回
-            byte[] bytes = new byte[ms.Length];
-            ms.Read(bytes, 0, bytes.Length);
-            ms.Dispose();
-            return bytes;
+            MemoryStream ms = null;
+            try
+            {
+                ms = new MemoryStream();
+                Bitmap.Save(ms, Bitmap.RawFormat);
+                byte[] byteImage = new Byte[ms.Length];
+                byteImage = ms.ToArray();
+                return byteImage;
+            }
+            catch (ArgumentNullException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                ms.Close();
+            }
         }
 
         static public byte[] IconToByte(System.Drawing.Icon bitmap)

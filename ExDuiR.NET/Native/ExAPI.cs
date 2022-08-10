@@ -6,15 +6,15 @@ using static ExDuiR.NET.Native.WinAPI;
 
 namespace ExDuiR.NET.Native
 {
-    public delegate bool ExWndProcDelegate(nint hWnd, int hExDui, int uMsg, nint wParam, nint lParam, nint pResult);
-    public delegate bool ExObjProcDelegate(nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pResult);
+    public delegate nint ExWndProcDelegate(nint hWnd, int hExDui, int uMsg, nint wParam, nint lParam, nint pResult);
+    public delegate nint ExObjProcDelegate(nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pResult);
     public delegate nint ExObjClassProcDelegate(nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pvData);
-    public delegate bool ExObjEventProcDelegate(int hObj, int nID, int nCode, nint wParam, nint lParam);
+    public delegate nint ExObjEventProcDelegate(int hObj, int nID, int nCode, nint wParam, nint lParam);
     //public delegate bool ExI18NCallbackDelegate(int atomID, out string ppString);
-    public delegate int ExLayoutProcDelegate(nint pLayout, int nEvent, nint wParam, nint lParam);
+    public delegate nint ExLayoutProcDelegate(nint pLayout, int nEvent, nint wParam, nint lParam);
     public delegate bool ExObjEnumCallbackDelegate(int hObj, nint lParam);
-    public delegate bool ExObjPropEnumCallbackDelegate(int hObj, int nKey, int nValue, nint lParam);
-    public delegate void ExCefBeforeCommandLineCallbackDelegate(int uMsg, int handler, int hObj, nint attach1, nint attach2, nint attach3, nint attach4, nint pbHWEBVIEWd, nint lParam);
+    public delegate nint ExObjPropEnumCallbackDelegate(int hObj, nint nKey, nint nValue, nint lParam);
+    public delegate void ExCefBeforeCommandLineCallbackDelegate(int uMsg, nint handler, int hObj, nint attach1, nint attach2, nint attach3, nint attach4, nint pbHWEBVIEWd, nint lParam);
 
     public struct ExRectF
     {
