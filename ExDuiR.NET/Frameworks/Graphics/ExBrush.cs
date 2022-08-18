@@ -59,7 +59,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public void Dispose()
         {
             ExAPI._brush_destroy(m_hBrush);
-            m_hBrush = nint.Zero;
+            m_hBrush = 0;
         }
     }
 }

@@ -23,7 +23,7 @@ namespace ExDuiR.NET.Frameworks.Utility
         public void Dispose()
         {
             ExAPI._imglist_destroy(m_hImgList);
-            m_hImgList = nint.Zero;
+            m_hImgList = 0;
         }
 
         public nint Add(byte[] lpImage, int cbImage, nint nIndexInsert)

@@ -22,7 +22,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public void Dispose()
         {
             ExAPI._matrix_destroy(m_hMatrix);
-            m_hMatrix = nint.Zero;
+            m_hMatrix = 0;
         }
 
         public bool Reset()

@@ -14,8 +14,8 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public bool Check
         {
-            set => this.SendMessage(BM_SETCHECK, (nint)1, nint.Zero);
-            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, nint.Zero, nint.Zero));
+            set => this.SendMessage(BM_SETCHECK, (nint)1, 0);
+            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, 0, 0));
         }
 
         public void SetProps(ExObjProps props)
@@ -23,7 +23,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             int size = Marshal.SizeOf(typeof(ExObjProps));
             nint allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(props, allocIntPtr, false);
-            var ret = this.SendMessage(WM_EX_PROPS, nint.Zero, allocIntPtr);
+            var ret = this.SendMessage(WM_EX_PROPS, 0, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 

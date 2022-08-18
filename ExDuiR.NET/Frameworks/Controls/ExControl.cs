@@ -9,7 +9,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExControl(IExBaseUIEle oParent, string sClassName, string sTitle, int x, int y, int nWidth, int nHeight,
             int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, int hTheme = 0, ExObjProcDelegate pfnObjProc = null)
         {
-            m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, nint.Zero, hTheme, pfnObjProc);
+            m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, 0, hTheme, pfnObjProc);
             if (m_hObj == 0)
             {
                 throw new ExException(ExStatus.HANDLE_INVALID, "创建控件失败");
@@ -273,7 +273,7 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public bool Invalidate()
         {
-            return ExAPI.Ex_ObjInvalidateRect(m_hObj, nint.Zero);
+            return ExAPI.Ex_ObjInvalidateRect(m_hObj, 0);
         }
 
         public bool Invalidate(ExRect rc)

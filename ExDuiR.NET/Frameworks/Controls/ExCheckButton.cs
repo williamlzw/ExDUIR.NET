@@ -21,7 +21,7 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public void SetCheck(int type)
         {
-            this.SendMessage(BM_SETCHECK, (nint)type, nint.Zero);
+            this.SendMessage(BM_SETCHECK, (nint)type, 0);
         }
         public new string ClassName => "CheckButtonEx";
     }

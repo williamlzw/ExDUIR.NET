@@ -11,9 +11,9 @@ namespace ExDuiR.NET.Frameworks
             {
 
                 nint hInstance = WinAPI.GetModuleHandle(null);
-                if (hInstance != nint.Zero)
+                if (hInstance != 0)
                 {
-                    if (!ExAPI.Ex_Init(hInstance, dwGlobalFlags, nint.Zero, null, theme, (nint)theme.Length, null, nint.Zero))
+                    if (!ExAPI.Ex_Init(hInstance, dwGlobalFlags, 0, null, theme, (nint)theme.Length, null, 0))
                     { 
                         throw new ExException(-1, "引擎初始化失败");
                     }

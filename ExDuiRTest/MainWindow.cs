@@ -3,6 +3,7 @@ using ExDuiR.NET.Frameworks.Controls;
 using ExDuiR.NET.Frameworks.Graphics;
 using ExDuiR.NET.Frameworks.Utility;
 using ExDuiR.NET.Native;
+using System.Runtime.InteropServices;
 using static ExDuiR.NET.Native.ExConst;
 
 
@@ -318,7 +319,7 @@ namespace ExDuiRTest
                 edit1 = new ExEdit(skin, "背景图片编辑框", 10, 30, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_CUSTOMDRAW, DT_VCENTER);
                 var bitmap = Properties.Resources.editbkg;
                 byte[] data = Util.BitmapToByte(bitmap);
-                edit1.SetBackgroundImage(data, 0, 0, 0, nint.Zero, 0, 255, true);
+                edit1.SetBackgroundImage(data, 0, 0, 0, 0, 0, 255, true);
                 edit2 = new ExEdit(skin, "测试密码输入编辑框", 10, 70, 150, 30, EOS_VISIBLE | EES_USEPASSWORD, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
                 edit3 = new ExEdit(skin, "测试数值输入编辑框", 10, 110, 150, 30, EOS_VISIBLE | EES_NUMERICINPUT, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
                 edit4 = new ExEdit(skin, "测试只读编辑框", 10, 150, 150, 30, EOS_VISIBLE | EES_READONLY, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
@@ -342,7 +343,38 @@ namespace ExDuiRTest
 
         static public nint OnEditNotifyEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
         {
-
+            if(nCode == NM_EN_SELCHANGE)
+            {
+                ExSelChange selcha = Util.IntPtrToStructure<ExSelChange>(lParam);
+                //Console.WriteLine(String.Format("选中区域改变:{0}", selcha.chrg.cpMin, selcha.chrg.cpMax));
+            }
+            else if(nCode == NM_EN_LINK)
+            {
+                ExEnLink selcha = Util.IntPtrToStructure<ExEnLink>(lParam);
+                
+                if (selcha.msg == WM_LBUTTONDOWN)
+                {
+                    Console.WriteLine(String.Format("min: {0}", selcha.chrg.cpMin));
+                    Console.WriteLine(String.Format("max: {0}", selcha.chrg.cpMax));
+                    //ExTextRange textRange = new ExTextRange();
+                    //textRange.chrg = selcha.chrg;
+                    //textRange.pwzText = Marshal.AllocHGlobal((textRange.chrg.cpMax - textRange.chrg.cpMin + 2) * 2);
+                    IntPtr intptr = Marshal.AllocHGlobal(16);
+                    //Marshal.StructureToPtr(textRange, intptr, false);
+                    Marshal.WriteIntPtr(intptr, 8, Marshal.AllocHGlobal((selcha.chrg.cpMax - selcha.chrg.cpMin + 2) * 2));
+                    Marshal.WriteInt32(intptr, 0, selcha.chrg.cpMin);
+                    Marshal.WriteInt32(intptr, 4, selcha.chrg.cpMax);
+                    edit7.SendMessage(EM_GETTEXTRANGE, 0, intptr);
+                    //textRange = (ExTextRange)Marshal.PtrToStructure(intptr, typeof(ExTextRange));
+                    
+                    Console.WriteLine(selcha.chrg.cpMin);
+                    Console.WriteLine(Marshal.PtrToStringUni(Marshal.ReadIntPtr(intptr, 8)));
+                    Marshal.FreeHGlobal(Marshal.ReadIntPtr(intptr, 8));
+                    Marshal.FreeHGlobal(intptr);
+                   // Marshal.FreeHGlobal(textRange.pwzText);
+                }
+                
+            }
             return 0;
         }
     }

@@ -11,11 +11,11 @@ namespace ExDuiR.NET.Frameworks
         public ExSkin(ExSkin pOwner, string sClassName, string sWindowName, int x, int y, int nWidth, int nHeight, int dwStyleDUI,
             int dwStyle = 0, int dwStyleEx = 0, int hTheme = 0, ExWndProcDelegate pfnWndProc = null)
         {
-            nint hWndParent = pOwner == null ? nint.Zero : pOwner.Hwnd;
+            nint hWndParent = pOwner == null ? 0 : pOwner.Hwnd;
             m_hWnd = ExWindow.Create(hWndParent, sClassName, sWindowName, x, y, nWidth, nHeight, dwStyle, dwStyleEx);
-            if (m_hWnd != nint.Zero)
+            if (m_hWnd != 0)
             {
-                m_hExDUI = ExAPI.Ex_DUIBindWindowEx(m_hWnd, hTheme, dwStyleDUI, nint.Zero, pfnWndProc);
+                m_hExDUI = ExAPI.Ex_DUIBindWindowEx(m_hWnd, hTheme, dwStyleDUI, 0, pfnWndProc);
                 if(m_hExDUI != 0)
                 {
 
@@ -27,7 +27,7 @@ namespace ExDuiR.NET.Frameworks
 
         public ExSkin(ExWindow pWindow, int dwStyleDUI, int hTheme, ExWndProcDelegate pfnWndProc = null)
         {
-            m_hExDUI = ExAPI.Ex_DUIBindWindowEx(pWindow.WindowHandle, hTheme, dwStyleDUI, nint.Zero, pfnWndProc);
+            m_hExDUI = ExAPI.Ex_DUIBindWindowEx(pWindow.WindowHandle, hTheme, dwStyleDUI, 0, pfnWndProc);
             if (m_hExDUI != 0)
             {
 
@@ -37,7 +37,7 @@ namespace ExDuiR.NET.Frameworks
 
         public ExSkin(ExSkin pOwner, byte[] pLayout, int hTheme = 0)
         {
-            nint hWndParent = pOwner == null ? nint.Zero : (nint)pOwner.handle;
+            nint hWndParent = pOwner == null ? 0 : (nint)pOwner.handle;
             if(ExAPI.Ex_DUICreateFromLayout(hWndParent, hTheme, pLayout, pLayout.Length, out m_hWnd, out m_hExDUI))
             {
 

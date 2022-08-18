@@ -22,7 +22,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public void Dispose()
         {
             ExAPI.Ex_ResFree(m_hRes);
-            m_hRes = nint.Zero;
+            m_hRes = 0;
         }
 
         public bool GetFile(string lpwzPath, out byte[] lpFile, out nint dwFileLen)

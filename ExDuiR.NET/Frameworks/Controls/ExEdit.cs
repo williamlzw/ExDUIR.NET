@@ -43,13 +43,13 @@ namespace ExDuiR.NET.Frameworks.Controls
             int size = Marshal.SizeOf(typeof(ExCharRange));
             nint allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(charRange, allocIntPtr, false);
-            this.SendMessage(EM_EXSETSEL, nint.Zero, allocIntPtr);
+            this.SendMessage(EM_EXSETSEL, 0, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
         public void CancelSelect()
         {
-            this.SendMessage(EM_SETSEL, nint.Zero, nint.Zero);
+            this.SendMessage(EM_SETSEL, 0, 0);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Undo()
         {
-            this.SendMessage(EM_UNDO, nint.Zero, nint.Zero);
+            this.SendMessage(EM_UNDO, 0, 0);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Redo()
         {
-            this.SendMessage(EM_REDO, nint.Zero, nint.Zero);
+            this.SendMessage(EM_REDO, 0, 0);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Copy()
         {
-            this.SendMessage(WM_COPY, nint.Zero, nint.Zero);
+            this.SendMessage(WM_COPY, 0, 0);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Cut()
         {
-            this.SendMessage(WM_CUT, nint.Zero, nint.Zero);
+            this.SendMessage(WM_CUT, 0, 0);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Paste()
         {
-            this.SendMessage(WM_PASTE, nint.Zero, nint.Zero);
+            this.SendMessage(WM_PASTE, 0, 0);
         }
 
         /// <summary>
@@ -107,15 +107,15 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Clear()
         {
-            this.SendMessage(WM_CLEAR, nint.Zero, nint.Zero);
+            this.SendMessage(WM_CLEAR, 0, 0);
         }
 
         /// <summary>
         /// 取行数
         /// </summary>
-        public int GetLineCount()
+        public nint GetLineCount()
         {
-            return this.SendMessage(EM_GETLINECOUNT, nint.Zero, nint.Zero).ToInt32();
+            return this.SendMessage(EM_GETLINECOUNT, 0, 0);
         }
 
         /// <summary>
@@ -124,16 +124,16 @@ namespace ExDuiR.NET.Frameworks.Controls
         public void FindText(string find)
         {
             ExTextRange textRange = new ExTextRange();
-            textRange.chrg.cpMin = Utility.Util.HIWORD(Convert.ToUInt32(this.SendMessage(EM_GETLINECOUNT, nint.Zero, nint.Zero)));
+            textRange.chrg.cpMin = Utility.Util.HIWORD(Convert.ToUInt32(this.SendMessage(EM_GETLINECOUNT, 0, 0)));
             textRange.chrg.cpMax = -1;
-            textRange.pwzText = find;
+            textRange.pwzText = Marshal.StringToHGlobalAnsi(find);
             int size = Marshal.SizeOf(typeof(ExTextRange));
             nint allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(textRange, allocIntPtr, false);       
             textRange.chrg.cpMin = Convert.ToInt32(this.SendMessage(EM_FINDTEXTW, (nint)1, allocIntPtr));
             if(textRange.chrg.cpMin!=-1)
             {
-                textRange.chrg.cpMax = textRange.chrg.cpMin + textRange.pwzText.Length;
+                textRange.chrg.cpMax = textRange.chrg.cpMin + Marshal.SizeOf(textRange.pwzText);
             }
             this.SendMessage(EM_SETSEL, (nint)textRange.chrg.cpMin, (nint)textRange.chrg.cpMax);
             Marshal.FreeHGlobal(allocIntPtr);

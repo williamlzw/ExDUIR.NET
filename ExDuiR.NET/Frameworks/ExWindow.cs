@@ -7,7 +7,7 @@ namespace ExDuiR.NET.Frameworks
     {
         public static int RegisterClass(string sClassName)
         {
-            return ExAPI.Ex_WndRegisterClass(sClassName, nint.Zero, nint.Zero, nint.Zero);
+            return ExAPI.Ex_WndRegisterClass(sClassName, 0, 0, 0);
         }
         public static int RegisterClass(string sClassName, nint hIcon, nint hIconSmall, nint hCursor)
         {

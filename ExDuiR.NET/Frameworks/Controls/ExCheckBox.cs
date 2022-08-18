@@ -12,8 +12,8 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public bool Check
         {
-            set => this.SendMessage(BM_SETCHECK, (nint)1, nint.Zero);
-            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, nint.Zero, nint.Zero));
+            set => this.SendMessage(BM_SETCHECK, (nint)1, 0);
+            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, 0, 0));
         }
         public new string ClassName => "CheckBox";
     }

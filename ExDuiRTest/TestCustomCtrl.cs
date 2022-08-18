@@ -28,13 +28,13 @@ namespace ExDuiRTest
                 default:
                     return CallDefProc(hWnd, hObj, uMsg, wParam, lParam);
             }
-            return nint.Zero;
+            return 0;
         });
 
 
         public static int RegisterControl()
         {
-            return ExAPI.Ex_ObjRegister("TestCustomCtrl", EOS_VISIBLE, EOS_EX_FOCUSABLE, 0, 0, nint.Zero, 0, s_pfnObjClassProc);
+            return ExAPI.Ex_ObjRegister("TestCustomCtrl", EOS_VISIBLE, EOS_EX_FOCUSABLE, 0, 0, 0, 0, s_pfnObjClassProc);
         }
 
 

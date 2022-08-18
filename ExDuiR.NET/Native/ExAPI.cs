@@ -113,6 +113,13 @@ namespace ExDuiR.NET.Native
         public nint lParam;
     }
 
+    public struct NMHDR
+    {
+        public nint hwndFrom;
+        public nint idFrom;
+        public int code;
+    }
+
     /// <summary>
     /// 缓动信息结构
     /// </summary>
@@ -168,7 +175,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 报表列信息结构
     /// </summary>
-    struct ExReportListColumnInfo
+    public struct ExReportListColumnInfo
     {
         public string pwzText;    //表头标题
         public UInt32 nWidth;        //列宽度
@@ -181,7 +188,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 报表项目信息结构
     /// </summary>
-    struct ExReportListItemInfo
+    public struct ExReportListItemInfo
     {
         public UInt32 iRow;         //所在行[IN / OUT]
         public UInt32 iCol;         //所在列[IN / OUT]
@@ -195,7 +202,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 报表行信息结构
     /// </summary>
-    struct ExReportListRowInfo
+    public struct ExReportListRowInfo
     {
         public UInt32 nInsertIndex; //插入位置,0为最后
         public UInt32 dwStyle;         //项目行风格 ERLV_RS_
@@ -206,7 +213,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 报表排序信息结构
     /// </summary>
-    struct ExReportListSortInfo
+    public struct ExReportListSortInfo
     {
         public UInt32 iCol;                       //0为按row.lParam排序
         public UInt32 nType;                      //0:文本,1:整数
@@ -218,7 +225,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 树形框节点信息结构,不能改变成员顺序
     /// </summary>
-    struct ExTreeViewNodeItem
+    public struct ExTreeViewNodeItem
     {
         public int nID;                           //项目ID
         public string pwzText;                   //项目标题
@@ -238,7 +245,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 树形框表项信息结构,不能改变成员顺序
     /// </summary>
-    struct ExTreeViewItemInfo
+    public struct ExTreeViewItemInfo
     {
         public int nID;          //项目ID
         public string pwzText;   //项目标题
@@ -252,7 +259,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 树形框插入项目信息结构
     /// </summary>
-    struct ExTreeViewInsertInfo
+    public struct ExTreeViewInsertInfo
     {
         public nint itemParent;      // 父项句柄（0为根项）
         public nint itemInsertAfter; // 插入在此项之后（必须是同层）
@@ -269,7 +276,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 图标列表框插入信息结构
     /// </summary>
-    struct ExIconListViewItemInfo
+    public struct ExIconListViewItemInfo
     {
         public UInt32 nIndex;      //插入位置
         public UInt32 nImageIndex; //图片索引
@@ -279,7 +286,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 图像属性信息
     /// </summary>
-    struct ExImageInfo
+    public struct ExImageInfo
     {
         public nint imgNormal;        //图像.正常
         public nint imgHover;         //图像.悬浮
@@ -289,7 +296,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 拖曳信息结构
     /// </summary>
-    struct ExDropInfo
+    public struct ExDropInfo
     {
         public nint pDataObject; //数据对象指针IDataObject*
         public UInt32 grfKeyState;  //功能键状态
@@ -300,7 +307,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 富文本框EM_EXSETSEL消息lParam参数结构
     /// </summary>
-    struct ExCharRange
+    public struct ExCharRange
     {
         public int cpMin;
         public int cpMax;
@@ -309,16 +316,16 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 富文本框EM_GETTEXTRANGE,EM_FINDTEXT消息接收lParam参数
     /// </summary>
-    struct ExTextRange
+    public struct ExTextRange
     {
         public ExCharRange chrg;
-        public string pwzText;
+        public nint pwzText;
     };
 
     /// <summary>
     /// 富文本框EN_SELCHANGE消息lParam参数结构
     /// </summary>
-    struct ExSelChange
+    public struct ExSelChange
     {
         public ExNotifyHeader nmhdr;
         public ExCharRange chrg;
@@ -328,10 +335,10 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 富文本框EN_LINK消息lParam参数结构
     /// </summary>
-    struct ExEnLink
+    public struct ExEnLink
     {
-        public ExNotifyHeader nmhdr;
-        public UInt32 msg;
+        public NMHDR nmhdr;
+        public int msg;
         public nint wParam;
         public nint lParam;
         public ExCharRange chrg;
@@ -340,7 +347,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 富文本框替换文本信息结构
     /// </summary>
-    struct ExSetTextEx
+    public struct ExSetTextEx
     {
         public UInt32 flags;
         public UInt32 codePage;
@@ -349,7 +356,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 列表按钮项目信息结构
     /// </summary>
-    struct ExListButtonItemInfo
+    public struct ExListButtonItemInfo
     {
         public UInt32 dwMask;     // 1,图片 2,标题 4,提示文本 8,状态 16,菜单 32,文本格式 64,宽度
         public UInt32 nType;      //项目类型   0,分隔条 1,普通按钮 2,选择按钮
@@ -367,14 +374,13 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 日期框信息结构
     /// </summary>
-    struct ExDateTimeInfo
+    public struct ExDateTimeInfo
     {
         public int Year;               //年
         public int Mon;                //月   1-12
         public int Mday;               //日   1-31
         public int Wday;				//星期 1-7 7=星期日
     };
-
 
 
         public class ExAPI

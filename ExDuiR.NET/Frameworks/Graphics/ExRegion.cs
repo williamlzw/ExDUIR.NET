@@ -32,7 +32,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public void Dispose()
         {
             ExAPI._rgn_destroy(m_hRgn);
-            m_hRgn = nint.Zero;
+            m_hRgn = 0;
         }
 
         public nint Combine(ExRegion RgnDst,int nCombineMode,int dstOffsetX,int dstOffsetY)
