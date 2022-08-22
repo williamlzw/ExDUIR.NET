@@ -346,32 +346,21 @@ namespace ExDuiRTest
             if(nCode == NM_EN_SELCHANGE)
             {
                 ExSelChange selcha = Util.IntPtrToStructure<ExSelChange>(lParam);
-                //Console.WriteLine(String.Format("选中区域改变:{0}", selcha.chrg.cpMin, selcha.chrg.cpMax));
+                Console.WriteLine(String.Format("选中区域改变:{0}", selcha.chrg.cpMin, selcha.chrg.cpMax));
             }
             else if(nCode == NM_EN_LINK)
             {
                 ExEnLink selcha = Util.IntPtrToStructure<ExEnLink>(lParam);
-                
                 if (selcha.msg == WM_LBUTTONDOWN)
                 {
-                    Console.WriteLine(String.Format("min: {0}", selcha.chrg.cpMin));
-                    Console.WriteLine(String.Format("max: {0}", selcha.chrg.cpMax));
-                    //ExTextRange textRange = new ExTextRange();
-                    //textRange.chrg = selcha.chrg;
-                    //textRange.pwzText = Marshal.AllocHGlobal((textRange.chrg.cpMax - textRange.chrg.cpMin + 2) * 2);
                     IntPtr intptr = Marshal.AllocHGlobal(16);
-                    //Marshal.StructureToPtr(textRange, intptr, false);
                     Marshal.WriteIntPtr(intptr, 8, Marshal.AllocHGlobal((selcha.chrg.cpMax - selcha.chrg.cpMin + 2) * 2));
                     Marshal.WriteInt32(intptr, 0, selcha.chrg.cpMin);
                     Marshal.WriteInt32(intptr, 4, selcha.chrg.cpMax);
                     edit7.SendMessage(EM_GETTEXTRANGE, 0, intptr);
-                    //textRange = (ExTextRange)Marshal.PtrToStructure(intptr, typeof(ExTextRange));
-                    
-                    Console.WriteLine(selcha.chrg.cpMin);
-                    Console.WriteLine(Marshal.PtrToStringUni(Marshal.ReadIntPtr(intptr, 8)));
+                    Console.WriteLine(String.Format("链接被按下: {0}", Marshal.PtrToStringUni(Marshal.ReadIntPtr(intptr, 8))));
                     Marshal.FreeHGlobal(Marshal.ReadIntPtr(intptr, 8));
                     Marshal.FreeHGlobal(intptr);
-                   // Marshal.FreeHGlobal(textRange.pwzText);
                 }
                 
             }

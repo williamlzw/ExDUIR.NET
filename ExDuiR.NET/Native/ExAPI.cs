@@ -335,6 +335,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 富文本框EN_LINK消息lParam参数结构
     /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack=4)]
     public struct ExEnLink
     {
         public NMHDR nmhdr;
