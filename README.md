@@ -5,6 +5,7 @@ ExDUIR
 ## 简介
 
 Windows平台轻量DirectUI框架。ExDUIR的.net框架封装。原版地址:https://github.com/williamlzw/ExDUIR
+修改自https://github.com/F-Unction/ExDirectUI.NET
 
 ## 运行系统
 win10+， win7 需要安装KB2670838补丁

@@ -8,6 +8,8 @@ Lightweight DirectUI framework for Windows platform.ExDUIR for .net.
 
 Original address:https://github.com/williamlzw/ExDUIR
 
+Modified from https://github.com/F-Unction/ExDirectUI.NET
+
 ## Environment
 win10+, win7 need install KB2670838 patch
 .net 6.0+
