@@ -1600,7 +1600,7 @@ namespace ExDuiR.NET.Native
         /// <param name="lpBeforeCommandLine"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjCefBrowserInitialize")]
-        public static extern bool Ex_ObjCefBrowserInitialize(string hModule, string libPath, string dllName, string cachePath, string userAgent, int debuggingPort, ExCefBeforeCommandLineCallbackDelegate lpBeforeCommandLine);
+        public static extern bool Ex_ObjCefBrowserInitialize(nint hModule, string libPath, nint dllName, nint cachePath, nint userAgent, int debuggingPort, ExCefBeforeCommandLineCallbackDelegate lpBeforeCommandLine);
 
         /** <summary>
          * ok
