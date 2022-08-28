@@ -34,8 +34,8 @@ namespace ExDuiR.NET.Native
         [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "IsWindowVisible")]
         public static extern bool IsWindowVisible(nint hWnd);
 
-        [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "IsWindowEnable")]
-        public static extern bool IsWindowEnable(nint hWnd);
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "IsWindowEnabled")]
+        public static extern bool IsWindowEnabled(nint hWnd);
 
         [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "EnableWindow")]
         public static extern bool EnableWindow(nint hWnd,bool fEnable);

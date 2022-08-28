@@ -272,4 +272,15 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public new string ClassName => "Edit";
     }
-}
+
+    public class ExEditEx : ExControl
+    {
+        public ExEditEx(IExBaseUIEle pOwner, string sText, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1)
+           : base(pOwner, "EditEx", sText, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat)
+        {
+
+        }
+
+        public new string ClassName => "EditEx";
+    }
+ }

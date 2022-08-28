@@ -52,7 +52,7 @@ namespace ExDuiR.NET.Frameworks
         }
 
 
-        public bool Enable { get => WinAPI.IsWindowEnable(m_hWnd); set => WinAPI.EnableWindow(m_hWnd, value); }
+        public bool Enable { get => WinAPI.IsWindowEnabled(m_hWnd); set => WinAPI.EnableWindow(m_hWnd, value); }
         public bool Visible { get => WinAPI.IsWindowVisible(m_hWnd); set => ExAPI.Ex_DUIShowWindow(m_hExDUI, value ? 1 : 0, 0, 0, 0); }
 
         protected int m_hExDUI;

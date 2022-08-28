@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ExDuiR.NET.Frameworks.Controls
+﻿namespace ExDuiR.NET.Frameworks.Controls
 {
     public class ExStatic : ExControl
     {
