@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>

@@ -425,7 +425,7 @@ namespace ExDuiR.NET.Native
          * <param name="hImg">返回图像指针</param>
          **/
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_createfrommemory")]
-        public static extern bool _img_createfrommemory(byte[] lpData, long dwLen, out int hImg);
+        public static extern bool _img_createfrommemory(byte[] lpData, nint dwLen, out int hImg);
 
         /** <summary>
          * 创建图像。成功返回0。
@@ -545,7 +545,7 @@ namespace ExDuiR.NET.Native
         /// <param name="retBitMap">返回位图句柄</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_LoadBitMapFromMemory")]
-        public static extern bool Ex_LoadBitMapFromMemory(byte[] lpData, int dwLen, out nint retBitMap);
+        public static extern bool Ex_LoadBitMapFromMemory(byte[] lpData, nint dwLen, out nint retBitMap);
 
         /** <summary>
          * 返回宽度
@@ -1519,6 +1519,15 @@ namespace ExDuiR.NET.Native
          **/
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjMove")]
         public static extern bool Ex_ObjMove(int hObj, int x, int y, int width, int height, bool bRepaint);
+
+        /** <summary>
+        * 初始化Miniblink浏览框
+        * </summary>
+        * <param name="libPath"></param>
+        * <param name="dllPath"></param>
+        **/
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjMiniblinkBrowserInitialize")]
+        public static extern bool Ex_ObjMiniblinkBrowserInitialize(string libPath, string dllPath);
 
         /** <summary>
          * 返回与指定组件有特定关系（如Z序或所有者）的组件句柄。
@@ -3730,7 +3739,7 @@ namespace ExDuiR.NET.Native
          * <param name="nIndex"></param>
          **/
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_LoadImageFromMemory")]
-        public static extern nint Ex_LoadImageFromMemory(byte[] lpData, int dwLen, int uType, int nIndex);
+        public static extern nint Ex_LoadImageFromMemory(byte[] lpData, nint dwLen, int uType, int nIndex);
 
         /** <summary>
          * 
