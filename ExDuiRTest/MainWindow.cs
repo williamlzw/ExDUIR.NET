@@ -35,7 +35,7 @@ namespace ExDuiRTest
                 buttons[3] = new ExButton(skin, "测试编辑框", 10, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 TestCustomCtrl.RegisterControl();
                 TestCustomCtrl custom = new TestCustomCtrl(skin, "test", 360, 110, 50, 50);
-                for(int i = 0; i< 4; i++)
+                for (int i = 0; i< 4; i++)
                 {
                     buttons[i].HandleEvent(NM_CLICK, MainButtonEventProc);
                 }
