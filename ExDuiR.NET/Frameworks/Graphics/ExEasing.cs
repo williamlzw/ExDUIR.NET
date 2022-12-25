@@ -5,28 +5,18 @@ namespace ExDuiR.NET.Frameworks.Graphics
 {
     public class ExEasing
     {
-        protected nint m_hEasing;
+        protected IntPtr m_hEasing;
 
-        public nint handle => m_hEasing;
+        public IntPtr handle => m_hEasing;
 
-        public ExEasing(int dwType, nint pEasingContext, int dwMode, nint pContext, int nTotalTime, int nInterval, int nState, int nStart, int nStop, nint param1, nint param2, nint param3, nint param4)
+        public ExEasing(int dwType, IntPtr pEasingContext, int dwMode, IntPtr pContext, int nTotalTime, int nInterval, int nState, int nStart, int nStop, IntPtr param1, IntPtr param2, IntPtr param3, IntPtr param4)
         {
-            m_hEasing = (nint)ExAPI._easing_create(dwType, pEasingContext, dwMode, pContext, nTotalTime, nInterval, nState, nStart, nStop,  param1, param2, param3, param4);
+            m_hEasing = (IntPtr)ExAPI._easing_create(dwType, pEasingContext, dwMode, pContext, nTotalTime, nInterval, nState, nStart, nStop,  param1, param2, param3, param4);
         }
 
-        public ExEasing(nint hEasing)
+        public ExEasing(IntPtr hEasing)
         {
             m_hEasing = hEasing;
-        }
-
-        public void CurveFree(nint pCurveInfo)
-        {
-             ExAPI._easing_curve_free(pCurveInfo);
-        }
-
-        public nint CurveLoad(byte[] lpCurveInfo,int cbCurveInfo)
-        {
-            return ExAPI._easing_curve_load(lpCurveInfo, cbCurveInfo);
         }
 
         public int State

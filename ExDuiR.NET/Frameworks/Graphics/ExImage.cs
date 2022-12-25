@@ -42,12 +42,12 @@ namespace ExDuiR.NET.Frameworks.Graphics
             ExAPI._img_createfromfile(wzFilename, out m_hImg);
         }
 
-        public ExImage(nint hBitmap, nint hPalette, bool fPreAlpha)
+        public ExImage(IntPtr hBitmap, IntPtr hPalette, bool fPreAlpha)
         {
             ExAPI._img_createfromhbitmap(hBitmap, hPalette, fPreAlpha, out m_hImg);
         }
 
-        public ExImage(nint hIcon)
+        public ExImage(IntPtr hIcon)
         {
             ExAPI._img_createfromhicon(hIcon, out m_hImg);
         }
@@ -59,7 +59,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
 
         public ExImage(byte[] lpData, int dwLen)
         {
-            ExAPI._img_createfrommemory(lpData, dwLen, out m_hImg);
+            ExAPI._img_createfrommemory(lpData, (IntPtr)dwLen, out m_hImg);
         }
 
         public ExImage(ExResource res, int atomPath)
@@ -110,14 +110,6 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public bool GetSize(out int lpWidth, out int lpHeight)
         {
             return ExAPI._img_getsize(m_hImg, out lpWidth, out lpHeight);
-        }
-
-        public int GetThumbnail(int thumbWidth, int thumbHeight, out ExImage ImgThumbnail)
-        {
-            var ans = 0;
-            var ret = ExAPI._img_getthumbnail(m_hImg, thumbWidth, thumbHeight, out ans);
-            ImgThumbnail = new ExImage(ans);
-            return ret;
         }
 
         public bool Lock(ExRect RectL, int flags, int PixelFormat, ref ExBitmapData lpLockedBitmapData)

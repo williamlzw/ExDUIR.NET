@@ -3,6 +3,7 @@ using ExDuiR.NET.Frameworks.Controls;
 using ExDuiR.NET.Frameworks.Graphics;
 using ExDuiR.NET.Frameworks.Utility;
 using ExDuiR.NET.Native;
+using System;
 using System.Runtime.InteropServices;
 using static ExDuiR.NET.Native.ExConst;
 
@@ -14,7 +15,7 @@ namespace ExDuiRTest
         static private ExApp theApp;
         static private ExSkin skin;
         static private ExButton[] buttons;
-
+        static private ExObjEventProcDelegate button_callback;
         static public void CreateMainWindow()
         {
             //读入主题包
@@ -27,7 +28,7 @@ namespace ExDuiRTest
             {
                 var bitmap = Properties.Resources.editbkg;
                 byte[] img = Util.BitmapToByte(bitmap);
-                skin.SetBackgroundImage(img, 0, 0, 0, 0, 0, 255, true);
+                skin.SetBackgroundImage(img, 0, 0, 0, IntPtr.Zero, 0, 255, true);
                 buttons = new ExButton[4];
                 buttons[0] = new ExButton(skin, "测试按钮开关", 10, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[1] = new ExButton(skin, "测试标签", 10, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
@@ -35,17 +36,24 @@ namespace ExDuiRTest
                 buttons[3] = new ExButton(skin, "测试编辑框", 10, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 TestCustomCtrl.RegisterControl();
                 TestCustomCtrl custom = new TestCustomCtrl(skin, "test", 360, 110, 50, 50);
-                for (int i = 0; i< 4; i++)
+                button_callback = new ExObjEventProcDelegate(MainButtonEventProc);
+                for (int i = 0; i < 4; i++)
                 {
-                    buttons[i].HandleEvent(NM_CLICK, MainButtonEventProc);
+                    buttons[i].HandleEvent(NM_CLICK, button_callback);
+                }
+
+                for (int i = 0; i < 20; i++)
+                {
+
+
                 }
                 skin.Visible = true;
-               
+
                 theApp.Run();
             }
         }
 
-        static private nint MainButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static private IntPtr MainButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (hObj == buttons[0].handle)
             {
@@ -63,17 +71,17 @@ namespace ExDuiRTest
             {
                 EditWindow.CreateEditWindow(skin);
             }
-            return 0;
+            return IntPtr.Zero;
         }
 
-        static private nint MainWndProc(nint hWnd, int hExDui, int uMsg, nint wParam, nint lParam, nint pResult)
+        static private IntPtr MainWndProc(IntPtr hWnd, int hExDui, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr pResult)
         {
             if (uMsg == WM_CREATE)
             {
 
-  
+
             }
-            return 0;
+            return IntPtr.Zero;
         }
     }
 
@@ -90,9 +98,9 @@ namespace ExDuiRTest
             EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
             if (skin.Validate)
             {
-                
+
                 var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (nint)color);
+                skin.SetLong(EWL_CRBKG, (IntPtr)color);
                 buttons = new ExButton[6];
                 buttons[0] = new ExButton(skin, "禁用自身", 10, 30, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[1] = new ExButton(skin, "解除按钮1禁用", 10, 70, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
@@ -113,7 +121,7 @@ namespace ExDuiRTest
                 switchs[1] = new ExSwitch(skin, "", 150, 150, 60, 30);
                 switchs[1].Check = true;
                 ExObjProps props = new ExObjProps();
-                
+
                 props.crBkgNormal = Util.ExRGBA(255, 255, 255, 100);
                 props.crBkgDownOrChecked = Util.ExRGBA(200, 50, 100, 100);
                 props.crBorderNormal = Util.ExRGBA(255, 255, 255, 255);
@@ -125,7 +133,7 @@ namespace ExDuiRTest
             }
         }
 
-        static public nint OnButtonMsgProc(nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pResult)
+        static public IntPtr OnButtonMsgProc(IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr pResult)
         {
             if (uMsg == WM_ERASEBKGND)
             {
@@ -133,9 +141,9 @@ namespace ExDuiRTest
                 int crBkg;
                 if ((ps.dwState & STATE_DOWN) == STATE_DOWN)
                 {
-                   
+
                     crBkg = Util.ExRGBA(255, 0, 0, 51);
-                    
+
                 }
                 else if ((ps.dwState & STATE_HOVER) == STATE_HOVER)
                 {
@@ -148,14 +156,14 @@ namespace ExDuiRTest
                 ExBrush hBrush = new ExBrush(crBkg);
                 ExCanvas hCanvas = new ExCanvas(ps.hCanvas);
                 hCanvas.FillRect(hBrush, 0, 0, ps.rcPaint.nRight, ps.rcPaint.nBottom);
-                hBrush.Dispose();     
-                return 1;
+                hBrush.Dispose();
+                return (IntPtr)1;
             }
 
-            return 0;
+            return IntPtr.Zero;
         }
 
-        static public nint OnButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static public IntPtr OnButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
 
             if (hObj == buttons[0].handle)
@@ -198,11 +206,11 @@ namespace ExDuiRTest
                     hCanvas.FillRect(hBrush, 0, 0, ps.rcPaint.nRight, ps.rcPaint.nBottom);
                     hBrush.Dispose();
                 }
-                return 1;
+                return (IntPtr)1;
             }
             else if (hObj == switchs[1].handle)
             {
-                if (wParam != 0)
+                if (wParam != IntPtr.Zero)
                 {
                     ExMessageBox.Show(skin, "开启", "取开关状态", MB_USERICON, EMBF_CENTEWINDOW);
                 }
@@ -211,8 +219,8 @@ namespace ExDuiRTest
                     ExMessageBox.Show(skin, "关闭", "取开关状态", MB_ICONWARNING, EMBF_CENTEWINDOW);
                 }
             }
-           
-            return 0;
+
+            return IntPtr.Zero;
         }
     }
 
@@ -229,8 +237,9 @@ namespace ExDuiRTest
             if (skin.Validate)
             {
                 var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (nint)color);
-                byte[] img = File.ReadAllBytes(".\\Res\\Loading.gif");
+                skin.SetLong(EWL_CRBKG, (IntPtr)color);
+                var bitmap = Properties.Resources.Loading;
+                byte[] img = Util.BitmapToByte(bitmap);
                 label = new ExStatic(skin, img, 10, 30, 180, 150);
                 label.SetRadius(10, 10, 15, 10, true);
                 label.GetBackgroundImage(out ExBackgroundImageInfo bkgInfo);
@@ -238,7 +247,7 @@ namespace ExDuiRTest
                 label2 = new ExStatic(skin, "标签可以填充动画,支持PNG,GIF,JPG,BMP格式,标签可以自动换行", 10, 190, 180, 90, DT_WORDBREAK);
                 label2.SetFont("宋体", 14, FS_BOLD, false);
                 label2.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(133, 33, 53, 255), true);
-               
+
                 Console.WriteLine(string.Format("标签矩形:{0},{1}", rc.nRight, rc.nBottom));
                 Console.WriteLine(string.Format("背景信息:{0},{1},{2},{3},{4},{5},{6}", bkgInfo.nCurFrame, bkgInfo.x, bkgInfo.y, bkgInfo.nAlpha, bkgInfo.dwRepeat, bkgInfo.hImage, bkgInfo.nMaxFrame));
                 skin.Visible = true;
@@ -266,15 +275,15 @@ namespace ExDuiRTest
             {
 
                 var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (nint)color);
-                checkButton1 = new ExCheckButton(skin, "复选框", 10, 30, 60, 20);
-                radiobutton1 = new ExRadioButton(skin, "单选框1", 10, 60, 80, 20);
-                radiobutton2 = new ExRadioButton(skin, "单选框2", 100, 60, 80, 20);
-                checkButtonex1 = new ExCheckButtonEx(skin, "三态选择框", 10, 90, 120, 20);
+                skin.SetLong(EWL_CRBKG, (IntPtr)color);
+                checkButton1 = new ExCheckButton(skin, "复选框", 10, 30, 60, 20, -1);
+                radiobutton1 = new ExRadioButton(skin, "单选框1", 10, 60, 80, 20, -1);
+                radiobutton2 = new ExRadioButton(skin, "单选框2", 100, 60, 80, 20, -1);
+                checkButtonex1 = new ExCheckButtonEx(skin, "三态选择框", 10, 90, 120, 20, -1);
                 checkButtonex1.SetCheck(2);
-                radiobuttonex1 = new ExRadioButtonEx(skin, "扩展单选框1", 10, 120, 100, 20);
-                radiobuttonex2 = new ExRadioButtonEx(skin, "扩展单选框2", 100, 120, 100, 20);
-                checkbox1 = new ExCheckBox(skin, "记住账号", 10, 150, 100, 30);
+                radiobuttonex1 = new ExRadioButtonEx(skin, "扩展单选框1", 10, 120, 100, 20, -1);
+                radiobuttonex2 = new ExRadioButtonEx(skin, "扩展单选框2", 100, 120, 100, 20, -1);
+                checkbox1 = new ExCheckBox(skin, "记住账号", 10, 150, 100, 30, -1);
                 checkbox1.Check = true;
                 checkbox1.HandleEvent(NM_CHECK, OnCheckButtonEventProc);
 
@@ -282,9 +291,9 @@ namespace ExDuiRTest
             }
         }
 
-        static public nint OnCheckButtonEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static public IntPtr OnCheckButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (wParam != 0)
+            if (wParam != IntPtr.Zero)
             {
                 bool check = true;
                 ExMessageBox.ShowEx(skin, "选中了", "取CheckButton状态", MB_USERICON, "不再提示", ref check, 10, EMBF_CENTEWINDOW);
@@ -293,7 +302,7 @@ namespace ExDuiRTest
             {
                 ExMessageBox.Show(skin, "取消选中啦", "取CheckButton状态", MB_ICONWARNING, EMBF_CENTEWINDOW);
             }
-            return 0;
+            return IntPtr.Zero;
         }
     }
 
@@ -315,11 +324,11 @@ namespace ExDuiRTest
             if (skin.Validate)
             {
                 var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (nint)color);
+                skin.SetLong(EWL_CRBKG, (IntPtr)color);
                 edit1 = new ExEdit(skin, "背景图片编辑框", 10, 30, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_CUSTOMDRAW, DT_VCENTER);
                 var bitmap = Properties.Resources.editbkg;
                 byte[] data = Util.BitmapToByte(bitmap);
-                edit1.SetBackgroundImage(data, 0, 0, 0, 0, 0, 255, true);
+                edit1.SetBackgroundImage(data, 0, 0, 0, IntPtr.Zero, 0, 255, true);
                 edit2 = new ExEdit(skin, "测试密码输入编辑框", 10, 70, 150, 30, EOS_VISIBLE | EES_USEPASSWORD, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
                 edit3 = new ExEdit(skin, "测试数值输入编辑框", 10, 110, 150, 30, EOS_VISIBLE | EES_NUMERICINPUT, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
                 edit4 = new ExEdit(skin, "测试只读编辑框", 10, 150, 150, 30, EOS_VISIBLE | EES_READONLY, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
@@ -333,7 +342,7 @@ namespace ExDuiRTest
                 edit7 = new ExEdit(skin, "测试透明圆角编辑框", 180, 30, 300, 300, EOS_VISIBLE | EOS_VSCROLL | EOS_HSCROLL | EES_RICHTEXT | EES_PARSEURL | EES_ALLOWTAB | EES_NEWLINE, EOS_EX_FOCUSABLE, DT_LEFT | DT_TOP);
                 var rtf = Properties.Resources.testrtf;
                 byte[] rtfdata = System.Text.Encoding.UTF8.GetBytes(rtf.ToCharArray());
-                // byte[] rtfdata = File.ReadAllBytes(".\\res\\test.rtf");
+                //byte[] rtfdata = System.IO.File.ReadAllBytes(".\\res\\test.rtf");
                 edit7.LoadRtf(rtfdata);
                 edit7.HandleEvent(NM_EN_SELCHANGE, OnEditNotifyEventProc);
                 edit7.HandleEvent(NM_EN_LINK, OnEditNotifyEventProc);
@@ -341,14 +350,14 @@ namespace ExDuiRTest
             }
         }
 
-        static public nint OnEditNotifyEventProc(int hObj, int nID, int nCode, nint wParam, nint lParam)
+        static public IntPtr OnEditNotifyEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if(nCode == NM_EN_SELCHANGE)
+            if (nCode == NM_EN_SELCHANGE)
             {
                 ExSelChange selcha = Util.IntPtrToStructure<ExSelChange>(lParam);
                 Console.WriteLine(String.Format("选中区域改变:{0}", selcha.chrg.cpMin, selcha.chrg.cpMax));
             }
-            else if(nCode == NM_EN_LINK)
+            else if (nCode == NM_EN_LINK)
             {
                 ExEnLink selcha = Util.IntPtrToStructure<ExEnLink>(lParam);
                 if (selcha.msg == WM_LBUTTONDOWN)
@@ -357,14 +366,14 @@ namespace ExDuiRTest
                     Marshal.WriteIntPtr(intptr, 8, Marshal.AllocHGlobal((selcha.chrg.cpMax - selcha.chrg.cpMin + 2) * 2));
                     Marshal.WriteInt32(intptr, 0, selcha.chrg.cpMin);
                     Marshal.WriteInt32(intptr, 4, selcha.chrg.cpMax);
-                    edit7.SendMessage(EM_GETTEXTRANGE, 0, intptr);
+                    edit7.SendMessage(EM_GETTEXTRANGE, IntPtr.Zero, intptr);
                     Console.WriteLine(String.Format("链接被按下: {0}", Marshal.PtrToStringUni(Marshal.ReadIntPtr(intptr, 8))));
                     Marshal.FreeHGlobal(Marshal.ReadIntPtr(intptr, 8));
                     Marshal.FreeHGlobal(intptr);
                 }
-                
+
             }
-            return 0;
+            return IntPtr.Zero;
         }
     }
 

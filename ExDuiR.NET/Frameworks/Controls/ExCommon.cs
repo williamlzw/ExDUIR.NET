@@ -1,4 +1,5 @@
-﻿using ExDuiR.NET.Native;
+﻿using System;
+using ExDuiR.NET.Native;
 using System.IO;
 using System.Runtime.InteropServices;
 using static ExDuiR.NET.Native.ExConst;
@@ -12,11 +13,20 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
 
         }
-
+        public ExStatic(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "Static", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
         public ExStatic(IExBaseUIEle pOwner, byte[] pImageData, int x, int y, int nWidth, int nHeight)
             : base(pOwner, "Static", null, x, y, nWidth, nHeight)
         {
-            SetBackgroundImage(pImageData, 0, 0, 0, 0, 1, 255, true);
+            SetBackgroundImage(pImageData, 0, 0, 0, IntPtr.Zero, 1, 255, true);
+        }
+        public ExStatic(int hObj) : base(hObj)
+        {
+        }
+        public ExStatic(ExControl parent) : base(parent)
+        {
         }
 
         public new string ClassName => "Static";
@@ -28,11 +38,16 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
         }
 
-        public ExButton(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle=-1, int dwStyleEx=-1, int dwTextFormat=-1, int nID=0, ExObjProcDelegate pfnObjProc = null)
+        public ExButton(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
             : base(oParent, "Button", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExButton(int hObj) : base(hObj)
+        {
+        }
+        public ExButton(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "Button";
     }
 
@@ -47,7 +62,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "ButtonEx", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExButtonEx(int hObj) : base(hObj)
+        {
+        }
+        public ExButtonEx(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "ButtonEx";
     }
 
@@ -62,7 +82,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "Calendar", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExCalendar(int hObj) : base(hObj)
+        {
+        }
+        public ExCalendar(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "Calendar";
     }
 
@@ -77,7 +102,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "Carousel", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExCarousel(int hObj) : base(hObj)
+        {
+        }
+        public ExCarousel(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "Carousel";
     }
     public class ExCheckBox : ExControl
@@ -86,11 +116,20 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(pOwner, "CheckBox", sText, x, y, nWidth, nHeight, -1, -1, dwTextFormat)
         {
         }
-
+        public ExCheckBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "CheckBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExCheckBox(int hObj) : base(hObj)
+        {
+        }
+        public ExCheckBox(ExControl parent) : base(parent)
+        {
+        }
         public bool Check
         {
-            set => this.SendMessage(BM_SETCHECK, (nint)1, 0);
-            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, 0, 0));
+            set => this.SendMessage(BM_SETCHECK, (IntPtr)1, IntPtr.Zero);
+            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, IntPtr.Zero, IntPtr.Zero));
         }
         public new string ClassName => "CheckBox";
     }
@@ -99,6 +138,16 @@ namespace ExDuiR.NET.Frameworks.Controls
     {
         public ExCheckButton(IExBaseUIEle pOwner, string sText, int x, int y, int nWidth, int nHeight, int dwTextFormat = -1)
             : base(pOwner, "CheckButton", sText, x, y, nWidth, nHeight, -1, -1, dwTextFormat)
+        {
+        }
+        public ExCheckButton(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "CheckButton", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExCheckButton(int hObj) : base(hObj)
+        {
+        }
+        public ExCheckButton(ExControl parent) : base(parent)
         {
         }
         public new string ClassName => "CheckButton";
@@ -110,10 +159,19 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(pOwner, "CheckButtonEx", sText, x, y, nWidth, nHeight, -1, -1, dwTextFormat)
         {
         }
-
+        public ExCheckButtonEx(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "CheckButtonEx", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExCheckButtonEx(int hObj) : base(hObj)
+        {
+        }
+        public ExCheckButtonEx(ExControl parent) : base(parent)
+        {
+        }
         public void SetCheck(int type)
         {
-            this.SendMessage(BM_SETCHECK, (nint)type, 0);
+            this.SendMessage(BM_SETCHECK, (IntPtr)type, IntPtr.Zero);
         }
         public new string ClassName => "CheckButtonEx";
     }
@@ -129,10 +187,15 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "CefBrowser", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExChromium(int hObj) : base(hObj)
+        {
+        }
+        public ExChromium(ExControl parent) : base(parent)
+        {
+        }
         public static void Initialize(string libPath)
         {
-            ExAPI.Ex_ObjCefBrowserInitialize(0, libPath, 0, 0, 0, 0, null);
+            ExAPI.Ex_ObjCefBrowserInitialize(IntPtr.Zero, libPath, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, 0, null);
         }
 
         public new string ClassName => "CefBrowser";
@@ -149,7 +212,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "ColorPicker", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExColorPicker(int hObj) : base(hObj)
+        {
+        }
+        public ExColorPicker(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "ColorPicker";
     }
 
@@ -157,6 +225,16 @@ namespace ExDuiR.NET.Frameworks.Controls
     {
         public ExComboBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
             : base(oParent, "ComboBox", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+        public ExComboBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "ComboBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExComboBox(int hObj) : base(hObj)
+        {
+        }
+        public ExComboBox(ExControl parent) : base(parent)
         {
         }
         public new string ClassName => "ComboBox";
@@ -173,7 +251,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "DateBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExDateBox(int hObj) : base(hObj)
+        {
+        }
+        public ExDateBox(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "DateBox";
     }
 
@@ -188,7 +271,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "DrawingBoard", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExDrawingBoard(int hObj) : base(hObj)
+        {
+        }
+        public ExDrawingBoard(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "DrawingBoard";
     }
 
@@ -199,18 +287,27 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
 
         }
-
+        public ExEdit(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "Edit", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExEdit(int hObj) : base(hObj)
+        {
+        }
+        public ExEdit(ExControl parent) : base(parent)
+        {
+        }
         /// <summary>
         /// 加载rtf文件
         /// </summary>
         /// <param name="data"></param>
         public void LoadRtf(byte[] data)
         {
-            nint allocIntPtr = Marshal.AllocHGlobal(data.Length);
+            IntPtr allocIntPtr = Marshal.AllocHGlobal(data.Length);
             try
             {
                 Marshal.Copy(data, 0, allocIntPtr, data.Length);
-                this.SendMessage(EM_LOAD_RTF, (nint)data.Length, allocIntPtr);
+                this.SendMessage(EM_LOAD_RTF, (IntPtr)data.Length, allocIntPtr);
             }
             finally
             {
@@ -227,15 +324,15 @@ namespace ExDuiR.NET.Frameworks.Controls
             charRange.cpMin = 0;
             charRange.cpMax = -1;
             int size = Marshal.SizeOf(typeof(ExCharRange));
-            nint allocIntPtr = Marshal.AllocHGlobal(size);
+            IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(charRange, allocIntPtr, false);
-            this.SendMessage(EM_EXSETSEL, 0, allocIntPtr);
+            this.SendMessage(EM_EXSETSEL, IntPtr.Zero, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
         public void CancelSelect()
         {
-            this.SendMessage(EM_SETSEL, 0, 0);
+            this.SendMessage(EM_SETSEL, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -245,7 +342,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="end"></param>
         public void Select(int start, int end)
         {
-            this.SendMessage(EM_SETSEL, (nint)start, (nint)end);
+            this.SendMessage(EM_SETSEL, (IntPtr)start, (IntPtr)end);
         }
 
         /// <summary>
@@ -253,7 +350,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Undo()
         {
-            this.SendMessage(EM_UNDO, 0, 0);
+            this.SendMessage(EM_UNDO, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -261,7 +358,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Redo()
         {
-            this.SendMessage(EM_REDO, 0, 0);
+            this.SendMessage(EM_REDO, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -269,7 +366,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Copy()
         {
-            this.SendMessage(WM_COPY, 0, 0);
+            this.SendMessage(WM_COPY, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -277,7 +374,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Cut()
         {
-            this.SendMessage(WM_CUT, 0, 0);
+            this.SendMessage(WM_CUT, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -285,7 +382,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Paste()
         {
-            this.SendMessage(WM_PASTE, 0, 0);
+            this.SendMessage(WM_PASTE, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -293,15 +390,15 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Clear()
         {
-            this.SendMessage(WM_CLEAR, 0, 0);
+            this.SendMessage(WM_CLEAR, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
         /// 取行数
         /// </summary>
-        public nint GetLineCount()
+        public IntPtr GetLineCount()
         {
-            return this.SendMessage(EM_GETLINECOUNT, 0, 0);
+            return this.SendMessage(EM_GETLINECOUNT, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -310,18 +407,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         public void FindText(string find)
         {
             ExTextRange textRange = new ExTextRange();
-            textRange.chrg.cpMin = Utility.Util.HIWORD(Convert.ToUInt32(this.SendMessage(EM_GETLINECOUNT, 0, 0)));
+            textRange.chrg.cpMin = Utility.Util.HIWORD(Convert.ToUInt32(this.SendMessage(EM_GETLINECOUNT, IntPtr.Zero, IntPtr.Zero)));
             textRange.chrg.cpMax = -1;
             textRange.pwzText = Marshal.StringToHGlobalAnsi(find);
             int size = Marshal.SizeOf(typeof(ExTextRange));
-            nint allocIntPtr = Marshal.AllocHGlobal(size);
+            IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(textRange, allocIntPtr, false);
-            textRange.chrg.cpMin = Convert.ToInt32(this.SendMessage(EM_FINDTEXTW, (nint)1, allocIntPtr));
+            textRange.chrg.cpMin = Convert.ToInt32(this.SendMessage(EM_FINDTEXTW, (IntPtr)1, allocIntPtr));
             if (textRange.chrg.cpMin != -1)
             {
                 textRange.chrg.cpMax = textRange.chrg.cpMin + Marshal.SizeOf(textRange.pwzText);
             }
-            this.SendMessage(EM_SETSEL, (nint)textRange.chrg.cpMin, (nint)textRange.chrg.cpMax);
+            this.SendMessage(EM_SETSEL, (IntPtr)textRange.chrg.cpMin, (IntPtr)textRange.chrg.cpMax);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
@@ -334,9 +431,9 @@ namespace ExDuiR.NET.Frameworks.Controls
             textformat.flags = 2;
             textformat.codePage = 1200;
             int size = Marshal.SizeOf(typeof(ExSetTextEx));
-            nint allocIntPtr = Marshal.AllocHGlobal(size);
+            IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(textformat, allocIntPtr, false);
-            nint strPtr = Marshal.StringToHGlobalUni(replace);
+            IntPtr strPtr = Marshal.StringToHGlobalUni(replace);
             this.SendMessage(EM_SETSEL, allocIntPtr, strPtr);
             Marshal.FreeHGlobal(allocIntPtr);
             Marshal.FreeHGlobal(strPtr);
@@ -464,7 +561,16 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
 
         }
-
+        public ExEditEx(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "EditEx", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExEditEx(int hObj) : base(hObj)
+        {
+        }
+        public ExEditEx(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "EditEx";
     }
 
@@ -474,7 +580,16 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "GroupBox", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExGroupBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "GroupBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExGroupBox(int hObj) : base(hObj)
+        {
+        }
+        public ExGroupBox(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "GroupBox";
     }
 
@@ -489,7 +604,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "IconListView", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExIconListView(int hObj) : base(hObj)
+        {
+        }
+        public ExIconListView(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "IconListView";
     }
 
@@ -504,8 +624,33 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "ListButton", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExListButton(int hObj) : base(hObj)
+        {
+        }
+        public ExListButton(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "ListButton";
+    }
+
+    public class ExListItem : ExControl
+    {
+        public ExListItem(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "LISTITEM", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExListItem(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "LISTITEM", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExListItem(int hObj) : base(hObj)
+        {
+        }
+        public ExListItem(ExControl parent) : base(parent)
+        {
+        }
+        public new string ClassName => "LISTITEM";
     }
 
     public class ExListView : ExControl
@@ -514,7 +659,16 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "ListView", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExListView(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "ListView", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExListView(int hObj) : base(hObj)
+        {
+        }
+        public ExListView(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "ListView";
     }
 
@@ -529,17 +683,32 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "NavButtonEx", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
+        public ExNavButton(int hObj) : base(hObj)
+        {
+        }
+        public ExNavButton(ExControl parent) : base(parent)
+        {
+        }
 
         public new string ClassName => "NavButtonEx";
     }
 
     class ExPage : ExControl
     {
-        ExPage(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+        public ExPage(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
             : base(oParent, "Page", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExPage(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "Page", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExPage(int hObj) : base(hObj)
+        {
+        }
+        public ExPage(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "Page";
     }
 
@@ -554,6 +723,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "Palette", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
+        public ExPalette(int hObj) : base(hObj)
+        {
+        }
+        public ExPalette(ExControl parent) : base(parent)
+        {
+        }
 
         public new string ClassName => "Palette";
     }
@@ -564,7 +739,16 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "Progress", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExProgressBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "Progress", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExProgressBar(int hObj) : base(hObj)
+        {
+        }
+        public ExProgressBar(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "Progress";
     }
 
@@ -579,7 +763,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "PropertyGrid", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExPropertyGrid(int hObj) : base(hObj)
+        {
+        }
+        public ExPropertyGrid(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "PropertyGrid";
     }
 
@@ -587,6 +776,16 @@ namespace ExDuiR.NET.Frameworks.Controls
     {
         public ExRadioButton(IExBaseUIEle pOwner, string sText, int x, int y, int nWidth, int nHeight, int dwTextFormat = -1)
             : base(pOwner, "Radiobutton", sText, x, y, nWidth, nHeight, -1, -1, dwTextFormat)
+        {
+        }
+        public ExRadioButton(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "Radiobutton", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExRadioButton(int hObj) : base(hObj)
+        {
+        }
+        public ExRadioButton(ExControl parent) : base(parent)
         {
         }
         public new string ClassName => "RadioButton";
@@ -598,6 +797,16 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(pOwner, "RadiobuttonEx", sText, x, y, nWidth, nHeight, -1, -1, dwTextFormat)
         {
         }
+        public ExRadioButtonEx(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "RadiobuttonEx", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExRadioButtonEx(int hObj) : base(hObj)
+        {
+        }
+        public ExRadioButtonEx(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "RadioButtonEx";
     }
 
@@ -607,7 +816,16 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "ReportListView", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExReportListView(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "ReportListView", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExReportListView(int hObj) : base(hObj)
+        {
+        }
+        public ExReportListView(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "ReportListView";
     }
     public class ExRotateImgBox : ExControl
@@ -621,7 +839,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "RotateImgBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExRotateImgBox(int hObj) : base(hObj)
+        {
+        }
+        public ExRotateImgBox(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "RotateImgBox";
     }
 
@@ -636,7 +859,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "ScoreButton", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExScoreButton(int hObj) : base(hObj)
+        {
+        }
+        public ExScoreButton(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "ScoreButton";
     }
 
@@ -646,15 +874,22 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "ScrollBar", sTitle, x, y, nWidth, nHeight)
         {
         }
-
-        public new string ClassName => "ScrollBar";
-
+        public ExScrollBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "ScrollBar", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExScrollBar(int hObj) : base(hObj)
+        {
+        }
+        public ExScrollBar(ExControl parent) : base(parent)
+        {
+        }
         public bool ScrollEnable(int wSB, int wArrows)
         {
             return ExAPI.Ex_ObjScrollEnable(m_hObj, wSB, wArrows);
         }
 
-        public nint GetControl(int nBar)
+        public IntPtr GetControl(int nBar)
         {
             return ExAPI.Ex_ObjScrollGetControl(m_hObj, nBar);
         }
@@ -698,6 +933,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             return ExAPI.Ex_ObjScrollShow(m_hObj, wBar, fShow);
         }
+        public new string ClassName => "ScrollBar";
     }
 
     public class ExSoliderBar : ExControl
@@ -711,7 +947,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "SoliderBar", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
         {
         }
-
+        public ExSoliderBar(int hObj) : base(hObj)
+        {
+        }
+        public ExSoliderBar(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "SoliderBar";
     }
 
@@ -721,19 +962,28 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "Switch", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExSwitch(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "Switch", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExSwitch(int hObj) : base(hObj)
+        {
+        }
+        public ExSwitch(ExControl parent) : base(parent)
+        {
+        }
         public bool Check
         {
-            set => this.SendMessage(BM_SETCHECK, (nint)1, 0);
-            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, 0, 0));
+            set => this.SendMessage(BM_SETCHECK, (IntPtr)1, IntPtr.Zero);
+            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, IntPtr.Zero, IntPtr.Zero));
         }
 
         public void SetProps(ExObjProps props)
         {
             int size = Marshal.SizeOf(typeof(ExObjProps));
-            nint allocIntPtr = Marshal.AllocHGlobal(size);
+            IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(props, allocIntPtr, false);
-            var ret = this.SendMessage(WM_EX_PROPS, 0, allocIntPtr);
+            var ret = this.SendMessage(WM_EX_PROPS, IntPtr.Zero, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
@@ -742,22 +992,40 @@ namespace ExDuiR.NET.Frameworks.Controls
 
     public class ExSysButton : ExControl
     {
-        public ExSysButton(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
-            : base(oParent, "SysButton", sTitle, x, y, nWidth, nHeight)
+        public ExSysButton(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle, int dwStyleEx)
+            : base(oParent, "SysButton", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx)
         {
         }
-
+        public ExSysButton(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "SysButton", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExSysButton(int hObj) : base(hObj)
+        {
+        }
+        public ExSysButton(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "SysButton";
     }
 
     public class ExTemplateListView : ExControl
     {
         public ExTemplateListView(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
-            : base(oParent, "TemplateListView", sTitle, x, y, nWidth, nHeight)
+            : base(oParent, "TListView", sTitle, x, y, nWidth, nHeight)
         {
         }
-
-        public new string ClassName => "TemplateListView";
+        public ExTemplateListView(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "TListView", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExTemplateListView(int hObj) : base(hObj)
+        {
+        }
+        public ExTemplateListView(ExControl parent) : base(parent)
+        {
+        }
+        public new string ClassName => "TListView";
     }
 
     public class ExTreeView : ExControl
@@ -766,7 +1034,16 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "TreeView", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExTreeView(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "TreeView", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExTreeView(int hObj) : base(hObj)
+        {
+        }
+        public ExTreeView(ExControl parent) : base(parent)
+        {
+        }
         public new string ClassName => "TreeView";
     }
 
@@ -776,7 +1053,16 @@ namespace ExDuiR.NET.Frameworks.Controls
             : base(oParent, "MbBrowser", sTitle, x, y, nWidth, nHeight)
         {
         }
-
+        public ExMiniblinkBrowser(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "MbBrowser", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, 0, pfnObjProc)
+        {
+        }
+        public ExMiniblinkBrowser(int hObj) : base(hObj)
+        {
+        }
+        public ExMiniblinkBrowser(ExControl parent) : base(parent)
+        {
+        }
         public static bool Initialize(string libPath, string dllPath)
         {
             return ExAPI.Ex_ObjMiniblinkBrowserInitialize(libPath, dllPath);

@@ -11,11 +11,11 @@ namespace ExDuiR.NET.Frameworks
         public ExSkin(ExSkin pOwner, string sClassName, string sWindowName, int x, int y, int nWidth, int nHeight, int dwStyleDUI,
             int dwStyle = 0, int dwStyleEx = 0, int hTheme = 0, ExWndProcDelegate pfnWndProc = null)
         {
-            nint hWndParent = pOwner == null ? 0 : pOwner.Hwnd;
+            IntPtr hWndParent = pOwner == null ? IntPtr.Zero : pOwner.Hwnd;
             m_hWnd = ExWindow.Create(hWndParent, sClassName, sWindowName, x, y, nWidth, nHeight, dwStyle, dwStyleEx);
-            if (m_hWnd != 0)
+            if (m_hWnd != IntPtr.Zero)
             {
-                m_hExDUI = ExAPI.Ex_DUIBindWindowEx(m_hWnd, hTheme, dwStyleDUI, 0, pfnWndProc);
+                m_hExDUI = ExAPI.Ex_DUIBindWindowEx(m_hWnd, hTheme, dwStyleDUI, IntPtr.Zero, pfnWndProc);
                 if(m_hExDUI != 0)
                 {
 
@@ -27,37 +27,30 @@ namespace ExDuiR.NET.Frameworks
 
         public ExSkin(ExWindow pWindow, int dwStyleDUI, int hTheme, ExWndProcDelegate pfnWndProc = null)
         {
-            m_hExDUI = ExAPI.Ex_DUIBindWindowEx(pWindow.WindowHandle, hTheme, dwStyleDUI, 0, pfnWndProc);
+            m_hExDUI = ExAPI.Ex_DUIBindWindowEx(pWindow.WindowHandle, hTheme, dwStyleDUI, IntPtr.Zero, pfnWndProc);
             if (m_hExDUI != 0)
             {
 
             }
             else throw new ExException(ExStatus.HANDLE_INVALID, "绑定皮肤失败");
         }
-
-        public ExSkin(ExSkin pOwner, byte[] pLayout, int hTheme = 0)
-        {
-            nint hWndParent = pOwner == null ? 0 : (nint)pOwner.handle;
-            if(ExAPI.Ex_DUICreateFromLayout(hWndParent, hTheme, pLayout, pLayout.Length, out m_hWnd, out m_hExDUI))
-            {
-
-            }
-            else throw new ExException(ExStatus.HANDLE_INVALID, "绑定皮肤失败");
-        }
         
-        public ExSkin(nint hWnd, int hExDui)
+        public ExSkin(IntPtr hWnd, int hExDui)
         {
             m_hWnd = hWnd;
             m_hExDUI = hExDui;
         }
-
+        public ExSkin(int hExDui)
+        {
+            m_hExDUI = hExDui;
+        }
 
         public bool Enable { get => WinAPI.IsWindowEnabled(m_hWnd); set => WinAPI.EnableWindow(m_hWnd, value); }
         public bool Visible { get => WinAPI.IsWindowVisible(m_hWnd); set => ExAPI.Ex_DUIShowWindow(m_hExDUI, value ? 1 : 0, 0, 0, 0); }
 
         protected int m_hExDUI;
         public int handle => m_hExDUI;
-        public nint Hwnd => m_hWnd;
+        public IntPtr Hwnd => m_hWnd;
 
         public bool Validate => WinAPI.IsWindow(m_hWnd) && m_hExDUI != 0;
 
@@ -80,7 +73,7 @@ namespace ExDuiR.NET.Frameworks
             return ExAPI.Ex_ObjGetBackgroundImage(m_hExDUI, out pImageInfo);
         }
 
-        public nint GetLong(int nIndex)
+        public IntPtr GetLong(int nIndex)
         {
             return ExAPI.Ex_DUIGetLong(m_hExDUI, nIndex);
         }
@@ -90,17 +83,17 @@ namespace ExDuiR.NET.Frameworks
             return WinAPI.MoveWindow(m_hWnd, x, y, nWidth, nHeight, fRedraw);
         }
 
-        public bool PostMessage(int uMsg, nint wParam = new nint(), nint lParam = new nint())
+        public bool PostMessage(int uMsg, IntPtr wParam = new IntPtr(), IntPtr lParam = new IntPtr())
         {
             return WinAPI.PostMessage(m_hWnd, uMsg, wParam, lParam);
         }
 
-        public nint SendMessage(int uMsg, nint wParam = new nint(), nint lParam = new nint())
+        public IntPtr SendMessage(int uMsg, IntPtr wParam = new IntPtr(), IntPtr lParam = new IntPtr())
         {
             return WinAPI.SendMessage(m_hWnd, uMsg, wParam, lParam);
         }
 
-        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat, nint rcGrids, int dwFlags, int dwAlpha, bool fUpdate)
+        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat, IntPtr rcGrids, int dwFlags, int dwAlpha, bool fUpdate)
         {
             return ExAPI.Ex_ObjSetBackgroundImage(m_hExDUI, image, image.Length, x, y, dwRepeat, rcGrids, dwFlags, dwAlpha, fUpdate);
         }
@@ -110,12 +103,12 @@ namespace ExDuiR.NET.Frameworks
             return ExAPI.Ex_ObjSetBackgroundPlayState(m_hExDUI, fPlayFrames, fResetFrame, fUpdate);
         }
 
-        public nint SetLong(int nIndex, nint nValue)
+        public IntPtr SetLong(int nIndex, IntPtr nValue)
         {
             return ExAPI.Ex_DUISetLong(m_hExDUI, nIndex, nValue);
         }
 
-        public bool SetPos(int x, int y, int nWidth, int nHeight, nint hEleAfter, int dwFlags)
+        public bool SetPos(int x, int y, int nWidth, int nHeight, IntPtr hEleAfter, int dwFlags)
         {
             return WinAPI.SetWindowPos(m_hWnd, hEleAfter, x, y, nWidth, nHeight, dwFlags);
         }
@@ -164,14 +157,9 @@ namespace ExDuiR.NET.Frameworks
             return ctrl;
         }
 
-        public bool TrackPopupMenu(nint hMenu, int uFlags, int x, int y, nint nReserved, ref ExRect pRc, ExWndProcDelegate pfnWndProc, int dwFlags)
+        public bool TrackPopupMenu(IntPtr hMenu, int uFlags, int x, int y, IntPtr nReserved, ref ExRect pRc, ExWndProcDelegate pfnWndProc, int dwFlags)
         {
             return ExAPI.Ex_TrackPopupMenu(hMenu, uFlags, x, y, nReserved, m_hExDUI, ref pRc, pfnWndProc, dwFlags);
-        }
-
-        public bool LoadLayoutXml(byte[] pLayout, nint hRes)
-        {
-            return ExAPI.Ex_ObjLoadFromLayout(m_hExDUI, hRes, pLayout, pLayout.Length);
         }
 
         public ExControl Find(ExControl pObjChildAfter = null, string sClassName = null, string sTitle = null)

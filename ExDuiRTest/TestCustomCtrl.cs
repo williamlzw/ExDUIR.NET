@@ -11,7 +11,7 @@ namespace ExDuiRTest
     public class TestCustomCtrl : ExControl
     {
         private static ExObjClassProcDelegate s_pfnObjClassProc = new ExObjClassProcDelegate(
-            (nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pvData) =>
+            (IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr pvData) =>
         {
             ExControl Obj = new ExControl(hObj);
             switch (uMsg)
@@ -28,13 +28,13 @@ namespace ExDuiRTest
                 default:
                     return CallDefProc(hWnd, hObj, uMsg, wParam, lParam);
             }
-            return 0;
+            return IntPtr.Zero;
         });
 
 
         public static int RegisterControl()
         {
-            return ExAPI.Ex_ObjRegister("TestCustomCtrl", EOS_VISIBLE, EOS_EX_FOCUSABLE, 0, 0, 0, 0, s_pfnObjClassProc);
+            return ExAPI.Ex_ObjRegister("TestCustomCtrl", EOS_VISIBLE, EOS_EX_FOCUSABLE, 0, 0, IntPtr.Zero, 0, s_pfnObjClassProc);
         }
 
 

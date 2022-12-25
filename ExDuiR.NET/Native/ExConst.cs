@@ -4,22 +4,22 @@
     {
         #region SB_
         /** <summary>
-         * 暂无注释
+         * 滚动条类型_水平滚动条
          * </summary>
          **/
         public const int SB_HORZ = 0;
         /** <summary>
-         * 暂无注释
+         * 滚动条类型_垂直滚动条
          * </summary>
          **/
         public const int SB_VERT = 1;
         /** <summary>
-         * 暂无注释
+         * 滚动条类型_滚动条控制器
          * </summary>
          **/
         public const int SB_CTL = 2;
         /** <summary>
-         * 暂无注释
+         * 滚动条类型_水平和垂直滚动条
          * </summary>
          **/
         public const int SB_BOTH = 3;
@@ -815,147 +815,147 @@
 
         #region LVM_
         /** <summary>
-         * 获取表象(lParam为EX_REPORTLIST_ITEMINFO指针)
+         * 消息_列表_获取表项 (LISTBUTTON wParam为项目索引, lParam为EX_REPORTLIST_ITEMINFO指针或EX_LISTBUTTON_ITEMINFO指针)
          * </summary>
          **/
         public const int LVM_GETITEM = 4101;
         /** <summary>
-         * 设置表象(lParam为EX_REPORTLIST_ITEMINFO指针)
+         * 消息_列表_设置表项 (wParam为是否重画,lParam为EX_REPORTLIST_ITEMINFO或EX_LISTBUTTON_ITEMINFO指针)
          * </summary>
          **/
         public const int LVM_SETITEM = 4102;
         /** <summary>
-         * 获取表象文本(wParam若不为0则为表项索引,lParam为EX_REPORTLIST_ITEMINFO指针)
+         * 消息_报表_获取表项文本 (wParam若不为0则为表项索引,lParam为EX_REPORTLIST_ITEMINFO指针)
          * </summary>
          **/
         public const int LVM_GETITEMTEXT = 4141;
         /** <summary>
-         * 设置表象文本(wParam若不为0则为表项索引,lParam为EX_REPORTLIST_ITEMINFO指针)
+         * 消息_报表_设置表项文本 (wParam若不为0则为表项索引,lParam为EX_REPORTLIST_ITEMINFO指针)
          * </summary>
          **/
         public const int LVM_SETITEMTEXT = 4142;
         /** <summary>
-         * 插入列(wParm为是否立即更新,lParam为EX_REPORTLIST_COLUMNINFO指针)
+         * 消息_报表_插入列 (wParm为是否立即更新,lParam为EX_REPORTLIST_COLUMNINFO指针)
          * </summary>
          **/
         public const int LVM_INSERTCOLUMN = 4123;
         /** <summary>
-         * 删除列(wParm为是否立即更新,lParam为列索引)
+         * 消息_报表_删除列 (wParm为是否立即更新,lParam为列索引)
          * </summary>
          **/
         public const int LVM_DELETECOLUMN = 4124;
         /** <summary>
-         * 排序(lParam为EX_REPORTLIST_SORTINFO指针)
+         * 消息_报表_排序 (lParam为EX_REPORTLIST_SORTINFO指针)
          * </summary>
          **/
         public const int LVM_SORTITEMS = 4144;
         /** <summary>
-         * 更新列表框
+         * 消息_列表_更新列表框
          * </summary>
          **/
         public const int LVM_UPDATE = 4138;
         /** <summary>
-         * 删除所有列
+         * 消息_报表_删除所有列
          * </summary>
          **/
         public const int LVM_DELETEALLCOLUMN = 4900;
         /** <summary>
-         * 获取列数
+         * 消息_报表_获取列数
          * </summary>
          **/
         public const int LVM_GETCOLUMNCOUNT = 4901;
         /** <summary>
-         * 获取列信息(wParam为列索引,lParam为 EX_REPORTLIST_COLUMNINFO 指针)
+         *  消息_报表_获取列信息 (wParam为列索引,lParam为 EX_REPORTLIST_COLUMNINFO 指针)
          * </summary>
          **/
-        public const int LVM_GETCOLUMN = 4902;
+        public const int LVM_GETCOLUMN = 4121;
         /** <summary>
-         * 设置列信息(wParam低位为列索引,高位为是否立即刷新,lParam为 EX_REPORTLIST_COLUMNINFO 指针)
+         * 消息_报表_设置列信息 (wParam低位为列索引,高位为是否立即刷新,lParam为 EX_REPORTLIST_COLUMNINFO 指针)
          * </summary>
          **/
-        public const int LVM_SETCOLUMN = 4903;
+        public const int LVM_SETCOLUMN = 4122;
         /** <summary>
-         * 设置列标题(wParam低位为列索引,高位为是否立即刷新,lParam为 宽文本指针)
+         * 消息_报表_设置列标题 (wParam低位为列索引,高位为是否立即刷新,lParam为 宽文本指针)
          * </summary>
          **/
         public const int LVM_SETCOLUMNTEXT = 4904;
         /** <summary>
-         * 获取列标题(wParam为列索引,lParam为 宽文本指针)
+         * 消息_报表_获取列标题 (wParam为列索引,lParam为 宽文本指针)
          * </summary>
          **/
         public const int LVM_GETCOLUMNTEXT = 4905;
         /** <summary>
-         * 获取列宽
+         * 消息_报表_获取列宽
          * </summary>
          **/
-        public const int LVM_GETCOLUMNWIDTH = 4906;
+        public const int LVM_GETCOLUMNWIDTH = 4125;
         /** <summary>
-         * 设置列宽(wParam为列索引,lParam为 列宽)
+         * 消息_报表_设置列宽 (wParam为列索引,lParam为 列宽)
          * </summary>
          **/
-        public const int LVM_SETCOLUMNWIDTH = 4907;
+        public const int LVM_SETCOLUMNWIDTH = 4126;
         /** <summary>
-         * 设置表项高度
+         * 消息_列表_设置表项高度 (lParam为新行高)
          * </summary>
          **/
         public const int LVM_SETITEMHEIGHT = 4908;
         /** <summary>
-         * 获取表项高度(lParam为新行高)
+         * 消息_列表_获取表项高度
          * </summary>
          **/
         public const int LVM_GETITEMHEIGHT = 4909;
         /** <summary>
-         * 获取图片组
+         * 消息_列表_获取图片组
          * </summary>
          **/
         public const int LVM_GETIMAGELIST = 4098;
         /** <summary>
-         * 设置图片组(wParam为是否更新表项宽高,lParam为图片组句柄)
+         * 消息_列表_设置图片组 (wParam为是否立即重画,lParam为图片组句柄)
          * </summary>
          **/
         public const int LVM_SETIMAGELIST = 4099;
         /** <summary>
-         * 命中测试
+         * 消息_列表_命中测试 lParam为 返回列表命中测试_
          * </summary>
          **/
         public const int LVM_HITTEST = 4114;
         /** <summary>
-         * 清空项目
+         * 消息_列表_清空表项
          * </summary>
          **/
         public const int LVM_DELETEALLITEMS = 4015;
         /** <summary>
-         * 删除项目
+         * 消息_列表_删除表项,wParam为是否立即重画，lParam为删除的索引
          * </summary>
          **/
         public const int LVM_DELETEITEM = 4104;
         /** <summary>
-         * 保证显示项目
+         * 消息_列表_保证显示表项
          * </summary>
          **/
         public const int LVM_ENSUREVISIBLE = 4115;
         /** <summary>
-         * 取可视范围内的项目数量
+         * 消息_列表_取可视区表项数
          * </summary>
          **/
         public const int LVM_GETCOUNTPERPAGE = 4136;
         /** <summary>
-         * 取项目总数
+         * 消息_列表_取表项总数
          * </summary>
          **/
         public const int LVM_GETITEMCOUNT = 4100;
         /** <summary>
-         * 取指定项目的矩形范围
+         * 消息_列表_取表项矩形
          * </summary>
          **/
         public const int LVM_GETITEMRECT = 4110;
         /** <summary>
-         * 取被选择项目数
+         * 消息_列表_取被选择表项数
          * </summary>
          **/
         public const int LVM_GETSELECTEDCOUNT = 4146;
         /** <summary>
-         * 取现行选择项目
+         * 消息_列表_取现行选中项
          * </summary>
          **/
         public const int LVM_GETSELECTIONMARK = 4162;
@@ -965,47 +965,47 @@
          **/
         public const int LVM_SETSELECTIONMARK = 4163;
         /** <summary>
-         * 取在可视范围中第一个项目的索引
+         * 消息_列表_取可视区起始索引
          * </summary>
          **/
         public const int LVM_GETTOPINDEX = 4135;
         /** <summary>
-         * 插入项目
+         * 消息_列表_插入表项 lParam 为EX_REPORTLIST_ROWINFO指针,wParam为是否立即重画,返回索引
          * </summary>
          **/
         public const int LVM_INSERTITEM = 4103;
         /** <summary>
-         * 重画项目
+         * 消息_列表_重画表项 wParam为起始项目,lParam 为结束项目
          * </summary>
          **/
         public const int LVM_REDRAWITEMS = 4117;
         /** <summary>
-         * 设置列表项目总数(wParam:表项条数,lParma:刷新风格)
+         * 消息_列表_设置表项总数 wParam为表项条数,lParmam为MAKELONG(LVSICF_NOSCROLL, 表项条数)
          * </summary>
          **/
         public const int LVM_SETITEMCOUNT = 4143;
         /** <summary>
-         * 取项目状态
+         * 消息_列表_取表项状态
          * </summary>
          **/
         public const int LVM_GETITEMSTATE = 4140;
         /** <summary>
-         * 置项目状态
+         * 消息_列表_置表项状态
          * </summary>
          **/
         public const int LVM_SETITEMSTATE = 4139;
         /** <summary>
-         * 取鼠标指针指向项目的索引
+         * 消息_列表_取鼠标所在表项
          * </summary>
          **/
         public const int LVM_GETHOTITEM = 4157;
         /** <summary>
-         * 立即申请重算表项尺寸
+         * 消息_列表_重新计算尺寸
          * </summary>
          **/
         public const int LVM_CALCITEMSIZE = 5150;
         /** <summary>
-         * 取消主题 不绘制列表主题 1为取消
+         * 消息_列表_取消主题 不绘制列表主题 1为取消
          * </summary>
          **/
         public const int LVM_CANCELTHEME = 5151;
@@ -1026,189 +1026,185 @@
 
         #region 缓动类型_
         /** <summary>
-         * 暂无注释
+         * 缓动类型_线性
          * </summary>
          **/
         public const int ET_Linear = 1;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_圆线性插值
          * </summary>
          **/
         public const int ET_Clerp = 2;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_弹性
          * </summary>
          **/
         public const int ET_Spring = 3;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_冲击
          * </summary>
          **/
         public const int ET_Punch = 4;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_二次方_In
          * </summary>
          **/
         public const int ET_InQuad = 5;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_二次方_Out
          * </summary>
          **/
         public const int ET_OutQuad = 6;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_二次方_InOut
          * </summary>
          **/
         public const int ET_InOutQuad = 7;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_三次方_In
          * </summary>
          **/
         public const int ET_InCubic = 8;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_三次方_Out
          * </summary>
          **/
         public const int ET_OutCubic = 9;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_三次方_InOut
          * </summary>
          **/
         public const int ET_InOutCubic = 10;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_四次方_In
          * </summary>
          **/
         public const int ET_InQuart = 11;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_四次方_Out
          * </summary>
          **/
         public const int ET_OutQuart = 12;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_四次方_InOut
          * </summary>
          **/
         public const int ET_InOutQuart = 13;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_五次方_In
          * </summary>
          **/
         public const int ET_InQuint = 14;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_五次方_Out
          * </summary>
          **/
         public const int ET_OutQuint = 15;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_五次方_InOut
          * </summary>
          **/
         public const int ET_InOutQuint = 16;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_正弦曲线_In
          * </summary>
          **/
         public const int ET_InSine = 17;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_正弦曲线_Out
          * </summary>
          **/
         public const int ET_OutSine = 18;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_正弦曲线_InOut
          * </summary>
          **/
         public const int ET_InOutSine = 19;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_指数曲线_In
          * </summary>
          **/
         public const int ET_InExpo = 20;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_指数曲线_Out
          * </summary>
          **/
         public const int ET_OutExpo = 21;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_指数曲线_InOut
          * </summary>
          **/
         public const int ET_InOutExpo = 22;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_圆曲线_In
          * </summary>
          **/
         public const int ET_InCirc = 23;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_圆曲线_Out
          * </summary>
          **/
         public const int ET_OutCirc = 24;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_圆曲线_InOut
          * </summary>
          **/
         public const int ET_InOutCirc = 25;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_反弹_In
          * </summary>
          **/
         public const int ET_InBounce = 26;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_反弹_Out
          * </summary>
          **/
         public const int ET_OutBounce = 27;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_反弹_InOuts
          * </summary>
          **/
         public const int ET_InOutBounce = 28;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_三次方溢出_In
          * </summary>
          **/
         public const int ET_InBack = 29;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_三次方溢出_Out
          * </summary>
          **/
         public const int ET_OutBack = 30;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_三次方溢出_InOut
          * </summary>
          **/
         public const int ET_InOutBack = 31;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_正弦曲线指数衰减_In
          * </summary>
          **/
         public const int ET_InElastic = 32;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_正弦曲线指数衰减_Out
          * </summary>
          **/
         public const int ET_OutElastic = 33;
         /** <summary>
-         * 暂无注释
+         * 缓动类型_正弦曲线指数衰减_InOut
          * </summary>
          **/
         public const int ET_InOutElastic = 34;
         /** <summary>
-         * pEasingContext为自定义回调函数(nProcess,nStart,nStop,nCurrent*,pEasingContext)
+         * 缓动类型_自定义 pEasingContext为自定义回调函数(nProcess,nStart,nStop,nCurrent*,pEasingContext)
          * </summary>
          **/
         public const int ET_CUSTOM = 50;
         /** <summary>
-         * pEasingContext为pCurveInfo(_easing_load_curve)
+         * 缓动类型_曲线 pEasingContext为pCurveInfo(_easing_load_curve)
          * </summary>
          **/
         public const int ET_CURVE = 51;
-        /** <summary>
-         * 暂无注释
-         * </summary>
-         **/
         #endregion
 
         #region 缓动模式
@@ -1357,17 +1353,17 @@
          **/
         public const int ELP_LINEAR_DALIGN = 2;
         /** <summary>
-         * 暂无注释
+         * 线性布局对齐方式_左上
          * </summary>
          **/
         public const int ELP_LINEAR_DALIGN_LEFT_TOP = 0;
         /** <summary>
-         * 暂无注释
+         * 线性布局对齐方式_居中
          * </summary>
          **/
         public const int ELP_LINEAR_DALIGN_CENTER = 1;
         /** <summary>
-         * 暂无注释
+         * 线性布局对齐方式_右下
          * </summary>
          **/
         public const int ELP_LINEAR_DALIGN_RIGHT_BOTTOM = 2;
@@ -1420,22 +1416,22 @@
          **/
         public const int ELCP_LINEAR_SIZE = 1;
         /** <summary>
-         * 暂无注释
+         * 线性布局另一个方向对齐方式_填满
          * </summary>
          **/
         public const int ELCP_LINEAR_ALGIN_FILL = 0;
         /** <summary>
-         * 暂无注释
+         * 线性布局另一个方向对齐方式_左上
          * </summary>
          **/
         public const int ELCP_LINEAR_ALIGN_LEFT_TOP = 1;
         /** <summary>
-         * 暂无注释
+         * 线性布局另一个方向对齐方式_居中
          * </summary>
          **/
         public const int ELCP_LINEAR_ALIGN_CENTER = 2;
         /** <summary>
-         * 暂无注释
+         * 线性布局另一个方向对齐方式_右下
          * </summary>
          **/
         public const int ELCP_LINEAR_ALIGN_RIGHT_BOTTOM = 3;
@@ -1698,35 +1694,63 @@
 
         #region ID
         /** <summary>
-         * 暂无注释
+         * 信息框返回钮_是钮
          * </summary>
          **/
         public const int IDYES = 6;
         /** <summary>
-         * 暂无注释
+         * 信息框返回钮_否钮
          * </summary>
          **/
         public const int IDNO = 7;
         /** <summary>
-         * 暂无注释
+         * 信息框返回钮_取消钮
          * </summary>
          **/
         public const int IDCANCEL = 2;
         /** <summary>
-         * 暂无注释
+         * 信息框返回钮_确认钮
          * </summary>
          **/
         public const int IDOK = 1;
         /** <summary>
-         * 暂无注释
+         * 信息框返回钮_关闭钮
          * </summary>
          **/
         public const int IDCLOSE = 8;
         /** <summary>
-         * 暂无注释
+         * 信息框返回钮_默认
          * </summary>
          **/
         public const int NULL = 0;
+        #endregion
+
+        #region 进度条属性 PBL
+        /** <summary>
+        * 进度条属性_位置
+        * </summary>
+        **/
+        public const int PBL_POS = 0;
+        /** <summary>
+        * 进度条属性_范围
+        * </summary>
+        **/
+        public const int PBL_RANGE = 1;
+        /** <summary>
+        * 进度条属性_圆角度
+        * </summary>
+        **/
+        public const int PBL_RADIUS = 2;
+        /** <summary>
+        * 进度条属性_背景颜色
+        * </summary>
+        **/
+        public const int PBL_BKCOLOR = 3;
+        /** <summary>
+        * 进度条属性_前景颜色
+        * </summary>
+        **/
+        public const int PBL_BARCOLOR = 4;
         #endregion
 
         #region EMBF_
@@ -2003,6 +2027,12 @@
         public const int EWL_CRBKG = -31;
 
         /** <summary>
+         * 引擎数值_阴影颜色
+         * </summary>
+         **/
+        public const int EWL_CRSD = -35;
+
+        /** <summary>
          * 最小高度
          * </summary>
          **/
@@ -2025,6 +2055,12 @@
          * </summary>
          **/
         public const int EWL_OBJCAPTION = -54;
+
+        /** <summary>
+        * 引擎数值_阴影圆角大小
+        * </summary>
+        **/
+        public const int EWL_RADIUS = -11;
         #endregion
 
         #region WM_EX_
@@ -2095,17 +2131,17 @@
 
         #region EXR_
         /** <summary>
-         * 暂无注释
+         * 资源包类型_默认
          * </summary>
          **/
         public const int EXR_DEFAULT = 0;
         /** <summary>
-         * 暂无注释
+         * 资源包类型_文本
          * </summary>
          **/
         public const int EXR_STRING = 1;
         /** <summary>
-         * 暂无注释
+         * 资源包类型_布局
          * </summary>
          **/
         public const int EXR_LAYOUT = 2;
@@ -2316,35 +2352,45 @@
 
         #region TLVM_
         /** <summary>
-         * 返回值将作为列表项控件
+         * 消息_模板列表_创建 返回值将作为列表项控件
          * </summary>
          **/
         public const int TLVM_ITEM_CREATE = 10010;
         /** <summary>
-         * 暂无注释
+         *消息_模板列表_创建完毕
          * </summary>
          **/
         public const int TLVM_ITEM_CREATED = 10011;
         /** <summary>
-         * 暂无注释
+         * 消息_模板列表_销毁
          * </summary>
          **/
         public const int TLVM_ITEM_DESTROY = 10012;
         /** <summary>
-         * wParam:nIndex,lParam:hObjItem
+         *消息_模板列表_填充数据 wParam:nIndex,lParam:hObjItem
          * </summary>
          **/
         public const int TLVM_ITEM_FILL = 10013;
         /** <summary>
-         * wParam:cbSize,lParam:pTemplate
+         *  消息_模板列表_置模板数据 wParam:cbSize,lParam:pTemplate
          * </summary>
          **/
         public const int TLVM_SETTEMPLATE = 10020;
         /** <summary>
-         * wParam:表项索引,返回表项容器句柄(不在可视区返回0)
+         * 消息_模板列表_取项目句柄 wParam:表项索引,返回表项容器句柄(不在可视区返回0)
          * </summary>
          **/
         public const int TLVM_GETITEMOBJ = 10021;
+        /** <summary>
+         * 消息_模板列表_设置表项悬浮背景色 lParam:ARGB颜色
+         * </summary>
+         **/
+        public const int TLVM_SET_ITEM_HOVERCOLOR = 10022;
+        /** <summary>
+         * 消息_模板列表_设置表项选中背景色 lParam:ARGB颜色
+         * </summary>
+         **/
+        public const int TLVM_SET_ITEM_SELECTCOLOR = 100023;
         #endregion
 
         #region ECF_
@@ -2687,22 +2733,22 @@
 
         #region TVI_
         /** <summary>
-         * 暂无注释
+         * 树形框节点类型_首节点
          * </summary>
          **/
         public const int TVI_FIRST = -65535;
         /** <summary>
-         * 暂无注释
+         * 树形框节点类型_尾节点
          * </summary>
          **/
         public const int TVI_LAST = -65534;
         /** <summary>
-         * 暂无注释
+         * 树形框节点类型_根节点
          * </summary>
          **/
         public const int TVI_ROOT = -65536;
         /** <summary>
-         * 暂无注释
+         * 树形框节点类型_排序
          * </summary>
          **/
         public const int TVI_SORT = -65533;
@@ -2710,102 +2756,102 @@
 
         #region TVM_
         /** <summary>
-         * 删除节点及所有子孙(lParam为节点句柄,0或TVI_ROOT为删除所有)
+         * 消息_树形框_删除节点及所有子孙 (lParam为节点句柄,0或TVI_ROOT为删除所有)
          * </summary>
          **/
         public const int TVM_DELETEITEM = 4353;
         /** <summary>
-         * 保证显示(lParam为显示的节点句柄)
+         * 消息_树形框_保证显示 (lParam为显示的节点句柄)
          * </summary>
          **/
         public const int TVM_ENSUREVISIBLE = 4372;
         /** <summary>
-         * 展开收缩(wParam为是否展开,lParam为设置的节点句柄)
+         * 消息_树形框_展开收缩 (wParam为是否展开,lParam为设置的节点句柄)
          * </summary>
          **/
         public const int TVM_EXPAND = 4354;
         /** <summary>
-         * 取节点数
+         * 消息_树形框_取节点数
          * </summary>
          **/
         public const int TVM_GETCOUNT = 4357;
         /** <summary>
-         * 取留白宽度
+         * 消息_树形框_取留白宽度
          * </summary>
          **/
         public const int TVM_GETINDENT = 4358;
         /** <summary>
-         * 取节点信息(wParam为节点句柄,lParam为 EX_TREEVIEW_ITEMINFO 指针，tzText为Unicode)
-         * </summary>
-         **/
-        public const int TVM_GETITEMW = 4414;
-        /** <summary>
-         * 取节点矩形(wParam为节点句柄,lParam为 EX_RECT 指针,注意该节点必须处于可见范围,否则消息无法获取并返回0)
+         * 消息_树形框_取节点矩形 (wParam为节点句柄,lParam为 EX_RECT 指针,注意该节点必须处于可见范围,否则消息无法获取并返回0)
          * </summary>
          **/
         public const int TVM_GETITEMRECT = 4356;
         /** <summary>
-         * 取相关节点(wParam为 TVGN_ 开头的常量,lParam为节点句柄)
+         * 消息_树形框_取相关节点(wParam为 TVGN_ 开头的常量,lParam为节点句柄)
          * </summary>
          **/
         public const int TVM_GETNEXTITEM = 4362;
         /** <summary>
-         * 取展开可视节点个数
+         * 消息_树形框_取展开可视节点个数
          * </summary>
          **/
         public const int TVM_GETVISIBLECOUNT = 4368;
         /** <summary>
-         * 命中测试(wParam低位为x高位为y[相对控件],lParam为 返回#TVHT_开头常量 的指针,消息返回值为命中的节点句柄)
+         * 消息_树形框_命中测试 (wParam低位为x高位为y[相对控件],lParam为 返回#TVHT_开头常量 的指针,消息返回值为命中的节点句柄)
          * </summary>
          **/
         public const int TVM_HITTEST = 4369;
         /** <summary>
-         * 插入节点(lParam为 EX_TREEVIEW_ITEMINFO 指针，tzText为Unicode)
+         * 消息_树形框_插入节点 (lParam为 EX_TREEVIEW_ITEMINFO 指针，tzText为Unicode)
          * </summary>
          **/
-        public const int TVM_INSERTITEMW = 4402;
+        public const int TVM_INSERTITEM = 4352;
         /** <summary>
-         * 置选中项(lParam为选中的节点句柄)
+         * 消息_树形框_置选中项 (lParam为选中的节点句柄)
          * </summary>
          **/
         public const int TVM_SELECTITEM = 4363;
         /** <summary>
-         * 设置留白宽度(wParam为留白宽度)
+         * 消息_树形框_设置留白宽度 取相关节点(wParam为 TVGN_ 开头的常量,lParam为节点句柄)
          * </summary>
          **/
         public const int TVM_SETINDENT = 4359;
         /** <summary>
-         * 设置节点标题(wParam为节点句柄,lParam为 EX_TREEVIEW_ITEMINFO 指针)
+         * 消息_树形框_取节点信息 (wParam为节点句柄,lParam为 EX_TREEVIEW_ITEMINFO 指针，tzText为Unicode)
          * </summary>
          **/
-        public const int TVM_SETITEMW = 4415;
+        public const int TVM_GETITEM = 4364;
         /** <summary>
-         * 更新树形框
+         * 消息_树形框_设置节点信息 (wParam为节点句柄,lParam为 EX_TREEVIEW_ITEMINFO 指针)
+         * </summary>
+         **/
+        public const int TVM_SETITEM = 4365;
+        /** <summary>
+         * 消息_树形框_更新树形框
          * </summary>
          **/
         public const int TVM_UPDATE = 4499;
         /** <summary>
-         * 设置行高(lParam为新行高)
+         * 消息_树形框_设置行高 (lParam为新行高)
          * </summary>
          **/
         public const int TVM_SETITEMHEIGHT = 5091;
         /** <summary>
-         * 获取行高
+         * 消息_树形框_获取行高
          * </summary>
          **/
         public const int TVM_GETITEMHEIGHT = 5092;
         /** <summary>
-         * 从索引获取节点句柄(wParam为索引,节点必须可见否则返回0)
+         * 消息_树形框_从索引获取节点句柄 (wParam为索引,节点必须可见否则返回0)
          * </summary>
          **/
         public const int TVM_GETNODEFROMINDEX = 5093;
         /** <summary>
-         * 设置节点标题(wParam为节点句柄,lParam为 文本指针,Unicode)
+         * 消息_树形框_设置节点标题 (wParam为节点句柄,lParam为 文本指针,Unicode)
          * </summary>
          **/
         public const int TVM_SETITEMTEXTW = 14414;
         /** <summary>
-         * 获取节点标题(wParam为节点句柄,返回值为标题Unicode字符串,不要自行释放)
+         * 消息_树形框_获取节点标题 (wParam为节点句柄,返回值为标题Unicode字符串,不要自行释放)
          * </summary>
          **/
         public const int TVM_GETITEMTEXTW = 14415;
@@ -2813,32 +2859,32 @@
 
         #region TVGN_
         /** <summary>
-         * 获取根节点
+         * 树形框相关节点_获取根节点
          * </summary>
          **/
         public const int TVGN_ROOT = 0;
         /** <summary>
-         * 获取下一个节点
+         * 树形框相关节点_获取下一个节点
          * </summary>
          **/
         public const int TVGN_NEXT = 1;
         /** <summary>
-         * 获取上一个节点
+         * 树形框相关节点_获取上一个节点
          * </summary>
          **/
         public const int TVGN_PREVIOUS = 2;
         /** <summary>
-         * 获取父节点
+         * 树形框相关节点_获取父节点
          * </summary>
          **/
         public const int TVGN_PARENT = 3;
         /** <summary>
-         * 获取子节点
+         * 树形框相关节点_获取子节点
          * </summary>
          **/
         public const int TVGN_CHILD = 4;
         /** <summary>
-         * 获取下一个可见节点
+         * 树形框相关节点_获取下一个可见节点
          * </summary>
          **/
         public const int TVGN_NEXTVISIBLE = 6;
@@ -2846,27 +2892,27 @@
 
         #region TVHT_
         /** <summary>
-         * 没有命中
+         * 树形框命中测试_没有命中
          * </summary>
          **/
         public const int TVHT_NOWHERE = 1;
         /** <summary>
-         * 命中图标
+         * 树形框命中测试_命中图标
          * </summary>
          **/
         public const int TVHT_ONITEMICON = 2;
         /** <summary>
-         * 命中标题
+         *  树形框命中测试_命中标题
          * </summary>
          **/
         public const int TVHT_ONITEMLABEL = 4;
         /** <summary>
-         * 命中留白
+         * 树形框命中测试_命中留白
          * </summary>
          **/
         public const int TVHT_ONITEMINDENT = 8;
         /** <summary>
-         * 命中加减框
+         * 树形框命中测试_命中加减框
          * </summary>
          **/
         public const int TVHT_ONITEMSTATEICON = 64;
@@ -2874,22 +2920,22 @@
 
         #region TVN_
         /** <summary>
-         * 删除节点
+         * 事件_树形框_删除节点
          * </summary>
          **/
         public const int TVN_DELETEITEM = 391;
         /** <summary>
-         * 节点展开
+         * 事件_树形框_节点展开
          * </summary>
          **/
         public const int TVN_ITEMEXPANDED = 394;
         /** <summary>
-         * 节点展开中
+         * 事件_树形框_节点展开中
          * </summary>
          **/
         public const int TVN_ITEMEXPANDING = 395;
         /** <summary>
-         * 绘制节点
+         * 事件_树形框_绘制节点
          * </summary>
          **/
         public const int TVN_DRAWITEM = 3099;
@@ -2915,17 +2961,17 @@
 
         #region ERLV_CS_
         /** <summary>
-         * 表头风格_可点击
+         * 报表表头风格_可点击
          * </summary>
          **/
         public const int ERLV_CS_CLICKABLE = 1;
         /** <summary>
-         * 表头风格_锁定宽度
+         * 报表表头风格_锁定宽度
          * </summary>
          **/
         public const int ERLV_CS_LOCKWIDTH = 2;
         /** <summary>
-         * 表头风格_可排序(前提是得可点击)
+         * 报表表头风格_可排序 (前提是得可点击)
          * </summary>
          **/
         public const int ERLV_CS_SORTABLE = 4;
@@ -2933,40 +2979,50 @@
 
         #region RLVN_
         /** <summary>
-         * 表头被单击
+         * 事件_报表_表头被单击
          * </summary>
          **/
         public const int RLVN_COLUMNCLICK = 97000;
         /** <summary>
-         * 绘制表行
+         * 事件_报表_绘制表行
          * </summary>
          **/
         public const int RLVN_DRAW_TR = 97001;
         /** <summary>
-         * 绘制表项
+         * 事件_报表_绘制表项
          * </summary>
          **/
         public const int RLVN_DRAW_TD = 97002;
         /** <summary>
-         * 检查框点击事件
+         * 事件_报表_检查框点击
          * </summary>
          **/
         public const int RLVN_CHECK = 97003;
         /** <summary>
-         * 检查框点击消息
+         * 事件_报表_当删除表项
+         * </summary>
+         **/
+        public const int RLVN_DELETE_ITEM = 97004;
+        /** <summary>
+         * 消息_报表_检查框点击
          * </summary>
          **/
         public const int RLVM_CHECK = 99001;
         /** <summary>
-         * 设置检查框状态
+         * 消息_报表_设置检查框状态 wParam 为项目索引 lParam为置选中状态1选中, 0不选中
          * </summary>
          **/
         public const int RLVM_SETCHECK = 99002;
         /** <summary>
-         * 获取检查框状态
+         * 消息_报表_获取检查框状态 wParam 为项目索引 , 返回1选中, 0不选中
          * </summary>
          **/
         public const int RLVM_GETCHECK = 99003;
+        /** <summary>
+         * 消息_报表_获取命中列索引
+         * </summary>
+         **/
+        public const int RLVM_GETHITCOL = 99004;
         #endregion
 
         #region SW_
@@ -2997,45 +3053,405 @@
         public const int SW_SHOWNOACTIVATE = 4;
         #endregion
 
-        #region PBM_
+        #region 消息_进度条PBM_
         /** <summary>
-         * 设置进度条范围
+         * 消息_进度条_设置进度条范围  wParam范围
          * </summary>
          **/
         public const int PBM_SETRANGE = 1025;
         /** <summary>
-         * 设置进度条位置
+         * 消息_进度条_设置进度条位置 wParam位置
          * </summary>
          **/
         public const int PBM_SETPOS = 1026;
+        
         /** <summary>
-         * 获取进度条位置
+         * 消息_进度条_获取进度条范围
+         * </summary>
+         **/
+        public const int PBM_GETRANGE = 1031;
+        /** <summary>
+         * 消息_进度条_获取进度条位置
          * </summary>
          **/
         public const int PBM_GETPOS = 1032;
         /** <summary>
-         * 获取进度条范围
+         * 消息_进度条_设置进度条颜色  wParam颜色
          * </summary>
          **/
-        public const int PBM_GETRANGE = 1031;
+        public const int PBM_SETBARCOLOR = 1033;
+        /** <summary>
+         * 消息_进度条_设置进度条背景颜色 wParam颜色
+         * </summary>
+         **/
+        public const int PBM_SETBKCOLOR = 8193;
+        /** <summary>
+         * 消息_进度条_设置进度条圆角度 wParam圆角度
+         * </summary>
+         **/
+        public const int PBM_SETRADIUS = 1027;
+        #endregion
+
+        #region 消息_列表按钮LBM_
+        /** <summary>
+         *  消息_列表按钮_按下项目 wParam按下横坐标 lParam 菜单句柄
+         * </summary>
+         **/
+        public const int LBM_DOWNITEM = 1237701;
+        /** <summary>
+        *  消息_列表按钮_选择项目
+        * </summary>
+        **/
+        public const int LBM_SELECTITEM = 1237702;
+        #endregion
+
+        #region WIN10动画加载风格 ELDS
+        /** <summary>
+         *  WIN10动画加载风格_直线
+         * </summary>
+         **/
+        public const int ELDS_LINE = 1;
+        #endregion
+
+        #region 滑块条风格 ESBS_
+        /** <summary>
+         *  滑块条风格_横向
+         * </summary>
+         **/
+        public const int ESBS_HORIZONTAL = 0;
+        /** <summary>
+         *  滑块条风格_纵向
+         * </summary>
+         **/
+        public const int ESBS_VERTICAL = 1;
+        #endregion
+
+        #region 消息_滑块条 SBM_
+        /** <summary>
+         *  消息_滑块条_取当前滑块坐标
+         * </summary>
+         **/
+        public const int SBM_GETBLOCKRECT = 10010;
+        /** <summary>
+         *  消息_滑块条_坐标转值
+         * </summary>
+         **/
+        public const int SBM_PT2VALUE = 10011;
+        #endregion
+
+        #region 事件_滑块条 SBN_
+        /** <summary>
+         *  事件_滑块条_值改变 事件编号(lParam=值)
+         * </summary>
+         **/
+        public const int SBN_VALUE = 10010;
+        #endregion
+
+        #region 滑块条属性 SBL_
+        /** <summary>
+         *  滑块条属性_最小值
+         * </summary>
+         **/
+        public const int SBL_MIN = 0;
+        /** <summary>
+         *  滑块条属性_最大值
+         * </summary>
+         **/
+        public const int SBL_MAX = 1;
+        /** <summary>
+         *  滑块条属性_当前值
+         * </summary>
+         **/
+        public const int SBL_POS = 2;
+        /** <summary>
+         *  滑块条属性_滑块圆滑动方向 设定值：1，横向风格（从右往左）|纵向风格（从下往上）
+         * </summary>
+         **/
+        public const int SBL_BLOCK_POINT = 3;
+        /** <summary>
+         *  滑块条属性_滑块圆半径
+         * </summary>
+         **/
+        public const int SBL_BLOCK_SIZE = 4;
+        #endregion
+
+        #region 分组框属性 GROUPBOX
+        /** <summary>
+         *  分组框属性_文本左边的偏移
+         * </summary>
+         **/
+        public const int GROUPBOX_TEXT_OFFSET = 0;
+        /** <summary>
+         *  分组框属性_线框圆角度
+         * </summary>
+         **/
+        public const int GROUPBOX_RADIUS = 1;
+        /** <summary>
+         *  分组框属性_线宽
+         * </summary>
+         **/
+        public const int GROUPBOX_STROKEWIDTH = 2;
+        #endregion
+
+        #region 消息_颜色选择器CPM_
+        /** <summary>
+         * 消息_颜色选择器_改变颜色
+         * </summary>
+         **/
+        public const int CPM_COLORCHANGE = 100051;
+        #endregion
+
+        #region 消息_颜色选择器CPN_
+        /** <summary>
+         * 事件_颜色选择器_颜色已更改
+         * </summary>
+         **/
+        public const int CPN_COLORCHANGE = 100052;
+        #endregion
+
+        #region 调色板通知PTN_
+        /** <summary>
+         * 调色板通知_鼠标移动 wParam返回不带alpha的RGB颜色,用ExRGB2ARGB转换到ARGB
+         * </summary>
+         **/
+        public const int PTN_MOUSEMOVE = 100000;
+        #endregion
+
+        #region 事件_列表按钮LBN_
+        /** <summary>
+         * 事件_列表按钮_单击 wParam 索引
+         * </summary>
+         **/
+        public const int LBN_CLICK = 1;
+        /** <summary>
+         * 事件_列表按钮_选中 wParam 索引,lParam 状态
+         * </summary>
+         **/
+        public const int LBN_CHECK = 2;
+        #endregion
+
+        #region 消息_日期框DBM_
+        /** <summary>
+         * 消息_日期框_设置日期
+         * </summary>
+         **/
+        public const int DBM_DATETIME = 100061;
+        #endregion
+
+        #region 消息_日期框DBN_
+        /** <summary>
+         * 事件_日期框_日期选中
+         * </summary>
+         **/
+        public const int DBN_DATETIME = 100062;
+        #endregion
+
+        #region 事件_月历MCN_
+        /** <summary>
+         * 事件_月历_日期选中
+         * </summary>
+         **/
+        public const int MCN_DATETIME = 100062;
+        #endregion
+
+        #region 消息_Cef浏览框CEFM_
+        /** <summary>
+         * 消息_Cef浏览框_加载URL
+         * </summary>
+         **/
+        public const int CEFM_LOADURL = 100001;
+        /** <summary>
+         * 消息_Cef浏览框_获取浏览框句柄
+         * </summary>
+         **/
+        public const int CEFM_GETWEBVIEW = 100002;
+        #endregion
+
+        #region 事件_Cef浏览框CEFM_
+        /** <summary>
+         * 事件_Cef浏览框_已创建CEFN_
+         * </summary>
+         **/
+        public const int CEFN_CREATE = 100100;
+        /** <summary>
+         * 事件_Cef浏览框_加载完毕
+         * </summary>
+         **/
+        public const int CEFN_LOADEND = 100101;
+        /** <summary>
+        * 事件_Cef浏览框_加载开始
+        * </summary>
+        **/
+        public const int CEFN_LOADSTART = 100102;
+        #endregion
+
+        #region 消息_轮播CM_
+        /** <summary>
+         * 消息_轮播_设置尺寸
+         * </summary>
+         **/
+        public const int CM_SIZE = 5000;
+        /** <summary>
+         * 消息_轮播_播放下一张
+         * </summary>
+         **/
+        public const int CM_NEXT = 5001;
+        /** <summary>
+        * 消息_轮播_播放上一张
+        * </summary>
+        **/
+        public const int CM_PREV = 5002;
+        /** <summary>
+        * 消息_轮播_添加图片
+        * </summary>
+        **/
+        public const int CM_ADDIMG = 5003;
+        /** <summary>
+        * 消息_轮播_清空
+        * </summary>
+        **/
+        public const int CM_CLEAR = 5004;
+        /** <summary>
+        * 消息_轮播_设置时钟周期
+        * </summary>
+        **/
+        public const int CM_SETTIMER = 5005;
+        #endregion
+
+        #region 消息_鼠绘板 DBM_
+        /** <summary>
+         * 消息_鼠绘板_设置画笔类型 lParam 0画笔 1橡皮擦
+         * </summary>
+         **/
+        public const int DBM_SETPENTYPE = 20000;
+        /** <summary>
+         * 消息_鼠绘板_设置画笔宽度 lParam
+         * </summary>
+         **/
+        public const int DBM_SETPENWIDTH = 20001;
+        /** <summary>
+        * 消息_鼠绘板_设置画笔颜色 lParam
+        * </summary>
+        **/
+        public const int DBM_SETPENCOLOR = 20002;
+        /** <summary>
+        * 消息_鼠绘板_清空画板
+        * </summary>
+        **/
+        public const int DBM_CLEAR = 20003;
+        #endregion
+
+        #region 事件_属性框 PGN_
+        /** <summary>
+         * 事件_属性框添加表项 添加行到尾部 wParam:组件_类型  lParam: PGITEM 指针
+         * </summary>
+         **/
+        public const int PGN_ADDITEM = 10010;
+        /** <summary>
+         * 事件_属性框_取表项值 wParam: 未定义    lParam:表项名  return:表项值文本指针
+         * </summary>
+         **/
+        public const int PGN_GETITEMVALUE = 10011;
+        /** <summary>
+        *  事件_属性框_置表项值 wParam: 欲写入值    lParam:表项名  return:未定义
+        * </summary>
+        **/
+        public const int PGN_SETITEMVALUE = 10012;
+        /** <summary>
+        * 事件_属性框_表项值改变 wParam:行索引(不包括标题行,包括分组行和组件行,从1开始)   lParam:数据指针(可以通过"__get(数据指针,PGL_内存偏移_***)"来获取数据)
+        * </summary>
+        **/
+        public const int PGN_ITEMVALUECHANGE = 10012;
+        #endregion
+
+        #region 属性框_组件类型 PGT_
+        /** <summary>
+         * 属性框_组件类型_分组
+         * </summary>
+         **/
+        public const int PGT_OBJ_GROUP = -1;
+        /** <summary>
+         * 属性框_组件类型_编辑框
+         * </summary>
+         **/
+        public const int PGT_OBJ_EDIT = 0;
+        /** <summary>
+        * 属性框_组件类型_组合框
+        * </summary>
+        **/
+        public const int PGT_OBJ_COMBOBOX = 1;
+        /** <summary>
+        * 属性框_组件类型_颜色框
+        * </summary>
+        **/
+        public const int PGT_OBJ_COLORPICKER = 2;
+        /** <summary>
+        * 属性框_组件类型_日期框
+        * </summary>
+        **/
+        public const int PGT_OBJ_DATEBOX = 3;
+        #endregion
+
+        #region mibiblink浏览框加载类型 MBBL
+        /** <summary>
+         * mibiblink浏览框加载类型_URL
+         * </summary>
+         **/
+        public const int MBBL_TYPE_URL = 0;
+        #endregion
+
+        #region 消息_mibiblink浏览框 MBBM
+        /** <summary>
+         * 消息_mibiblink浏览框_获取浏览框句柄
+         * </summary>
+         **/
+        public const int MBBM_GETWEBVIEW = 100011;
+        /** <summary>
+        * 消息_mibiblink浏览框_加载
+        * </summary>
+        **/
+        public const int MBBM_LOAD = 100012;
+        /** <summary>
+        * 消息_mibiblink浏览框_执行js
+        * </summary>
+        **/
+        public const int MBBM_JS = 100013;
         #endregion
 
         #region ERLV_RS_
         /** <summary>
-         * 表项带检查框
+         * 报表表行风格_表项带检查框
          * </summary>
          **/
         public const int ERLV_RS_CHECKBOX = 1;
         /** <summary>
-         * 检查框为选中状态
+         * 报表表行风格_检查框为选中状态
          * </summary>
          **/
         public const int ERLV_RS_CHECKBOX_CHECK = 2;
         #endregion
 
+     
+
+        #region 图标列表风格EILVS
+        /** <summary>
+        * 图标列表风格_表项以按钮形式呈现
+        * </summary>
+        **/
+        public const int EILVS_BUTTON = 0x400;
+        #endregion
+
+        #region 消息_图标列表ILVM
+        /** <summary>
+        * 消息_图标列表_设置表项尺寸
+        * </summary>
+        **/
+        public const int ILVM_SETITEMSIZE = 11001;
+        #endregion
+
         #region EPF_
         /** <summary>
-         * 暂无注释
+         * 路径标识_禁止缩放
          * </summary>
          **/
         public const int EPF_DISABLESCALE = 1;
@@ -3228,6 +3644,7 @@
         // 字体风格_删除线
         public const int FS_STRICKOUT = 8;
         #endregion
+
 
     }
 }

@@ -5,16 +5,16 @@ namespace ExDuiR.NET.Frameworks.Graphics
 {
     public class ExMatrix : IDisposable
     {
-        protected nint m_hMatrix;
+        protected IntPtr m_hMatrix;
 
-        public nint handle => m_hMatrix;
+        public IntPtr handle => m_hMatrix;
 
         public ExMatrix()
         {
-            m_hMatrix = (nint)ExAPI._matrix_create();
+            m_hMatrix = (IntPtr)ExAPI._matrix_create();
         }
 
-        public ExMatrix(nint hMatrix)
+        public ExMatrix(IntPtr hMatrix)
         {
             m_hMatrix = hMatrix;
         }
@@ -22,7 +22,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public void Dispose()
         {
             ExAPI._matrix_destroy(m_hMatrix);
-            m_hMatrix = 0;
+            m_hMatrix = IntPtr.Zero;
         }
 
         public bool Reset()

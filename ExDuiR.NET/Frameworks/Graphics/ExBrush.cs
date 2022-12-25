@@ -5,10 +5,10 @@ namespace ExDuiR.NET.Frameworks.Graphics
 {
     public class ExBrush : IDisposable
     {
-        protected nint m_hBrush;
+        protected IntPtr m_hBrush;
         protected int _color;
 
-        public nint handle => m_hBrush;
+        public IntPtr handle => m_hBrush;
 
         public ExBrush(int Color)
         {
@@ -26,12 +26,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
             m_hBrush = ExAPI._brush_createfromimg(img.handle);
         }
 
-        public ExBrush(float cx, float cy, float off_x, float off_y, float radiusX, float radiusY, int arrStopPts, int cStopPts)
-        {
-            m_hBrush = ExAPI._brush_createradial_ex(cx, cy, off_x, off_y, radiusX, radiusY, arrStopPts, cStopPts);
-        }
-
-        public ExBrush(nint hBrush)
+        public ExBrush(IntPtr hBrush)
         {
             m_hBrush = hBrush;
         }
@@ -59,7 +54,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public void Dispose()
         {
             ExAPI._brush_destroy(m_hBrush);
-            m_hBrush = 0;
+            m_hBrush = IntPtr.Zero;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExControl(IExBaseUIEle oParent, string sClassName, string sTitle, int x, int y, int nWidth, int nHeight,
             int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, int hTheme = 0, ExObjProcDelegate pfnObjProc = null)
         {
-            m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, 0, hTheme, pfnObjProc);
+            m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, IntPtr.Zero, hTheme, pfnObjProc);
             if (m_hObj == 0)
             {
                 throw new ExException(ExStatus.HANDLE_INVALID, "创建控件失败");
@@ -20,7 +20,21 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             m_hObj = hObj;
         }
-
+        public ExControl(ExControl control)
+        {
+            m_hObj = control.handle;
+            ClassName = control.ClassName;
+            var parentProperties = control.GetType().GetProperties();
+            foreach (var parentProperty in parentProperties)
+            {
+                var thisProperty = this.GetType().GetProperty(parentProperty.Name, parentProperty.PropertyType);
+                var value = parentProperty.GetValue(control);
+                if (thisProperty != null && value != null && thisProperty.CanWrite)
+                {
+                    thisProperty.SetValue(this, value);
+                }
+            }
+        }
         public void Dispose()
         {
             ExAPI.Ex_ObjDestroy(m_hObj);
@@ -32,8 +46,6 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public bool Visible { get => ExAPI.Ex_ObjIsVisible(m_hObj); set => ExAPI.Ex_ObjShow(m_hObj, value); }
         public bool Enable { get => ExAPI.Ex_ObjIsEnable(m_hObj); set => ExAPI.Ex_ObjEnable(m_hObj, value); }
-
-        
 
         protected int m_hObj;
         public int handle => m_hObj;
@@ -63,7 +75,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             {
                 int cch = (int)ExAPI.Ex_ObjGetTextLength(m_hObj);
                 StringBuilder sb = new StringBuilder(cch);
-                ExAPI.Ex_ObjGetText(m_hObj, sb, (nint)(cch * 2 + 2));
+                ExAPI.Ex_ObjGetText(m_hObj, sb, (IntPtr)(cch * 2 + 2));
                 sb.Length = cch;
                 return sb.ToString();
             }
@@ -74,14 +86,14 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
 
-        public string ClassName { get => null; }
+        public string ClassName { get; set; }
 
         public bool GetBackgroundImage(out ExBackgroundImageInfo pImageInfo)
         {
             return ExAPI.Ex_ObjGetBackgroundImage(m_hObj, out pImageInfo);
         }
 
-        public nint GetLong(int nIndex)
+        public IntPtr GetLong(int nIndex)
         {
             return ExAPI.Ex_ObjGetLong(m_hObj, nIndex);
         }
@@ -96,17 +108,17 @@ namespace ExDuiR.NET.Frameworks.Controls
             return ExAPI.Ex_ObjSetPadding(m_hObj, nPaddingType, left, top, right, bottom, fRedraw);
         }
 
-        public bool PostMessage(int uMsg, nint wParam = new nint(), nint lParam = new nint())
+        public bool PostMessage(int uMsg, IntPtr wParam = new IntPtr(), IntPtr lParam = new IntPtr())
         {
             return ExAPI.Ex_ObjPostMessage(m_hObj, uMsg, wParam, lParam);
         }
 
-        public nint SendMessage(int uMsg, nint wParam = new nint(), nint lParam = new nint())
+        public IntPtr SendMessage(int uMsg, IntPtr wParam = new IntPtr(), IntPtr lParam = new IntPtr())
         {
             return ExAPI.Ex_ObjSendMessage(m_hObj, uMsg, wParam, lParam);
         }
 
-        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat, nint rcGrids, int dwFlags, int dwAlpha, bool fUpdate)
+        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat, IntPtr rcGrids, int dwFlags, int dwAlpha, bool fUpdate)
         {
             return ExAPI.Ex_ObjSetBackgroundImage(m_hObj, image, image == null ? 0 : image.Length, x, y, dwRepeat, rcGrids, dwFlags, dwAlpha, fUpdate);
         }
@@ -126,12 +138,12 @@ namespace ExDuiR.NET.Frameworks.Controls
             return ExAPI.Ex_ObjSetRadius(m_hObj, topleft, topright, bottomright, bottomleft, fUpdate);
         }
 
-        public nint SetLong(int nIndex, nint nValue)
+        public IntPtr SetLong(int nIndex, IntPtr nValue)
         {
             return ExAPI.Ex_ObjSetLong(m_hObj, nIndex, nValue);
         }
 
-        public bool SetPos(int x, int y, int nWidth, int nHeight, nint hEleAfter, int dwFlags)
+        public bool SetPos(int x, int y, int nWidth, int nHeight, IntPtr hEleAfter, int dwFlags)
         {
             return ExAPI.Ex_ObjSetPos(m_hObj, hEleAfter, x, y, nWidth, nHeight, dwFlags);
         }
@@ -161,6 +173,17 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             ExControl ctrl = null;
             int hObj = ExAPI.Ex_ObjGetFromNodeID(m_hObj, nodeid);
+            if (hObj != 0)
+            {
+                ctrl = new ExControl(hObj);
+            }
+            return ctrl;
+        }
+
+        public ExControl GetParent()
+        {
+            ExControl ctrl = null;
+            int hObj = ExAPI.Ex_ObjGetParent(m_hObj);
             if (hObj != 0)
             {
                 ctrl = new ExControl(hObj);
@@ -214,14 +237,9 @@ namespace ExDuiR.NET.Frameworks.Controls
             return ExAPI.Ex_ObjKillFocus(m_hObj);
         }
 
-        public bool TrackPopupMenu(nint hMenu, int uFlags, int x, int y, nint nReserved, ref ExRect pRc, ExWndProcDelegate pfnWndProc, int dwFlags)
+        public bool TrackPopupMenu(IntPtr hMenu, int uFlags, int x, int y, IntPtr nReserved, ref ExRect pRc, ExWndProcDelegate pfnWndProc, int dwFlags)
         {
             return ExAPI.Ex_TrackPopupMenu(hMenu, uFlags, x, y, nReserved, m_hObj, ref pRc, pfnWndProc, dwFlags);
-        }
-
-        public bool LoadLayoutXml(byte[] pLayout, nint hRes)
-        {
-            return ExAPI.Ex_ObjLoadFromLayout(m_hObj, hRes, pLayout, pLayout.Length);
         }
 
         public static ExControl GetObjFromPoint(int x, int y, int hParent)
@@ -235,28 +253,28 @@ namespace ExDuiR.NET.Frameworks.Controls
             return ctrl;
         }
 
-        public nint SubClass(ExObjProcDelegate pfnObjProc)
+        public IntPtr SubClass(ExObjProcDelegate pfnObjProc)
         {
 
             return ExAPI.Ex_ObjSetLong(m_hObj, ExConst.EOL_OBJPROC, pfnObjProc);
         }
 
-        public static nint CallProc(nint pfnObjProc, nint hWnd, int hObj, int uMsg, nint wParam, nint lParam, nint pvData)
+        public static IntPtr CallProc(IntPtr pfnObjProc, IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr pvData)
         {
             return ExAPI.Ex_ObjCallProc(pfnObjProc, hWnd, hObj, uMsg, wParam, lParam, pvData);
         }
 
-        public static nint CallDefProc(nint hWnd, int hObj, int uMsg, nint wParam, nint lParam)
+        public static IntPtr CallDefProc(IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam)
         {
             return ExAPI.Ex_ObjDefProc(hWnd, hObj, uMsg, wParam, lParam);
         }
 
-        public nint DispatchMessage(int uMsg, nint wParam, nint lParam)
+        public IntPtr DispatchMessage(int uMsg, IntPtr wParam, IntPtr lParam)
         {
             return ExAPI.Ex_ObjDispatchMessage(m_hObj, uMsg, wParam, lParam);
         }
 
-        public nint DispatchNotify(int nCode, nint wParam, nint lParam)
+        public IntPtr DispatchNotify(int nCode, IntPtr wParam, IntPtr lParam)
         {
             return ExAPI.Ex_ObjDispatchNotify(m_hObj, nCode, wParam, lParam);
         }
@@ -273,7 +291,8 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public bool Invalidate()
         {
-            return ExAPI.Ex_ObjInvalidateRect(m_hObj, 0);
+            ExRect rect = new ExRect();
+            return ExAPI.Ex_ObjInvalidateRect(m_hObj, ref rect);
         }
 
         public bool Invalidate(ExRect rc)
@@ -304,7 +323,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             return ctrl;
         }
 
-        public bool EnumChild(ExObjEnumCallbackDelegate pfnEnum, nint lParam)
+        public bool EnumChild(ExObjEnumCallbackDelegate pfnEnum, IntPtr lParam)
         {
             return ExAPI.Ex_ObjEnumChild(m_hObj, pfnEnum, lParam);
         }
@@ -340,22 +359,22 @@ namespace ExDuiR.NET.Frameworks.Controls
             return ExAPI.Ex_ObjInitPropList(m_hObj, nPropCount);
         }
 
-        public nint GetProp(nint nKey)
+        public IntPtr GetProp(IntPtr nKey)
         {
             return ExAPI.Ex_ObjGetProp(m_hObj, nKey);
         }
 
-        public nint SetProp(nint nKey, nint nValue)
+        public IntPtr SetProp(IntPtr nKey, IntPtr nValue)
         {
             return ExAPI.Ex_ObjSetProp(m_hObj, nKey, nValue);
         }
 
-        public nint RemoveProp(nint nKey)
+        public IntPtr RemoveProp(IntPtr nKey)
         {
             return ExAPI.Ex_ObjRemoveProp(m_hObj, nKey);
         }
 
-        public int EnumProps(ExObjPropEnumCallbackDelegate pfnEnum, nint lParam)
+        public int EnumProps(ExObjPropEnumCallbackDelegate pfnEnum, IntPtr lParam)
         {
             return ExAPI.Ex_ObjEnumProps(m_hObj, pfnEnum, lParam);
         }
@@ -376,7 +395,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             ExAPI.Ex_ObjEnablePaintingMsg(m_hObj, fEnable);
         }
 
-        public nint GetDropData(int pDataObject, int dwFormat, out int pcbData)
+        public IntPtr GetDropData(int pDataObject, int dwFormat, out int pcbData)
         {
             return ExAPI.Ex_ObjGetDropData(m_hObj, pDataObject, dwFormat, out pcbData);
         }
@@ -389,7 +408,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             return ret;
         }
 
-        public bool CheckDropFormat(nint pDataObject, int dwFormat)
+        public bool CheckDropFormat(IntPtr pDataObject, int dwFormat)
         {
             return ExAPI.Ex_ObjCheckDropFormat(m_hObj, pDataObject, dwFormat);
         }

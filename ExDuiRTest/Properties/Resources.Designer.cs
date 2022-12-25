@@ -81,6 +81,16 @@ namespace ExDuiRTest.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Loading {
+            get {
+                object obj = ResourceManager.GetObject("Loading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 {\rtf1\ansi\ansicpg936\deff0\nouicompat\deflang1033\deflangfe2052{\fonttbl{\f0\fnil\fcharset134 \&apos;cb\&apos;ce\&apos;cc\&apos;e5;}{\f1\fnil\fcharset134 \&apos;d3\&apos;d7\&apos;d4\&apos;b2;}{\f2\fnil\fcharset2 Symbol;}}
         ///{\colortbl ;\red0\green0\blue255;\red255\green255\blue0;\red255\green0\blue0;}
         ///{\*\generator Riched20 10.0.17763}\viewkind4\uc1 

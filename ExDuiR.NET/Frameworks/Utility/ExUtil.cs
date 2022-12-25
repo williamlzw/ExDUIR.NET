@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Drawing;
+using System.IO;
 
 namespace ExDuiR.NET.Frameworks.Utility
 {
     static public class Util
     {
-        static public T IntPtrToStructure<T>(nint ptr)
+        static public T IntPtrToStructure<T>(IntPtr ptr)
         {
             object structure = null;
             int size = Marshal.SizeOf(typeof(T));
@@ -23,7 +25,7 @@ namespace ExDuiR.NET.Frameworks.Utility
         {
             object structure = null;
             int size = Marshal.SizeOf(typeof(T));
-            nint allocIntPtr = Marshal.AllocHGlobal(size);
+            IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             try
             {
                 Marshal.Copy(dataBuffer, 0, allocIntPtr, size);
@@ -78,17 +80,43 @@ namespace ExDuiR.NET.Frameworks.Utility
         {
             return (ushort)(value >> 16);
         }
-        public static byte LOWBYTE(ushort value)
+        public static byte LOWBYTE(int value)
         {
             return (byte)(value & 0xFF);
         }
-        public static byte HIGHBYTE(ushort value)
+        public static byte HIGHBYTE(int value)
         {
             return (byte)(value >> 8);
         }
-        public static int ExRGBA(int red, int green , int blue, int alpha)
+
+        public static int ExGetR(int argb)
+        {
+            return LOWBYTE((argb >> 16));
+        }
+
+        public static int ExGetG(int argb)
+        {
+            return LOWBYTE((argb >> 8));
+        }
+
+        public static int ExGetB(int argb)
+        {
+            return LOWBYTE(argb);
+        }
+
+        public static int ExGetA(int argb)
+        {
+            return LOWBYTE((argb >> 24));
+        }
+
+        public static int ExRGBA(int red, int green, int blue, int alpha)
         {
             return Color.FromArgb(alpha, red, green, blue).ToArgb();
+        }
+
+        public static int ExRGB2ARGB(int rgb, int alpha)
+        {
+            return Color.FromArgb(alpha, ExGetR(rgb), ExGetG(rgb), ExGetB(rgb)).ToArgb();
         }
     }
 }

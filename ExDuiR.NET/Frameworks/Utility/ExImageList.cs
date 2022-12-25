@@ -6,16 +6,16 @@ namespace ExDuiR.NET.Frameworks.Utility
 {
     class ExImageList : IDisposable
     {
-        protected nint m_hImgList;
+        protected IntPtr m_hImgList;
 
-        public nint handle => m_hImgList;
+        public IntPtr handle => m_hImgList;
 
         public ExImageList(int nWidth, int nHeight)
         {
             ExAPI._imglist_create(nWidth, nHeight);
         }
 
-        public ExImageList(nint hImgList)
+        public ExImageList(IntPtr hImgList)
         {
             m_hImgList = hImgList;
         }
@@ -23,15 +23,15 @@ namespace ExDuiR.NET.Frameworks.Utility
         public void Dispose()
         {
             ExAPI._imglist_destroy(m_hImgList);
-            m_hImgList = 0;
+            m_hImgList = IntPtr.Zero;
         }
 
-        public nint Add(byte[] lpImage, int cbImage, nint nIndexInsert)
+        public IntPtr Add(byte[] lpImage, int cbImage, IntPtr nIndexInsert)
         {
             return ExAPI._imglist_add(m_hImgList, lpImage, cbImage, nIndexInsert);
         }
 
-        public nint AddImage(ExImage image, nint nIndexInsert)
+        public IntPtr AddImage(ExImage image, IntPtr nIndexInsert)
         {
             return ExAPI._imglist_addimage(m_hImgList, image.handle, nIndexInsert);
         }
@@ -44,27 +44,27 @@ namespace ExDuiR.NET.Frameworks.Utility
             }
         }
 
-        public bool Del(nint nIndex)
+        public bool Del(IntPtr nIndex)
         {
             return ExAPI._imglist_del(m_hImgList, nIndex);
         }
 
-        public bool Draw(nint nIndex, ExCanvas canvas, int nLeft, int nTop, int nRight, int nBottom, int nAlpha)
+        public bool Draw(IntPtr nIndex, ExCanvas canvas, int nLeft, int nTop, int nRight, int nBottom, int nAlpha)
         {
             return ExAPI._imglist_draw(m_hImgList, nIndex, canvas.handle, nLeft, nTop, nRight, nBottom, nAlpha);
         }
 
-        public ExImage Get(nint nIndex)
+        public ExImage Get(IntPtr nIndex)
         {
             return new ExImage((int)ExAPI._imglist_get(m_hImgList, nIndex));
         }
 
-        public bool Set(nint nIndex, byte[] lpImage, int cbImage)
+        public bool Set(IntPtr nIndex, byte[] lpImage, int cbImage)
         {
             return ExAPI._imglist_set(m_hImgList, nIndex, lpImage, cbImage);
         }
 
-        public bool SetImage(nint nIndex, ExImage image)
+        public bool SetImage(IntPtr nIndex, ExImage image)
         {
             return ExAPI._imglist_setimage(m_hImgList, nIndex, image.handle);
         }

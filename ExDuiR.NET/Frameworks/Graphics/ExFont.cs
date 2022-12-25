@@ -35,15 +35,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
             m_hFont = 0;
         }
 
-        public ExFont Copy()
-        {
-            return new ExFont 
-            {
-                m_hFont = ExAPI._font_copy(m_hFont) 
-            };
-        }
-
-        public nint Context
+        public IntPtr Context
         {
             get
             {

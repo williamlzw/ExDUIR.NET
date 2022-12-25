@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <Reference Include="ExDuiR">
-      <HintPath>res\ExDuiR.dll</HintPath>
+      <HintPath>Resources\ExDuiR.dll</HintPath>
     </Reference>
   </ItemGroup>
 
@@ -35,5 +35,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="xcopy $(ProjectDir)res $(TargetDir)/e /i /y" />
+  </Target>
 
 </Project>

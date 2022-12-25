@@ -46,19 +46,14 @@ namespace ExDuiR.NET.Frameworks.Layout
             return ExAPI._layout_deletechildren(m_hLayout, dwObjClassATOM);
         }
 
-        public bool SetChildProp(ExControl obj, int dwPropID, nint pvValue)
+        public bool SetChildProp(ExControl obj, int dwPropID, IntPtr pvValue)
         {
             return ExAPI._layout_setchildprop(m_hLayout, obj.handle, dwPropID, pvValue);
         }
 
-        public bool SetProp(int dwPropID, nint pvValue)
+        public bool SetProp(int dwPropID, IntPtr pvValue)
         {
             return ExAPI._layout_setprop(m_hLayout, dwPropID, pvValue);
-        }
-
-        public bool Unregister(int nType)
-        {
-            return ExAPI._layout_unregister(nType);
         }
 
         public bool Update()
@@ -74,22 +69,22 @@ namespace ExDuiR.NET.Frameworks.Layout
             }
         }
 
-        public bool GetChildProp(ExControl obj, int dwPropID, out nint pvValue)
+        public bool GetChildProp(ExControl obj, int dwPropID, out IntPtr pvValue)
         {
             return ExAPI._layout_getchildprop(m_hLayout, obj.handle, dwPropID, out pvValue);
         }
 
-        public bool GetChildPropList(ExControl obj, out nint lpProps)
+        public bool GetChildPropList(ExControl obj, out IntPtr lpProps)
         {
             return ExAPI._layout_getchildproplist(m_hLayout, obj.handle, out lpProps);
         }
 
-        public nint GetProp(int dwPropID)
+        public IntPtr GetProp(int dwPropID)
         {
             return ExAPI._layout_getprop(m_hLayout, dwPropID);
         }
 
-        public nint GetPropList()
+        public IntPtr GetPropList()
         {
             return ExAPI._layout_getproplist(m_hLayout);
         }
@@ -102,14 +97,9 @@ namespace ExDuiR.NET.Frameworks.Layout
             }
         }
 
-        public nint Notify(int nEvent, nint wParam, nint lParam)
+        public IntPtr Notify(int nEvent, IntPtr wParam, IntPtr lParam)
         {
             return ExAPI._layout_notify(m_hLayout, nEvent, wParam, lParam);
-        }
-
-        public bool Register(int nType, ExLayoutProcDelegate lpfnLayoutProc)
-        {
-            return ExAPI._layout_register(nType, lpfnLayoutProc);
         }
     }
 }

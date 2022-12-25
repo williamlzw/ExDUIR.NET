@@ -36,12 +36,12 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_begindraw(m_hCanvas);
         }
 
-        public bool Blur(float fDeviation, ref nint lpRc)
+        public bool Blur(float fDeviation, ref IntPtr lpRc)
         {
             return ExAPI._canvas_blur(m_hCanvas, fDeviation, ref lpRc);
         }
 
-        public bool CalcTextSize(ExFont font, string text, int dwLen, int dwDTFormat, nint lParam, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight)
+        public bool CalcTextSize(ExFont font, string text, int dwLen, int dwDTFormat, IntPtr lParam, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight)
         {
             return ExAPI._canvas_calctextsize(m_hCanvas, font.handle, text, dwLen, dwDTFormat, lParam, layoutWidth, layoutHeight, out lpWidth, out lpHeight);
         }
@@ -71,7 +71,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_drawtext2(m_hCanvas, font.handle, Brush.handle, lpwzText, dwLen, dwDTFormat, left, top, right, bottom);
         }
 
-        public bool DrawTextEx(ExFont font, int crText, string lpwzText, int dwLen, int dwDTFormat, float left, float top, float right, float bottom, int iGlowsize, int crShadow, nint lParam)
+        public bool DrawTextEx(ExFont font, int crText, string lpwzText, int dwLen, int dwDTFormat, float left, float top, float right, float bottom, int iGlowsize, int crShadow, IntPtr lParam)
         {
             return ExAPI._canvas_drawtextex(m_hCanvas, font.handle, crText, lpwzText, dwLen, dwDTFormat, left, top, right, bottom, iGlowsize, crShadow, lParam);
         }
@@ -151,12 +151,12 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_flush(m_hCanvas);
         }
 
-        public nint GetContext(int nType)
+        public IntPtr GetContext(int nType)
         {
             return ExAPI._canvas_getcontext(m_hCanvas, nType);
         }
 
-        public nint DC
+        public IntPtr DC
         {
             get
             {

@@ -6,16 +6,16 @@ namespace ExDuiR.NET.Frameworks.Graphics
     class ExTheme : IDisposable
     {
         protected int m_hTheme;
-        protected int _color;
+        protected int _color = 0;
 
         public int handle => m_hTheme;
 
-        public ExTheme(string lptszFile, byte[] lpKey, nint dwKeyLen, bool bDefault)
+        public ExTheme(string lptszFile, byte[] lpKey, IntPtr dwKeyLen, bool bDefault)
         {
             m_hTheme = ExAPI.Ex_ThemeLoadFromFile(lptszFile, lpKey, dwKeyLen, bDefault);
         }
 
-        public ExTheme(byte[] lpData, nint dwDataLen, byte[] lpKey, nint dwKeyLen, bool bDefault)
+        public ExTheme(byte[] lpData, IntPtr dwDataLen, byte[] lpKey, IntPtr dwKeyLen, bool bDefault)
         {
             m_hTheme = ExAPI.Ex_ThemeLoadFromMemory(lpData, dwDataLen, lpKey, dwKeyLen, bDefault);
         }
@@ -41,9 +41,9 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI.Ex_ThemeGetColor(m_hTheme, nIndex);
         }
 
-        public nint GetValuePtr(int atomClass, int atomProp)
+        public IntPtr GetValuePtr(int atomClass, int atomProp)
         {
-            nint ptr = ExAPI.Ex_ThemeGetValuePtr(m_hTheme, atomClass, atomProp);
+            IntPtr ptr = ExAPI.Ex_ThemeGetValuePtr(m_hTheme, atomClass, atomProp);
             return ptr;
         }
     }

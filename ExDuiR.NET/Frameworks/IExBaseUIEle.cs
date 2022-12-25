@@ -6,16 +6,16 @@ namespace ExDuiR.NET.Frameworks
 {
     public interface IExBaseUIEle
     {
-        nint GetLong(int nIndex);
-        nint SetLong(int nIndex, nint nValue);
+        IntPtr GetLong(int nIndex);
+        IntPtr SetLong(int nIndex, IntPtr nValue);
 
-        nint SendMessage(int uMsg, nint wParam = new nint(), nint lParam = new nint());
-        bool PostMessage(int uMsg, nint wParam = new nint(), nint lParam = new nint());
+        IntPtr SendMessage(int uMsg, IntPtr wParam = new IntPtr(), IntPtr lParam = new IntPtr());
+        bool PostMessage(int uMsg, IntPtr wParam = new IntPtr(), IntPtr lParam = new IntPtr());
 
         bool Move(int x, int y, int nWidth, int nHeight, bool fRedraw = true);
-        bool SetPos(int x, int y, int nWidth, int nHeight, nint hEleAfter, int dwFlags);
+        bool SetPos(int x, int y, int nWidth, int nHeight, IntPtr hEleAfter, int dwFlags);
 
-        bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat, nint rcGrids, int dwFlags, int dwAlpha, bool fUpdate);
+        bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat, IntPtr rcGrids, int dwFlags, int dwAlpha, bool fUpdate);
 
         bool SetBackgroundPlayState(bool fPlayFrames, bool fResetFrame, bool fUpdate);
         bool GetBackgroundImage(out ExBackgroundImageInfo pImageInfo);
@@ -26,13 +26,9 @@ namespace ExDuiR.NET.Frameworks
 
         ExControl GetFocus();
 
-        bool TrackPopupMenu(nint hMenu, int uFlags, int x, int y, nint nReserved, ref ExRect pRc, ExWndProcDelegate pfnWndProc, int dwFlags);
-
-        bool LoadLayoutXml(byte[] pLayout, nint hRes);
+        bool TrackPopupMenu(IntPtr hMenu, int uFlags, int x, int y, IntPtr nReserved, ref ExRect pRc, ExWndProcDelegate pfnWndProc, int dwFlags);
 
         ExControl Find(ExControl pObjChildAfter = null, string sClassName = null, string sTitle = null);
-
-
 
         bool Validate { get; }
 

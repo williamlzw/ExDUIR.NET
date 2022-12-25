@@ -22,7 +22,7 @@ namespace ExDuiR.NET.Frameworks.Layout
             return ExAPI._layout_absolute_lock(m_hLayout, obj.handle, tLeft, tTop, tRight, tBottom, tWidth, tHeight);
         }
 
-        public bool SetEdge(ExControl obj, int dwEdge, int dwType, nint nValue)
+        public bool SetEdge(ExControl obj, int dwEdge, int dwType, IntPtr nValue)
         {
             return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, dwEdge, dwType, nValue);
         }
