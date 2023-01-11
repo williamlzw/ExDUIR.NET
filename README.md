@@ -11,6 +11,9 @@ Windows平台轻量DirectUI框架。ExDUIR的.net框架封装。原版地址:htt
 win10+， win7 需要安装KB2670838补丁
 .net 4.6.1
 
+## 问题反馈&帮助
+* 交流QQ群: 214406227
+
 ## 编译
 * Visual Studio 2019,Visual Studio 2022
 

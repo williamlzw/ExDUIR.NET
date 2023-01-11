@@ -14,6 +14,9 @@ Modified from https://github.com/F-Unction/ExDirectUI.NET
 win10+, win7 need install KB2670838 patch
 .net 4.6.1
 
+## Problem feedback & Help
+* QQ group: 214406227
+
 ## Compiler
 * Visual Studio 2019,Visual Studio 2022
 
