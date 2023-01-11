@@ -1,12 +1,10 @@
 ﻿using ExDuiR.NET.Frameworks;
 using ExDuiR.NET.Frameworks.Controls;
-using ExDuiR.NET.Frameworks.Graphics;
 using ExDuiR.NET.Frameworks.Utility;
 using ExDuiR.NET.Native;
-using System;
-using System.Runtime.InteropServices;
 using static ExDuiR.NET.Native.ExConst;
-
+using System;
+using System.Collections.Generic;
 
 namespace ExDuiRTest
 {
@@ -14,44 +12,57 @@ namespace ExDuiRTest
     {
         static private ExApp theApp;
         static private ExSkin skin;
-        static private ExButton[] buttons;
-        static private ExObjEventProcDelegate button_callback;
+        static private List<ExButton> buttons;
+        static private ExObjEventProcDelegate buttonEventProc;
         static public void CreateMainWindow()
         {
             //读入主题包
             var theme = Properties.Resources.Default;
+            //初始化引擎,必须
             theApp = new ExApp(theme);
+            //创建窗口皮肤,必须
             skin = new ExSkin(null, null, "ExDUIR演示,项目地址：https://gitee.com/william_lzw/ExDUIR", 0, 0, 600, 600,
             EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_BUTTON_MAX | EWS_MOVEABLE | EWS_CENTERWINDOW |
-            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, 0, MainWndProc);
+            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, IntPtr.Zero, MainWndProc);
             if (skin.Validate)
             {
                 var bitmap = Properties.Resources.editbkg;
-                byte[] img = Util.BitmapToByte(bitmap);
-                skin.SetBackgroundImage(img, 0, 0, 0, IntPtr.Zero, 0, 255, true);
-                buttons = new ExButton[4];
-                buttons[0] = new ExButton(skin, "测试按钮开关", 10, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[1] = new ExButton(skin, "测试标签", 10, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[2] = new ExButton(skin, "测试单选复选框", 10, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[3] = new ExButton(skin, "测试编辑框", 10, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                TestCustomCtrl.RegisterControl();
-                TestCustomCtrl custom = new TestCustomCtrl(skin, "test", 360, 110, 50, 50);
-                button_callback = new ExObjEventProcDelegate(MainButtonEventProc);
-                for (int i = 0; i < 4; i++)
+                //设置窗口背景图片
+                skin.SetBackgroundImage(bitmap, 0, 0, 0, default, 0, 255, true);
+                buttons = new List<ExButton>();
+                buttons.Add(new ExButton(skin, "测试按钮开关", 10, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试标签", 10, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试单选复选框", 10, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试编辑框", 10, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试列表框", 10, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试列表按钮", 10, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试自定义背景", 10, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试选项卡", 10, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试分组框", 10, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试绝对布局", 10, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试相对布局", 10, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试线性布局", 10, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试流式布局", 10, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试表格布局", 10, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试组合框", 120, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试缓动窗口", 120, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试异形窗口", 120, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试信息框", 120, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试自定义组件", 120, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+
+                //类成员保存委托,不会被垃圾回收
+                buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
+                for (int i = 0; i < buttons.Count; i++)
                 {
-                    buttons[i].HandleEvent(NM_CLICK, button_callback);
+                    buttons[i].HandleEvent(NM_CLICK, buttonEventProc);
                 }
-
-                for (int i = 0; i < 20; i++)
-                {
-
-
-                }
+                //设置窗口可视,必须
                 skin.Visible = true;
-
+                //引擎消息循环,必须
                 theApp.Run();
             }
         }
+
 
         static private IntPtr MainButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
@@ -71,6 +82,66 @@ namespace ExDuiRTest
             {
                 EditWindow.CreateEditWindow(skin);
             }
+            else if (hObj == buttons[4].handle)
+            {
+                ListViewWindow.CreateListViewWindow(skin);
+            }
+            else if (hObj == buttons[5].handle)
+            {
+                ListButtonWindow.CreateListButtonWindow(skin);
+            }
+            else if (hObj == buttons[6].handle)
+            {
+                CustomBackgroundWindow.CreateCustomBackgroundWindow(skin);
+            }
+            else if (hObj == buttons[7].handle)
+            {
+                NavButtonWindow.CreateNavButtonWindow(skin);
+            }
+            else if (hObj == buttons[8].handle)
+            {
+                GroupBoxWindow.CreateGroupBoxWindow(skin);
+            }
+            else if (hObj == buttons[9].handle)
+            {
+                AbsoluteLayoutWindow.CreateAbsoluteLayoutWindow(skin);
+            }
+            else if (hObj == buttons[10].handle)
+            {
+                RelativeLayoutWindow.CreateRelativeLayoutWindow(skin);
+            }
+            else if (hObj == buttons[11].handle)
+            {
+                LinearLayoutWindow.CreateLinearLayoutWindow(skin);
+            }
+            else if (hObj == buttons[12].handle)
+            {
+                FlowLayoutWindow.CreateFlowLayoutWindow(skin);
+            }
+            else if (hObj == buttons[13].handle)
+            {
+                TableLayoutWindow.CreateTableLayoutWindow(skin);
+            }
+            else if (hObj == buttons[14].handle)
+            {
+                ComboBoxWindow.CreateComboBoxWindow(skin);
+            }
+            else if (hObj == buttons[15].handle)
+            {
+                EasingWindow.CreateEasingWindow(skin);
+            }
+            else if (hObj == buttons[16].handle)
+            {
+                CustomRedrawWindow.CreateCustomRedrawWindow(skin);
+            }
+            else if (hObj == buttons[17].handle)
+            {
+                MessageBoxWindow.CreateMessageBoxWindow(skin);
+            }
+            else if (hObj == buttons[18].handle)
+            {
+                CustomCtrlWindow.CreateCustomCtrlWindow(skin);
+            }
             return IntPtr.Zero;
         }
 
@@ -78,310 +149,8 @@ namespace ExDuiRTest
         {
             if (uMsg == WM_CREATE)
             {
-
-
             }
             return IntPtr.Zero;
-        }
-    }
-
-    static class ButtonWindow
-    {
-        static private ExSkin skin;
-        static private ExButton[] buttons;
-        static private ExSwitch[] switchs;
-
-        static public void CreateButtonWindow(ExSkin pOwner)
-        {
-            skin = new ExSkin(pOwner, null, "测试按钮开关", 0, 0, 300, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
-            if (skin.Validate)
-            {
-
-                var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (IntPtr)color);
-                buttons = new ExButton[6];
-                buttons[0] = new ExButton(skin, "禁用自身", 10, 30, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[1] = new ExButton(skin, "解除按钮1禁用", 10, 70, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[2] = new ExButton(skin, "改动自身文本", 10, 110, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[3] = new ExButton(skin, "取按钮1文本", 10, 150, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[4] = new ExButton(skin, "重画按钮1", 150, 30, 120, 30, -1, EOS_EX_FOCUSABLE | EOS_EX_CUSTOMDRAW | EOS_EX_COMPOSITED, DT_VCENTER | DT_CENTER);
-                buttons[5] = new ExButton(skin, "重画按钮2", 150, 70, 120, 30, -1,
-                    EOS_EX_FOCUSABLE | EOS_EX_CUSTOMDRAW | EOS_EX_COMPOSITED, DT_VCENTER | DT_CENTER, 0, OnButtonMsgProc);
-
-                foreach (var button in buttons)
-                {
-                    button.HandleEvent(NM_CLICK, OnButtonEventProc);
-                }
-                buttons[4].HandleEvent(NM_CUSTOMDRAW, OnButtonEventProc);
-
-                switchs = new ExSwitch[2];
-                switchs[0] = new ExSwitch(skin, "已开启|已关闭", 150, 110, 80, 30);
-                switchs[1] = new ExSwitch(skin, "", 150, 150, 60, 30);
-                switchs[1].Check = true;
-                ExObjProps props = new ExObjProps();
-
-                props.crBkgNormal = Util.ExRGBA(255, 255, 255, 100);
-                props.crBkgDownOrChecked = Util.ExRGBA(200, 50, 100, 100);
-                props.crBorderNormal = Util.ExRGBA(255, 255, 255, 255);
-                props.radius = 15;
-                props.strokeWidth = 1;
-                switchs[1].SetProps(props);
-                switchs[1].HandleEvent(NM_CHECK, OnButtonEventProc);
-                skin.Visible = true;
-            }
-        }
-
-        static public IntPtr OnButtonMsgProc(IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr pResult)
-        {
-            if (uMsg == WM_ERASEBKGND)
-            {
-                ExPaintStruct ps = Util.IntPtrToStructure<ExPaintStruct>(lParam);
-                int crBkg;
-                if ((ps.dwState & STATE_DOWN) == STATE_DOWN)
-                {
-
-                    crBkg = Util.ExRGBA(255, 0, 0, 51);
-
-                }
-                else if ((ps.dwState & STATE_HOVER) == STATE_HOVER)
-                {
-                    crBkg = Util.ExRGBA(255, 168, 255, 51);
-                }
-                else
-                {
-                    crBkg = Util.ExRGBA(255, 255, 255, 51);
-                }
-                ExBrush hBrush = new ExBrush(crBkg);
-                ExCanvas hCanvas = new ExCanvas(ps.hCanvas);
-                hCanvas.FillRect(hBrush, 0, 0, ps.rcPaint.nRight, ps.rcPaint.nBottom);
-                hBrush.Dispose();
-                return (IntPtr)1;
-            }
-
-            return IntPtr.Zero;
-        }
-
-        static public IntPtr OnButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
-        {
-
-            if (hObj == buttons[0].handle)
-            {
-                buttons[0].Enable = false;
-                buttons[0].SetPadding(0, 20, 5, 5, 5);
-            }
-            else if (hObj == buttons[1].handle)
-            {
-                buttons[0].Enable = true;
-            }
-            else if (hObj == buttons[2].handle)
-            {
-                buttons[2].Text = "自身文本被改动";
-            }
-            else if (hObj == buttons[3].handle)
-            {
-                buttons[3].Text = "按钮1文本:" + buttons[0].Text;
-            }
-            else if (hObj == buttons[4].handle)
-            {
-                if (nCode == NM_CUSTOMDRAW)
-                {
-                    ExPaintStruct ps = Util.IntPtrToStructure<ExPaintStruct>(lParam);
-                    int crBkg;
-                    if ((ps.dwState & STATE_DOWN) != 0)
-                    {
-                        crBkg = Util.ExRGBA(255, 0, 0, 51);
-                    }
-                    else if ((ps.dwState & STATE_HOVER) != 0)
-                    {
-                        crBkg = Util.ExRGBA(255, 168, 255, 51);
-                    }
-                    else
-                    {
-                        crBkg = Util.ExRGBA(255, 255, 255, 51);
-                    }
-                    ExBrush hBrush = new ExBrush(crBkg);
-                    ExCanvas hCanvas = new ExCanvas(ps.hCanvas);
-                    hCanvas.FillRect(hBrush, 0, 0, ps.rcPaint.nRight, ps.rcPaint.nBottom);
-                    hBrush.Dispose();
-                }
-                return (IntPtr)1;
-            }
-            else if (hObj == switchs[1].handle)
-            {
-                if (wParam != IntPtr.Zero)
-                {
-                    ExMessageBox.Show(skin, "开启", "取开关状态", MB_USERICON, EMBF_CENTEWINDOW);
-                }
-                else
-                {
-                    ExMessageBox.Show(skin, "关闭", "取开关状态", MB_ICONWARNING, EMBF_CENTEWINDOW);
-                }
-            }
-
-            return IntPtr.Zero;
-        }
-    }
-
-    static class LabelWindow
-    {
-        static private ExSkin skin;
-        static private ExStatic label;
-        static private ExStatic label2;
-        static public void CreateLabelWindow(ExSkin pOwner)
-        {
-            skin = new ExSkin(pOwner, null, "测试标签", 0, 0, 200, 250,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
-            if (skin.Validate)
-            {
-                var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (IntPtr)color);
-                var bitmap = Properties.Resources.Loading;
-                byte[] img = Util.BitmapToByte(bitmap);
-                label = new ExStatic(skin, img, 10, 30, 180, 150);
-                label.SetRadius(10, 10, 15, 10, true);
-                label.GetBackgroundImage(out ExBackgroundImageInfo bkgInfo);
-                var rc = label.Rect;
-                label2 = new ExStatic(skin, "标签可以填充动画,支持PNG,GIF,JPG,BMP格式,标签可以自动换行", 10, 190, 180, 90, DT_WORDBREAK);
-                label2.SetFont("宋体", 14, FS_BOLD, false);
-                label2.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(133, 33, 53, 255), true);
-
-                Console.WriteLine(string.Format("标签矩形:{0},{1}", rc.nRight, rc.nBottom));
-                Console.WriteLine(string.Format("背景信息:{0},{1},{2},{3},{4},{5},{6}", bkgInfo.nCurFrame, bkgInfo.x, bkgInfo.y, bkgInfo.nAlpha, bkgInfo.dwRepeat, bkgInfo.hImage, bkgInfo.nMaxFrame));
-                skin.Visible = true;
-            }
-        }
-    }
-
-    static class CheckButtonWindow
-    {
-        static private ExSkin skin;
-        static private ExCheckButton checkButton1;
-        static private ExCheckButtonEx checkButtonex1;
-        static private ExRadioButton radiobutton1;
-        static private ExRadioButton radiobutton2;
-        static private ExRadioButtonEx radiobuttonex1;
-        static private ExRadioButtonEx radiobuttonex2;
-        static private ExCheckBox checkbox1;
-
-        static public void CreateCheckButtonWindow(ExSkin pOwner)
-        {
-            skin = new ExSkin(pOwner, null, "测试单选框复选框", 0, 0, 300, 250,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
-            if (skin.Validate)
-            {
-
-                var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (IntPtr)color);
-                checkButton1 = new ExCheckButton(skin, "复选框", 10, 30, 60, 20, -1);
-                radiobutton1 = new ExRadioButton(skin, "单选框1", 10, 60, 80, 20, -1);
-                radiobutton2 = new ExRadioButton(skin, "单选框2", 100, 60, 80, 20, -1);
-                checkButtonex1 = new ExCheckButtonEx(skin, "三态选择框", 10, 90, 120, 20, -1);
-                checkButtonex1.SetCheck(2);
-                radiobuttonex1 = new ExRadioButtonEx(skin, "扩展单选框1", 10, 120, 100, 20, -1);
-                radiobuttonex2 = new ExRadioButtonEx(skin, "扩展单选框2", 100, 120, 100, 20, -1);
-                checkbox1 = new ExCheckBox(skin, "记住账号", 10, 150, 100, 30, -1);
-                checkbox1.Check = true;
-                checkbox1.HandleEvent(NM_CHECK, OnCheckButtonEventProc);
-
-                skin.Visible = true;
-            }
-        }
-
-        static public IntPtr OnCheckButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
-        {
-            if (wParam != IntPtr.Zero)
-            {
-                bool check = true;
-                ExMessageBox.ShowEx(skin, "选中了", "取CheckButton状态", MB_USERICON, "不再提示", ref check, 10, EMBF_CENTEWINDOW);
-            }
-            else
-            {
-                ExMessageBox.Show(skin, "取消选中啦", "取CheckButton状态", MB_ICONWARNING, EMBF_CENTEWINDOW);
-            }
-            return IntPtr.Zero;
-        }
-    }
-
-    static class EditWindow
-    {
-        static private ExSkin skin;
-        static private ExEdit edit1;
-        static private ExEdit edit2;
-        static private ExEdit edit3;
-        static private ExEdit edit4;
-        static private ExEdit edit5;
-        static private ExEdit edit6;
-        static private ExEdit edit7;
-        static public void CreateEditWindow(ExSkin pOwner)
-        {
-            skin = new ExSkin(pOwner, null, "测试编辑框", 0, 0, 850, 350,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
-            if (skin.Validate)
-            {
-                var color = Util.ExRGBA(150, 150, 150, 255);
-                skin.SetLong(EWL_CRBKG, (IntPtr)color);
-                edit1 = new ExEdit(skin, "背景图片编辑框", 10, 30, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_CUSTOMDRAW, DT_VCENTER);
-                var bitmap = Properties.Resources.editbkg;
-                byte[] data = Util.BitmapToByte(bitmap);
-                edit1.SetBackgroundImage(data, 0, 0, 0, IntPtr.Zero, 0, 255, true);
-                edit2 = new ExEdit(skin, "测试密码输入编辑框", 10, 70, 150, 30, EOS_VISIBLE | EES_USEPASSWORD, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
-                edit3 = new ExEdit(skin, "测试数值输入编辑框", 10, 110, 150, 30, EOS_VISIBLE | EES_NUMERICINPUT, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
-                edit4 = new ExEdit(skin, "测试只读编辑框", 10, 150, 150, 30, EOS_VISIBLE | EES_READONLY, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
-                edit5 = new ExEdit(skin, "测试透明圆角编辑框", 10, 190, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_TABSTOP | EOS_EX_CUSTOMDRAW, DT_VCENTER);
-                edit5.SetFont("微软雅黑", 16, FS_UNDERLINE, false);
-
-                edit5.SetColor(COLOR_EX_BACKGROUND, Util.ExRGBA(200, 120, 130, 100), false);
-                edit5.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(23, 115, 1, 100), false);
-                edit5.SetRadius(10, 10, 10, 0, false);
-                edit6 = new ExEdit(skin, "测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框", 10, 230, 150, 100, EOS_VISIBLE | EOS_VSCROLL, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_VCENTER);
-                edit7 = new ExEdit(skin, "测试透明圆角编辑框", 180, 30, 300, 300, EOS_VISIBLE | EOS_VSCROLL | EOS_HSCROLL | EES_RICHTEXT | EES_PARSEURL | EES_ALLOWTAB | EES_NEWLINE, EOS_EX_FOCUSABLE, DT_LEFT | DT_TOP);
-                var rtf = Properties.Resources.testrtf;
-                byte[] rtfdata = System.Text.Encoding.UTF8.GetBytes(rtf.ToCharArray());
-                //byte[] rtfdata = System.IO.File.ReadAllBytes(".\\res\\test.rtf");
-                edit7.LoadRtf(rtfdata);
-                edit7.HandleEvent(NM_EN_SELCHANGE, OnEditNotifyEventProc);
-                edit7.HandleEvent(NM_EN_LINK, OnEditNotifyEventProc);
-                skin.Visible = true;
-            }
-        }
-
-        static public IntPtr OnEditNotifyEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
-        {
-            if (nCode == NM_EN_SELCHANGE)
-            {
-                ExSelChange selcha = Util.IntPtrToStructure<ExSelChange>(lParam);
-                Console.WriteLine(String.Format("选中区域改变:{0}", selcha.chrg.cpMin, selcha.chrg.cpMax));
-            }
-            else if (nCode == NM_EN_LINK)
-            {
-                ExEnLink selcha = Util.IntPtrToStructure<ExEnLink>(lParam);
-                if (selcha.msg == WM_LBUTTONDOWN)
-                {
-                    IntPtr intptr = Marshal.AllocHGlobal(16);
-                    Marshal.WriteIntPtr(intptr, 8, Marshal.AllocHGlobal((selcha.chrg.cpMax - selcha.chrg.cpMin + 2) * 2));
-                    Marshal.WriteInt32(intptr, 0, selcha.chrg.cpMin);
-                    Marshal.WriteInt32(intptr, 4, selcha.chrg.cpMax);
-                    edit7.SendMessage(EM_GETTEXTRANGE, IntPtr.Zero, intptr);
-                    Console.WriteLine(String.Format("链接被按下: {0}", Marshal.PtrToStringUni(Marshal.ReadIntPtr(intptr, 8))));
-                    Marshal.FreeHGlobal(Marshal.ReadIntPtr(intptr, 8));
-                    Marshal.FreeHGlobal(intptr);
-                }
-
-            }
-            return IntPtr.Zero;
-        }
-    }
-
-    static class Program
-    {
-        static void Main()
-        {
-            MainWindow.CreateMainWindow();
         }
     }
 }

@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E06EA4AF-B766-4867-8B8F-3F4593A85A41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ExDUIR</RootNamespace>
+    <AssemblyName>ExDUIR</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Debug\ExDUIR.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\ExDUIR.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Frameworks\Controls\ExCommon.cs" />
+    <Compile Include="Frameworks\Controls\ExControl.cs" />
+    <Compile Include="Frameworks\ExApp.cs" />
+    <Compile Include="Frameworks\ExException.cs" />
+    <Compile Include="Frameworks\ExResource.cs" />
+    <Compile Include="Frameworks\ExSkin.cs" />
+    <Compile Include="Frameworks\ExTheme.cs" />
+    <Compile Include="Frameworks\ExWindow.cs" />
+    <Compile Include="Frameworks\Graphics\ExBrush.cs" />
+    <Compile Include="Frameworks\Graphics\ExCanvas.cs" />
+    <Compile Include="Frameworks\Graphics\ExEasing.cs" />
+    <Compile Include="Frameworks\Graphics\ExFont.cs" />
+    <Compile Include="Frameworks\Graphics\ExImage.cs" />
+    <Compile Include="Frameworks\Graphics\ExMatrix.cs" />
+    <Compile Include="Frameworks\Graphics\ExPath.cs" />
+    <Compile Include="Frameworks\Graphics\ExRegion.cs" />
+    <Compile Include="Frameworks\IExBaseUIEle.cs" />
+    <Compile Include="Frameworks\Layout\ExAbsoluteLayout.cs" />
+    <Compile Include="Frameworks\Layout\ExBaseLayout.cs" />
+    <Compile Include="Frameworks\Layout\ExFlowLayout.cs" />
+    <Compile Include="Frameworks\Layout\ExLinearLayout.cs" />
+    <Compile Include="Frameworks\Layout\ExPageLayout.cs" />
+    <Compile Include="Frameworks\Layout\ExRelativateLayout.cs" />
+    <Compile Include="Frameworks\Layout\ExTableLayout.cs" />
+    <Compile Include="Frameworks\Utility\ExImageList.cs" />
+    <Compile Include="Frameworks\Utility\ExMessageBox.cs" />
+    <Compile Include="Frameworks\Utility\ExUtil.cs" />
+    <Compile Include="Native\ExAPI.cs" />
+    <Compile Include="Native\ExConst.cs" />
+    <Compile Include="Native\ExStatus.cs" />
+    <Compile Include="Native\WinAPI.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

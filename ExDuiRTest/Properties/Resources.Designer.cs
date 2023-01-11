@@ -19,7 +19,7 @@ namespace ExDuiRTest.Properties {
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
     // 若要添加或移除成员，请编辑 .ResX 文件，然后重新运行 ResGen
     // (以 /str 作为命令选项)，或重新生成 VS 项目。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -61,6 +61,16 @@ namespace ExDuiRTest.Properties {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap custombkg {
+            get {
+                object obj = ResourceManager.GetObject("custombkg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找 System.Byte[] 类型的本地化资源。
         /// </summary>
         internal static byte[] Default {
@@ -83,9 +93,79 @@ namespace ExDuiRTest.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap icon {
+            get {
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap Loading {
             get {
                 object obj = ResourceManager.GetObject("Loading", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap nav1 {
+            get {
+                object obj = ResourceManager.GetObject("nav1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap nav2 {
+            get {
+                object obj = ResourceManager.GetObject("nav2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap nav3 {
+            get {
+                object obj = ResourceManager.GetObject("nav3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap nav4 {
+            get {
+                object obj = ResourceManager.GetObject("nav4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap navbkg1 {
+            get {
+                object obj = ResourceManager.GetObject("navbkg1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap navbkg2 {
+            get {
+                object obj = ResourceManager.GetObject("navbkg2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -95,7 +175,7 @@ namespace ExDuiRTest.Properties {
         ///{\colortbl ;\red0\green0\blue255;\red255\green255\blue0;\red255\green0\blue0;}
         ///{\*\generator Riched20 10.0.17763}\viewkind4\uc1 
         ///\pard\sa200\sl240\slmult1\cf1\f0\fs22\lang2052 He\cf0\highlight2 llo\highlight0  \cf3 World\b  \cf0\b0 !\par
-        ///\f1\fs52\&apos;c4\&apos;e3\&apos;ba\&apos;c3\&apos;a3\&apos;ac\ul\f0\fs22\&apos;ce\&apos;d2\ulnone\&apos;ca\&apos;c7\b RTF\&apos;ce\&apos;c4\&apos;b1\&apos;be\b [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///\f1\fs52\&apos;c4\&apos;e3\&apos;ba\&apos;c3\&apos;a3\&apos;ac\ul\f0\fs22\&apos;ce\&apos;d2\ulnone\&apos;ca\&apos;c7\b RTF\&apos;ce\&apos;c4\&apos;b1\&apos; [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         internal static string testrtf {
             get {

@@ -12,10 +12,10 @@ Modified from https://github.com/F-Unction/ExDirectUI.NET
 
 ## Environment
 win10+, win7 need install KB2670838 patch
-.net 6.0+
+.net 4.6.1
 
 ## Compiler
-* Visual Studio 2022 preview
+* Visual Studio 2019,Visual Studio 2022
 
 ## Characteristics
 * Rendering function is DirectX11, Direct2D, efficiency is hundreds of times higher than GDI.
@@ -34,8 +34,59 @@ win10+, win7 need install KB2670838 patch
 * Support for restricted area message notification.
 
 ## Demo
-### demo:  
-![image](demo_image/demo.png)   
+### demo code:  
+![image](demo_image/demo_code.png)
 
-### demo2:  
-![image](demo_image/demo2.png)   
+### demo all:  
+![image](demo_image/demo_all.png)
+
+### button:  
+![image](demo_image/demo_button.png)
+
+### combobox:  
+![image](demo_image/demo_combobox.png)
+
+### custombackground:  
+![image](demo_image/demo_custombackground.png)
+
+### easing:  
+![image](demo_image/demo_easing.png)
+
+### edit:  
+![image](demo_image/demo_edit.png)
+
+### groupbox:  
+![image](demo_image/demo_groupbox.png)
+
+### irregular shape window:  
+![image](demo_image/demo_irregular_shape_window.png)
+
+### label:  
+![image](demo_image/demo_label.png)
+
+### layout absolute:  
+![image](demo_image/demo_layout_absolute.png)
+
+### layout flow:  
+![image](demo_image/demo_layout_flow.png)
+
+### layout linear:  
+![image](demo_image/demo_layout_linear.png)
+
+### layout relative:  
+![image](demo_image/demo_layout_relative.png)
+
+### layout table:  
+![image](demo_image/demo_layout_table.png)
+
+### layout listbutton:  
+![image](demo_image/demo_listbutton.png)
+
+### layout listview:  
+![image](demo_image/demo_listview.png)
+
+### layout navbutton:  
+![image](demo_image/demo_navbutton.png)
+
+### layout radio and checkbox:  
+![image](demo_image/demo_radio_checkbox.png)
