@@ -308,10 +308,10 @@
         public const int COLOR_EX_TEXT_SELECT = 7;
 
         /// <summary>
-        /// 颜色索引_文本颜色_热点
+        /// 颜色索引_文本颜色_备用
         /// </summary>
         ///
-        public const int COLOR_EX_TEXT_HOT = 8;
+        public const int COLOR_EX_TEXT_RESERVE = 8;
 
         /// <summary>
         /// 颜色索引_文本颜色_已访问
@@ -324,6 +324,12 @@
         /// </summary>
         ///
         public const int COLOR_EX_TEXT_SHADOW = 10;
+
+        /// <summary>
+        /// 颜色索引_报表_表头背景色
+        /// </summary>
+        ///
+        public const int COLOR_EX_RLV_HEAD = 8;
 
         /// <summary>
         /// 颜色索引_编辑框_光标原色
@@ -701,7 +707,7 @@
         ///
         public const int LVM_INSERTCOLUMN = 4123;
         /// <summary>
-        /// 消息_报表_删除列 (wParm为是否立即更新,lParam为列索引)
+        /// 消息_报表_删除列 (wParm为是否立即更新,lParam为列索引从1开始)
         /// </summary>
         ///
         public const int LVM_DELETECOLUMN = 4124;
@@ -874,7 +880,7 @@
 
         #region 事件_列表_
         /// <summary>
-        /// 事件_列表_现行选中项被改变
+        /// 事件_列表_现行选中项被改变,wParam项目索引从1开始
         /// </summary>
         ///
         public const int LVN_ITEMCHANGED = -101;
@@ -2857,6 +2863,11 @@
 
         #region 报表表头风格_
         /// <summary>
+        /// 报表表头风格_默认
+        /// </summary>
+        ///
+        public const int ERLV_CS_DEFAULT = 0;
+        /// <summary>
         /// 报表表头风格_可点击
         /// </summary>
         ///
@@ -2875,7 +2886,7 @@
 
         #region 事件_报表_
         /// <summary>
-        /// 事件_报表_表头被单击
+        /// 事件_报表_表头被单击,wParam项目索引从1开始
         /// </summary>
         ///
         public const int RLVN_COLUMNCLICK = 97000;
@@ -2890,7 +2901,7 @@
         ///
         public const int RLVN_DRAW_TD = 97002;
         /// <summary>
-        /// 事件_报表_检查框点击
+        /// 事件_报表_检查框点击,wParam项目索引从1开始;lParam项目状态0取消选中 1选中
         /// </summary>
         ///
         public const int RLVN_CHECK = 97003;
@@ -3322,6 +3333,11 @@
         #endregion
 
         #region 报表表行风格_
+        /// <summary>
+        /// 报表表行风格_默认
+        /// </summary>
+        ///
+        public const int ERLV_RS_DEFAULT = 0;
         /// <summary>
         /// 报表表行风格_表项带检查框
         /// </summary>

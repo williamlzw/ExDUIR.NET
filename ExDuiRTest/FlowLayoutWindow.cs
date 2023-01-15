@@ -34,7 +34,7 @@ namespace ExDuiRTest
                 for(int i = 0; i < 20; i++)
                 {
                     labels.Add(new ExStatic(skin, "test", 0, 0, rn.Next(50, 150), rn.Next(50, 150), -1));
-                    labels[i].SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(255, 100), true);
+                    labels[i].ColorBackground = Util.ExRGB2ARGB(255, 100);
                     layout.SetMarginRight(labels[i], 10);
                     layout.SetMarginBottom(labels[i], 10);
                     if(i % 10 == 0)

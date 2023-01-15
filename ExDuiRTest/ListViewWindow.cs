@@ -35,7 +35,7 @@ namespace ExDuiRTest
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 listviewProc = new ExObjProcDelegate(OnListViewProc);
                 listview = new ExListView(skin, "", 30, 30, 150, 150, EOS_VISIBLE | ELVS_VERTICALLIST | EOS_VSCROLL, EOS_EX_COMPOSITED, -1, 0, listviewProc);
-                listview.SetColor(COLOR_EX_BACKGROUND, Util.ExRGBA(120, 255, 240, 150));
+                listview.ColorBackground = Util.ExRGBA(120, 255, 240, 150);
                 listviewItemInfo = new List<LISTVIEW_ITEM>();
                 Random rn = new Random();
                 for (int i = 0; i < 100; i++)

@@ -27,7 +27,7 @@ namespace ExDuiRTest
                 var rc = label.Rect;
                 label2 = new ExStatic(skin, "标签可以填充动画,支持PNG,GIF,JPG,BMP格式,标签可以自动换行", 10, 190, 180, 90, DT_WORDBREAK);
                 label2.SetFont("宋体", 14, FS_BOLD, false);
-                label2.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(133, 33, 53, 255), true);
+                label2.ColorTextNormal = Util.ExRGBA(133, 33, 53, 255);
 
                 Console.WriteLine(string.Format("标签矩形:{0},{1}", rc.nRight, rc.nBottom));
                 Console.WriteLine(string.Format("背景信息:{0},{1},{2},{3},{4},{5},{6}", bkgInfo.nCurFrame, bkgInfo.x, bkgInfo.y, bkgInfo.nAlpha, bkgInfo.dwRepeat, bkgInfo.hImage, bkgInfo.nMaxFrame));

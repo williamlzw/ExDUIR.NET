@@ -63,11 +63,13 @@
     <Compile Include="EditWindow.cs" />
     <Compile Include="FlowLayoutWindow.cs" />
     <Compile Include="GroupBoxWindow.cs" />
+    <Compile Include="IconListViewWindow.cs" />
     <Compile Include="LabelWindow.cs" />
     <Compile Include="LinearLayoutWindow.cs" />
     <Compile Include="ListButtonWindow.cs" />
     <Compile Include="ListViewWindow.cs" />
     <Compile Include="MainWindow.cs" />
+    <Compile Include="MatrixWindow.cs" />
     <Compile Include="MessageBoxWindow.cs" />
     <Compile Include="NavButtonWindow.cs" />
     <Compile Include="Program.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="ReportListViewWindow.cs" />
     <Compile Include="TableLayoutWindow.cs" />
     <Compile Include="TestCustomCtrl.cs" />
+    <Compile Include="TreeViewWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Default.bin" />
@@ -122,6 +125,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\navbkg2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closehover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeban.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -22,7 +22,29 @@ namespace ExDuiR.NET.Frameworks.Utility
             return (T)structure;
         }
 
+        static public void FloatToIntPtr(IntPtr ptr, float value)
+        {
+            Marshal.Copy(new float[] { value }, 0, ptr, 1);
+        }
 
+        static public float IntPtrToFloat(IntPtr ptr)
+        {
+            float[] temp = new float[1];
+            Marshal.Copy(ptr, temp, 0, 1);
+            return temp[0];
+        }
+
+        static public double IntPtrToDouble(IntPtr ptr)
+        {
+            long longValue = Marshal.ReadInt64(ptr);
+            double doubleValue = BitConverter.Int64BitsToDouble(longValue);
+            return doubleValue;
+        }
+
+        static public void DoubleToIntPtr(IntPtr ptr, double value)
+        {
+            Marshal.Copy(new double[] { value }, 0, ptr, 1);
+        }
 
         static public T ByteToStructure<T>(byte[] dataBuffer)
         {

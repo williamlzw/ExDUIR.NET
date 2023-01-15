@@ -76,17 +76,17 @@ namespace ExDuiRTest
                 }
 
                 menubar = new ExMenuBar(skin, "", 0, 30, 220, 22);
-                menubar.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGB2ARGB(0, 255), false);
-                menubar.SetColor(COLOR_EX_TEXT_HOVER, Util.ExRGB2ARGB(16774117, 255), false);
-                menubar.SetColor(COLOR_EX_TEXT_DOWN, Util.ExRGB2ARGB(16765337, 255), false);
+                menubar.ColorTextNormal = Util.ExRGB2ARGB(0, 255);
+                menubar.ColorTextHover = Util.ExRGB2ARGB(16774117, 255);
+                menubar.ColorTextDown = Util.ExRGB2ARGB(16765337, 255);
 
                 listButtonProc = new ExObjProcDelegate(OnListButtonMsgProc);
                 listButtonWndProc = new ExWndProcDelegate(OnListButtonWndProc);
                 menubar2 = new ExMenuBar(skin, "", 0, 60, 220, 22, -1, -1, -1, 0, listButtonProc);
-                menubar2.SetColor(COLOR_EX_BACKGROUND, Util.ExRGBA(110, 120, 55, 255), false);//改变菜单按钮背景色
-                menubar2.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(255, 255, 255, 255), false);//改变菜单按钮字体正常色
-                menubar2.SetColor(COLOR_EX_TEXT_HOVER, Util.ExRGBA(255, 255, 255, 55), false);//改变菜单按钮字体热点色
-                menubar2.SetColor(COLOR_EX_TEXT_DOWN, Util.ExRGBA(255, 255, 255, 100), false);//改变菜单按钮字体按下色
+                menubar2.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单按钮背景色
+                menubar2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);//改变菜单按钮字体正常色
+                menubar2.ColorTextHover = Util.ExRGBA(255, 255, 255, 55);//改变菜单按钮字体热点色
+                menubar2.ColorTextDown = Util.ExRGBA(255, 255, 255, 100);//改变菜单按钮字体按下色
 
                 //列表按钮插入一级菜单句柄
                 foreach (MenuItem index in mainMenu.MenuItems)
@@ -119,17 +119,17 @@ namespace ExDuiRTest
                 image.Dispose();
 
                 toolbar = new ExToolBar(skin, "", 0, 90, 400, 22);
-                toolbar.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGB2ARGB(0, 255), false);
-                toolbar.SetColor(COLOR_EX_TEXT_HOVER, Util.ExRGB2ARGB(16774117, 255), false);
-                toolbar.SetColor(COLOR_EX_TEXT_DOWN, Util.ExRGB2ARGB(16765337, 255), false);
+                toolbar.ColorTextNormal = Util.ExRGB2ARGB(0, 255);
+                toolbar.ColorTextHover = Util.ExRGB2ARGB(16774117, 255);
+                toolbar.ColorTextDown = Util.ExRGB2ARGB(16765337, 255);
 
                 imglist = new ExImageList(18, 18);
                 ExImage image2 = new ExImage(bitmap);
-                var nImageIndex = imglist.AddImage(image2, IntPtr.Zero);
+                var nImageIndex = imglist.AddImage(image2, 0);
                 toolbar.SetImageList(imglist);
                 ExListButtonItemInfo item1info2 = new ExListButtonItemInfo();
                 item1info2.nType = 1;
-                item1info2.nImage = (uint)nImageIndex;
+                item1info2.nImage = nImageIndex;
                 item1info2.wzText = IntPtr.Zero;
                 item1info2.wzTips = Marshal.StringToHGlobalUni("普通按钮1");
                 toolbar.InsertItem(item1info2);
@@ -139,7 +139,7 @@ namespace ExDuiRTest
                 item1info2.wzTips = Marshal.StringToHGlobalUni("普通按钮不带图标");
                 toolbar.InsertItem(item1info2);
                 item1info2.nType = 2;
-                item1info2.nImage = (uint)nImageIndex;
+                item1info2.nImage = nImageIndex;
                 item1info2.wzText = IntPtr.Zero;
                 item1info2.wzTips = Marshal.StringToHGlobalUni("选择按钮");
                 toolbar.InsertItem(item1info2);
@@ -155,7 +155,7 @@ namespace ExDuiRTest
                 item1info2.dwState = STATE_NORMAL;
                 toolbar.InsertItem(item1info2);
                 item1info2.nType = 1;
-                item1info2.nImage = (uint)nImageIndex;
+                item1info2.nImage = nImageIndex;
                 item1info2.wzText = Marshal.StringToHGlobalUni("禁用按钮带图标");
                 item1info2.wzTips = Marshal.StringToHGlobalUni("禁用按钮带图标");
                 item1info2.dwState = STATE_DISABLE;
@@ -167,9 +167,9 @@ namespace ExDuiRTest
 
 
                 statusbar = new ExStatusBar(skin, "", 0, 120, 300, 22);
-                statusbar.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(12557930, 255), false);
-                statusbar.SetColor(COLOR_EX_BORDER, Util.ExRGBA(255, 255, 255, 255), false);
-                statusbar.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(255, 255, 255, 255), false);
+                statusbar.ColorBackground = Util.ExRGB2ARGB(12557930, 255);
+                statusbar.ColorBorder = Util.ExRGBA(255, 255, 255, 255);
+                statusbar.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
 
                 ExListButtonItemInfo item1info3 = new ExListButtonItemInfo();
                 item1info3.nWidth = 100;
@@ -210,9 +210,9 @@ namespace ExDuiRTest
                 if (ni.nCode == NM_CREATE)
                 {
                     var menubar = new ExMenuBar(ni.hObjFrom);
-                    menubar.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(210, 120, 55, 255), true);//改变菜单项目字体正常颜色
-                    menubar.SetColor(COLOR_EX_TEXT_HOVER, Util.ExRGB2ARGB(16711680, 255), true);//改变菜单项目字体悬浮颜色
-                    menubar.SetColor(COLOR_EX_BACKGROUND, Util.ExRGBA(110, 120, 55, 255), true);//改变菜单项目背景颜色
+                    menubar.ColorTextNormal = Util.ExRGBA(210, 120, 55, 255);//改变菜单项目字体正常颜色
+                    menubar.ColorTextHover = Util.ExRGB2ARGB(16711680, 255);//改变菜单项目字体悬浮颜色
+                    menubar.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单项目背景颜色
                 }
             }
             else if (uMsg == MN_SELECTITEM && (int)wParam == -1)//恢复正常状态

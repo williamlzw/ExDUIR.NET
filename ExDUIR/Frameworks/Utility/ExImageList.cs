@@ -26,14 +26,14 @@ namespace ExDuiR.NET.Frameworks.Utility
             m_hImgList = IntPtr.Zero;
         }
 
-        public IntPtr Add(byte[] lpImage, IntPtr cbImage, IntPtr nIndexInsert)
+        public int Add(byte[] lpImage, int cbImage, int nIndex)
         {
-            return ExAPI._imglist_add(m_hImgList, lpImage, cbImage, nIndexInsert);
+            return (int)ExAPI._imglist_add(m_hImgList, lpImage, (IntPtr)cbImage, (IntPtr)nIndex);
         }
 
-        public IntPtr AddImage(ExImage image, IntPtr nIndexInsert)
+        public int AddImage(ExImage image, int nIndex)
         {
-            return ExAPI._imglist_addimage(m_hImgList, image.handle, nIndexInsert);
+            return (int)ExAPI._imglist_addimage(m_hImgList, image.handle, (IntPtr)nIndex);
         }
 
         public int Count
@@ -44,29 +44,29 @@ namespace ExDuiR.NET.Frameworks.Utility
             }
         }
 
-        public bool Del(IntPtr nIndex)
+        public bool Del(int nIndex)
         {
-            return ExAPI._imglist_del(m_hImgList, nIndex);
+            return ExAPI._imglist_del(m_hImgList, (IntPtr)nIndex);
         }
 
-        public bool Draw(IntPtr nIndex, ExCanvas canvas, int nLeft, int nTop, int nRight, int nBottom, int nAlpha)
+        public bool Draw(int nIndex, ExCanvas canvas, int nLeft, int nTop, int nRight, int nBottom, int nAlpha)
         {
-            return ExAPI._imglist_draw(m_hImgList, nIndex, canvas.handle, nLeft, nTop, nRight, nBottom, nAlpha);
+            return ExAPI._imglist_draw(m_hImgList, (IntPtr)nIndex, canvas.handle, nLeft, nTop, nRight, nBottom, nAlpha);
         }
 
-        public ExImage Get(IntPtr nIndex)
+        public ExImage Get(int nIndex)
         {
-            return new ExImage((int)ExAPI._imglist_get(m_hImgList, nIndex));
+            return new ExImage((int)ExAPI._imglist_get(m_hImgList, (IntPtr)nIndex));
         }
 
-        public bool Set(IntPtr nIndex, byte[] lpImage, IntPtr cbImage)
+        public bool Set(int nIndex, byte[] lpImage, int cbImage)
         {
-            return ExAPI._imglist_set(m_hImgList, nIndex, lpImage, cbImage);
+            return ExAPI._imglist_set(m_hImgList, (IntPtr)nIndex, lpImage, (IntPtr)cbImage);
         }
 
-        public bool SetImage(IntPtr nIndex, ExImage image)
+        public bool SetImage(int nIndex, ExImage image)
         {
-            return ExAPI._imglist_setimage(m_hImgList, nIndex, image.handle);
+            return ExAPI._imglist_setimage(m_hImgList, (IntPtr)nIndex, image.handle);
         }
 
         public int Width

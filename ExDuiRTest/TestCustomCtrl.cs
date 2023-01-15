@@ -21,9 +21,8 @@ namespace ExDuiRTest
             {
                 case WM_PAINT:
                     {
-                        ExPaintStruct ps;
                         //开始绘制与EndPaint配套调用
-                        Obj.BeginPaint(out ps);
+                        Obj.BeginPaint(out var ps);
                         ExCanvas canvas = new ExCanvas(ps.hCanvas);
                         canvas.Clear(Color.Yellow.ToArgb());
                         //结束绘制

@@ -33,36 +33,36 @@ namespace ExDuiRTest
                 layout.PaddingBottom = 10;
  
                 label1 = new ExStatic(skin, "控件A：父容器的左下角", 0, 0, 200, 150, DT_VCENTER);
-                label1.SetColor(COLOR_EX_BACKGROUND, Util.ExRGBA(255, 0, 0, 100), true);
+                label1.ColorBackground = Util.ExRGBA(255, 0, 0, 100);
                 layout.SetLeftAlignOf(label1, -1);//左侧与父容器对齐
                 layout.SetBottomAlignOf(label1, -1);//底边与父容器对齐
 
                 label2 = new ExStatic(skin, "控件B：父容器居中顶部", 0, 0, 200, 150, DT_VCENTER);
-                label2.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(16711680, 100), true);
+                label2.ColorBackground = Util.ExRGB2ARGB(16711680, 100);
                 layout.SetTopAlignOf(label2, -1);//顶部与父容器对齐
                 layout.SetCenterParentHorizontal(label2, true);//水平居中于父容器
 
                 label3 = new ExStatic(skin, "控件C：右侧与A对齐,宽度150,在A和B之间", 0, 0, 150, 150, DT_VCENTER);
-                label3.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(65280, 100), true);
+                label3.ColorBackground = Util.ExRGB2ARGB(65280, 100);
                 layout.SetTopOf(label3, label1);//在A控件顶部
                 layout.SetBottomOf(label3, label2);//在B控件底部
                 layout.SetRightAlignOf(label3, label1);//在B右侧对齐于A控件
 
                 label4 = new ExStatic(skin, "控件D：高度100,在A和父控件右边界之间,在父容器底部", 0, 0, 150, 100, DT_VCENTER);
-                label4.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(16754943, 100), true);
+                label4.ColorBackground = Util.ExRGB2ARGB(16754943, 100);
                 layout.SetRightOf(label4, label1);//在A控件右边
                 layout.SetBottomAlignOf(label4, -1);//底部对齐于父容器
                 layout.SetRightAlignOf(label4, -1);//右侧对齐于父容器
 
                 label5 = new ExStatic(skin, "控件E：与D同宽,在D和B之间", 0, 0, 150, 100, DT_VCENTER);
-                label5.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(8445952, 100), true);
+                label5.ColorBackground = Util.ExRGB2ARGB(8445952, 100);
                 layout.SetTopOf(label5, label4);//在D顶部
                 layout.SetBottomOf(label5, label2);//在B底部
                 layout.SetLeftAlignOf(label5, label4);//左侧对齐于D
                 layout.SetRightAlignOf(label5, label4);//右侧对齐于D
 
                 label6 = new ExStatic(skin, "控件F：150宽度,垂直方向对齐于DE,右对齐于DE", 0, 0, 150, 100, DT_VCENTER);
-                label6.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(16777215, 100), true);
+                label6.ColorBackground = Util.ExRGB2ARGB(16777215, 100);
                 layout.SetTopAlignOf(label6, label5);//顶部对齐于E
                 layout.SetBottomAlignOf(label6, label4);//底部对齐于D
                 layout.SetRightAlignOf(label6, label4);//右对齐于D

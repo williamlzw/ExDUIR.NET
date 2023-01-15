@@ -32,19 +32,19 @@ namespace ExDuiRTest
                     for (int j = 1; j <= 3; j++)
                     {
                         var label = new ExStatic(skin, i.ToString() + "行," + j.ToString() + "列", 0, 0, 200, 150, -1);
-                        label.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(255, 100), false);
+                        label.ColorBackground = Util.ExRGB2ARGB(255, 100);
                         layout.SetRow(label, i);
                         layout.SetCell(label, j);
                     }
                 }
                 var label2 = new ExStatic(skin, "(2,1)[占2行]", 0, 0, 200, 150, -1);
-                label2.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(65535, 150), true);
+                label2.ColorBackground = Util.ExRGB2ARGB(65535, 150);
                 layout.SetCell(label2, 2);
                 layout.SetRow(label2, 1);
                 layout.SetRowSpan(label2, 2);//设置跨行数
 
                 var label3 = new ExStatic(skin, "(1,3)[占3列2行]", 0, 0, 200, 150, -1);
-                label3.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(16711935, 150), true);
+                label3.ColorBackground = Util.ExRGB2ARGB(16711935, 150);
                 layout.SetCell(label3, 1);
                 layout.SetRow(label3, 3);
                 layout.SetRowSpan(label3, 2);//设置跨行数

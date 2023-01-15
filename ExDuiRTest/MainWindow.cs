@@ -5,6 +5,7 @@ using ExDuiR.NET.Native;
 using static ExDuiR.NET.Native.ExConst;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace ExDuiRTest
 {
@@ -49,6 +50,18 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试异形窗口", 120, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试信息框", 120, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试自定义组件", 120, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试报表列表", 120, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试图标列表", 120, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试树形列表", 120, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试矩阵", 120, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+
+                //Console.WriteLine(Marshal.SizeOf(typeof(Double)));
+                //Console.WriteLine(sizeof(double));
+                //IntPtr pd = Marshal.AllocHGlobal(sizeof(float));
+                //Util.FloatToIntPtr(pd, (float)1.23112244);
+
+                //var ret = Util.IntPtrToFloat(pd);
+                //Console.WriteLine(ret);
 
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
@@ -141,6 +154,22 @@ namespace ExDuiRTest
             else if (hObj == buttons[18].handle)
             {
                 CustomCtrlWindow.CreateCustomCtrlWindow(skin);
+            }
+            else if (hObj == buttons[19].handle)
+            {
+                ReportListViewWindow.CreateReportListViewWindow(skin);
+            }
+            else if (hObj == buttons[20].handle)
+            {
+                IconListViewWindow.CreateIconListViewWindow(skin);
+            }
+            else if (hObj == buttons[21].handle)
+            {
+                TreeViewWindow.CreateTreeViewWindow(skin);
+            }
+            else if (hObj == buttons[22].handle)
+            {
+                MatrixWindow.CreateMatrixWindow(skin);
             }
             return IntPtr.Zero;
         }

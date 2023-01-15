@@ -11,7 +11,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
 
         public ExMatrix()
         {
-            m_hMatrix = (IntPtr)ExAPI._matrix_create();
+            m_hMatrix = ExAPI._matrix_create();
         }
 
         public ExMatrix(IntPtr hMatrix)

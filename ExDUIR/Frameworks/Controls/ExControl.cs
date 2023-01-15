@@ -118,6 +118,29 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
+        /// 取UI状态 STATE_
+        /// </summary>
+        public int UIState
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetUIState(m_hObj);
+            }
+        }
+
+        /// <summary>
+        /// 组件设置状态,用于更新组件界面显示状态
+        /// </summary>
+        /// <param name="state">STATE_</param>
+        /// <param name="bRemove"></param>
+        /// <param name="bRedraw"></param>
+        /// <returns></returns>
+        public bool SetUIState(int state, bool bRemove, bool bRedraw)
+        {
+            return ExAPI.Ex_ObjSetUIState(m_hObj, state, bRemove, IntPtr.Zero, bRedraw);
+        }
+
+        /// <summary>
         /// 组件ID
         /// </summary>
         public int ID
@@ -288,9 +311,169 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
-        /// 组件类名
+        /// 取/置背景色
         /// </summary>
-        public string ClassName { get; set; }
+        public int ColorBackground
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_BACKGROUND);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_BACKGROUND, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置边框色
+        /// </summary>
+        public int ColorBorder
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_BORDER);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_BORDER, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本正常色
+        /// </summary>
+        public int ColorTextNormal
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_NORMAL);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_NORMAL, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本热点色
+        /// </summary>
+        public int ColorTextHover
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_HOVER);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_HOVER, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本按下色
+        /// </summary>
+        public int ColorTextDown
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_DOWN);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_DOWN, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本焦点色
+        /// </summary>
+        public int ColorTextFocus
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_FOCUS);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_FOCUS, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本选中色
+        /// </summary>
+        public int ColorTextChecked
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_CHECKED);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_CHECKED, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本选择色
+        /// </summary>
+        public int ColorTextSelect
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_SELECT);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_SELECT, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本备用色
+        /// </summary>
+        public int ColorTextReserve
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_RESERVE);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_RESERVE, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本已访问色
+        /// </summary>
+        public int ColorTextVisted
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_VISTED);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_VISTED, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 取/置文本阴影色
+        /// </summary>
+        public int ColorTextShadow
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_TEXT_SHADOW);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_TEXT_SHADOW, value, true);
+            }
+        }
 
         /// <summary>
         /// 取组件背景图信息
@@ -850,18 +1033,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <returns></returns>
         public bool Invalidate()
         {
-            ExRect rect = new ExRect();
-            return ExAPI.Ex_ObjInvalidateRect(m_hObj, ref rect);
-        }
-
-        /// <summary>
-        /// 重画组件
-        /// </summary>
-        /// <param name="rc"></param>
-        /// <returns></returns>
-        public bool Invalidate(ExRect rc)
-        {
-            return ExAPI.Ex_ObjInvalidateRect(m_hObj, ref rc);
+            return ExAPI.Ex_ObjInvalidateRect(m_hObj, IntPtr.Zero);
         }
 
         /// <summary>
@@ -1092,5 +1264,10 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             return this.SendMessage(LVM_SETIMAGELIST, (IntPtr)1, imageList.handle);
         }
+
+        /// <summary>
+        /// 组件类名
+        /// </summary>
+        public string ClassName { get; set; }
     }
 }

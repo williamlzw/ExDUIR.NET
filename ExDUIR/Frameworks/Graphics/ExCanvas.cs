@@ -234,6 +234,11 @@ namespace ExDuiR.NET.Frameworks.Graphics
             }
         }
 
+        public void SetTransFormNull()
+        {
+            ExAPI._canvas_settransform(m_hCanvas, IntPtr.Zero);
+        }
+
         public bool DrawCanvas(ExCanvas sCanvas, int dstLeft, int dstTop, int dstRight, int dstBottom, int srcLeft, int srcTop, int dwAlpha, int dwCompositeMode)
         {
             return ExAPI._canvas_drawcanvas(m_hCanvas, sCanvas.handle, dstLeft, dstTop, dstRight, dstBottom, srcLeft, srcTop, dwAlpha, dwCompositeMode);

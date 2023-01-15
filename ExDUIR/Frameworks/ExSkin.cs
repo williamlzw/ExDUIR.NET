@@ -14,6 +14,21 @@ namespace ExDuiR.NET.Frameworks
     /// </summary>
     public class ExSkin : ExWindow, IExBaseUIEle
     {
+        /// <summary>
+        /// 创建界面
+        /// </summary>
+        /// <param name="pOwner">父界面</param>
+        /// <param name="sClassName">窗口类名,可以是null</param>
+        /// <param name="sWindowName">窗口标题</param>
+        /// <param name="x">横坐标</param>
+        /// <param name="y">纵坐标</param>
+        /// <param name="nWidth">宽度</param>
+        /// <param name="nHeight">高度</param>
+        /// <param name="dwStyleDUI">界面风格EWS_</param>
+        /// <param name="dwStyle">win32窗口风格</param>
+        /// <param name="dwStyleEx">win32窗口扩展风格</param>
+        /// <param name="hTheme">主题包句柄,可以空</param>
+        /// <param name="pfnWndProc">窗口回调</param>
         public ExSkin(ExSkin pOwner, string sClassName, string sWindowName, int x, int y, int nWidth, int nHeight, int dwStyleDUI,
             int dwStyle = 0, int dwStyleEx = 0, IntPtr hTheme = default, ExWndProcDelegate pfnWndProc = null)
         {
@@ -31,6 +46,13 @@ namespace ExDuiR.NET.Frameworks
             else throw new ExException(ExStatus.HANDLE_INVALID, "创建窗口失败");
         }
 
+        /// <summary>
+        /// 创建界面
+        /// </summary>
+        /// <param name="pWindow">父窗口</param>
+        /// <param name="dwStyleDUI">界面风格EWS_</param>
+        /// <param name="hTheme">主题包句柄,可以空</param>
+        /// <param name="pfnWndProc">窗口回调</param>
         public ExSkin(ExWindow pWindow, int dwStyleDUI, IntPtr hTheme, ExWndProcDelegate pfnWndProc = null)
         {
             m_hExDUI = ExAPI.Ex_DUIBindWindowEx(pWindow.WindowHandle, hTheme, dwStyleDUI, IntPtr.Zero, pfnWndProc);
@@ -41,12 +63,21 @@ namespace ExDuiR.NET.Frameworks
             else throw new ExException(ExStatus.HANDLE_INVALID, "绑定皮肤失败");
         }
         
+        /// <summary>
+        /// 创建界面
+        /// </summary>
+        /// <param name="hWnd">窗口句柄</param>
+        /// <param name="hExDui">界面句柄</param>
         public ExSkin(IntPtr hWnd, int hExDui)
         {
             m_hWnd = hWnd;
             m_hExDUI = hExDui;
         }
 
+        /// <summary>
+        /// 创建界面
+        /// </summary>
+        /// <param name="hExDui"></param>
         public ExSkin(int hExDui)
         {
             m_hExDUI = hExDui;

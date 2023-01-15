@@ -514,7 +514,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             charRange.cpMax = -1;
             int size = Marshal.SizeOf(typeof(ExCharRange));
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
-            Marshal.StructureToPtr(charRange, allocIntPtr, false);
+            Marshal.StructureToPtr(charRange, allocIntPtr, true);
             this.SendMessage(EM_EXSETSEL, IntPtr.Zero, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
@@ -878,6 +878,22 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExIconListView(ExControl parent) : base(parent)
         {
         }
+        public void SetImageSize(int size)
+        {
+            this.SendMessage(ILVM_SETITEMSIZE, default, (IntPtr)Util.MAKELONG(70, 75));
+        }
+        public int SetItem(ExIconListViewItemInfo info)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExIconListViewItemInfo)));
+            Marshal.StructureToPtr(info, ptr, true);
+            var ret = (int)this.SendMessage(LVM_INSERTITEM, (IntPtr)0, ptr);
+            Marshal.FreeHGlobal(ptr);
+            return ret;
+        }
+        public void Update()
+        {
+            this.SendMessage(LVM_UPDATE);
+        }
         public new string ClassName => "IconListView";
     }
 
@@ -1139,6 +1155,62 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExReportListView(ExControl parent) : base(parent)
         {
         }
+
+        /// <summary>
+        /// 取/置表头背景色
+        /// </summary>
+        public int ColorListViewHead
+        {
+            get
+            {
+                return ExAPI.Ex_ObjGetColor(m_hObj, COLOR_EX_RLV_HEAD);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetColor(m_hObj, COLOR_EX_RLV_HEAD, value, true);
+            }
+        }
+
+        /// <summary>
+        /// 设置列信息
+        /// </summary>
+        /// <param name="colInfo"></param>
+        public void SetColumn(ExReportListColumnInfo colInfo)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListColumnInfo)));
+            Marshal.StructureToPtr(colInfo, ptr, true);
+            this.SendMessage(LVM_INSERTCOLUMN, (IntPtr)0, ptr);
+            Marshal.FreeHGlobal(ptr);
+        }
+
+        /// <summary>
+        /// 设置行信息,返回索引
+        /// </summary>
+        /// <param name="rowInfo"></param>
+        public int SetRow(ExReportListRowInfo rowInfo)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListRowInfo)));
+            Marshal.StructureToPtr(rowInfo, ptr, true);
+            var ret = (int)this.SendMessage(LVM_INSERTITEM, (IntPtr)0, ptr);
+            Marshal.FreeHGlobal(ptr);
+            return ret;
+        }
+
+        /// <summary>
+        /// 设置表项
+        /// </summary>
+        /// <param name="itemInfo"></param>
+        public void SetItem(ExReportListItemInfo itemInfo)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListItemInfo)));
+            Marshal.StructureToPtr(itemInfo, ptr, true);
+            this.SendMessage(LVM_SETITEM, (IntPtr)0, ptr);
+            Marshal.FreeHGlobal(ptr);
+        }
+        public void Update()
+        {
+            this.SendMessage(LVM_UPDATE);
+        }
         public new string ClassName => "ReportListView";
     }
 
@@ -1263,7 +1335,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             int size = Marshal.SizeOf(typeof(ExObjProps));
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
-            Marshal.StructureToPtr(props, allocIntPtr, false);
+            Marshal.StructureToPtr(props, allocIntPtr, true);
             var ret = this.SendMessage(WM_EX_PROPS, IntPtr.Zero, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
@@ -1333,6 +1405,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public ExTreeView(ExControl parent) : base(parent)
         {
+        }
+        public IntPtr InsertItem(ExTreeViewInsertInfo info)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExTreeViewInsertInfo)));
+            Marshal.StructureToPtr(info, ptr, true);
+            var ret = this.SendMessage(TVM_INSERTITEM, (IntPtr)0, ptr);
+            Marshal.FreeHGlobal(ptr);
+            return ret;
+        }
+        public void Update()
+        {
+            this.SendMessage(TVM_UPDATE);
         }
         public new string ClassName => "TreeView";
     }

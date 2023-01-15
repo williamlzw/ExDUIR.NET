@@ -28,26 +28,26 @@ namespace ExDuiRTest
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 layout = new ExAbsoluteLayout(skin);
                 label1 = new ExStatic(skin, "固定在右下角50,50的位置，不变大小", 0, 0, 200, 100, DT_CENTER | DT_VCENTER);
-                label1.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(255, 100), true);
+                label1.ColorBackground = Util.ExRGB2ARGB(255, 100);
                 layout.SetRightPX(label1, 50);//设置距离右边为50像素
                 layout.SetBottomPX(label1, 50);//设置距离底边为50像素
 
                 label2 = new ExStatic(skin, "固定在左下角50,50的位置，宽度为40%,高度为50", 0, 0, 200, 100, DT_CENTER | DT_VCENTER);
-                label2.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(0, 100), true);
+                label2.ColorBackground = Util.ExRGB2ARGB(0, 100);
                 layout.SetLeftPX(label2, 50);//设置距离左边为50像素
                 layout.SetBottomPX(label2, 50);//设置距离底边为50像素
                 layout.SetWidthPS(label2, 40);//设置宽度40%, 注意单位是PS（百分比）
                 layout.SetHeightPS(label2, 50);//设置高度50%
 
                 label3 = new ExStatic(skin, "距离四边均为20%", 0, 0, 200, 100, DT_CENTER | DT_VCENTER);
-                label3.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(16711680, 100), true);
+                label3.ColorBackground = Util.ExRGB2ARGB(16711680, 100);
                 layout.SetLeftPS(label3, 20);//设置左边20%
                 layout.SetTopPS(label3, 20);//设置顶边20%
                 layout.SetRightPS(label3, 20);//设置顶边20%
                 layout.SetBottomPS(label3, 20);//设置顶边20%
 
                 label4 = new ExStatic(skin, "居中于窗口,宽度为窗口的30%,高度为100像素", 0, 0, 200, 100, DT_CENTER | DT_TOP);
-                label4.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(65280, 100), true);
+                label4.ColorBackground = Util.ExRGB2ARGB(65280, 100);
                 layout.SetLeftPS(label4, 50);//设置左边50%
                 layout.SetTopPS(label4, 50);//设置顶边50%
                 layout.SetWidthPS(label4, 30);//设置宽度30%

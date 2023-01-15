@@ -28,17 +28,17 @@ namespace ExDuiRTest
                 layout.Dalign = ELP_LINEAR_DALIGN_CENTER;//设置布局方向对齐方式为居中
 
                 label1 = new ExStatic(skin, "容器1", 0, 0, 200, 300, -1);
-                label1.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(255, 100), true);
+                label1.ColorBackground = Util.ExRGB2ARGB(255, 100);
                 layout.SetAlign(label1, ELCP_LINEAR_ALIGN_CENTER);//设置居中于父
                 layout.SetMarginRight(label1, 10);//设置右边10像素间隔
 
                 label2 = new ExStatic(skin, "容器2", 0, 0, 400, 200, -1);
-                label2.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(16711680, 100), true);
+                label2.ColorBackground = Util.ExRGB2ARGB(16711680, 100);
                 layout.SetAlign(label2, ELCP_LINEAR_ALIGN_CENTER);//设置居中于父
                 layout.SetMarginRight(label2, 10);//设置右边10像素间隔
 
                 label3 = new ExStatic(skin, "容器3", 0, 0, 100, 100, -1);
-                label3.SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(65280, 100), true);
+                label3.ColorBackground = Util.ExRGB2ARGB(65280, 100);
                 layout.SetAlign(label3, ELCP_LINEAR_ALIGN_CENTER);//设置居中于父
 
                 skin.SetLayout(layout);

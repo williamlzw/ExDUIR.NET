@@ -72,8 +72,8 @@ namespace ExDuiRTest
                 {
                     pages.Add(new ExStatic(pageContainer, "页面" + i.ToString(), 0, 0, 760, 460, DT_CENTER | DT_VCENTER));
                     pages[i].SetFont("宋体", 40);
-                    pages[i].SetColor(COLOR_EX_BACKGROUND, Util.ExRGB2ARGB(rn.Next(0, 16777215), 255), true);
-                    pages[i].SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGB2ARGB(16777215, 255), true);
+                    pages[i].ColorBackground = Util.ExRGB2ARGB(rn.Next(0, 16777215), 255);
+                    pages[i].ColorTextNormal = Util.ExRGB2ARGB(16777215, 255);
                     layout.AddChild(pages[i]);
                 }
                 pageContainer.SetLayout(layout);

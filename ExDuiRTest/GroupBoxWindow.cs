@@ -22,8 +22,8 @@ namespace ExDuiRTest
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 groupbox = new ExGroupBox(skin, "分组框", 30, 30, 230, 230);
-                groupbox.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(255, 255, 255, 255));
-                groupbox.SetColor(COLOR_EX_BORDER, Util.ExRGBA(55, 0, 250, 255));
+                groupbox.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
+                groupbox.ColorBorder = Util.ExRGBA(55, 0, 250, 255);
                 groupbox.TextOffset = 50;
                 groupbox.Radius = 30;
                 groupbox.StrokeWidth = 3;

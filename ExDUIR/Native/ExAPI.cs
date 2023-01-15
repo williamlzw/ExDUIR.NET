@@ -74,11 +74,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 宽度
         /// </summary>
-        public UInt32 nWidth;
+        public int nWidth;
         /// <summary>
         /// 高度
         /// </summary>
-        public UInt32 nHeight;
+        public int nHeight;
         /// <summary>
         /// 绘制矩形
         /// </summary>
@@ -109,11 +109,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 状态
         /// </summary>
-        public UInt32 dwState;
+        public int dwState;
         /// <summary>
         /// 风格
         /// </summary>
-        public UInt32 dwStyle;
+        public int dwStyle;
         /// <summary>
         /// 绘制矩形左边
         /// </summary>
@@ -196,7 +196,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 组件标识
         /// </summary>
-        public UInt32 dwFlags;
+        public int dwFlags;
         /// <summary>
         /// 基础风格
         /// </summary>
@@ -342,7 +342,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 列表项目状态信息
         /// </summary>
-        IntPtr lpItems; 
+        public IntPtr lpItems; 
     }
 
     public struct NMHDR
@@ -386,7 +386,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 剩余数
         /// </summary>
-        public UInt32 nTimesSurplus;
+        public int nTimesSurplus;
         /// <summary>
         /// 参数1
         /// </summary>
@@ -513,29 +513,29 @@ namespace ExDuiR.NET.Native
     public struct ExReportListColumnInfo
     {
         /// <summary>
-        /// 表头标题
+        /// 表头标题，unicode
         /// </summary>
-        public string pwzText;
+        public IntPtr pwzText;
         /// <summary>
         /// 列宽度
         /// </summary>
-        public UInt32 nWidth;
+        public int nWidth;
         /// <summary>
         /// 表头风格 ERLV_CS_
         /// </summary>
-        public UInt32 dwStyle;
+        public int dwStyle;
         /// <summary>
-        /// 列文本格式
+        /// 列文本格式 DT_
         /// </summary>
-        public UInt32 dwTextFormat;
+        public int dwTextFormat;
         /// <summary>
-        /// 列文本颜色
+        /// 列文本颜色 argb
         /// </summary>
         public int crText;
         /// <summary>
         /// 插入位置,0为在最后
         /// </summary>
-        public UInt32 nInsertIndex; 
+        public int nInsertIndex; 
     };
 
     /// <summary>
@@ -546,23 +546,23 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 所在行[IN / OUT]
         /// </summary>
-        public UInt32 iRow;
+        public int iRow;
         /// <summary>
         /// 所在列[IN / OUT]
         /// </summary>
-        public UInt32 iCol;
+        public int iCol;
         /// <summary>
         /// 项目行风格(同行共用)
         /// </summary>
-        public UInt32 dwStyle;
+        public int dwStyle;
         /// <summary>
-        /// 项目文本
+        /// 项目文本,unicode
         /// </summary>
-        public string pwzText;
+        public IntPtr pwzText;
         /// <summary>
         /// 项目图片组索引(同行共用)
         /// </summary>
-        public UInt32 nImageIndex;
+        public int nImageIndex;
         /// <summary>
         /// 项目参数(同行共用)
         /// </summary>
@@ -570,7 +570,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 项目状态(同行共用)
         /// </summary>
-        public UInt32 dwState;    
+        public int dwState;    
     };
 
     /// <summary>
@@ -581,11 +581,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 插入位置,0为最后
         /// </summary>
-        public UInt32 nInsertIndex;
+        public int nInsertIndex;
         /// <summary>
         /// 项目行风格 ERLV_RS_
         /// </summary>
-        public UInt32 dwStyle;
+        public int dwStyle;
         /// <summary>
         /// 项目附加参数
         /// </summary>
@@ -593,7 +593,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 图片组索引
         /// </summary>
-        public UInt32 nImageIndex;     
+        public int nImageIndex;     
     };
 
     /// <summary>
@@ -604,11 +604,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 0为按row.lParam排序
         /// </summary>
-        public UInt32 iCol;
+        public int iCol;
         /// <summary>
         /// 0:文本,1:整数
         /// </summary>
-        public UInt32 nType;
+        public int nType;
         /// <summary>
         /// 排序回调LRESULT orderProc(HEXOBJ hObj,UINT nIndex1,LPVOID pvData1,UINT nIndex2,LPVOID pvData2,UINT nIndexCol,UINT nType,size_t lParam)
         /// </summary>
@@ -633,9 +633,9 @@ namespace ExDuiR.NET.Native
         /// </summary>
         public int nID;
         /// <summary>
-        /// 项目标题
+        /// 项目标题,unicode
         /// </summary>
-        public string pwzText;
+        public IntPtr pwzText;
         /// <summary>
         /// 项目附加参数
         /// </summary>
@@ -643,11 +643,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 收缩图片索引
         /// </summary>
-        public UInt32 nImageIndex;
+        public int nImageIndex;
         /// <summary>
         /// 扩展图片索引
         /// </summary>
-        public UInt32 nImageIndexExpand;
+        public int nImageIndexExpand;
         /// <summary>
         /// 是否展开
         /// </summary>
@@ -655,7 +655,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 风格
         /// </summary>
-        public UInt32 dwStyle;
+        public int dwStyle;
         /// <summary>
         /// 层次
         /// </summary>
@@ -692,9 +692,9 @@ namespace ExDuiR.NET.Native
         /// </summary>
         public int nID;
         /// <summary>
-        /// 项目标题
+        /// 项目标题,unicode
         /// </summary>
-        public string pwzText;
+        public IntPtr pwzText;
         /// <summary>
         /// 项目附加参数
         /// </summary>
@@ -702,11 +702,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 收缩图片索引
         /// </summary>
-        public UInt32 nImageIndex;
+        public int nImageIndex;
         /// <summary>
         /// 扩展图片索引
         /// </summary>
-        public UInt32 nImageIndexExpand;
+        public int nImageIndexExpand;
         /// <summary>
         /// 是否展开
         /// </summary>
@@ -714,7 +714,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 风格
         /// </summary>
-        public UInt32 dwStyle;          
+        public int dwStyle;          
     };
 
     /// <summary>
@@ -735,9 +735,9 @@ namespace ExDuiR.NET.Native
         /// </summary>
         public int nID;
         /// <summary>
-        /// 项目标题
+        /// 项目标题,unicode
         /// </summary>
-        public string pwzText;
+        public IntPtr pwzText;
         /// <summary>
         /// 项目附加参数
         /// </summary>
@@ -757,7 +757,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 风格
         /// </summary>
-        public UInt32 dwStyle;
+        public int dwStyle;
         /// <summary>
         /// 是否暂不更新(统一用TVM_UPDATE更新)
         /// </summary>
@@ -772,15 +772,15 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 插入位置
         /// </summary>
-        public UInt32 nIndex;
+        public int nIndex;
         /// <summary>
         /// 图片索引
         /// </summary>
-        public UInt32 nImageIndex;
+        public int nImageIndex;
         /// <summary>
-        /// 文本
+        /// 文本,unicode
         /// </summary>
-        public string pwzText;  
+        public IntPtr pwzText;  
     };
 
     /// <summary>
@@ -814,7 +814,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 功能键状态
         /// </summary>
-        public UInt32 grfKeyState;
+        public int grfKeyState;
         /// <summary>
         /// 鼠标水平位置
         /// </summary>
@@ -873,8 +873,8 @@ namespace ExDuiR.NET.Native
     /// </summary>
     public struct ExSetTextEx
     {
-        public UInt32 flags;
-        public UInt32 codePage;
+        public int flags;
+        public int codePage;
     };
 
     /// <summary>
@@ -886,19 +886,19 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 1,图片 2,标题 4,提示文本 8,状态 16,菜单 32,文本格式 64,宽度
         /// </summary>
-        public UInt32 dwMask;
+        public int dwMask;
         /// <summary>
         /// 项目类型   0,分隔条 1,普通按钮 2,选择按钮
         /// </summary>
-        public UInt32 nType;
+        public int nType;
         /// <summary>
         /// 插入索引,从1开始
         /// </summary>
-        public UInt32 nIndex;
+        public int nIndex;
         /// <summary>
         /// 图片索引
         /// </summary>
-        public UInt32 nImage;
+        public int nImage;
         /// <summary>
         /// 项目标题,IntPtr传值
         /// </summary>
@@ -910,15 +910,15 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 项目左边
         /// </summary>
-        public UInt32 nLeft;
+        public int nLeft;
         /// <summary>
         /// 项目宽度
         /// </summary>
-        public UInt32 nWidth;
+        public int nWidth;
         /// <summary>
         /// 项目状态   可取STATE_NORMAL,STATE_DOWN,STATE_FOCUS,STATE_DISABLE
         /// </summary>
-        public UInt32 dwState;
+        public int dwState;
         /// <summary>
         /// 项目菜单
         /// </summary>
@@ -1649,15 +1649,6 @@ namespace ExDuiR.NET.Native
         /// <param name="lprcRedraw"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjInvalidateRect")]
-        public static extern bool Ex_ObjInvalidateRect(int hObj, ref ExRect lprcRedraw);
-
-        /// <summary>
-        /// 组件设置重画区域
-        /// </summary>
-        /// <param name="hObj"></param>
-        /// <param name="lprcRedraw"></param>
-        /// <returns></returns>
-        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjInvalidateRect")]
         public static extern bool Ex_ObjInvalidateRect(int hObj, IntPtr lprcRedraw);
 
         /// <summary>
@@ -2189,12 +2180,12 @@ namespace ExDuiR.NET.Native
         /// </summary>
         /// <param name="hObj"></param>
         /// <param name="dwState"></param>
-        /// <param name="fRemove"></param>
+        /// <param name="bRemove"></param>
         /// <param name="lprcRedraw"></param>
         /// <param name="fRedraw"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjSetUIState")]
-        public static extern bool Ex_ObjSetUIState(int hObj, int dwState, bool fRemove, ref ExRect lprcRedraw, bool fRedraw);
+        public static extern bool Ex_ObjSetUIState(int hObj, int dwState, bool bRemove, IntPtr lprcRedraw, bool fRedraw);
 
         /// <summary>
         /// 画布刷新

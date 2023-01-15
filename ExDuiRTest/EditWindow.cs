@@ -42,8 +42,8 @@ namespace ExDuiRTest
                 edit5 = new ExEdit(skin, "测试透明圆角编辑框", 10, 190, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_TABSTOP | EOS_EX_CUSTOMDRAW, DT_VCENTER);
                 edit5.SetFont("微软雅黑", 16, FS_UNDERLINE | FS_ITALIC, false);
 
-                edit5.SetColor(COLOR_EX_BACKGROUND, Util.ExRGBA(200, 120, 130, 100), false);
-                edit5.SetColor(COLOR_EX_TEXT_NORMAL, Util.ExRGBA(23, 115, 1, 100), false);
+                edit5.ColorBackground = Util.ExRGBA(200, 120, 130, 100);
+                edit5.ColorTextNormal = Util.ExRGBA(23, 115, 1, 100);
                 edit5.SetRadius(10, 10, 10, 0, false);
                 edit6 = new ExEdit(skin, "测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框",
                     10, 230, 150, 100, EOS_VISIBLE | EOS_VSCROLL, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_VCENTER);
