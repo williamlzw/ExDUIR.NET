@@ -11,9 +11,9 @@ namespace ExDuiR.NET.Frameworks.Controls
     public class ExControl : IExBaseUIEle, IDisposable
     {
         public ExControl(IExBaseUIEle oParent, string sClassName, string sTitle, int x, int y, int nWidth, int nHeight,
-            int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, int hTheme = 0, ExObjProcDelegate pfnObjProc = null)
+            int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, int hTheme = 0, ExObjProcDelegate pfnObjProc = null)
         {
-            m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, IntPtr.Zero, hTheme, pfnObjProc);
+            m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, lParam, hTheme, pfnObjProc);
             if (m_hObj == 0)
             {
                 throw new ExException(ExStatus.HANDLE_INVALID, "创建控件失败");
@@ -25,6 +25,10 @@ namespace ExDuiR.NET.Frameworks.Controls
             m_hObj = hObj;
         }
 
+        /// <summary>
+        /// 创建自父组件
+        /// </summary>
+        /// <param name="control"></param>
         public ExControl(ExControl control)
         {
             if(control != null)
@@ -64,6 +68,17 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// 组件是否禁止
         /// </summary>
         public bool Enable { get => ExAPI.Ex_ObjIsEnable(m_hObj); set => ExAPI.Ex_ObjEnable(m_hObj, value); }
+
+        /// <summary>
+        /// 组件是否启用事件冒泡,事件冒泡是指事件将根据父控件逐层传递至窗口
+        /// </summary>
+        public bool EnableEventBubble
+        {
+            set
+            {
+                ExAPI.Ex_ObjEnableEventBubble(m_hObj, value);
+            }
+        }
 
         protected int m_hObj;
 

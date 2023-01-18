@@ -90,3 +90,33 @@ win10+， win7 需要安装KB2670838补丁
 
 ### layout radio and checkbox:  
 ![image](demo_image/demo_radio_checkbox.png)
+
+### reportlistview:  
+![image](demo_image/demo_reportlistview.png)
+
+### iconlistview:  
+![image](demo_image/demo_iconlistview.png)
+
+### treeview:  
+![image](demo_image/demo_treeview.png)
+
+### matrix:  
+![image](demo_image/demo_matrix.png)
+
+### buttonex:  
+![image](demo_image/demo_buttonex.png)
+
+### editex:  
+![image](demo_image/demo_editex.png)
+
+### custommenu:  
+![image](demo_image/demo_custommenu.png)
+
+### eventdispatch:  
+![image](demo_image/demo_eventdispatch.png)
+
+### loading:  
+![image](demo_image/demo_loading.png)
+
+### sliderbar:  
+![image](demo_image/demo_sliderbar.png)

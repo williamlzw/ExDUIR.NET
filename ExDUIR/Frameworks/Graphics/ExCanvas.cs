@@ -43,7 +43,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
 
         public bool CalcTextSize(ExFont font, string text, int dwLen, int dwDTFormat, IntPtr lParam, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight)
         {
-            return ExAPI._canvas_calctextsize(m_hCanvas, font.handle, text, dwLen, dwDTFormat, lParam, layoutWidth, layoutHeight, out lpWidth, out lpHeight);
+            return ExAPI._canvas_calctextsize(m_hCanvas, font.handle, text, (IntPtr)dwLen, dwDTFormat, lParam, layoutWidth, layoutHeight, out lpWidth, out lpHeight);
         }
 
         public bool Clear(int nColor)
@@ -68,12 +68,12 @@ namespace ExDuiR.NET.Frameworks.Graphics
 
         public bool DrawText(ExFont font, ExBrush Brush, string lpwzText, int dwLen, int dwDTFormat, float left, float top, float right, float bottom)
         {
-            return ExAPI._canvas_drawtext2(m_hCanvas, font.handle, Brush.handle, lpwzText, dwLen, dwDTFormat, left, top, right, bottom);
+            return ExAPI._canvas_drawtext2(m_hCanvas, font.handle, Brush.handle, lpwzText, (IntPtr)dwLen, dwDTFormat, left, top, right, bottom);
         }
 
         public bool DrawTextEx(ExFont font, int crText, string lpwzText, int dwLen, int dwDTFormat, float left, float top, float right, float bottom, int iGlowsize, int crShadow, IntPtr lParam)
         {
-            return ExAPI._canvas_drawtextex(m_hCanvas, font.handle, crText, lpwzText, dwLen, dwDTFormat, left, top, right, bottom, iGlowsize, crShadow, lParam);
+            return ExAPI._canvas_drawtextex(m_hCanvas, font.handle, crText, lpwzText, (IntPtr)dwLen, dwDTFormat, left, top, right, bottom, iGlowsize, crShadow, lParam);
         }
 
         public bool EndDraw()

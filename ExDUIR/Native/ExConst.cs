@@ -3484,6 +3484,7 @@
         public const int WM_TIMER = 275;
         public const int WM_HSCROLL = 276;
         public const int WM_VSCROLL = 277;
+        public const int WM_INITMENUPOPUP = 279;
         public const int WM_MOUSEMOVE = 512;
         public const int WM_LBUTTONDOWN = 513;
         public const int WM_LBUTTONUP = 514;

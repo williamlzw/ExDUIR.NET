@@ -53,13 +53,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbsoluteLayoutWindow.cs" />
+    <Compile Include="ButtonExWindow.cs" />
     <Compile Include="ButtonWindow.cs" />
     <Compile Include="CheckButtonWindow.cs" />
     <Compile Include="ComboBoxWindow.cs" />
     <Compile Include="CustomBackgroundWindow.cs" />
     <Compile Include="CustomCtrlWindow.cs" />
+    <Compile Include="CustomMenuWindow.cs" />
     <Compile Include="CustomRedrawWindow.cs" />
+    <Compile Include="DispatchMessageWindow.cs" />
     <Compile Include="EasingWindow.cs" />
+    <Compile Include="EditExWindow.cs" />
     <Compile Include="EditWindow.cs" />
     <Compile Include="FlowLayoutWindow.cs" />
     <Compile Include="GroupBoxWindow.cs" />
@@ -68,6 +72,7 @@
     <Compile Include="LinearLayoutWindow.cs" />
     <Compile Include="ListButtonWindow.cs" />
     <Compile Include="ListViewWindow.cs" />
+    <Compile Include="LoadingWindow.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="MatrixWindow.cs" />
     <Compile Include="MessageBoxWindow.cs" />
@@ -81,6 +86,7 @@
     </Compile>
     <Compile Include="RelativeLayoutWindow.cs" />
     <Compile Include="ReportListViewWindow.cs" />
+    <Compile Include="SliderBarWindow.cs" />
     <Compile Include="TableLayoutWindow.cs" />
     <Compile Include="TestCustomCtrl.cs" />
     <Compile Include="TreeViewWindow.cs" />
@@ -134,6 +140,57 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\closeban.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\connect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttondown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttonhover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttonnormal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button2down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button2hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button2normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon_contacts_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\psw_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search_normal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btn3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sub.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

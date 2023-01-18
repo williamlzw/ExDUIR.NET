@@ -42,6 +42,24 @@ namespace ExDuiR.NET.Native
             public IntPtr hbmpItem;
         }
 
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "EndMenu")]
+        public static extern bool EndMenu();
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "SetPropW")]
+        public static extern bool SetProp(IntPtr hWnd, string text, IntPtr data);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetPropW")]
+        public static extern IntPtr GetProp(IntPtr hWnd, string text);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetDC")]
+        public static extern IntPtr GetDC(IntPtr ptr);
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "ReleaseDC")]
+        public static extern int ReleaseDC(IntPtr hWnd, IntPtr hDc);
+
+        [DllImport("gdi32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetDeviceCaps")]
+        public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
+
         [DllImport("Kernel32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetModuleHandleW")]
         public static extern IntPtr GetModuleHandle(string wzModule);
 

@@ -32,7 +32,7 @@ namespace ExDuiRTest
                 buttons[3] = new ExButton(skin, "取按钮1文本", 10, 150, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[4] = new ExButton(skin, "重画按钮1", 150, 30, 120, 30, -1, EOS_EX_FOCUSABLE | EOS_EX_CUSTOMDRAW | EOS_EX_COMPOSITED, DT_VCENTER | DT_CENTER);
                 buttons[5] = new ExButton(skin, "重画按钮2", 150, 70, 120, 30, -1,
-                    EOS_EX_FOCUSABLE | EOS_EX_CUSTOMDRAW | EOS_EX_COMPOSITED, DT_VCENTER | DT_CENTER, 0, objProc);
+                    EOS_EX_FOCUSABLE | EOS_EX_CUSTOMDRAW | EOS_EX_COMPOSITED, DT_VCENTER | DT_CENTER, 0, default, objProc);
                 objEvent = new ExObjEventProcDelegate(OnButtonEventProc);
                 foreach (var button in buttons)
                 {
@@ -44,13 +44,15 @@ namespace ExDuiRTest
                 switchs[0] = new ExSwitch(skin, "已开启|已关闭", 150, 110, 80, 30);
                 switchs[1] = new ExSwitch(skin, "", 150, 150, 60, 30);
                 switchs[1].Check = true;
-                ExObjProps props = new ExObjProps();
-                props.crBkgNormal = Util.ExRGBA(255, 255, 255, 100);
-                props.crBkgDownOrChecked = Util.ExRGBA(200, 50, 100, 100);
-                props.crBorderNormal = Util.ExRGBA(255, 255, 255, 255);
-                props.radius = 15;
-                props.strokeWidth = 1;
-                switchs[1].SetProps(props);
+                ExObjProps props = new ExObjProps()
+                {
+                    crBkgNormal = Util.ExRGBA(255, 255, 255, 100),
+                    crBkgDownOrChecked = Util.ExRGBA(200, 50, 100, 100),
+                    crBorderNormal = Util.ExRGBA(255, 255, 255, 255),
+                    radius = 15,
+                    strokeWidth = 1
+                };
+                switchs[1].Props = props;
                 switchs[1].HandleEvent(NM_CHECK, objEvent);
                 skin.Visible = true;
             }
