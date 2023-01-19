@@ -53,7 +53,7 @@ namespace ExDuiR.NET.Frameworks
         /// <param name="dwStyleDUI">界面风格EWS_</param>
         /// <param name="hTheme">主题包句柄,可以空</param>
         /// <param name="pfnWndProc">窗口回调</param>
-        public ExSkin(ExWindow pWindow, int dwStyleDUI, IntPtr hTheme, ExWndProcDelegate pfnWndProc = null)
+        public ExSkin(ExWindow pWindow, int dwStyleDUI, IntPtr hTheme = default, ExWndProcDelegate pfnWndProc = null)
         {
             m_hExDUI = ExAPI.Ex_DUIBindWindowEx(pWindow.WindowHandle, hTheme, dwStyleDUI, IntPtr.Zero, pfnWndProc);
             if (m_hExDUI != 0)
@@ -62,7 +62,24 @@ namespace ExDuiR.NET.Frameworks
             }
             else throw new ExException(ExStatus.HANDLE_INVALID, "绑定皮肤失败");
         }
-        
+
+        /// <summary>
+        /// 创建界面
+        /// </summary>
+        /// <param name="hWnd">父窗口句柄</param>
+        /// <param name="dwStyleDUI">界面风格EWS_</param>
+        /// <param name="hTheme">主题包句柄,可以空</param>
+        /// <param name="pfnWndProc">窗口回调</param>
+        public ExSkin(IntPtr hWnd, int dwStyleDUI, IntPtr hTheme = default, ExWndProcDelegate pfnWndProc = null)
+        {
+            m_hExDUI = ExAPI.Ex_DUIBindWindowEx(hWnd, hTheme, dwStyleDUI, IntPtr.Zero, pfnWndProc);
+            if (m_hExDUI != 0)
+            {
+
+            }
+            else throw new ExException(ExStatus.HANDLE_INVALID, "绑定皮肤失败");
+        }
+
         /// <summary>
         /// 创建界面
         /// </summary>
@@ -82,7 +99,11 @@ namespace ExDuiR.NET.Frameworks
         {
             m_hExDUI = hExDui;
         }
-
+        public static ExSkin FromWindow(IntPtr hWnd)
+        {
+            var hexdui = ExAPI.Ex_DUIFromWindow(hWnd);
+            return new ExSkin(hexdui);
+        }
         /// <summary>
         /// 启用/禁用窗口
         /// </summary>

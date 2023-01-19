@@ -2947,7 +2947,7 @@ namespace ExDuiR.NET.Native
         /// <param name="hWnd"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_DUIFromWindow")]
-        public static extern IntPtr Ex_DUIFromWindow(IntPtr hWnd);
+        public static extern int Ex_DUIFromWindow(IntPtr hWnd);
 
         /// <summary>
         /// 组件获取滚动条范围
@@ -3678,7 +3678,7 @@ namespace ExDuiR.NET.Native
         /// <param name="cchMaxLength"></param>
         /// <returns>返回字符数,0表示失败</returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjGetDropString")]
-        public static extern int Ex_ObjGetDropString(int hObj, int pDataObject, StringBuilder lpwzBuffer, int cchMaxLength);
+        public static extern int Ex_ObjGetDropString(int hObj, IntPtr pDataObject, StringBuilder lpwzBuffer, int cchMaxLength);
 
 
         /// <summary>

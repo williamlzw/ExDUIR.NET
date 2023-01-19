@@ -62,6 +62,8 @@
     <Compile Include="CustomMenuWindow.cs" />
     <Compile Include="CustomRedrawWindow.cs" />
     <Compile Include="DispatchMessageWindow.cs" />
+    <Compile Include="DragObjWindow.cs" />
+    <Compile Include="DropWindow.cs" />
     <Compile Include="EasingWindow.cs" />
     <Compile Include="EditExWindow.cs" />
     <Compile Include="EditWindow.cs" />
@@ -76,8 +78,11 @@
     <Compile Include="MainWindow.cs" />
     <Compile Include="MatrixWindow.cs" />
     <Compile Include="MessageBoxWindow.cs" />
+    <Compile Include="ModalWindow.cs" />
     <Compile Include="NavButtonWindow.cs" />
+    <Compile Include="NchitTestWindow.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProgressBarWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -86,6 +91,7 @@
     </Compile>
     <Compile Include="RelativeLayoutWindow.cs" />
     <Compile Include="ReportListViewWindow.cs" />
+    <Compile Include="RotateImageWindow.cs" />
     <Compile Include="SliderBarWindow.cs" />
     <Compile Include="TableLayoutWindow.cs" />
     <Compile Include="TestCustomCtrl.cs" />

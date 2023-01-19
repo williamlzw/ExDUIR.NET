@@ -1,8 +1,7 @@
-﻿using ExDuiR.NET.Frameworks.Graphics;
-using ExDuiR.NET.Native;
+﻿using ExDuiR.NET.Native;
 using System;
 
-namespace ExDuiR.NET.Frameworks.Utility
+namespace ExDuiR.NET.Frameworks.Graphics
 {
     public class ExImageList : IDisposable
     {

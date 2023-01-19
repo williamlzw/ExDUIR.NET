@@ -1,7 +1,7 @@
 ﻿using ExDuiR.NET.Native;
 using System;
 
-namespace ExDuiR.NET.Frameworks.Graphics
+namespace ExDuiR.NET.Frameworks
 {
     public class ExResource : IDisposable
     {

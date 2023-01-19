@@ -25,6 +25,18 @@ namespace ExDuiR.NET.Native
             public string lfFaceName;
         }
 
+        [StructLayout(LayoutKind.Sequential, Pack = 2)]
+        public struct DLGTEMPLATE
+        {
+            public int style;
+            public int dwExtendedStyle;
+            public short cdit;
+            public short x;
+            public short y;
+            public short cx;
+            public short cy;
+        }
+
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         public struct MENUITEMINFO
         {
@@ -41,6 +53,12 @@ namespace ExDuiR.NET.Native
             public UInt32 cch; // length of dwTypeData
             public IntPtr hbmpItem;
         }
+        public delegate bool DlgWndProcDelegate(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "DialogBoxIndirectParamW")]
+        public static extern int DialogBoxIndirectParam(IntPtr hInstance, ref DLGTEMPLATE hDialogTemplate, IntPtr hwndParent, DlgWndProcDelegate lpDialogFunc, int dwInitParam);
+        
+        [DllImport("Shell32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "DragQueryFileW")]
+        public static extern uint DragQueryFile(IntPtr hDrop, uint iFile, string lpszFile, uint cch);
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "EndMenu")]
         public static extern bool EndMenu();
@@ -61,7 +79,7 @@ namespace ExDuiR.NET.Native
         public static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
 
         [DllImport("Kernel32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetModuleHandleW")]
-        public static extern IntPtr GetModuleHandle(string wzModule);
+        public static extern IntPtr GetModuleHandle([MarshalAs(UnmanagedType.LPWStr)] string wzModule);
 
         [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "IsWindow")]
         public static extern bool IsWindow(IntPtr hWnd);

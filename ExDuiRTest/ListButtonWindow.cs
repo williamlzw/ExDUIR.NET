@@ -226,8 +226,11 @@ namespace ExDuiRTest
                 var currentWnd = WinAPI.WindowFromPoint(point);
                 WinAPI.ScreenToClient(currentWnd, ref point);
                 var obj = skin.GetObjFromPoint(point.x, point.y, (int)currentWnd);
-                var menuBar = new ExMenuBar(obj.handle);
-                menuBar.PostMessage(LBM_SELECTITEM, IntPtr.Zero, IntPtr.Zero);
+                if(obj != null)
+                {
+                    var menuBar = new ExMenuBar(obj.handle);
+                    menuBar.PostMessage(LBM_SELECTITEM, IntPtr.Zero, IntPtr.Zero);
+                }
             }
             return IntPtr.Zero;
         }
@@ -239,7 +242,7 @@ namespace ExDuiRTest
                 var rcWindow = skin.WindowRect;
                 ExMenuBar button = new ExMenuBar(hObj);
                 var rcObj = button.WindowRect;
-                button.TrackPopupMenu(lParam, 1, rcWindow.nLeft + rcObj.nLeft + (int)wParam, rcWindow.nTop + rcObj.nBottom, IntPtr.Zero, listButtonWndProc, EMNF_NOSHADOW);
+                button.TrackPopupMenu(lParam, 1, rcWindow.nLeft + rcObj.nLeft + (int)wParam, rcWindow.nTop + (int)ExAPI.Ex_Scale(rcObj.nBottom), IntPtr.Zero, listButtonWndProc, EMNF_NOSHADOW);
                 Marshal.WriteInt32(lpResult, 1);
                 return (IntPtr)1;
             }

@@ -1231,7 +1231,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="lpwzBuffer"></param>
         /// <param name="cchMaxLength"></param>
         /// <returns></returns>
-        public int GetDropString(int pDataObject, out string lpwzBuffer, int cchMaxLength)
+        public int GetDropString(IntPtr pDataObject, out string lpwzBuffer, int cchMaxLength)
         {
             StringBuilder str = new StringBuilder(cchMaxLength);
             var ret = ExAPI.Ex_ObjGetDropString(m_hObj, pDataObject, str, cchMaxLength);
@@ -1273,7 +1273,6 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// 设置图标列表
         /// </summary>
         /// <param name="imageList"></param>
-        /// <param name="update"></param>
         /// <returns></returns>
         public IntPtr SetImageList(ExImageList imageList)
         {

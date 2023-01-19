@@ -35,8 +35,8 @@ namespace ExDuiR.NET.Frameworks.Controls
             SetBackgroundImage(pImageData, 0, 0, 0, default, 1, 255, true);
         }
 
-        public ExStatic(IExBaseUIEle pOwner, System.Drawing.Bitmap bitmap, int x, int y, int nWidth, int nHeight)
-           : base(pOwner, "Static", null, x, y, nWidth, nHeight)
+        public ExStatic(IExBaseUIEle pOwner, System.Drawing.Bitmap bitmap, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+           : base(pOwner, "Static", null, x, y, nWidth, nHeight, dwStyle, dwStyleEx, -1, nID, lParam, 0, pfnObjProc)
         {
             byte[] img = Util.BitmapToByte(bitmap);
             SetBackgroundImage(img, 0, 0, 0, default, 1, 255, true);
@@ -1409,11 +1409,11 @@ namespace ExDuiR.NET.Frameworks.Controls
     public class ExProgressBar : ExControl
     {
         public ExProgressBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
-            : base(oParent, "Progress", sTitle, x, y, nWidth, nHeight)
+            : base(oParent, "ProgressBar", sTitle, x, y, nWidth, nHeight)
         {
         }
         public ExProgressBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
-            : base(oParent, "Progress", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, 0, pfnObjProc)
+            : base(oParent, "ProgressBar", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, 0, pfnObjProc)
         {
         }
         public ExProgressBar(int hObj) : base(hObj)
@@ -1422,7 +1422,70 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExProgressBar(ExControl parent) : base(parent)
         {
         }
-        public new string ClassName => "Progress";
+
+        /// <summary>
+        /// 设置进度条圆角度
+        /// </summary>
+        public int Radius
+        {
+            set
+            {
+                this.SendMessage(PBM_SETRADIUS, (IntPtr)value, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 设置进度条背景颜色
+        /// </summary>
+        public int ColorBackground
+        {
+            set
+            {
+                this.SendMessage(PBM_SETBKCOLOR, (IntPtr)value, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 设置进度条前景色
+        /// </summary>
+        public int ColorFont
+        {
+            set
+            {
+                this.SendMessage(PBM_SETBARCOLOR, (IntPtr)value, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 取/设置进度条位置
+        /// </summary>
+        public int Pos
+        {
+            set
+            {
+                this.SendMessage(PBM_SETPOS, (IntPtr)value, IntPtr.Zero);
+            }
+            get
+            {
+                return (int)this.SendMessage(PBM_GETPOS, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 取/设置进度条范围
+        /// </summary>
+        public int Range
+        {
+            set
+            {
+                this.SendMessage(PBM_SETRANGE, (IntPtr)value, IntPtr.Zero);
+            }
+            get
+            {
+                return (int)this.SendMessage(PBM_GETRANGE, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+        public new string ClassName => "ProgressBar";
     }
 
     /// <summary>
@@ -1573,24 +1636,42 @@ namespace ExDuiR.NET.Frameworks.Controls
     /// <summary>
     /// 旋转图片框
     /// </summary>
-    public class ExRotateImgBox : ExControl
+    public class ExRotateImageBox : ExControl
     {
-        public ExRotateImgBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
-            : base(oParent, "RotateImgBox", sTitle, x, y, nWidth, nHeight)
+        public ExRotateImageBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "RotateImageBox", sTitle, x, y, nWidth, nHeight)
         {
         }
 
-        public ExRotateImgBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
-            : base(oParent, "RotateImgBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, 0, pfnObjProc)
+        public ExRotateImageBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "RotateImageBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, 0, pfnObjProc)
         {
         }
-        public ExRotateImgBox(int hObj) : base(hObj)
+        public ExRotateImageBox(IExBaseUIEle pOwner, byte[] pImageData, int x, int y, int nWidth, int nHeight)
+            : base(pOwner, "RotateImageBox", null, x, y, nWidth, nHeight)
+        {
+            SetBackgroundImage(pImageData, 0, 0, 0, default, 1, 255, true);
+        }
+
+        public ExRotateImageBox(IExBaseUIEle pOwner, byte[] pImageData, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(pOwner, "RotateImageBox", null, x, y, nWidth, nHeight, dwStyle, dwStyleEx, -1, nID, lParam, 0, pfnObjProc)
+        {
+            SetBackgroundImage(pImageData, 0, 0, 0, default, 1, 255, true);
+        }
+
+        public ExRotateImageBox(IExBaseUIEle pOwner, System.Drawing.Bitmap bitmap, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+           : base(pOwner, "RotateImageBox", null, x, y, nWidth, nHeight, dwStyle, dwStyleEx, -1, nID, lParam, 0, pfnObjProc)
+        {
+            byte[] img = Util.BitmapToByte(bitmap);
+            SetBackgroundImage(img, 0, 0, 0, default, 1, 255, true);
+        }
+        public ExRotateImageBox(int hObj) : base(hObj)
         {
         }
-        public ExRotateImgBox(ExControl parent) : base(parent)
+        public ExRotateImageBox(ExControl parent) : base(parent)
         {
         }
-        public new string ClassName => "RotateImgBox";
+        public new string ClassName => "RotateImageBox";
     }
 
     /// <summary>

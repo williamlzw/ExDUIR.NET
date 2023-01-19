@@ -123,6 +123,14 @@ namespace ExDuiR.NET.Frameworks.Utility
             return (ushort)(((short)b << 8) | a);
         }
 
+        public static int GET_X_LPARAM(IntPtr value)
+        {
+            return (int)(short)((uint)value & 0xFFFF);
+        }
+        public static int GET_Y_LPARAM(IntPtr value)
+        {
+            return (int)(short)((uint)value >> 16);
+        }
         public static ushort LOWORD(uint value)
         {
             return (ushort)(value & 0xFFFF);

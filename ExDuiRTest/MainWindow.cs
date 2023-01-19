@@ -62,6 +62,13 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试加载动画", 120, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
 
                 buttons.Add(new ExButton(skin, "测试滑块条", 230, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试旋转图片框", 230, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试拖动组件", 230, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试接收拖曳", 230, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试进度条", 230, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试限制通知", 230, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试模态窗口", 230, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
                 for (int i = 0; i < buttons.Count; i++)
@@ -193,6 +200,30 @@ namespace ExDuiRTest
             else if (hObj == buttons[28].handle)
             {
                 SliderBarWindow.CreateSliderBarWindow(skin);
+            }
+            else if (hObj == buttons[29].handle)
+            {
+                RotateImageWindow.CreateRotateImageWindow(skin);
+            }
+            else if (hObj == buttons[30].handle)
+            {
+                DragObjWindow.CreateDragObjWindow(skin);
+            }
+            else if (hObj == buttons[31].handle)
+            {
+                DropWindow.CreateDropWindow(skin);
+            }
+            else if (hObj == buttons[32].handle)
+            {
+                ProgressBarWindow.CreateProgressBarWindow(skin);
+            }
+            else if (hObj == buttons[33].handle)
+            {
+                NchitTestWindow.CreateNchitTestWindow(skin);
+            }
+            else if (hObj == buttons[34].handle)
+            {
+                ModalWindow.CreateModalWindow(skin);
             }
             return IntPtr.Zero;
         }

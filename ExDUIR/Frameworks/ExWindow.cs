@@ -24,8 +24,6 @@ namespace ExDuiR.NET.Frameworks
             ExAPI.Ex_WndCenterFrom(hWnd, hWndFrom, fFullScreen);
         }
 
-
-
         protected IntPtr m_hWnd;
         public IntPtr WindowHandle { get => m_hWnd; }
     }

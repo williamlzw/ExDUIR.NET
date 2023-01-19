@@ -350,102 +350,86 @@
         /// <summary>
         /// 组件风格_滚动条不可用时显示禁止状态
         /// </summary>
-        ///
-        public const int EOS_DISABLENOSCROLL = 33554432;
+        public const int EOS_DISABLENOSCROLL = 0x2000000;
 
         /// <summary>
         /// 组件风格_可调整尺寸
         /// </summary>
-        ///
-        public const int EOS_SIZEBOX = 67108864;
+        public const int EOS_SIZEBOX = 0x4000000;
 
         /// <summary>
         /// 组件风格_禁止
         /// </summary>
-        ///
-        public const int EOS_DISABLED = 134217728;
+        public const int EOS_DISABLED = 0x8000000;
 
         /// <summary>
         /// 组件风格_可视
         /// </summary>
-        public const int EOS_VISIBLE = 268435456;
+        public const int EOS_VISIBLE = 0x10000000;
 
         /// <summary>
         /// 组件风格_边框
         /// </summary>
-        ///
-        public const int EOS_BORDER = 536870912;
+        public const int EOS_BORDER = 0x20000000;
 
         /// <summary>
         /// 组件风格_水平滚动条
         /// </summary>
-        ///
-        public const int EOS_VSCROLL = 1073741824;
+        public const int EOS_VSCROLL = 0x40000000;
 
         /// <summary>
         /// 组件风格_垂直滚动条
         /// </summary>
-        ///
         public const int EOS_HSCROLL = -2147483648;
 
         /// <summary>
         /// 组件风格_扩展_自适应尺寸
         /// </summary>
-        ///
         public const int EOS_EX_AUTOSIZE = 0x400000;
 
         /// <summary>
         /// 组件风格_扩展_鼠标穿透
         /// </summary>
-        ///
         public const int EOS_EX_TRANSPARENT = 0x800000;
-
-        /// <summary>
-        /// 组件风格_扩展_允许拖拽
-        /// </summary>
-        ///
-        public const int EOS_EX_DRAGDROP = 0x2000000;
 
         /// <summary>
         /// 组件风格_扩展_背景模糊
         /// </summary>
-        ///
         public const int EOS_EX_BLUR = 0x1000000;
+
+        /// <summary>
+        /// 组件风格_扩展_允许拖拽
+        /// </summary>
+        public const int EOS_EX_DRAGDROP = 0x2000000;
 
         /// <summary>
         /// 组件风格_扩展_接收文件拖放
         /// </summary>
-        ///
         public const int EOS_EX_ACCEPTFILES = 0x4000000;
 
         /// <summary>
         /// 组件风格_扩展_允许焦点
         /// </summary>
-        ///
         public const int EOS_EX_FOCUSABLE = 0x8000000;
 
         /// <summary>
         /// 组件风格_扩展_允许TAB焦点
         /// </summary>
-        ///
         public const int EOS_EX_TABSTOP = 0x10000000;
 
         /// <summary>
         /// 组件风格_扩展_总在最前
         /// </summary>
-        ///
         public const int EOS_EX_TOPMOST = 0x20000000;
 
         /// <summary>
         /// 组件风格_扩展_背景混合
         /// </summary>
-        ///
         public const int EOS_EX_COMPOSITED = 0x40000000;
 
         /// <summary>
         /// 组件风格_扩展_自定义绘制
         /// </summary>
-        ///
         public const int EOS_EX_CUSTOMDRAW = -2147483648;
         #endregion
 
@@ -1650,85 +1634,97 @@
         /// 引擎标识_启用DPI缩放
         /// </summary>
         ///
-        public const int EXGF_DPI_ENABLE = 2;
+        public const int EXGF_DPI_ENABLE = 0x02;
 
         /// <summary>
-        /// 引擎标识_画布_不抗锯齿
+        /// 引擎标识_渲染_画布不抗锯齿
         /// </summary>
         ///
-        public const int EXGF_RENDER_CANVAS_ALIAS = 64;
+        public const int EXGF_RENDER_CANVAS_ALIAS = 0x40;
 
         /// <summary>
-        /// 引擎标识_使用GDI/GDI+渲染
+        /// 引擎标识_渲染_使用D2D
         /// </summary>
         ///
-        public const int EXGF_RENDER_METHOD_GDI = 128;
+        public const int EXGF_RENDER_METHOD_D2D = 0x100;
 
         /// <summary>
-        /// 引擎标识_使用D2D渲染
+        /// 引擎标识_渲染_使用支持GDI交互的D2D渲染
         /// </summary>
         ///
-        public const int EXGF_RENDER_METHOD_D2D = 256;
+        public const int EXGF_RENDER_METHOD_D2D_GDI_COMPATIBLE = 0x300;
 
         /// <summary>
-        /// 引擎标识_使用支持GDI交互的D2D渲染
+        /// 引擎标识_文本渲染_使用ClearType抗锯齿
         /// </summary>
         ///
-        public const int EXGF_RENDER_METHOD_D2D_GDI_COMPATIBLE = 768;
+        public const int EXGF_TEXT_CLEARTYPE = 0x400;
 
         /// <summary>
-        /// 引擎标识_禁用动画效果
+        /// 引擎标识_文本渲染_抗锯齿
         /// </summary>
         ///
-        public const int EXGF_OBJECT_DISABLEANIMATION = 65536;
+        public const int EXGF_TEXT_ANTIALIAS = 0x800;
 
         /// <summary>
-        /// 引擎标识_显示组件边界
+        /// 引擎标识_图像渲染_抗锯齿
         /// </summary>
         ///
-        public const int EXGF_OBJECT_SHOWRECTBORDER = 131072;
+        public const int EXGF_IMAGE_ANTIALIAS = 0x1000;
 
         /// <summary>
-        /// 引擎标识_显示组件位置
+        /// 引擎标识_组件_禁用动画效果
         /// </summary>
         ///
-        public const int EXGF_OBJECT_SHOWPOSTION = 262144;
+        public const int EXGF_OBJECT_DISABLEANIMATION = 0x10000;
+
+        /// <summary>
+        /// 引擎标识_组件_显示组件边界
+        /// </summary>
+        ///
+        public const int EXGF_OBJECT_SHOWRECTBORDER = 0x20000;
+
+        /// <summary>
+        /// 引擎标识_组件_显示组件位置
+        /// </summary>
+        ///
+        public const int EXGF_OBJECT_SHOWPOSTION = 0x40000;
 
         /// <summary>
         /// 引擎标识_允许JS全局对象访问文件
         /// </summary>
         ///
-        public const int EXGF_JS_FILE = 524288;
+        public const int EXGF_JS_FILE = 0x80000;
 
         /// <summary>
         /// 引擎标识_允许JS全局对象访问内存
         /// </summary>
         ///
-        public const int EXGF_JS_MEMORY = 1048576;
+        public const int EXGF_JS_MEMORY = 0x100000;
 
         /// <summary>
         /// 引擎标识_允许JS全局对象申请内存
         /// </summary>
         ///
-        public const int EXGF_JS_MEMORY_ALLOC = 2097152;
+        public const int EXGF_JS_MEMORY_ALLOC = 0x200000;
 
         /// <summary>
         /// 引擎标识_允许JS全局对象创建进程、允许程序、加载DLL
         /// </summary>
         ///
-        public const int EXGF_JS_PROCESS = 4194304;
+        public const int EXGF_JS_PROCESS = 0x400000;
 
         /// <summary>
         /// 引擎标识_允许JS全局对象访问所有资源
         /// </summary>
         ///
-        public const int EXGF_JS_ALL = 7864320;
+        public const int EXGF_JS_ALL = 0x780000;
 
         /// <summary>
-        /// 引擎标识_渲染所有菜单
+        /// 引擎标识_菜单_渲染所有菜单
         /// </summary>
         ///
-        public const int EXGF_MENU_ALL = 8388608;
+        public const int EXGF_MENU_ALL = 0x800000;
         #endregion
 
         #region 窗体风格_
@@ -1736,121 +1732,121 @@
         /// 窗体风格_关闭按钮
         /// </summary>
         ///
-        public const int EWS_BUTTON_CLOSE = 1;
+        public const int EWS_BUTTON_CLOSE = 0x01;
 
         /// <summary>
         /// 窗体风格_最大化按钮
         /// </summary>
         ///
-        public const int EWS_BUTTON_MAX = 2;
+        public const int EWS_BUTTON_MAX = 0x02;
 
         /// <summary>
         /// 窗体风格_最小化按钮
         /// </summary>
         ///
-        public const int EWS_BUTTON_MIN = 4;
+        public const int EWS_BUTTON_MIN = 0x04;
 
         /// <summary>
         /// 窗体风格_菜单按钮
         /// </summary>
         ///
-        public const int EWS_BUTTON_MENU = 8;
+        public const int EWS_BUTTON_MENU = 0x08;
 
         /// <summary>
         /// 窗体风格_皮肤按钮
         /// </summary>
         ///
-        public const int EWS_BUTTON_SKIN = 16;
+        public const int EWS_BUTTON_SKIN = 0x10;
 
         /// <summary>
         /// 窗体风格_设置按钮
         /// </summary>
         ///
-        public const int EWS_BUTTON_SETTING = 32;
+        public const int EWS_BUTTON_SETTING = 0x20;
 
         /// <summary>
         /// 窗体风格_帮助按钮
         /// </summary>
         ///
-        public const int EWS_BUTTON_HELP = 64;
+        public const int EWS_BUTTON_HELP = 0x40;
 
         /// <summary>
         /// 窗体风格_图标
         /// </summary>
         ///
-        public const int EWS_HASICON = 128;
+        public const int EWS_HASICON = 0x80;
 
         /// <summary>
         /// 窗体风格_标题
         /// </summary>
         ///
-        public const int EWS_TITLE = 256;
+        public const int EWS_TITLE = 0x100;
 
         /// <summary>
         /// 窗体风格_全屏模式.设置该标记窗口最大化时
         /// </summary>
         ///
-        public const int EWS_FULLSCREEN = 512;
+        public const int EWS_FULLSCREEN = 0x200;
 
         /// <summary>
         /// 窗体风格_允许调整尺寸
         /// </summary>
         ///
-        public const int EWS_SIZEABLE = 1024;
+        public const int EWS_SIZEABLE = 0x400;
 
         /// <summary>
         /// 窗体风格_允许随意移动
         /// </summary>
         ///
-        public const int EWS_MOVEABLE = 2048;
+        public const int EWS_MOVEABLE = 0x800;
 
         /// <summary>
         /// 窗体风格_不显示窗口阴影
         /// </summary>
         ///
-        public const int EWS_NOSHADOW = 4096;
+        public const int EWS_NOSHADOW = 0x1000;
 
         /// <summary>
         /// 窗体风格_不继承父窗口背景数据
         /// </summary>
         ///
-        public const int EWS_NOINHERITBKG = 8192;
+        public const int EWS_NOINHERITBKG = 0x2000;
 
         /// <summary>
         /// 窗体风格_不显示TAB焦点边框
         /// </summary>
         ///
-        public const int EWS_NOTABBORDER = 16384;
+        public const int EWS_NOTABBORDER = 0x4000;
 
         /// <summary>
         /// 窗体风格_ESC关闭窗口
         /// </summary>
         ///
-        public const int EWS_ESCEXIT = 32768;
+        public const int EWS_ESCEXIT = 0x8000;
 
         /// <summary>
-        /// 窗体风格_主窗口(拥有该风格时
+        /// 窗体风格_主窗口(拥有该风格时 当窗口被关闭,会调用PostQuitMessage()退出消息循环)
         /// </summary>
         ///
-        public const int EWS_MAINWINDOW = 65536;
+        public const int EWS_MAINWINDOW = 0x10000;
 
         /// <summary>
-        /// 窗体风格_窗口居中(如果有父窗口
+        /// 窗体风格_窗口居中(如果有父窗口则在父窗口中间,否则为屏幕中间)
         /// </summary>
         ///
-        public const int EWS_CENTERWINDOW = 131072;
+        public const int EWS_CENTERWINDOW = 0x20000;
 
         /// <summary>
         /// 窗体风格_标题栏取消置顶
         /// </summary>
         ///
-        public const int EWS_NOCAPTIONTOPMOST = 262144;
+        public const int EWS_NOCAPTIONTOPMOST = 0x40000;
 
         /// <summary>
         /// 窗体风格_弹出式窗口
         /// </summary>
         ///
-        public const int EWS_POPUPWINDOW = 524288;
+        public const int EWS_POPUPWINDOW = 0x80000;
 
         #endregion
 
@@ -3480,6 +3476,7 @@
         public const int WM_KEYDOWN = 256;
         public const int WM_KEYUP = 257;
         public const int WM_CHAR = 258;
+        public const int WM_INITDIALOG = 272;
         public const int WM_COMMAND = 273;
         public const int WM_TIMER = 275;
         public const int WM_HSCROLL = 276;
@@ -3493,7 +3490,7 @@
         public const int WM_RBUTTONUP = 517;
         public const int WM_MOUSEWHEEL = 522;
         /// <summary>
-        /// 收到拖拽文件
+        /// 收到拖拽文件,wParam拖曳句柄
         /// </summary>
         public const int WM_DROPFILES = 563;
         public const int WM_MOUSEHOVER = 673;
@@ -3557,6 +3554,48 @@
         /// 字体风格_删除线
         /// </summary>
         public const int FS_STRICKOUT = 8;
+        #endregion
+
+        #region 拖曳格式_
+        /// <summary>
+        /// 文本
+        /// </summary>
+        public const int CF_TEXT = 1;
+        /// <summary>
+        /// unicode文本
+        /// </summary>
+        public const int CF_UNICODETEXT = 13;
+        #endregion
+        #region 拖曳处理模式_
+        /// <summary>
+        /// 复制方式
+        /// </summary>
+        public const int DROPEFFECT_COPY = 1;
+        /// <summary>
+        /// 快捷方式
+        /// </summary>
+        public const int DROPEFFECT_LINK = 4;
+        #endregion
+
+        #region 点击位置判断消息返回类型_
+        /// <summary>
+        /// 在一个被其它窗口覆盖的窗口中
+        /// </summary>
+        public const int HTTRANSPARENT = -1;
+        #endregion
+
+        #region win32窗口风格_
+        /// <summary>
+        /// 分层窗口
+        /// </summary>
+        public const int WS_OVERLAPPEDWINDOW = 0x00C00000 | 0x00080000 | 0x00040000 | 0x00020000 | 0x00010000;
+        #endregion
+
+        #region win32窗口扩展风格_
+        /// <summary>
+        /// 分层窗口
+        /// </summary>
+        public const int WS_EX_LAYERED = 0x00080000;
         #endregion
     }
 }
