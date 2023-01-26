@@ -25,7 +25,7 @@ namespace ExDuiRTest
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnMatrixMsgProc);
-                label = new ExStatic(skin, "", 50, 50, 200, 250, -1, EOS_EX_FOCUSABLE, DT_VCENTER, 0, objProc);
+                label = new ExStatic(skin, "", 50, 50, 200, 250, -1, EOS_EX_FOCUSABLE, DT_VCENTER, 0, default, objProc);
                 label.ColorBackground = Util.ExRGBA(180, 230, 22, 255);
                 skin.Visible = true;
             }

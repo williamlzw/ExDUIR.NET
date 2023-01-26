@@ -34,7 +34,7 @@ namespace ExDuiRTest
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 listviewProc = new ExObjProcDelegate(OnListViewProc);
-                listview = new ExListView(skin, "", 30, 30, 150, 150, EOS_VISIBLE | ELVS_VERTICALLIST | EOS_VSCROLL, EOS_EX_COMPOSITED, -1, 0, listviewProc);
+                listview = new ExListView(skin, "", 30, 30, 150, 150, EOS_VISIBLE | ELVS_VERTICALLIST | EOS_VSCROLL, EOS_EX_COMPOSITED, -1, 0, default, listviewProc);
                 listview.ColorBackground = Util.ExRGBA(120, 255, 240, 150);
                 listviewItemInfo = new List<LISTVIEW_ITEM>();
                 Random rn = new Random();
@@ -55,7 +55,7 @@ namespace ExDuiRTest
                 //改变内部滚动条回调
                 scroll.ObjProc = Marshal.GetFunctionPointerForDelegate(scrollbarProc);
                 //隐藏滚动条
-                scroll.PostMessage(SBM_SETVISIBLE, IntPtr.Zero, (IntPtr)0);
+                scroll.PostMessage(SBM_SETVISIBLE, IntPtr.Zero, IntPtr.Zero);
                 
                 skin.Visible = true;
             }
@@ -73,7 +73,7 @@ namespace ExDuiRTest
             else if (uMsg == WM_MOUSELEAVE)
             {
                 //隐藏滚动条
-                obj.PostMessage(SBM_SETVISIBLE, IntPtr.Zero, (IntPtr)0);
+                obj.PostMessage(SBM_SETVISIBLE, IntPtr.Zero, IntPtr.Zero);
             }
             else if (uMsg == SBM_SETVISIBLE)
             {

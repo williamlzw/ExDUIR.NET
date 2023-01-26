@@ -19,11 +19,11 @@ namespace ExDuiRTest
         {
             //读入主题包
             var theme = Properties.Resources.Default;
-            //初始化引擎,必须
-            theApp = new ExApp(theme);
+            //初始化引擎,必须。开启DPI缩放,渲染全部菜单(二级子菜单改背景色需启用此风格)
+            theApp = new ExApp(theme, EXGF_DPI_ENABLE | EXGF_MENU_ALL);
             //创建窗口皮肤,必须
             skin = new ExSkin(null, null, "ExDUIR演示,项目地址：https://gitee.com/william_lzw/ExDUIR", 0, 0, 600, 600,
-            EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_BUTTON_MAX | EWS_MOVEABLE | EWS_CENTERWINDOW |
+            EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE | EWS_CENTERWINDOW |
             EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, IntPtr.Zero, MainWndProc);
             if (skin.Validate)
             {
@@ -45,6 +45,7 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试线性布局", 10, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试流式布局", 10, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试表格布局", 10, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                
                 buttons.Add(new ExButton(skin, "测试组合框", 120, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试缓动窗口", 120, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试异形窗口", 120, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
@@ -54,15 +55,26 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试图标列表", 120, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试树形列表", 120, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试矩阵", 120, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试扩展按钮", 120, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试扩展编辑框", 120, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试扩展菜单", 120, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试事件分发", 120, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试加载动画", 120, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
 
-                //Console.WriteLine(Marshal.SizeOf(typeof(Double)));
-                //Console.WriteLine(sizeof(double));
-                //IntPtr pd = Marshal.AllocHGlobal(sizeof(float));
-                //Util.FloatToIntPtr(pd, (float)1.23112244);
-
-                //var ret = Util.IntPtrToFloat(pd);
-                //Console.WriteLine(ret);
-
+                buttons.Add(new ExButton(skin, "测试滑块条", 230, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试旋转图片框", 230, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试拖动组件", 230, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试接收拖曳", 230, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试进度条", 230, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试限制通知", 230, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试模态窗口", 230, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试标题框", 230, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试日期框", 230, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试颜色选择器", 230, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试月历", 230, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试CEF浏览框", 230, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试打分按钮", 230, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试轮播", 230, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
                 for (int i = 0; i < buttons.Count; i++)
@@ -170,6 +182,82 @@ namespace ExDuiRTest
             else if (hObj == buttons[22].handle)
             {
                 MatrixWindow.CreateMatrixWindow(skin);
+            }
+            else if (hObj == buttons[23].handle)
+            {
+                ButtonExWindow.CreateButtonExWindow(skin);
+            }
+            else if (hObj == buttons[24].handle)
+            {
+                EditExWindow.CreateEditExWindow(skin);
+            }
+            else if (hObj == buttons[25].handle)
+            {
+                CustomMenuWindow.CreateCustomMenuWindow(skin);
+            }
+            else if (hObj == buttons[26].handle)
+            {
+                DispatchMessageWindow.CreateDispatchMessageWindow(skin);
+            }
+            else if (hObj == buttons[27].handle)
+            {
+                LoadingWindow.CreateLoadingWindow(skin);
+            }
+            else if (hObj == buttons[28].handle)
+            {
+                SliderBarWindow.CreateSliderBarWindow(skin);
+            }
+            else if (hObj == buttons[29].handle)
+            {
+                RotateImageWindow.CreateRotateImageWindow(skin);
+            }
+            else if (hObj == buttons[30].handle)
+            {
+                DragObjWindow.CreateDragObjWindow(skin);
+            }
+            else if (hObj == buttons[31].handle)
+            {
+                DropWindow.CreateDropWindow(skin);
+            }
+            else if (hObj == buttons[32].handle)
+            {
+                ProgressBarWindow.CreateProgressBarWindow(skin);
+            }
+            else if (hObj == buttons[33].handle)
+            {
+                NchitTestWindow.CreateNchitTestWindow(skin);
+            }
+            else if (hObj == buttons[34].handle)
+            {
+                ModalWindow.CreateModalWindow(skin);
+            }
+            else if (hObj == buttons[35].handle)
+            {
+                TitleBarWindow.CreateTitleBarWindow(skin);
+            }
+            else if (hObj == buttons[36].handle)
+            {
+                DateBoxWindow.CreateDateBoxWindow(skin);
+            }
+            else if (hObj == buttons[37].handle)
+            {
+                ColorPickerWindow.CreateColorPickerWindow(skin);
+            }
+            else if (hObj == buttons[38].handle)
+            {
+                CalendarWindow.CreateCalendarWindow(skin);
+            }
+            else if (hObj == buttons[39].handle)
+            {
+                
+            }
+            else if (hObj == buttons[40].handle)
+            {
+                ScoreButtonWindow.CreateScoreButtonWindow(skin);
+            }
+            else if (hObj == buttons[41].handle)
+            {
+                CarouselWindow.CreateCarouselWindow(skin);
             }
             return IntPtr.Zero;
         }

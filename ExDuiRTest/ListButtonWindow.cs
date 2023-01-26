@@ -82,7 +82,7 @@ namespace ExDuiRTest
 
                 listButtonProc = new ExObjProcDelegate(OnListButtonMsgProc);
                 listButtonWndProc = new ExWndProcDelegate(OnListButtonWndProc);
-                menubar2 = new ExMenuBar(skin, "", 0, 60, 220, 22, -1, -1, -1, 0, listButtonProc);
+                menubar2 = new ExMenuBar(skin, "", 0, 60, 220, 22, -1, -1, -1, 0, IntPtr.Zero, listButtonProc);
                 menubar2.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单按钮背景色
                 menubar2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);//改变菜单按钮字体正常色
                 menubar2.ColorTextHover = Util.ExRGBA(255, 255, 255, 55);//改变菜单按钮字体热点色
@@ -91,9 +91,12 @@ namespace ExDuiRTest
                 //列表按钮插入一级菜单句柄
                 foreach (MenuItem index in mainMenu.MenuItems)
                 {
-                    ExListButtonItemInfo item1info = new ExListButtonItemInfo();
-                    item1info.wzText = Marshal.StringToHGlobalUni(index.Name);
-                    item1info.nMenu = index.Handle;
+                    ExListButtonItemInfo item1info = new ExListButtonItemInfo()
+                    {
+                        wzText = Marshal.StringToHGlobalUni(index.Name),
+                        nMenu = index.Handle
+                    };
+
                     //把一级菜单句柄加入列表按钮
                     menubar.InsertItem(item1info);
                     menubar2.InsertItem(item1info);
@@ -127,11 +130,13 @@ namespace ExDuiRTest
                 ExImage image2 = new ExImage(bitmap);
                 var nImageIndex = imglist.AddImage(image2, 0);
                 toolbar.SetImageList(imglist);
-                ExListButtonItemInfo item1info2 = new ExListButtonItemInfo();
-                item1info2.nType = 1;
-                item1info2.nImage = nImageIndex;
-                item1info2.wzText = IntPtr.Zero;
-                item1info2.wzTips = Marshal.StringToHGlobalUni("普通按钮1");
+                ExListButtonItemInfo item1info2 = new ExListButtonItemInfo()
+                {
+                    nType = 1,
+                    nImage = nImageIndex,
+                    wzText = IntPtr.Zero,
+                    wzTips = Marshal.StringToHGlobalUni("普通按钮1")
+                };
                 toolbar.InsertItem(item1info2);
                 item1info2.nType = 1;
                 item1info2.nImage = 0;
@@ -221,8 +226,11 @@ namespace ExDuiRTest
                 var currentWnd = WinAPI.WindowFromPoint(point);
                 WinAPI.ScreenToClient(currentWnd, ref point);
                 var obj = skin.GetObjFromPoint(point.x, point.y, (int)currentWnd);
-                var menuBar = new ExMenuBar(obj);
-                menuBar.PostMessage(LBM_SELECTITEM, IntPtr.Zero, IntPtr.Zero);
+                if(obj != null)
+                {
+                    var menuBar = new ExMenuBar(obj.handle);
+                    menuBar.PostMessage(LBM_SELECTITEM, IntPtr.Zero, IntPtr.Zero);
+                }
             }
             return IntPtr.Zero;
         }
@@ -234,7 +242,7 @@ namespace ExDuiRTest
                 var rcWindow = skin.WindowRect;
                 ExMenuBar button = new ExMenuBar(hObj);
                 var rcObj = button.WindowRect;
-                button.TrackPopupMenu(lParam, 1, rcWindow.nLeft + rcObj.nLeft + (int)wParam, rcWindow.nTop + rcObj.nBottom, IntPtr.Zero, listButtonWndProc, EMNF_NOSHADOW);
+                button.TrackPopupMenu(lParam, 1, rcWindow.nLeft + rcObj.nLeft + (int)wParam, rcWindow.nTop + (int)ExAPI.Ex_Scale(rcObj.nBottom), IntPtr.Zero, listButtonWndProc, EMNF_NOSHADOW);
                 Marshal.WriteInt32(lpResult, 1);
                 return (IntPtr)1;
             }

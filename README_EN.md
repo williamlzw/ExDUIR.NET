@@ -82,14 +82,71 @@ win10+, win7 need install KB2670838 patch
 ### layout table:  
 ![image](demo_image/demo_layout_table.png)
 
-### layout listbutton:  
+### listbutton:  
 ![image](demo_image/demo_listbutton.png)
 
-### layout listview:  
+### listview:  
 ![image](demo_image/demo_listview.png)
 
-### layout navbutton:  
+### navbutton:  
 ![image](demo_image/demo_navbutton.png)
 
-### layout radio and checkbox:  
+### radio and checkbox:  
 ![image](demo_image/demo_radio_checkbox.png)
+
+### reportlistview:  
+![image](demo_image/demo_reportlistview.png)
+
+### iconlistview:  
+![image](demo_image/demo_iconlistview.png)
+
+### treeview:  
+![image](demo_image/demo_treeview.png)
+
+### matrix:  
+![image](demo_image/demo_matrix.png)
+
+### buttonex:  
+![image](demo_image/demo_buttonex.png)
+
+### editex:  
+![image](demo_image/demo_editex.png)
+
+### custommenu:  
+![image](demo_image/demo_custommenu.png)
+
+### eventdispatch:  
+![image](demo_image/demo_eventdispatch.png)
+
+### loading:  
+![image](demo_image/demo_loading.png)
+
+### sliderbar:  
+![image](demo_image/demo_sliderbar.png)
+
+### rotatebox:  
+![image](demo_image/demo_rotatebox.png)
+
+### drag obj:  
+![image](demo_image/demo_dragobj.png)
+
+### progressbar
+![image](demo_image/demo_progressbar.png)
+
+### notify obj
+![image](demo_image/demo_notifyobj.png)
+
+### titlebar
+![image](demo_image/demo_titlebar.png)
+
+### datebox
+![image](demo_image/demo_datebox.png)
+
+### colorpicker
+![image](demo_image/demo_colorpicker.png)
+
+### scorebutton
+![image](demo_image/demo_scorebutton.png)
+
+### carousel
+![image](demo_image/demo_carousel.png)

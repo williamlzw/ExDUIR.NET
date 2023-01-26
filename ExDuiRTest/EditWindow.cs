@@ -92,7 +92,7 @@ namespace ExDuiRTest
             }
         }
 
-        static public IntPtr OnEditButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
+        static private IntPtr OnEditButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (edit7.Validate)
             {
@@ -183,7 +183,7 @@ namespace ExDuiRTest
             return IntPtr.Zero;
         }
 
-        static public IntPtr OnEditNotifyEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
+        static private IntPtr OnEditNotifyEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode == NM_EN_SELCHANGE)
             {

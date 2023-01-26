@@ -55,7 +55,7 @@
     <Compile Include="Frameworks\ExException.cs" />
     <Compile Include="Frameworks\ExResource.cs" />
     <Compile Include="Frameworks\ExSkin.cs" />
-    <Compile Include="Frameworks\ExTheme.cs" />
+    <Compile Include="Frameworks\Graphics\ExTheme.cs" />
     <Compile Include="Frameworks\ExWindow.cs" />
     <Compile Include="Frameworks\Graphics\ExBrush.cs" />
     <Compile Include="Frameworks\Graphics\ExCanvas.cs" />
@@ -73,8 +73,8 @@
     <Compile Include="Frameworks\Layout\ExPageLayout.cs" />
     <Compile Include="Frameworks\Layout\ExRelativateLayout.cs" />
     <Compile Include="Frameworks\Layout\ExTableLayout.cs" />
-    <Compile Include="Frameworks\Utility\ExImageList.cs" />
-    <Compile Include="Frameworks\Utility\ExMessageBox.cs" />
+    <Compile Include="Frameworks\Graphics\ExImageList.cs" />
+    <Compile Include="Frameworks\ExMessageBox.cs" />
     <Compile Include="Frameworks\Utility\ExUtil.cs" />
     <Compile Include="Native\ExAPI.cs" />
     <Compile Include="Native\ExConst.cs" />

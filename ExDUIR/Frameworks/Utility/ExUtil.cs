@@ -123,6 +123,14 @@ namespace ExDuiR.NET.Frameworks.Utility
             return (ushort)(((short)b << 8) | a);
         }
 
+        public static int GET_X_LPARAM(IntPtr value)
+        {
+            return (int)(short)((uint)value & 0xFFFF);
+        }
+        public static int GET_Y_LPARAM(IntPtr value)
+        {
+            return (int)(short)((uint)value >> 16);
+        }
         public static ushort LOWORD(uint value)
         {
             return (ushort)(value & 0xFFFF);
@@ -138,6 +146,14 @@ namespace ExDuiR.NET.Frameworks.Utility
         public static byte HIGHBYTE(int value)
         {
             return (byte)(value >> 8);
+        }
+
+        public static float GetDpi()
+        {
+            var dc = WinAPI.GetDC(IntPtr.Zero);
+            float dpi = (float)WinAPI.GetDeviceCaps(dc, 88) / 96;
+            WinAPI.ReleaseDC(IntPtr.Zero, dc);
+            return dpi;
         }
 
         public static int ExGetR(int argb)
@@ -158,6 +174,16 @@ namespace ExDuiR.NET.Frameworks.Utility
         public static int ExGetA(int argb)
         {
             return LOWBYTE((argb >> 24));
+        }
+
+        public static int ExRGB(int red, int green, int blue)
+        {
+            var color =  Color.FromArgb(255, red, green, blue);
+            var r = color.R;
+            var g = color.G;
+            var b = color.B;
+            int rgb = (r & 0xff) | ((g & 0xff) << 8) | ((b & 0xff) << 16);
+            return rgb;
         }
 
         public static int ExRGBA(int red, int green, int blue, int alpha)

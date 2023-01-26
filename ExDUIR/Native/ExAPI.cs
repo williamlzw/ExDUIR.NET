@@ -2947,7 +2947,7 @@ namespace ExDuiR.NET.Native
         /// <param name="hWnd"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_DUIFromWindow")]
-        public static extern IntPtr Ex_DUIFromWindow(IntPtr hWnd);
+        public static extern int Ex_DUIFromWindow(IntPtr hWnd);
 
         /// <summary>
         /// 组件获取滚动条范围
@@ -3678,7 +3678,7 @@ namespace ExDuiR.NET.Native
         /// <param name="cchMaxLength"></param>
         /// <returns>返回字符数,0表示失败</returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjGetDropString")]
-        public static extern int Ex_ObjGetDropString(int hObj, int pDataObject, StringBuilder lpwzBuffer, int cchMaxLength);
+        public static extern int Ex_ObjGetDropString(int hObj, IntPtr pDataObject, StringBuilder lpwzBuffer, int cchMaxLength);
 
 
         /// <summary>
@@ -3726,7 +3726,7 @@ namespace ExDuiR.NET.Native
         /// <param name="lpHeight"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_canvas_calctextsize")]
-        public static extern bool _canvas_calctextsize(int hCanvas, int hFont, string lpwzText, long dwLen, int dwDTFormat, IntPtr lParam, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight);
+        public static extern bool _canvas_calctextsize(int hCanvas, int hFont, string lpwzText, IntPtr dwLen, int dwDTFormat, IntPtr lParam, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight);
 
         /// <summary>
         /// 画布清除背景
@@ -4006,7 +4006,7 @@ namespace ExDuiR.NET.Native
         /// <param name="bottom"></param>
         /// <returns>返回是否成功</returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_canvas_drawtext2")]
-        public static extern bool _canvas_drawtext2(int hCanvas, int hFont, IntPtr hBrush, string lpwzText, long dwLen, int dwDTFormat, float left, float top, float right, float bottom);
+        public static extern bool _canvas_drawtext2(int hCanvas, int hFont, IntPtr hBrush, string lpwzText, IntPtr dwLen, int dwDTFormat, float left, float top, float right, float bottom);
 
         /// <summary>
         /// 画布画文本Ex
@@ -4026,7 +4026,7 @@ namespace ExDuiR.NET.Native
         /// <param name="lParam"></param>
         /// <returns>返回是否成功</returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_canvas_drawtextex")]
-        public static extern bool _canvas_drawtextex(int hCanvas, int hFont, int crText, string lpwzText, long dwLen, int dwDTFormat, float left, float top, float right, float bottom, int iGlowsize, int crShadow, IntPtr lParam);
+        public static extern bool _canvas_drawtextex(int hCanvas, int hFont, int crText, string lpwzText, IntPtr dwLen, int dwDTFormat, float left, float top, float right, float bottom, int iGlowsize, int crShadow, IntPtr lParam);
 
         /// <summary>
         /// 画布画SVG从数据
