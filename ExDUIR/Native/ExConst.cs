@@ -3251,22 +3251,25 @@
         public const int DBM_CLEAR = 20003;
         #endregion
 
+        #region 消息_属性框_
+        /// <summary>
+        /// 消息_属性框_添加表项 添加行到尾部 wParam:组件_类型  lParam: PGITEM 指针
+        /// </summary>
+        ///
+        public const int PGM_ADDITEM = 10010;
+        /// <summary>
+        /// 消息_属性框_取表项值 wParam: 未定义    lParam:表项名  return:表项值文本指针
+        /// </summary>
+        ///
+        public const int PGM_GETITEMVALUE = 10011;
+        /// <summary>
+        ///  消息_属性框_置表项值 wParam: 欲写入值    lParam:表项名  return:未定义
+        /// </summary>
+        ///
+        public const int PGM_SETITEMVALUE = 10012;
+        #endregion
+
         #region 事件_属性框_
-        /// <summary>
-        /// 事件_属性框添加表项 添加行到尾部 wParam:组件_类型  lParam: PGITEM 指针
-        /// </summary>
-        ///
-        public const int PGN_ADDITEM = 10010;
-        /// <summary>
-        /// 事件_属性框_取表项值 wParam: 未定义    lParam:表项名  return:表项值文本指针
-        /// </summary>
-        ///
-        public const int PGN_GETITEMVALUE = 10011;
-        /// <summary>
-        ///  事件_属性框_置表项值 wParam: 欲写入值    lParam:表项名  return:未定义
-        /// </summary>
-        ///
-        public const int PGN_SETITEMVALUE = 10012;
         /// <summary>
         /// 事件_属性框_表项值改变 wParam:行索引(不包括标题行,包括分组行和组件行,从1开始)   lParam:数据指针(可以通过"__get(数据指针,PGL_内存偏移_/////)"来获取数据)
         /// </summary>
@@ -3473,6 +3476,8 @@
         public const int WM_NOTIFY = 78;
         public const int WM_SETICON = 128;
         public const int WM_NCHITTEST = 132;
+        public const int WM_NCLBUTTONDOWN = 161;
+        public const int WM_NCLBUTTONDBLCLK = 163;
         public const int WM_KEYDOWN = 256;
         public const int WM_KEYUP = 257;
         public const int WM_CHAR = 258;
@@ -3596,6 +3601,13 @@
         /// 分层窗口
         /// </summary>
         public const int WS_EX_LAYERED = 0x00080000;
+        #endregion
+
+        #region 命中类型_
+        /// <summary>
+        /// 标题栏
+        /// </summary>
+        public const int HTCAPTION = 2;
         #endregion
     }
 }

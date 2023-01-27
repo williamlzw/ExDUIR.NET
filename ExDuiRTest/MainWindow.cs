@@ -75,6 +75,17 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试CEF浏览框", 230, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试打分按钮", 230, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试轮播", 230, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+
+                buttons.Add(new ExButton(skin, "测试模板列表", 340, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试鼠标绘制板", 340, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试调色板", 340, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试属性框", 340, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试原生窗口", 340, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试全屏置顶", 340, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试miniblink", 340, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试媒体播放器", 340, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "自定字体和SVG", 340, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试卷帘菜单", 340, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
                 for (int i = 0; i < buttons.Count; i++)
@@ -258,6 +269,42 @@ namespace ExDuiRTest
             else if (hObj == buttons[41].handle)
             {
                 CarouselWindow.CreateCarouselWindow(skin);
+            }
+            else if (hObj == buttons[42].handle)
+            {
+
+            }
+            else if (hObj == buttons[43].handle)
+            {
+                DrawingBoardWindow.CreateDrawingBoardWindow(skin);
+            }
+            else if (hObj == buttons[44].handle)
+            {
+                PaletteWindow.CreatePaletteWindow(skin);
+            }
+            else if (hObj == buttons[45].handle)
+            {
+                PropertygridWindow.CreatePropertygridWindow(skin);
+            }
+            else if (hObj == buttons[46].handle)
+            {
+                
+            }
+            else if (hObj == buttons[47].handle)
+            {
+                FullScreenWindow.CreateFullScreenWindow(skin);
+            }
+            else if (hObj == buttons[48].handle)
+            {
+
+            }
+            else if (hObj == buttons[49].handle)
+            {
+
+            }
+            else if (hObj == buttons[50].handle)
+            {
+                SVGWindow.CreateSVGWindow(skin);
             }
             return IntPtr.Zero;
         }

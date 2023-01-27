@@ -953,6 +953,63 @@ namespace ExDuiR.NET.Native
     };
 
     /// <summary>
+    /// 属性框项目值改变信息结构 PGN_ITEMVALUECHANGE通知参数lParam
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExPropergridChangeItemInfo
+    {
+        /// <summary>
+        /// 改变类型
+        /// </summary>
+        public int type;
+        /// <summary>
+        /// 改变内容,注意对于颜色框 为文本数字
+        /// </summary>
+        public string text;
+    }
+
+    /// <summary>
+    /// 属性框项目组合框子结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    public struct ExPropergridItemInfoCombobox
+    {
+        /// <summary>
+        /// 组合框条目内容, 默认内容为test
+        /// </summary>
+        public IntPtr text;
+    }
+
+    /// <summary>
+    /// 属性框项目结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public class ExPropergridItemInfo
+    {
+        /// <summary>
+        /// 默认0,为尾部.索引从非表头开始计算,从1开始
+        /// </summary>
+        public uint index = 0;
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// 注意对于颜色框 为文本数字
+        /// </summary>
+        public IntPtr text;
+        /// <summary>
+        /// 组合框数组内容
+        /// </summary>
+        [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 50, ArraySubType = UnmanagedType.Struct)]
+        public ExPropergridItemInfoCombobox[] textCombobox = new ExPropergridItemInfoCombobox[50];
+        /// <summary>
+        /// 组合框数组数量
+        /// </summary>
+        public uint comboboxNum;
+    };
+
+    /// <summary>
     /// API声明
     /// </summary>
     public class ExAPI
@@ -2037,6 +2094,16 @@ namespace ExDuiR.NET.Native
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_font_createfromfamily")]
         public static extern int _font_createfromfamily(string lpwzFontFace, int dwFontSize, int dwFontStyle);
+
+        /// <summary>
+        /// 创建字体自文件
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="dwFontSize"></param>
+        /// <param name="dwFontStyle"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_font_createfromfile")]
+        public static extern int _font_createfromfile(string path, int dwFontSize, int dwFontStyle);
 
         /// <summary>
         /// 创建字体自逻辑字体
@@ -4040,7 +4107,7 @@ namespace ExDuiR.NET.Native
         /// <param name="bottom"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_canvas_drawsvg")]
-        public static extern int _canvas_drawsvg(int hCanvas, IntPtr data, int color, float left, float top, float right, float bottom);
+        public static extern bool _canvas_drawsvg(int hCanvas, IntPtr data, int color, float left, float top, float right, float bottom);
 
         /// <summary>
         /// 画布画SVG从数据
@@ -4054,7 +4121,7 @@ namespace ExDuiR.NET.Native
         /// <param name="bottom"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_canvas_drawsvgfromfile")]
-        public static extern int _canvas_drawsvgfromfile(int hCanvas, string svgName, int color, float left, float top, float right, float bottom);
+        public static extern bool _canvas_drawsvgfromfile(int hCanvas, string svgName, int color, float left, float top, float right, float bottom);
 
         /// <summary>
         /// 在画布上填充一个多边形

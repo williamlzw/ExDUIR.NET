@@ -68,11 +68,13 @@
     <Compile Include="DateBoxWindow.cs" />
     <Compile Include="DispatchMessageWindow.cs" />
     <Compile Include="DragObjWindow.cs" />
+    <Compile Include="DrawingBoardWindow.cs" />
     <Compile Include="DropWindow.cs" />
     <Compile Include="EasingWindow.cs" />
     <Compile Include="EditExWindow.cs" />
     <Compile Include="EditWindow.cs" />
     <Compile Include="FlowLayoutWindow.cs" />
+    <Compile Include="FullScreenWindow.cs" />
     <Compile Include="GroupBoxWindow.cs" />
     <Compile Include="IconListViewWindow.cs" />
     <Compile Include="LabelWindow.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="ModalWindow.cs" />
     <Compile Include="NavButtonWindow.cs" />
     <Compile Include="NchitTestWindow.cs" />
+    <Compile Include="PaletteWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgressBarWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -94,11 +97,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="PropertygridWindow.cs" />
     <Compile Include="RelativeLayoutWindow.cs" />
     <Compile Include="ReportListViewWindow.cs" />
     <Compile Include="RotateImageWindow.cs" />
     <Compile Include="ScoreButtonWindow.cs" />
     <Compile Include="SliderBarWindow.cs" />
+    <Compile Include="SVGWindow.cs" />
     <Compile Include="TableLayoutWindow.cs" />
     <Compile Include="TemplateListView.cs" />
     <Compile Include="TestCustomCtrl.cs" />
@@ -220,6 +225,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\carousel3.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\niu.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\niu1.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

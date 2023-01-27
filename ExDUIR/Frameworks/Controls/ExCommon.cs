@@ -509,6 +509,47 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExDrawingBoard(ExControl parent) : base(parent)
         {
         }
+
+        /// <summary>
+        /// 清空画板
+        /// </summary>
+        public void Clear()
+        {
+            this.SendMessage(DBM_CLEAR, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// 设置画笔宽度
+        /// </summary>
+        public int PenWidth
+        {
+            set
+            {
+                this.SendMessage(DBM_SETPENWIDTH, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 设置画笔ARGB颜色
+        /// </summary>
+        public int PenColor
+        {
+            set
+            {
+                this.SendMessage(DBM_SETPENCOLOR, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 设置画笔类型 0画笔, 1橡皮
+        /// </summary>
+        public int PenType
+        {
+            set
+            {
+                this.SendMessage(DBM_SETPENTYPE, IntPtr.Zero, (IntPtr)value);
+            }
+        }
         public new string ClassName => "DrawingBoard";
     }
 
@@ -1521,6 +1562,33 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExPropertyGrid(ExControl parent) : base(parent)
         {
         }
+        public string GetItemValue(string itemName)
+        {
+            var ret = this.SendMessage(PGM_GETITEMVALUE, IntPtr.Zero, Marshal.StringToHGlobalUni(itemName));
+            if(ret != IntPtr.Zero)
+            {
+                return Marshal.PtrToStringUni(ret);
+            }
+            return "";
+        }
+
+        public void SetItemValue(string itemName, string ItemValue)
+        {
+            this.SendMessage(PGM_SETITEMVALUE, Marshal.StringToHGlobalUni(ItemValue), Marshal.StringToHGlobalUni(itemName));
+        }
+
+        /// <summary>
+        /// 添加项目
+        /// </summary>
+        /// <param name="type">组件类型 PGT_OBJ_</param>
+        /// <param name="info"></param>
+        public void AddItem(int type, ExPropergridItemInfo info)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExPropergridItemInfo)));
+            Marshal.StructureToPtr(info, ptr, false);
+            this.SendMessage(PGM_ADDITEM, (IntPtr)type, ptr);
+        }
+
         public new string ClassName => "PropertyGrid";
     }
 

@@ -117,7 +117,7 @@ namespace ExDuiRTest
                         }
                         //实例化列表框项目
                         ExListItem item = new ExListItem(hObj);
-                        canvas.DrawText(item.GetFont(), listviewItemInfo[cd.iItem - 1].color, listviewItemInfo[cd.iItem - 1].text, -1, DT_SINGLELINE | DT_VCENTER, cd.nLeft + listviewItemInfo[cd.iItem - 1].depth * 5, cd.nTop, cd.nRight, cd.nBottom);
+                        canvas.DrawText(item.Font, listviewItemInfo[cd.iItem - 1].color, listviewItemInfo[cd.iItem - 1].text, -1, DT_SINGLELINE | DT_VCENTER, cd.nLeft + listviewItemInfo[cd.iItem - 1].depth * 5, cd.nTop, cd.nRight, cd.nBottom);
                         return (IntPtr)1;
                     }
                     else if (ni.nCode == LVN_ITEMCHANGED)

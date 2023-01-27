@@ -91,7 +91,7 @@ namespace ExDuiRTest
                 {
                     canvas.Clear(Util.ExRGB2ARGB(0, 0));
                 }
-                canvas.CalcTextSize(Obj.GetFont(), Obj.Text, -1, ps.dwTextFormat, IntPtr.Zero, ps.nWidth, ps.nHeight, out var nWidthText, out var nHeightText);
+                canvas.CalcTextSize(Obj.Font, Obj.Text, -1, ps.dwTextFormat, IntPtr.Zero, ps.nWidth, ps.nHeight, out var nWidthText, out var nHeightText);
                 var hImg = (int)Obj.LParam;
                 int nWidthIcon = 0;
                 int nHeightIcon = 0;
@@ -103,7 +103,7 @@ namespace ExDuiRTest
 
                 }
 
-                canvas.DrawText(Obj.GetFont(), new ExBrush(Obj.ColorTextNormal), Obj.Text, -1, ps.dwTextFormat | DT_CENTER | DT_VCENTER, (ps.nWidth - nWidthText) / 2, (ps.nHeight - nHeightIcon - nHeightText - 3) / 2 + nHeightIcon + 3, (ps.nWidth + nWidthText) / 2, (ps.nHeight - nHeightIcon - nHeightText - 3) / 2 + nHeightIcon + 3 + nHeightText);
+                canvas.DrawText(Obj.Font, new ExBrush(Obj.ColorTextNormal), Obj.Text, -1, ps.dwTextFormat | DT_CENTER | DT_VCENTER, (ps.nWidth - nWidthText) / 2, (ps.nHeight - nHeightIcon - nHeightText - 3) / 2 + nHeightIcon + 3, (ps.nWidth + nWidthText) / 2, (ps.nHeight - nHeightIcon - nHeightText - 3) / 2 + nHeightIcon + 3 + nHeightText);
 
                 Obj.EndPaint(ref ps);
                 Marshal.WriteInt32(pResult, 1);

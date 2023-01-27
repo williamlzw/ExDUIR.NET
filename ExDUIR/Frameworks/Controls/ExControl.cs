@@ -1254,9 +1254,23 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// 取组件字体
         /// </summary>
         /// <returns></returns>
-        public ExFont GetFont()
+        public ExFont Font
         {
-            return new ExFont(ExAPI.Ex_ObjGetFont(m_hObj));
+            get
+            {
+                return new ExFont(ExAPI.Ex_ObjGetFont(m_hObj));
+            }
+        }
+        
+        /// <summary>
+        /// 取组件画布
+        /// </summary>
+        public ExCanvas Canvas
+        {
+            get
+            {
+                return new ExCanvas((int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_HCANVAS));
+            }
         }
 
         /// <summary>

@@ -214,6 +214,12 @@
   <data name="navbkg2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\navbkg2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="niu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\niu.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="niu1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\niu1.svg;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="psw_normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\psw_normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

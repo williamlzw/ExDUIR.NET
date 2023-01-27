@@ -19,6 +19,11 @@ namespace ExDuiR.NET.Frameworks.Graphics
             m_hFont = ExAPI._font_createfromfamily(fontFace, dwFontSize, dwFontStyle);
         }
 
+        public ExFont(string fontPath, int dwFontSize)
+        {
+            m_hFont = ExAPI._font_createfromfile(fontPath, dwFontSize, 0);
+        }
+
         public ExFont(ref WinAPI.LogFont lpLogFont)
         {
             m_hFont = ExAPI._font_createfromlogfont(ref lpLogFont);

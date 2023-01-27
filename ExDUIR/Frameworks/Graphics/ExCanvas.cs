@@ -146,6 +146,16 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_fillroundedrect(m_hCanvas, brush.handle, left, top, right, bottom, radiusX, radiusY);
         }
 
+        public bool DrawSvgFromFile(string svgPath, int color, float left, float top, float right, float bottom)
+        {
+            return ExAPI._canvas_drawsvgfromfile(m_hCanvas, svgPath, color, left, top, right, bottom);
+        }
+
+        public bool DrawSvg(IntPtr data, int color, float left, float top, float right, float bottom)
+        {
+            return ExAPI._canvas_drawsvg(m_hCanvas, data, color, left, top, right, bottom);
+        }
+
         public bool Flush()
         {
             return ExAPI._canvas_flush(m_hCanvas);
