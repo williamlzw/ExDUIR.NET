@@ -47,7 +47,7 @@ namespace ExDuiRTest
                     info.color = Util.ExRGB2ARGB(rn.Next(13777215, 16777215), 255);
                     listviewItemInfo.Add(info);
                 }
-                listview.SetItemCount(listviewItemInfo.Count);
+                listview.ItemCount = listviewItemInfo.Count;
                 //取出列表框内部滚动条
                 var scroll = new ExScrollBar(listview.GetScrollControl(SB_VERT));
                 

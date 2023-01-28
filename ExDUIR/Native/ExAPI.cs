@@ -837,7 +837,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 富文本框EM_GETTEXTRANGE,EM_FINDTEXT消息接收lParam参数
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=4)]
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public struct ExTextRange
     {
         public ExCharRange chrg;
@@ -858,7 +858,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 富文本框EN_LINK消息lParam参数结构
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, Pack=4)]
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
     public struct ExEnLink
     {
         public NMHDR nmhdr;
@@ -971,7 +971,7 @@ namespace ExDuiR.NET.Native
     /// <summary>
     /// 属性框项目组合框子结构
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
     public struct ExPropergridItemInfoCombobox
     {
         /// <summary>
@@ -1008,6 +1008,94 @@ namespace ExDuiR.NET.Native
         /// </summary>
         public uint comboboxNum;
     };
+
+    /// <summary>
+    /// 卷帘菜单附加用户图标
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExRollMenuExtraIcon
+    {
+        /// <summary>
+        /// 附加用户图标
+        /// </summary>
+        public int icon;
+        /// <summary>
+        /// 图标的坐标,坐标值从0开始计算,高度不得超过分组的高度,例如{ 0, 0, 32, 32 }
+        /// </summary>
+        public ExRect rc;
+    }
+
+    /// <summary>
+    /// 卷帘菜单状态图标
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExRollMenuStateIcon
+    {
+        /// <summary>
+        /// 对于分组:收缩图标; 对于子项:选中图标
+        /// </summary>
+        public int sicon;
+        /// <summary>
+        /// 对于分组:展开图标; 对于子项:未选中图标
+        /// </summary>
+        public int eicon;
+        /// <summary>
+        /// 图标的坐标,坐标值从0开始计算,高度不得超过分组的高度,例如{ 0, 0, 32, 32 }
+        /// </summary>
+        public ExRect rc;
+    }
+
+    /// <summary>
+    /// 卷帘菜单子项结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExRollMenuItem
+    {
+        /// <summary>
+        /// 项目标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// 标题左边的距离,受组件DT_风格影响
+        /// </summary>
+        public float left;
+        /// <summary>
+        /// 子项状态图标(是否选中)
+        /// </summary>
+        public ExRollMenuStateIcon stateIcon;
+        /// <summary>
+        /// 附加用户图标
+        /// </summary>
+        public ExRollMenuExtraIcon extraIcon;
+    }
+
+    /// <summary>
+    /// 卷帘菜单分组结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExRollMenuGroup
+    {
+        /// <summary>
+        /// 分组标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// 标题左边的距离,受组件DT_风格影响
+        /// </summary>
+        public float left;
+        /// <summary>
+        /// 是否展开  1展开
+        /// </summary>
+        public int expand;
+        /// <summary>
+        /// 分组状态图标(是否展开)
+        /// </summary>
+        public ExRollMenuStateIcon stateIcon;
+        /// <summary>
+        /// 附加用户图标
+        /// </summary>
+        public ExRollMenuExtraIcon extraIcon;
+    }
 
     /// <summary>
     /// API声明
@@ -1854,7 +1942,7 @@ namespace ExDuiR.NET.Native
         /// <param name="fRedraw"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjSetText")]
-        public static extern bool Ex_ObjSetText(int hObj, string lpString, bool fRedraw);
+        public static extern bool Ex_ObjSetText(int hObj, IntPtr lpString, bool fRedraw);
 
         /// <summary>
         /// 设置组件文本格式
@@ -1955,7 +2043,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dllPath">库文件名</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjMiniblinkBrowserInitialize")]
-        public static extern bool Ex_ObjMiniblinkBrowserInitialize(string libPath, string dllPath);
+        public static extern bool Ex_ObjMiniblinkBrowserInitialize(IntPtr libPath, IntPtr dllPath);
 
         /// <summary>
         /// 组件返回特定关系（如Z序或所有者）的组件句柄。

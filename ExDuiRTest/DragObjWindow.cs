@@ -64,7 +64,7 @@ namespace ExDuiRTest
                             x = Util.GET_X_LPARAM(lParam),
                             y = Util.GET_Y_LPARAM(lParam)
                         };
-                        var parent = obj.GetParent();
+                        var parent = obj.Parent;
                         var rcObj = obj.Rect;
                         ExRect rcParent = new ExRect();
                         if (parent != null)

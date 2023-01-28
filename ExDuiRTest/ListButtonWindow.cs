@@ -85,7 +85,7 @@ namespace ExDuiRTest
                 menubar2 = new ExMenuBar(skin, "", 0, 60, 220, 22, -1, -1, -1, 0, IntPtr.Zero, listButtonProc);
                 menubar2.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单按钮背景色
                 menubar2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);//改变菜单按钮字体正常色
-                menubar2.ColorTextHover = Util.ExRGBA(255, 255, 255, 55);//改变菜单按钮字体热点色
+                menubar2.ColorTextHover = Util.ExRGBA(255, 255, 255, 55);//改变菜单按钮字体悬浮色
                 menubar2.ColorTextDown = Util.ExRGBA(255, 255, 255, 100);//改变菜单按钮字体按下色
 
                 //列表按钮插入一级菜单句柄

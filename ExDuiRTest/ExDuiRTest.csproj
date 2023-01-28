@@ -84,6 +84,8 @@
     <Compile Include="LoadingWindow.cs" />
     <Compile Include="MainWindow.cs" />
     <Compile Include="MatrixWindow.cs" />
+    <Compile Include="MBBrowserWindow.cs" />
+    <Compile Include="MediaPlayWindow.cs" />
     <Compile Include="MessageBoxWindow.cs" />
     <Compile Include="ModalWindow.cs" />
     <Compile Include="NavButtonWindow.cs" />
@@ -100,6 +102,7 @@
     <Compile Include="PropertygridWindow.cs" />
     <Compile Include="RelativeLayoutWindow.cs" />
     <Compile Include="ReportListViewWindow.cs" />
+    <Compile Include="RollMenuWindow.cs" />
     <Compile Include="RotateImageWindow.cs" />
     <Compile Include="ScoreButtonWindow.cs" />
     <Compile Include="SliderBarWindow.cs" />
@@ -231,6 +234,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\niu1.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\authorization.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fans.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

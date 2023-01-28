@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Runtime.InteropServices;
 using ExDuiR.NET.Frameworks.Graphics;
 using ExDuiR.NET.Frameworks.Layout;
 using ExDuiR.NET.Frameworks.Utility;
@@ -88,6 +89,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         public int handle => m_hObj;
 
         /// <summary>
+        /// 类信息
+        /// </summary>
+        public ExClassInfo ClassInfo
+        {
+            get
+            {
+                ExAPI.Ex_ObjGetClassInfo(m_hObj, out var ret);
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// 自定义参数
         /// </summary>
         public IntPtr LParam
@@ -99,6 +112,21 @@ namespace ExDuiR.NET.Frameworks.Controls
             set
             {
                 ExAPI.Ex_ObjSetLong(m_hObj, EOL_LPARAM, value);
+            }
+        }
+
+        /// <summary>
+        /// 节点id
+        /// </summary>
+        public int NodeID
+        {
+            get
+            {
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_NODEID);
+            }
+            set
+            {
+                ExAPI.Ex_ObjSetLong(m_hObj, EOL_NODEID, (IntPtr)value);
             }
         }
 
@@ -321,7 +349,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             }
             set
             {
-                ExAPI.Ex_ObjSetText(m_hObj, value, true);
+                ExAPI.Ex_ObjSetText(m_hObj, Marshal.StringToHGlobalUni(value), true);
             }
         }
 
@@ -371,7 +399,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
-        /// 取/置文本热点色
+        /// 取/置文本悬浮色
         /// </summary>
         public int ColorTextHover
         {
@@ -722,15 +750,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// 取父组件
         /// </summary>
         /// <returns></returns>
-        public ExControl GetParent()
+        public ExControl Parent
         {
-            ExControl ctrl = null;
-            int hObj = ExAPI.Ex_ObjGetParent(m_hObj);
-            if (hObj != 0)
+            get
             {
-                ctrl = new ExControl(hObj);
+                ExControl ctrl = null;
+                int hObj = ExAPI.Ex_ObjGetParent(m_hObj);
+                if (hObj != 0)
+                {
+                    ctrl = new ExControl(hObj);
+                }
+                return ctrl;
             }
-            return ctrl;
         }
 
         /// <summary>

@@ -25,11 +25,24 @@ namespace ExDuiR.NET.Frameworks.Graphics
             m_hImgList = IntPtr.Zero;
         }
 
+        /// <summary>
+        /// 添加图片
+        /// </summary>
+        /// <param name="lpImage"></param>
+        /// <param name="cbImage"></param>
+        /// <param name="nIndex">位置索引,0为末尾</param>
+        /// <returns>返回图片索引</returns>
         public int Add(byte[] lpImage, int cbImage, int nIndex)
         {
             return (int)ExAPI._imglist_add(m_hImgList, lpImage, (IntPtr)cbImage, (IntPtr)nIndex);
         }
 
+        /// <summary>
+        /// 添加图片
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="nIndex">位置索引,0为末尾</param>
+        /// <returns>返回图片索引</returns>
         public int AddImage(ExImage image, int nIndex)
         {
             return (int)ExAPI._imglist_addimage(m_hImgList, image.handle, (IntPtr)nIndex);

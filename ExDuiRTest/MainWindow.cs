@@ -272,7 +272,7 @@ namespace ExDuiRTest
             }
             else if (hObj == buttons[42].handle)
             {
-
+                TemplateListView.CreateTemplateListView(skin);
             }
             else if (hObj == buttons[43].handle)
             {
@@ -296,15 +296,19 @@ namespace ExDuiRTest
             }
             else if (hObj == buttons[48].handle)
             {
-
+                MBBrowserWindow.CreateMBBrowserWindow(skin);
             }
             else if (hObj == buttons[49].handle)
             {
-
+                MediaPlayWindow.CreateMediaPlayWindow(skin);
             }
             else if (hObj == buttons[50].handle)
             {
                 SVGWindow.CreateSVGWindow(skin);
+            }
+            else if (hObj == buttons[51].handle)
+            {
+                RollMenuWindow.CreateRollMenuWindow(skin);
             }
             return IntPtr.Zero;
         }

@@ -258,6 +258,44 @@
         public const int NM_EN_LINK = 0x070b;
         #endregion
 
+        #region 事件_卷帘菜单_
+        /// <summary>
+        /// 事件_卷帘菜单_单击子项 wParam: 子项索引 (索引从1开始,0为分组)  lParam: 分组索引 (索引从1开始)
+        /// </summary>
+        public const int RMN_CLICK = -2;
+        #endregion
+
+        #region 消息_卷帘菜单_
+        /// <summary>
+        /// 消息_卷帘菜单_添加分组  wParam :索引(从1开始)  lParam: ROLLMENU_DATA * 指针
+        /// </summary>
+        public const int RM_ADDGROUP = 10010;
+        /// <summary>
+        /// 消息_卷帘菜单_添加子项  wParam :分组索引(从1开始)  lParam: ROLLMENU_ITEM * 指针
+        /// </summary>
+        public const int RM_ADDITEM = 10011;
+        /// <summary>
+        /// 消息_卷帘菜单_删除分组  wParam :分组索引(从1开始)  lParam:未定义   return: BOOL 
+        /// </summary>
+        public const int RM_DELGROUP = 10012;
+        /// <summary>
+        /// 消息_卷帘菜单_删除子项  wParam :分组索引(从1开始)  lParam:子项索引(从1开始) return: BOOL 
+        /// </summary>
+        public const int RM_DELITEM = 10013;
+        /// <summary>
+        /// 消息_卷帘菜单_设置分组状态(展开/收缩)  wParam :分组索引(从1开始)  lParam: 状态(BOOL)
+        /// </summary>
+        public const int RM_SETEXPAND = 10014;
+        /// <summary>
+        /// 消息_卷帘菜单_取当前选中子项  wParam: [int*] 分组索引(从1开始)  lParam: [int*] 子项索引(从1开始)  return:子项标题
+        /// </summary>
+        public const int RM_GETSEL = 10015;
+        /// <summary>
+        /// 消息_卷帘菜单_置当前选中子项  wParam: 分组索引(从1开始)  lParam : 子项索引(从1开始) return: BOOL
+        /// </summary>
+        public const int RM_SETSEL = 10016;
+        #endregion
+
         #region 颜色索引_
         /// <summary>
         /// 颜色索引_背景颜色
@@ -278,7 +316,7 @@
         public const int COLOR_EX_TEXT_NORMAL = 2;
 
         /// <summary>
-        /// 颜色索引_文本颜色_点燃
+        /// 颜色索引_文本颜色_悬浮
         /// </summary>
         ///
         public const int COLOR_EX_TEXT_HOVER = 3;
@@ -869,7 +907,27 @@
         ///
         public const int LVN_ITEMCHANGED = -101;
         /// <summary>
-        /// 事件_列表_热点跟踪
+        /// 事件_列表_表项选中状态,wParam项目索引从1开始
+        /// </summary>
+        ///
+        public const int LVN_ITEMSELECTD = -102;
+        /// <summary>
+        /// 事件_列表_表项选中状态取消,wParam项目索引从1开始
+        /// </summary>
+        ///
+        public const int LVN_ITEMSELECTC = -103;
+        /// <summary>
+        /// 事件_列表_表项被右击,wParam项目索引从1开始
+        /// </summary>
+        ///
+        public const int LVN_ITEMRCLICK = -104;
+        /// <summary>
+        /// 事件_列表_表项被双击,wParam项目索引从1开始
+        /// </summary>
+        ///
+        public const int LVN_ITEMDCLICK = -105;
+        /// <summary>
+        /// 事件_列表_悬浮跟踪
         /// </summary>
         ///
         public const int LVN_HOTTRACK = -121;
@@ -2012,7 +2070,7 @@
         /// </summary>
         public const int STATE_READONLY = 0x40;
         /// <summary>
-        /// 状态_点燃
+        /// 状态_悬浮
         /// </summary>
         public const int STATE_HOVER = 0x80;
         /// <summary>
@@ -2060,7 +2118,7 @@
         /// </summary>
         public const int STATE_ALLOWSELECT = 0x200000;
         /// <summary>
-        /// 状态_超链接_点燃
+        /// 状态_超链接_悬浮
         /// </summary>
         public const int STATE_HYPERLINK_HOVER = 0x400000;
         /// <summary>
@@ -2113,22 +2171,22 @@
         /// 列表风格_横向列表
         /// </summary>
         ///
-        public const int ELVS_HORIZONTALLIST = 1;
+        public const int ELVS_HORIZONTALLIST = 0x01;
         /// <summary>
         /// 列表风格_允许多选
         /// </summary>
         ///
-        public const int ELVS_ALLOWMULTIPLE = 8;
+        public const int ELVS_ALLOWMULTIPLE = 0x08;
         /// <summary>
         /// 列表风格_表项跟踪
         /// </summary>
         ///
-        public const int ELVS_ITEMTRACKING = 16;
+        public const int ELVS_ITEMTRACKING = 0x10;
         /// <summary>
         /// 列表风格_始终显示选择项
         /// </summary>
         ///
-        public const int ELVS_SHOWSELALWAYS = 32;
+        public const int ELVS_SHOWSELALWAYS = 0x20;
         #endregion
 
         #region 消息_模板列表_
@@ -3587,6 +3645,10 @@
         /// 在一个被其它窗口覆盖的窗口中
         /// </summary>
         public const int HTTRANSPARENT = -1;
+        /// <summary>
+        /// 标题栏
+        /// </summary>
+        public const int HTCAPTION = 2;
         #endregion
 
         #region win32窗口风格_
@@ -3603,11 +3665,35 @@
         public const int WS_EX_LAYERED = 0x00080000;
         #endregion
 
-        #region 命中类型_
+        #region 消息_媒体播放状态_
         /// <summary>
-        /// 标题栏
+        /// 消息_媒体播放状态_播放
         /// </summary>
-        public const int HTCAPTION = 2;
+        public const int MFM_STATE_PLAY = 10010;
+        /// <summary>
+        /// 消息_媒体播放状态_暂停
+        /// </summary>
+        public const int MFM_STATE_PAUSE = 10011;
+        /// <summary>
+        /// 消息_媒体播放状态_继续播放
+        /// </summary>
+        public const int MFM_STATE_CONTINUE = 10012;
+        /// <summary>
+        /// 消息_媒体播放状态_停止
+        /// </summary>
+        public const int MFM_STATE_STOP = 10013;
+        /// <summary>
+        /// 消息_播放速率 lParam: (int)速率
+        /// </summary>
+        public const int MFM_RATE = 10014;
+        /// <summary>
+        /// 消息_置播放位置 lParam: 单位 秒
+        /// </summary>
+        public const int MFM_SET_POSITION = 10015;
+        /// <summary>
+        /// 消息_取视频时长 单位 秒
+        /// </summary>
+        public const int MFM_GET_DURATION = 10016;
         #endregion
     }
 }

@@ -1350,9 +1350,12 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
         }
 
-        public IntPtr SetItemCount(int count)
+        public int ItemCount
         {
-            return this.SendMessage(LVM_SETITEMCOUNT, (IntPtr)count, (IntPtr)count);
+            set
+            {
+                this.SendMessage(LVM_SETITEMCOUNT, (IntPtr)value, (IntPtr)value);
+            }
         }
         public new string ClassName => "ListView";
     }
@@ -1402,7 +1405,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <summary>
         /// 置图片
         /// </summary>
-        /// <param name="type">1 热点状态 2按下状态</param>
+        /// <param name="type">1 悬浮状态 2按下状态</param>
         /// <param name="image"></param>
         public void SetImage(int type, ExImage image)
         {
@@ -1587,6 +1590,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExPropergridItemInfo)));
             Marshal.StructureToPtr(info, ptr, false);
             this.SendMessage(PGM_ADDITEM, (IntPtr)type, ptr);
+            Marshal.FreeHGlobal(ptr);
         }
 
         public new string ClassName => "PropertyGrid";
@@ -1778,7 +1782,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <summary>
         /// 置图片
         /// </summary>
-        /// <param name="type">1 热点状态 2按下状态</param>
+        /// <param name="type">1 悬浮状态 2按下状态</param>
         /// <param name="image"></param>
         public void SetImage(int type, ExImage image)
         {
@@ -1928,6 +1932,33 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExTemplateListView(ExControl parent) : base(parent)
         {
         }
+        public int ItemCount
+        {
+            set
+            {
+                this.SendMessage(LVM_SETITEMCOUNT, (IntPtr)value, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 表项悬浮色
+        /// </summary>
+        public int ItemHoverColor
+        {
+            set
+            {
+                this.SendMessage(TLVM_SET_ITEM_HOVERCOLOR, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        public int ItemSelectColor
+        {
+            set
+            {
+                this.SendMessage(TLVM_SET_ITEM_SELECTCOLOR, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
         public new string ClassName => "TListView";
     }
 
@@ -1986,7 +2017,29 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public static bool Initialize(string libPath, string dllPath)
         {
-            return ExAPI.Ex_ObjMiniblinkBrowserInitialize(libPath, dllPath);
+            return ExAPI.Ex_ObjMiniblinkBrowserInitialize(Marshal.StringToHGlobalUni(libPath), Marshal.StringToHGlobalUni(dllPath));
+        }
+
+        /// <summary>
+        /// 加载url,可以是网址或本地html
+        /// </summary>
+        public string LoadUrl
+        {
+            set
+            {
+                this.SendMessage(MBBM_LOAD, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+            }
+        }
+
+        /// <summary>
+        /// 执行js
+        /// </summary>
+        public string RunJS
+        {
+            set
+            {
+                this.SendMessage(MBBM_JS, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+            }
         }
         public new string ClassName => "MbBrowser";
     }
@@ -2172,5 +2225,196 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
         }
         public new string ClassName => "TitleBar";
+    }
+
+    /// <summary>
+    /// 卷帘菜单
+    /// </summary>
+    public class ExRollMenu : ExControl
+    {
+        public ExRollMenu(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "RollMenu", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExRollMenu(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "RollMenu", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, 0, pfnObjProc)
+        {
+        }
+        public ExRollMenu(int hObj) : base(hObj)
+        {
+        }
+        public ExRollMenu(ExControl parent) : base(parent)
+        {
+        }
+
+        /// <summary>
+        /// 删除分组
+        /// </summary>
+        /// <param name="index">分组索引 从1开始</param>
+        public void DelGroup(int index)
+        {
+            this.SendMessage(RM_DELGROUP, (IntPtr)index, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// 删除项目
+        /// </summary>
+        /// <param name="indexGroup">分组索引 从1开始</param>
+        /// <param name="indexItem">项目索引 从1开始</param>
+        public void DelItem(int indexGroup,int indexItem)
+        {
+            this.SendMessage(RM_DELITEM, (IntPtr)indexGroup, (IntPtr)indexItem);
+        }
+
+        /// <summary>
+        /// 设置分组状态(展开/收缩)
+        /// </summary>
+        /// <param name="indexGroup">分组索引 从1开始</param>
+        /// <param name="expand">是否展开</param>
+        public void SetExpand(int indexGroup, bool expand)
+        {
+            this.SendMessage(RM_SETEXPAND, (IntPtr)indexGroup, (IntPtr)Convert.ToInt32(expand));
+        }
+
+        /// 添加分组
+        /// </summary>
+        /// <param name="indexGroup">分组索引 从1开始</param>
+        /// <param name="info">数据</param>
+        /// <returns>返回分组索引</returns>
+        public int AddGroup(int indexGroup, ExRollMenuGroup info)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExRollMenuGroup)));
+            Marshal.StructureToPtr(info, ptr, true);
+            var ret = (int)this.SendMessage(RM_ADDGROUP, (IntPtr)indexGroup, ptr);
+            Marshal.FreeHGlobal(ptr);
+            return ret;
+        }
+
+        /// <summary>
+        /// 添加项目
+        /// </summary>
+        /// <param name="indexGroup">分组索引 从1开始</param>
+        /// <param name="info">数据</param>
+        /// <returns>返回项目索引</returns>
+        public int AddItem(int indexGroup, ExRollMenuItem info)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExRollMenuItem)));
+            Marshal.StructureToPtr(info, ptr, false);
+            var ret = (int)this.SendMessage(RM_ADDITEM, (IntPtr)indexGroup, ptr);
+            Marshal.FreeHGlobal(ptr);
+            return ret;
+        }
+
+        /// <summary>
+        /// 取选中项目
+        /// </summary>
+        /// <param name="indexGroup">分组索引</param>
+        /// <param name="indexItem">项目索引</param>
+        /// <returns>返回标题</returns>
+        public string GetSel(ref int indexGroup, ref int indexItem)
+        {
+            var ptrIndexGroup = Marshal.AllocHGlobal(4);
+            var ptrIndexItem = Marshal.AllocHGlobal(4);
+            var ret = this.SendMessage(RM_GETSEL, ptrIndexGroup, ptrIndexItem);
+            string retStr = "";
+            if(ret!=IntPtr.Zero)
+            {
+                retStr = Marshal.PtrToStringUni(ret);
+            }
+            indexGroup = Marshal.ReadInt32(ptrIndexGroup);
+            indexItem = Marshal.ReadInt32(ptrIndexItem);
+            Marshal.FreeHGlobal(ptrIndexGroup);
+            Marshal.FreeHGlobal(ptrIndexItem);
+            return retStr;
+        }
+
+        /// <summary>
+        /// 置选中项目
+        /// </summary>
+        /// <param name="indexGroup">分组索引</param>
+        /// <param name="indexItem">项目索引</param>
+        public void SetSel(int indexGroup, int indexItem)
+        {
+            this.SendMessage(RM_SETSEL, (IntPtr)indexGroup, (IntPtr)indexItem);
+        }
+        public new string ClassName => "RollMenu";
+    }
+
+    /// <summary>
+    /// 媒体播放器,win10以上,H265格式mp4需要安装Microsoft.HEVCVideoExtension.Appx
+    /// </summary>
+    public class ExMediaPlay : ExControl
+    {
+        public ExMediaPlay(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "MediaFoundation", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExMediaPlay(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "MediaFoundation", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, 0, pfnObjProc)
+        {
+        }
+        public ExMediaPlay(int hObj) : base(hObj)
+        {
+        }
+        public ExMediaPlay(ExControl parent) : base(parent)
+        {
+        }
+
+        /// <summary>
+        /// 置播放地址
+        /// </summary>
+        public string StartPlay
+        {
+            set
+            {
+                this.SendMessage(MFM_STATE_PLAY, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+            }
+        }
+
+        /// <summary>
+        /// 暂停/继续 播放
+        /// </summary>
+        public bool PausePlay
+        {
+            set
+            {
+                if(value)
+                {
+                    this.SendMessage(MFM_STATE_PAUSE, IntPtr.Zero, IntPtr.Zero);
+                }
+                else
+                {
+                    this.SendMessage(MFM_STATE_CONTINUE, IntPtr.Zero, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 停止播放
+        /// </summary>
+        public bool StopPlay
+        {
+            set
+            {
+                if (value)
+                {
+                    this.SendMessage(MFM_STATE_STOP, IntPtr.Zero, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 置播放位置
+        /// </summary>
+        public int PlayPosition
+        {
+            set
+            {
+               this.SendMessage(MFM_SET_POSITION, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+        public new string ClassName => "MediaFoundation";
     }
 }
