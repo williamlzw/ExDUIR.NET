@@ -150,3 +150,21 @@ win10+, win7 need install KB2670838 patch
 
 ### carousel
 ![image](demo_image/demo_carousel.png)
+
+### template listview
+![image](demo_image/demo_templatelistview.png)
+
+### drawingboard
+![image](demo_image/demo_drawingboard.png)
+
+### propertygrid
+![image](demo_image/demo_propertygrid.png)
+
+### mediaplayer
+![image](demo_image/demo_mediaplayer.png)
+
+### svg and font
+![image](demo_image/demo_svg.png)
+
+### rollmenu
+![image](demo_image/demo_rollmenu.png)
