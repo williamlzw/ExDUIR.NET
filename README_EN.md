@@ -152,7 +152,7 @@ win10+, win7 need install KB2670838 patch
 ![image](demo_image/demo_carousel.png)
 
 ### template listview
-![image](demo_image/demo_templatelistview.png)
+![image](demo_image/demo_template_listview.png)
 
 ### drawingboard
 ![image](demo_image/demo_drawingboard.png)

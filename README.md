@@ -149,7 +149,7 @@ win10+， win7 需要安装KB2670838补丁
 ![image](demo_image/demo_carousel.png)
 
 ### template listview
-![image](demo_image/demo_templatelistview.png)
+![image](demo_image/demo_template_listview.png)
 
 ### drawingboard
 ![image](demo_image/demo_drawingboard.png)
