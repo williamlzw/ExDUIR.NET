@@ -15,16 +15,18 @@ namespace ExDuiRTest
         static private ExSkin skin;
         static private List<ExButton> buttons;
         static private ExObjEventProcDelegate buttonEventProc;
+        static private ExWndProcDelegate wndProc;
         static public void CreateMainWindow()
         {
             //读入主题包
             var theme = Properties.Resources.Default;
             //初始化引擎,必须。开启DPI缩放,渲染全部菜单(二级子菜单改背景色需启用此风格)
             theApp = new ExApp(theme, EXGF_DPI_ENABLE | EXGF_MENU_ALL);
+            wndProc = new ExWndProcDelegate(MainWndProc);
             //创建窗口皮肤,必须
             skin = new ExSkin(null, null, "ExDUIR演示,项目地址：https://gitee.com/william_lzw/ExDUIR", 0, 0, 600, 600,
             EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE | EWS_CENTERWINDOW |
-            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, IntPtr.Zero, MainWndProc);
+            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, IntPtr.Zero, wndProc);
             if (skin.Validate)
             {
                 var bitmap = Properties.Resources.editbkg;
@@ -86,6 +88,7 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试媒体播放器", 340, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "自定字体和SVG", 340, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试卷帘菜单", 340, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+        
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
                 for (int i = 0; i < buttons.Count; i++)
@@ -310,6 +313,7 @@ namespace ExDuiRTest
             {
                 RollMenuWindow.CreateRollMenuWindow(skin);
             }
+           
             return IntPtr.Zero;
         }
 

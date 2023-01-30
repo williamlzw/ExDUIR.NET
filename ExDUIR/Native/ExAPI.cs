@@ -791,15 +791,15 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 图像.正常
         /// </summary>
-        public IntPtr imgNormal;
+        public int imgNormal;
         /// <summary>
         /// 图像.悬浮
         /// </summary>
-        public IntPtr imgHover;
+        public int imgHover;
         /// <summary>
         /// 图像.按下或者选中
         /// </summary>
-        public IntPtr imgDownOrChecked; 
+        public int imgDownOrChecked; 
     };
 
     /// <summary>
@@ -2043,7 +2043,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dllPath">库文件名</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjMiniblinkBrowserInitialize")]
-        public static extern bool Ex_ObjMiniblinkBrowserInitialize(IntPtr libPath, IntPtr dllPath);
+        public static extern bool Ex_ObjMiniblinkBrowserInitialize(string libPath, string dllPath);
 
         /// <summary>
         /// 组件返回特定关系（如Z序或所有者）的组件句柄。
@@ -4058,7 +4058,7 @@ namespace ExDuiR.NET.Native
         /// <param name="strokeStyle"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_canvas_drawpath")]
-        public static extern int _canvas_drawpath(int hCanvas, int hPath, IntPtr hBrush, float strokeWidth, int strokeStyle);
+        public static extern bool _canvas_drawpath(int hCanvas, int hPath, IntPtr hBrush, float strokeWidth, int strokeStyle);
 
         /// <summary>
         /// 画布画多边形
@@ -4075,7 +4075,7 @@ namespace ExDuiR.NET.Native
         /// <param name="strokeStyle">绘制的线型</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_canvas_drawpolygon")]
-        public static extern int _canvas_drawpolygon(int hCanvas, IntPtr hBrush, float left, float top, float right, float bottom, int numberOfEdges, float angle, float strokeWidth, int strokeStyle);
+        public static extern bool _canvas_drawpolygon(int hCanvas, IntPtr hBrush, float left, float top, float right, float bottom, int numberOfEdges, float angle, float strokeWidth, int strokeStyle);
 
         /// <summary>
         /// 画布画矩形

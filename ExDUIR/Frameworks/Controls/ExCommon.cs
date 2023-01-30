@@ -585,6 +585,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
+        /// 添加文本并置指针到末尾
+        /// </summary>
+        /// <param name="text"></param>
+        public void AddText(string text)
+        {
+            var ptr = Marshal.StringToHGlobalAuto(text);
+            this.SendMessage(EM_SETSEL, (IntPtr)(-1), (IntPtr)(-1));
+            this.SendMessage(EM_REPLACESEL, (IntPtr)(-1), ptr);
+            Marshal.FreeHGlobal(ptr);
+        }
+
+        /// <summary>
         /// 加载rtf文件
         /// </summary>
         /// <param name="data"></param>
@@ -908,6 +920,18 @@ namespace ExDuiR.NET.Frameworks.Controls
             {
                 this.SendMessage(WM_SETICON, IntPtr.Zero, (IntPtr)value.handle);
             }
+        }
+
+        /// <summary>
+        /// 添加文本并置指针到末尾
+        /// </summary>
+        /// <param name="text"></param>
+        public void AddText(string text)
+        {
+            var ptr = Marshal.StringToHGlobalAuto(text);
+            this.SendMessage(EM_SETSEL, (IntPtr)(-1), (IntPtr)(-1));
+            this.SendMessage(EM_REPLACESEL, (IntPtr)(-1), ptr);
+            Marshal.FreeHGlobal(ptr);
         }
 
         /// <summary>
@@ -2017,9 +2041,8 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public static bool Initialize(string libPath, string dllPath)
         {
-            return ExAPI.Ex_ObjMiniblinkBrowserInitialize(Marshal.StringToHGlobalUni(libPath), Marshal.StringToHGlobalUni(dllPath));
+            return ExAPI.Ex_ObjMiniblinkBrowserInitialize(libPath, dllPath);
         }
-
         /// <summary>
         /// 加载url,可以是网址或本地html
         /// </summary>

@@ -411,12 +411,12 @@
         public const int EOS_BORDER = 0x20000000;
 
         /// <summary>
-        /// 组件风格_水平滚动条
+        /// 组件风格_垂直滚动条
         /// </summary>
         public const int EOS_VSCROLL = 0x40000000;
 
         /// <summary>
-        /// 组件风格_垂直滚动条
+        /// 组件风格_水平滚动条
         /// </summary>
         public const int EOS_HSCROLL = -2147483648;
 
@@ -2308,6 +2308,10 @@
         /// 消息_编辑框_取行数
         /// </summary>
         public const int EM_GETLINECOUNT = 186;
+        /// <summary>
+        /// 消息_编辑框_替换文本内容
+        /// </summary>
+        public const int EM_REPLACESEL = 194;
         ///<summary>
         ///消息_编辑框_撤销
         ///</summary>

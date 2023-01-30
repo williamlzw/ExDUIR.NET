@@ -61,6 +61,14 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_drawroundedrect(m_hCanvas, brush.handle, left, top, right, bottom, radiusX, radiusY, strokeWidth, strokeStyle);
         }
 
+        public bool DrawRoundedRect(int color, float left, float top, float right, float bottom, float radiusX, float radiusY, float strokeWidth, int strokeStyle)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_drawroundedrect(m_hCanvas, brush.handle, left, top, right, bottom, radiusX, radiusY, strokeWidth, strokeStyle);
+            brush.Dispose();
+            return ret;
+        }
+
         public bool DrawText(ExFont font, int crText, string lpwzText, int dwLen, int dwDTFormat, float left, float top, float right, float bottom)
         {
             return ExAPI._canvas_drawtext(m_hCanvas, font.handle, crText, lpwzText, (IntPtr)dwLen, dwDTFormat, left, top, right, bottom);
@@ -86,9 +94,25 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_fillellipse(m_hCanvas, brush.handle, x, y, radiusX, radiusY);
         }
 
+        public bool FillEllipse(int color, float x, float y, float radiusX, float radiusY)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_fillellipse(m_hCanvas, brush.handle, x, y, radiusX, radiusY);
+            brush.Dispose();
+            return ret;
+        }
+
         public bool FillPath(ExPath path, ExBrush brush)
         {
             return ExAPI._canvas_fillpath(m_hCanvas, path.handle, brush.handle);
+        }
+
+        public bool FillPath(ExPath path, int color)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_fillpath(m_hCanvas, path.handle, brush.handle);
+            brush.Dispose();
+            return ret;
         }
 
         public bool FillRect(ExBrush brush, float left, float top, float right, float bottom)
@@ -96,14 +120,38 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_fillrect(m_hCanvas, brush.handle, left, top, right, bottom);
         }
 
+        public bool FillRect(int color, float left, float top, float right, float bottom)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_fillrect(m_hCanvas, brush.handle, left, top, right, bottom);
+            brush.Dispose();
+            return ret;
+        }
+
         public bool FillRegion(ExRegion region, ExBrush brush)
         {
             return ExAPI._canvas_fillregion(m_hCanvas, region.handle, brush.handle);
         }
 
+        public bool FillRegion(ExRegion region, int color)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_fillregion(m_hCanvas, region.handle, brush.handle);
+            brush.Dispose();
+            return ret;
+        }
+
         public bool DrawEllipse(ExBrush brush, float x, float y, float radiusX, float radiusY, float strokeWidth, int strokeStyle)
         {
             return ExAPI._canvas_drawellipse(m_hCanvas, brush.handle, x, y, radiusX, radiusY, strokeWidth, strokeStyle);
+        }
+
+        public bool DrawEllipse(int color, float x, float y, float radiusX, float radiusY, float strokeWidth, int strokeStyle)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_drawellipse(m_hCanvas, brush.handle, x, y, radiusX, radiusY, strokeWidth, strokeStyle);
+            brush.Dispose();
+            return ret;
         }
 
         public bool DrawImage(ExImage img, float left, float top, int alpha)
@@ -116,12 +164,12 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_drawimagefromgrid(m_hCanvas, img.handle, dstLeft, dstTop, dstRight, dstBottom, srcLeft, srcTop, srcRight, srcBottom, gridPaddingLeft, gridPaddingTop, gridPaddingRight, gridPaddingBottom, dwFlags, dwAlpha);
         }
 
-        public bool DrawRect(ExImage img, float left, float top, float right, float bottom, int alpha)
+        public bool DrawImageRect(ExImage img, float left, float top, float right, float bottom, int alpha)
         {
             return ExAPI._canvas_drawimagerect(m_hCanvas, img.handle, left, top, right, bottom, alpha);
         }
 
-        public bool DrawRect(ExImage img, float dstLeft, float dstTop, float dstRight, float dstBottom, float srcLeft, float srcTop, float srcRight, float srcBottom, int alpha)
+        public bool DrawImageRectRect(ExImage img, float dstLeft, float dstTop, float dstRight, float dstBottom, float srcLeft, float srcTop, float srcRight, float srcBottom, int alpha)
         {
             return ExAPI._canvas_drawimagerectrect(m_hCanvas, img.handle, dstLeft, dstTop, dstRight, dstBottom, srcLeft, srcTop, srcRight, srcBottom, alpha);
         }
@@ -131,9 +179,25 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_drawline(m_hCanvas, brush.handle, x1, y1, x2, y2, strokeWidth, strokeStyle);
         }
 
-        public int DrawPath(ExPath path, ExBrush brush, float strokeWidth, int strokeStyle)
+        public bool DrawLine(int color, float x1, float y1, float x2, float y2, float strokeWidth, int strokeStyle)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_drawline(m_hCanvas, brush.handle, x1, y1, x2, y2, strokeWidth, strokeStyle);
+            brush.Dispose();
+            return ret;
+        }
+
+        public bool DrawPath(ExPath path, ExBrush brush, float strokeWidth, int strokeStyle)
         {
             return ExAPI._canvas_drawpath(m_hCanvas, path.handle, brush.handle, strokeWidth, strokeStyle);
+        }
+
+        public bool DrawPath(ExPath path, int color, float strokeWidth, int strokeStyle)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_drawpath(m_hCanvas, path.handle, brush.handle, strokeWidth, strokeStyle);
+            brush.Dispose();
+            return ret;
         }
 
         public bool DrawRect(ExBrush brush, float left, float top, float right, float bottom, float strokeWidth, int strokeStyle)
@@ -141,9 +205,25 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_drawrect(m_hCanvas, brush.handle, left, top, right, bottom, strokeWidth, strokeStyle);
         }
 
+        public bool DrawRect(int color, float left, float top, float right, float bottom, float strokeWidth, int strokeStyle)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_drawrect(m_hCanvas, brush.handle, left, top, right, bottom, strokeWidth, strokeStyle);
+            brush.Dispose();
+            return ret;
+        }
+
         public bool FillRoundedRect(ExBrush brush, float left, float top, float right, float bottom, float radiusX, float radiusY)
         {
             return ExAPI._canvas_fillroundedrect(m_hCanvas, brush.handle, left, top, right, bottom, radiusX, radiusY);
+        }
+
+        public bool FillRoundedRect(int color, float left, float top, float right, float bottom, float radiusX, float radiusY)
+        {
+            var brush = new ExBrush(color);
+            var ret = ExAPI._canvas_fillroundedrect(m_hCanvas, brush.handle, left, top, right, bottom, radiusX, radiusY);
+            brush.Dispose();
+            return ret;
         }
 
         public bool DrawSvgFromFile(string svgPath, int color, float left, float top, float right, float bottom)

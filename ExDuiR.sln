@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExDUIR", "ExDUIR\ExDUIR.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExDuiRTest", "ExDuiRTest\ExDuiRTest.csproj", "{F8E7F92C-F4AD-4EDA-9EDB-E2BDC2AD7520}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DouYinProject", "DouYinProject\DouYinProject.csproj", "{E892EBD2-FC66-48D4-ADFC-8187FC51D12C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F8E7F92C-F4AD-4EDA-9EDB-E2BDC2AD7520}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8E7F92C-F4AD-4EDA-9EDB-E2BDC2AD7520}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8E7F92C-F4AD-4EDA-9EDB-E2BDC2AD7520}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E892EBD2-FC66-48D4-ADFC-8187FC51D12C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E892EBD2-FC66-48D4-ADFC-8187FC51D12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E892EBD2-FC66-48D4-ADFC-8187FC51D12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E892EBD2-FC66-48D4-ADFC-8187FC51D12C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

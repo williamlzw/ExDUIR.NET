@@ -250,6 +250,9 @@
   <ItemGroup>
     <None Include="Resources\video.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\douyinbkg.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>xcopy $(ProjectDir)res $(TargetDir)/e /i /y</PreBuildEvent>

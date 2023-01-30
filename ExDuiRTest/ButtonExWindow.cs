@@ -81,9 +81,9 @@ namespace ExDuiRTest
                 var buttondown = new ExImage(Properties.Resources.buttondown);
                 ExImageInfo info = new ExImageInfo
                 {
-                    imgNormal = (IntPtr)buttonnormal.handle,
-                    imgHover = (IntPtr)buttonhover.handle,
-                    imgDownOrChecked = (IntPtr)buttondown.handle
+                    imgNormal = buttonnormal.handle,
+                    imgHover = buttonhover.handle,
+                    imgDownOrChecked = buttondown.handle
                 };
                 button5.ImageInfo = info;
 
@@ -96,9 +96,9 @@ namespace ExDuiRTest
                 var buttondown2 = new ExImage(Properties.Resources.button2down);
                 ExImageInfo info2 = new ExImageInfo
                 {
-                    imgNormal = (IntPtr)buttonnormal2.handle,
-                    imgHover = (IntPtr)buttonhover2.handle,
-                    imgDownOrChecked = (IntPtr)buttondown2.handle
+                    imgNormal = buttonnormal2.handle,
+                    imgHover = buttonhover2.handle,
+                    imgDownOrChecked = buttondown2.handle
                 };
                 button6.ImageInfo = info2;
 
