@@ -554,5 +554,40 @@ namespace ExDuiR.NET.Frameworks
         {
             return ExAPI.Ex_ObjLayoutSet(m_hExDUI, layout.handle, true);
         }
+
+        /// <summary>
+        /// 设置托盘图标
+        /// </summary>
+        /// <param name="bitmap">图标</param>
+        /// <param name="tipsStr">提示内容</param>
+        /// <returns></returns>
+        public bool SetTrayIcon(System.Drawing.Icon icon, string tipsStr)
+        {
+            return ExAPI.Ex_DUITrayIconSet(m_hExDUI, icon.Handle, tipsStr);
+        }
+
+        /// <summary>
+        /// 设置托盘图标
+        /// </summary>
+        /// <param name="data">图标数据,可以是png,jpg</param>
+        /// <param name="tipsStr">提示内容</param>
+        /// <returns></returns>
+        public bool SetTrayIcon(byte[] data, string tipsStr)
+        {
+            var icon = ExAPI.Ex_LoadImageFromMemory(data, (IntPtr)data.Length, IMAGE_ICON, 0);
+            return ExAPI.Ex_DUITrayIconSet(m_hExDUI, icon, tipsStr);
+        }
+
+        /// <summary>
+        /// 弹出托盘通知
+        /// </summary>
+        /// <param name="info">内容</param>
+        /// <param name="title">标题</param>
+        /// <param name="flags">常量NIIF_</param>
+        /// <returns></returns>
+        public bool PopupTrayIcon(string info, string title, int flags)
+        {
+            return ExAPI.Ex_DUITrayIconPopup(m_hExDUI, info, title, flags);
+        }
     }
 }

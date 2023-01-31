@@ -2623,7 +2623,7 @@ namespace ExDuiR.NET.Native
         public static extern bool Ex_DUITrayIconSet(int hExDui, IntPtr hIcon, string lpwzTips);
 
         /// <summary>
-        /// 弹出托盘图标
+        /// 弹出托盘通知
         /// </summary>
         /// <param name="hExDui"></param>
         /// <param name="lpwzInfo"></param>

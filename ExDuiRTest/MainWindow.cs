@@ -88,7 +88,8 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试媒体播放器", 340, 310, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "自定字体和SVG", 340, 350, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试卷帘菜单", 340, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
-        
+                buttons.Add(new ExButton(skin, "测试托盘", 340, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
                 for (int i = 0; i < buttons.Count; i++)
@@ -313,7 +314,10 @@ namespace ExDuiRTest
             {
                 RollMenuWindow.CreateRollMenuWindow(skin);
             }
-           
+            else if (hObj == buttons[52].handle)
+            {
+                TrayWindow.CreateTrayWindow(skin);
+            }
             return IntPtr.Zero;
         }
 

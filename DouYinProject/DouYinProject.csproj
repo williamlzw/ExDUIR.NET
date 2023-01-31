@@ -36,7 +36,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExDUIR">
+    <Reference Include="ExDUIR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExDUIR\bin\Debug\ExDUIR.dll</HintPath>
     </Reference>
     <Reference Include="System" />

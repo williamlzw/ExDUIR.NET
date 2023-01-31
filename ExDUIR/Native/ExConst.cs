@@ -3699,5 +3699,28 @@
         /// </summary>
         public const int MFM_GET_DURATION = 10016;
         #endregion
+
+        #region 标识_托盘_
+        /// <summary>
+        /// 托盘标识_默认无图标
+        /// </summary>
+        public const int NIIF_NONE = 0;
+        /// <summary>
+        /// 托盘标识_信息图标
+        /// </summary>
+        public const int NIIF_INFO = 0x01;
+        /// <summary>
+        /// 托盘标识_警告图标
+        /// </summary>
+        public const int NIIF_WARNING = 0x02;
+        /// <summary>
+        /// 托盘标识_错误图标
+        /// </summary>
+        public const int NIIF_ERROR = 0x03;
+        /// <summary>
+        /// 托盘标识_用户图标
+        /// </summary>
+        public const int NIIF_USER = 0x04;
+        #endregion
     }
 }
