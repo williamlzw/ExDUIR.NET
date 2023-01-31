@@ -166,5 +166,8 @@ win10+， win7 需要安装KB2670838补丁
 ### rollmenu
 ![image](demo_image/demo_rollmenu.png)
 
+### trayicon
+![image](demo_image/demo_trayicon.png)
+
 ### login demo
 ![image](demo_image/demo_login.png)
