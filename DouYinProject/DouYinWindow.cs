@@ -106,7 +106,7 @@ namespace DouYinProject
             if (uMsg == WM_EX_EASING)
             {
                 var es = Util.IntPtrToStructure<ExEasingInfo>(lParam);
-                obj.Move(EOP_DEFAULT, (int)(80 - es.nCurrent / 100 * 80), EOP_DEFAULT, EOP_DEFAULT, true);
+                obj.Move(EOP_DEFAULT, (int)(ExAPI.Ex_Scale(80) - es.nCurrent / 100 * ExAPI.Ex_Scale(80)), EOP_DEFAULT, EOP_DEFAULT, true);
                 obj.Alpha = (int)(es.nCurrent / 100 * 255);
             }
             return IntPtr.Zero;
@@ -150,17 +150,17 @@ namespace DouYinProject
                         mx.Rotate((float)(p * 360));
                         mx.Translate(-(float)(ps.nWidth * p / 2), -(float)(ps.nHeight / 2));
                         canvas.TransForm = mx;
-                        var X = (ps.rcPaint.nRight * p - 80) / 2;
-                        var Y = (ps.rcPaint.nBottom - 80) / 2;
-                        canvas.DrawImageRect(img, (float)X, (float)Y, (float)X + 80, (float)Y + 80, 255);
+                        var X = (ps.rcPaint.nRight * p - ExAPI.Ex_Scale(80)) / 2;
+                        var Y = (ps.rcPaint.nBottom - ExAPI.Ex_Scale(80)) / 2;
+                        canvas.DrawImageRect(img, (float)X, (float)Y, (float)X + ExAPI.Ex_Scale(80), (float)Y + ExAPI.Ex_Scale(80), 255);
                         canvas.SetTransFormNull();
                         mx.Dispose();
                     }
                     else
                     {
-                        var X = (ps.rcPaint.nRight  - 80) / 2 + 480 * p;
-                        var Y = (ps.rcPaint.nBottom - 80) / 2 - 100 * p;
-                        canvas.DrawImageRect(img, (float)X, (float)Y, (float)X + 80, (float)Y + 80, 255);
+                        var X = (ps.rcPaint.nRight  - ExAPI.Ex_Scale(80)) / 2 + ExAPI.Ex_Scale((float)(480 * p));
+                        var Y = (ps.rcPaint.nBottom - ExAPI.Ex_Scale(80)) / 2 - ExAPI.Ex_Scale((float)(100 * p));
+                        canvas.DrawImageRect(img, (float)X, (float)Y, (float)X + ExAPI.Ex_Scale(80), (float)Y + ExAPI.Ex_Scale(80), 255);
                     }
                     img.Dispose();
                 }
