@@ -53,6 +53,10 @@ namespace ExDuiR.NET.Native
             public UInt32 cch; // length of dwTypeData
             public IntPtr hbmpItem;
         }
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetMenuItemID")]
+        public static extern IntPtr GetMenuItemID(IntPtr hMenu, int nPos);
+
         public delegate bool DlgWndProcDelegate(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
         [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "DialogBoxIndirectParamW")]
         public static extern int DialogBoxIndirectParam(IntPtr hInstance, ref DLGTEMPLATE hDialogTemplate, IntPtr hwndParent, DlgWndProcDelegate lpDialogFunc, int dwInitParam);
