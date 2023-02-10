@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 
-namespace DouYinProject
+namespace DemoProject
 {
-    static class DouYinLoginWindow
+    static class LoginWindow
     {
         static private ExApp theApp;
         static private ExSkin skin;
@@ -33,7 +33,7 @@ namespace DouYinProject
         
        
 
-        static public void CreateDouYinLoginWindow()
+        static public void CreateLoginWindow()
         {
             //读入主题包
             var theme = Properties.Resources.Default;

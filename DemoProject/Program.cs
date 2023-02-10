@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DouYinProject
+namespace DemoProject
 {
     class Program
     {
         static void Main(string[] args)
         {
-            DouYinLoginWindow.CreateDouYinLoginWindow();
+            LoginWindow.CreateLoginWindow();
         }
     }
 }

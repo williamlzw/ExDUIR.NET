@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32510.428
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExDUIR", "ExDUIR\ExDUIR.csproj", "{E06EA4AF-B766-4867-8B8F-3F4593A85A41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExDuiRTest", "ExDuiRTest\ExDuiRTest.csproj", "{F8E7F92C-F4AD-4EDA-9EDB-E2BDC2AD7520}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DouYinProject", "DouYinProject\DouYinProject.csproj", "{E892EBD2-FC66-48D4-ADFC-8187FC51D12C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoProject", "DemoProject\DemoProject.csproj", "{E892EBD2-FC66-48D4-ADFC-8187FC51D12C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
