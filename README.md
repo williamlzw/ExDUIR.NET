@@ -100,7 +100,7 @@ win10+， win7 需要安装KB2670838补丁
 ### treeview:  
 ![image](demo_image/demo_treeview.png)
 
-### demo modal:  
+### modal:  
 ![image](demo_image/demo_modal.png)
 
 ### matrix:  
@@ -172,7 +172,7 @@ win10+， win7 需要安装KB2670838补丁
 ### trayicon
 ![image](demo_image/demo_trayicon.png)
 
-### demo winform:  
+### winform:  
 ![image](demo_image/demo_winform.png)
 
 ### login demo
