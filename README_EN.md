@@ -103,6 +103,9 @@ win10+, win7 need install KB2670838 patch
 ### treeview:  
 ![image](demo_image/demo_treeview.png)
 
+### demo modal:  
+![image](demo_image/demo_modal.png)
+
 ### matrix:  
 ![image](demo_image/demo_matrix.png)
 
@@ -171,6 +174,9 @@ win10+, win7 need install KB2670838 patch
 
 ### trayicon
 ![image](demo_image/demo_trayicon.png)
+
+### demo winform:  
+![image](demo_image/demo_winform.png)
 
 ### login demo
 ![image](demo_image/demo_login.png)

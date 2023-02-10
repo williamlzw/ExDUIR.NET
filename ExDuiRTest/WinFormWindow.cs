@@ -14,7 +14,7 @@ namespace ExDuiRTest
     {
         public DemoForm()
         {
-            this.Text = "winform";
+            this.Text = "绑定winform窗口,渲染ExDuiR组件";
             this.Size = new System.Drawing.Size(500, 500);
             //以下这句必须,无边框风格
             this.FormBorderStyle = FormBorderStyle.None;
