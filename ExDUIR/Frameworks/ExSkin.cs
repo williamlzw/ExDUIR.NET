@@ -73,6 +73,7 @@ namespace ExDuiR.NET.Frameworks
         public ExSkin(IntPtr hWnd, int dwStyleDUI, IntPtr hTheme = default, ExWndProcDelegate pfnWndProc = null)
         {
             m_hExDUI = ExAPI.Ex_DUIBindWindowEx(hWnd, hTheme, dwStyleDUI, IntPtr.Zero, pfnWndProc);
+            m_hWnd = hWnd;
             if (m_hExDUI != 0)
             {
 
@@ -295,6 +296,17 @@ namespace ExDuiR.NET.Frameworks
             set
             {
                 WinAPI.SetWindowText(m_hWnd, value);
+            }
+        }
+
+        /// <summary>
+        /// 标题栏组件
+        /// </summary>
+        public ExControl Caption
+        {
+            get
+            {
+                return new ExControl((int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_OBJCAPTION));
             }
         }
 

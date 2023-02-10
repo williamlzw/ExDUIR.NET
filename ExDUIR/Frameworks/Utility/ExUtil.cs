@@ -195,5 +195,16 @@ namespace ExDuiR.NET.Frameworks.Utility
         {
             return Color.FromArgb(alpha, ExGetB(rgb), ExGetG(rgb), ExGetR(rgb)).ToArgb();
         }
+
+        /// <summary>
+        /// 从数据获取句柄
+        /// </summary>
+        /// <param name="data">数据</param>
+        /// <param name="type">图标类型,取值 IMAGE_BITMAP或IMAGE_ICON或IMAGE_CURSOR</param>
+        /// <returns></returns>
+        public static IntPtr ExLoadImage(byte[] data, int type)
+        {
+            return ExAPI.Ex_LoadImageFromMemory(data, (IntPtr)data.Length, type, 0);
+        }
     }
 }

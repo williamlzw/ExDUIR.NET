@@ -20,18 +20,27 @@ namespace ExDuiRTest
         {
             //读入主题包
             var theme = Properties.Resources.Default;
+            var cursor = Properties.Resources.cursor;
+            var hCursor = Util.ExLoadImage(cursor, IMAGE_CURSOR);
             //初始化引擎,必须。开启DPI缩放,渲染全部菜单(二级子菜单改背景色需启用此风格)
-            theApp = new ExApp(theme, EXGF_DPI_ENABLE | EXGF_MENU_ALL);
+            theApp = new ExApp(theme, EXGF_DPI_ENABLE | EXGF_MENU_ALL, hCursor);
             wndProc = new ExWndProcDelegate(MainWndProc);
             //创建窗口皮肤,必须
             skin = new ExSkin(null, null, "ExDUIR演示,项目地址：https://gitee.com/william_lzw/ExDUIR", 0, 0, 600, 600,
             EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE | EWS_CENTERWINDOW |
-            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, IntPtr.Zero, wndProc);
+            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON, 0, 0, IntPtr.Zero, wndProc);
             if (skin.Validate)
             {
-                var bitmap = Properties.Resources.editbkg;
                 //设置窗口背景图片
-                skin.SetBackgroundImage(bitmap, 0, 0, 0, default, 0, 255, true);
+                skin.SetBackgroundImage(Properties.Resources.editbkg, 0, 0, 0, default, 0, 255, true);
+                //改变标题栏标题组件颜色
+                var caption = skin.Caption;
+                //标题栏窗口风格就是标题栏子组件的ID,类似关闭，最大化，最小化按钮也可以这样获取
+                var title = caption.GetObjFromID(EWS_TITLE);
+                title.ColorTextNormal = Util.ExRGBA(120, 230, 21, 255);
+                //改变窗口阴影色
+                skin.ShadowColor = Util.ExRGBA(30, 30, 250, 255);
+
                 buttons = new List<ExButton>();
                 buttons.Add(new ExButton(skin, "测试按钮开关", 10, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试标签", 10, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
@@ -292,7 +301,7 @@ namespace ExDuiRTest
             }
             else if (hObj == buttons[46].handle)
             {
-                
+                WinFormWindow.CreateWinFormWindow(skin);
             }
             else if (hObj == buttons[47].handle)
             {

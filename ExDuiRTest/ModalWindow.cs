@@ -30,7 +30,6 @@ namespace ExDuiRTest
                 dlgProc = new DlgWndProcDelegate(OnDialgWndProc);
                 button = new ExButton(skin, "弹出模态对话框", 50, 50, 300, 100);
                 button.HandleEvent(NM_CLICK, objEventProc);
-                
                 skin.Visible = true;
             }
         }
@@ -46,7 +45,7 @@ namespace ExDuiRTest
                 {
                     var edit = new ExEdit(skinIndex, "", 20, 50, 250, 30, -1, -1, -1);
                     edit.SetBanner("编辑框输入文字正常", Util.ExRGB2ARGB(8421504, 200));
-                    skinIndex.BackgroundColor = Util.ExRGB(255, 120, 220);
+                    skinIndex.BackgroundColor = Util.ExRGB2ARGB(16711680, 220);
                     skinIndex.Visible = true;
                 }
             }
@@ -56,13 +55,13 @@ namespace ExDuiRTest
         static private IntPtr OnButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
             DLGTEMPLATE dlg = new DLGTEMPLATE();
-            //dlg.dwExtendedStyle = 65792;
-            //dlg.x = 0;
-            //dlg.y = 0;
-            //dlg.cx = 200;
-            //dlg.cy = 200;
-            //dlg.style = -2067267516;
-            //dlg.cdit = 0;
+            dlg.dwExtendedStyle = 65792;
+            dlg.x = 0;
+            dlg.y = 0;
+            dlg.cx = 200;
+            dlg.cy = 200;
+            dlg.style = -2067267516;
+            dlg.cdit = 0;
             var ret = WinAPI.DialogBoxIndirectParam(WinAPI.GetModuleHandle(null), ref dlg, skin.Hwnd, dlgProc, 0);
             Console.WriteLine(ret);
             return IntPtr.Zero;

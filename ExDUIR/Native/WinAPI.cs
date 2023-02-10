@@ -53,6 +53,8 @@ namespace ExDuiR.NET.Native
             public UInt32 cch; // length of dwTypeData
             public IntPtr hbmpItem;
         }
+        [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "SetParent")]
+        public static extern int SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
         [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetMenuItemID")]
         public static extern IntPtr GetMenuItemID(IntPtr hMenu, int nPos);

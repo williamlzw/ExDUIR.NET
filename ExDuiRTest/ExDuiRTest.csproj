@@ -35,8 +35,12 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExDUIR">
+    <Reference Include="ExDUIR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ExDUIR\bin\Debug\ExDUIR.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -112,6 +116,9 @@
     <Compile Include="TitleBarWindow.cs" />
     <Compile Include="TrayWindow.cs" />
     <Compile Include="TreeViewWindow.cs" />
+    <Compile Include="WinFormWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Default.bin" />
@@ -255,6 +262,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cursor.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

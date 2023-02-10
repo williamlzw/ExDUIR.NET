@@ -3480,6 +3480,11 @@
         /// </summary>
         ///
         public const int IMAGE_ICON = 1;
+        /// <summary>
+        /// 鼠标指针
+        /// </summary>
+        ///
+        public const int IMAGE_CURSOR = 2;
         #endregion
 
         #region 文本对齐格式_

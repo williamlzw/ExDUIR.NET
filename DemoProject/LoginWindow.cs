@@ -30,8 +30,6 @@ namespace DemoProject
         static private ExEditEx edit1;
         static private ExEditEx edit2;
         static private ExButtonEx button1;
-        
-       
 
         static public void CreateLoginWindow()
         {
@@ -41,9 +39,9 @@ namespace DemoProject
             theApp = new ExApp(theme, EXGF_DPI_ENABLE | EXGF_MENU_ALL);
             //创建窗口皮肤,必须
             wndProc = new ExWndProcDelegate(OnWndMsgProc);
-            skin = new ExSkin(null, null, "测试抖音客户端", 0, 0, 1440, 900,
+            skin = new ExSkin(null, null, "测试客户端", 0, 0, 1440, 900,
             EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_NOSHADOW, 0, 0, default, wndProc);
+            EWS_CENTERWINDOW, 0, 0, default, wndProc);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(0, 0, 0, 255);
