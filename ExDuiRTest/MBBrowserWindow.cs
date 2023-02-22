@@ -25,7 +25,7 @@ namespace ExDuiRTest
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                ExMiniblinkBrowser.Initialize("", "miniblink_4975_x32.dll");
+                ExMiniblinkBrowser.Initialize("", "miniblink_4975_x64.dll");
                 mbbrowser = new ExMiniblinkBrowser(skin, "", 50, 50, 700, 500);
                 mbbrowser.LoadUrl = "file:///J:/ExduiR/msvc/test/res/MP4.html";//注意,本地路径带#符号不支持
 
