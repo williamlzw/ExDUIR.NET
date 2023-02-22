@@ -105,7 +105,7 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 主题句柄
         /// </summary>
-        public int hTheme;
+        public IntPtr hTheme;
         /// <summary>
         /// 状态
         /// </summary>

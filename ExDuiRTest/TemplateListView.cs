@@ -60,7 +60,7 @@ namespace ExDuiRTest
             var obj = new ExControl(hObj);
             if(obj.NodeID == 3)
             {
-                var item = new ExListItem(obj.Parent);
+                var item = new ExListItem(obj.Parent.handle);
                 var index =  (int)item.GetLong(0);//获得表项当前代表的索引
                 if(index > 0 && index <= items.Count)
                 {

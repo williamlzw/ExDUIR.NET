@@ -86,7 +86,7 @@ namespace ExDuiRTest
                 var old = Obj.UserData;
                 Obj.UserData = easing.handle;
                 
-                if ((int)old != 0)//如果前一个缓动未结束,则停止前面的缓动
+                if (old != IntPtr.Zero)//如果前一个缓动未结束,则停止前面的缓动
                 {
                     var oldeasing = new ExEasing(old);
                     oldeasing.State = EES_STOP;
@@ -99,7 +99,7 @@ namespace ExDuiRTest
                 var easing = new ExEasing(ET_OutElastic, IntPtr.Zero, ES_SINGLE | ES_THREAD | ES_DISPATCHNOTIFY | ES_REVERSE, (IntPtr)hObj, 500, 20, EES_PLAY, 0, 100);
                 var old = Obj.UserData;
                 Obj.UserData = easing.handle;
-                if ((int)old != 0)//如果前一个缓动未结束,则停止前面的缓动
+                if (old != IntPtr.Zero)//如果前一个缓动未结束,则停止前面的缓动
                 {
                     var oldeasing = new ExEasing(old);
                     oldeasing.State = EES_STOP;

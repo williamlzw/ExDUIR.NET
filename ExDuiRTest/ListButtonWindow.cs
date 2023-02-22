@@ -220,7 +220,7 @@ namespace ExDuiRTest
                     menubar.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单项目背景颜色
                 }
             }
-            else if (uMsg == MN_SELECTITEM && (int)wParam == -1)//恢复正常状态
+            else if (uMsg == MN_SELECTITEM && wParam == (IntPtr)(-1))//恢复正常状态
             {
                 WinAPI.GetCursorPos(out var point);
                 var currentWnd = WinAPI.WindowFromPoint(point);
