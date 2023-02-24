@@ -5,6 +5,7 @@ using ExDuiR.NET.Native;
 using static ExDuiR.NET.Native.ExConst;
 using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace ExDuiRTest
 {
@@ -25,10 +26,11 @@ namespace ExDuiRTest
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                ExMiniblinkBrowser.Initialize("", "miniblink_4975_x32.dll");
+                ExMiniblinkBrowser.Initialize(IntPtr.Zero, Marshal.StringToHGlobalUni("D:\\ExDUIR.NET2\\ExDUIRTest\\bin\\Release\\net7.0\\miniblink_4975_x32.dll"));
                 mbbrowser = new ExMiniblinkBrowser(skin, "", 50, 50, 700, 500);
-                mbbrowser.LoadUrl = "file:///J:/ExduiR/msvc/test/res/MP4.html";//注意,本地路径带#符号不支持
-
+               
+                //mbbrowser.LoadUrl = "file:///D:/ExDUIR.NET/ExDUIRTest/bin/Debug/Resources/MP4.html";//注意,本地路径带#符号不支持
+                mbbrowser.LoadUrl = "www.baidu.com";
                 buttonProc = new ExObjEventProcDelegate(OnButtonEventProc);
                 button = new ExButton(skin, "播放", 50, 550, 100, 30);
                 button.HandleEvent(NM_CLICK, buttonProc);
@@ -44,7 +46,8 @@ namespace ExDuiRTest
                 {
                     var width = Util.GET_X_LPARAM(lParam) - 100;
                     var height = Util.GET_Y_LPARAM(lParam) - 100;
-                    mbbrowser.Move(50, 50, width, height);
+                    var dpi = Util.GetDpi();
+                    mbbrowser.Move(50, 50, (int)(width / dpi), (int)(height / dpi));
                 }
             }
             return IntPtr.Zero;

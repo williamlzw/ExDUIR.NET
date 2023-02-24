@@ -1,5 +1,6 @@
 ﻿using ExDuiR.NET.Native;
 using System;
+using System.Runtime.InteropServices;
 
 namespace ExDuiR.NET.Frameworks.Graphics
 {
@@ -44,9 +45,12 @@ namespace ExDuiR.NET.Frameworks.Graphics
         /// <param name="yEnd">终点Y</param>
         /// <param name="arrStopPts">两个点位置和颜色数据,只能两个{位置(0-1.0),颜色(ARGB),位置(0-1.0),颜色(ARGB)}这样传参</param>
         /// <param name="cStopPts">点个数，只能两个传2</param>
-        public ExBrush(int xStart, int yStart, int xEnd, int yEnd, float[,] arrStopPts, int cStopPts)
+        public ExBrush(int xStart, int yStart, int xEnd, int yEnd, float[] arrStopPts, int cStopPts)
         {
-            m_hBrush = ExAPI._brush_createlinear_ex(xStart, yStart, xEnd, yEnd, arrStopPts, cStopPts);
+            var ptr = Marshal.AllocHGlobal(4 * sizeof(float));
+            Marshal.Copy(arrStopPts, 0, ptr, arrStopPts.Length);
+            m_hBrush = ExAPI._brush_createlinear_ex(xStart, yStart, xEnd, yEnd, ptr, cStopPts);
+            Marshal.FreeHGlobal(ptr);
         }
 
         public ExBrush(ExImage img)

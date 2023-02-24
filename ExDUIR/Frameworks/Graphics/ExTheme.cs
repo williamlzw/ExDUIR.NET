@@ -5,10 +5,10 @@ namespace ExDuiR.NET.Frameworks.Graphics
 {
     class ExTheme : IDisposable
     {
-        protected int m_hTheme;
+        protected IntPtr m_hTheme;
         protected int _color = 0;
 
-        public int handle => m_hTheme;
+        public IntPtr handle => m_hTheme;
 
         public ExTheme(string lptszFile, byte[] lpKey, IntPtr dwKeyLen, bool bDefault)
         {
@@ -23,7 +23,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         public void Dispose()
         {
             ExAPI.Ex_ThemeFree(m_hTheme);
-            m_hTheme = 0;
+            m_hTheme = IntPtr.Zero;
         }
 
         public bool DrawControl(ExCanvas canvas, float dstLeft, float dstTop, float dstRight, float dstBottom, int atomClass, int atomSrcRect, int dwAlpha)
