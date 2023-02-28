@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.110.0.28\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.110.0.28\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.110.0.28\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.110.0.28\build\cef.redist.x64.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -28,6 +31,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -96,6 +101,15 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CefSharp, Version=110.0.280.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Common.110.0.280\lib\net452\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=110.0.280.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.Common.110.0.280\lib\net452\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.OffScreen, Version=110.0.280.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=MSIL">
+      <HintPath>..\packages\CefSharp.OffScreen.110.0.280\lib\net452\CefSharp.OffScreen.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -174,7 +188,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ExDuiRTest_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Resources\Default.bin" />
     <None Include="Resources\test.rtf" />
   </ItemGroup>
@@ -183,6 +197,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormWindow.resx">
+      <DependentUpon>WinFormWindow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -312,9 +329,6 @@
     <None Include="Resources\video.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\douyinbkg.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\BackgroundImage.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -346,4 +361,14 @@
     <PreBuildEvent>xcopy $(ProjectDir)res $(TargetDir)/e /i /y
 xcopy $(ProjectDir)lib\$(PlatformName) $(TargetDir)/e /i /y</PreBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cef.redist.x64.110.0.28\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.110.0.28\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.110.0.28\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.110.0.28\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.targets'))" />
+  </Target>
+  <Import Project="..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.110.0.280\build\CefSharp.Common.targets')" />
 </Project>

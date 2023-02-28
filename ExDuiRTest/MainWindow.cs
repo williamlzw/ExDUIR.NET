@@ -273,7 +273,7 @@ namespace ExDuiRTest
             }
             else if (hObj == buttons[39].handle)
             {
-                
+                CefBrowserWindow.CreateCefBrowserWindow(skin);
             }
             else if (hObj == buttons[40].handle)
             {

@@ -74,6 +74,11 @@ namespace ExDuiR.NET.Frameworks.Graphics
             ExAPI._img_createfrommemory(lpData, (IntPtr)dwLen, out m_hImg);
         }
 
+        public ExImage(int width, int height, IntPtr lpData)
+        {
+            ExAPI._img_createfrompngbits2(width, height, lpData, out m_hImg);
+        }
+
         public ExImage(ExResource res, int atomPath)
         {
             ExAPI._img_createfromres(res.handle, atomPath, out m_hImg);

@@ -19,6 +19,24 @@ namespace ExDuiRTest
             //以下这句必须,无边框风格
             this.FormBorderStyle = FormBorderStyle.None;
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // DemoForm
+            // 
+            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.Name = "DemoForm";
+            this.Load += new System.EventHandler(this.DemoForm_Load);
+            this.ResumeLayout(false);
+
+        }
+
+        private void DemoForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class WinFormWindow

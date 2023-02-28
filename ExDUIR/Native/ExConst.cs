@@ -3548,6 +3548,11 @@
         public const int WM_KEYDOWN = 256;
         public const int WM_KEYUP = 257;
         public const int WM_CHAR = 258;
+        public const int WM_SYSKEYDOWN = 260;
+        public const int WM_SYSKEYUP = 261;
+        public const int WM_SYSCHAR = 262;
+        public const int WM_IME_ENDCOMPOSITION = 270;
+        public const int WM_IME_COMPOSITION = 271;
         public const int WM_INITDIALOG = 272;
         public const int WM_COMMAND = 273;
         public const int WM_TIMER = 275;
@@ -3560,7 +3565,14 @@
         public const int WM_LBUTTONDBLCLK = 515;
         public const int WM_RBUTTONDOWN = 516;
         public const int WM_RBUTTONUP = 517;
+        public const int WM_RBUTTONDBLCLK = 518;
+        public const int WM_MBUTTONDOWN = 519;
+        public const int WM_MBUTTONUP = 520;
+        public const int WM_MBUTTONDBLCLK = 521;
         public const int WM_MOUSEWHEEL = 522;
+        public const int WM_IME_SETCONTEXT = 641;
+        public const int WM_IME_CHAR = 646;
+
         /// <summary>
         /// 收到拖拽文件,wParam拖曳句柄
         /// </summary>
@@ -3585,6 +3597,61 @@
         public const int WM_CLEAR = 0x0303;
 
         #endregion
+
+        #region 鼠标消息功能键状态_ 
+        public const int MK_LBUTTON = 0x01;
+        public const int MK_RBUTTON = 0x02;
+        public const int MK_SHIFT = 0x04;
+        public const int MK_CONTROL = 0x08;
+        public const int MK_MBUTTON = 0x10;
+        #endregion
+
+        #region WM_KEYUP/DOWN/CHAR HIWORD(lParam) flags
+        public const int KF_EXTENDED = 0x100;
+        public const int KF_ALTDOWN = 0x2000;
+        public const int KF_REPEAT = 0x4000;
+        #endregion
+
+        public const int VK_CLEAR = 0x0C;
+        public const int VK_RETURN = 0x0D;
+        public const int VK_SHIFT = 0x10;
+        public const int VK_CONTROL = 0x11;
+        public const int VK_MENU = 0x12;
+        public const int VK_CAPITAL = 0x14;
+        public const int VK_INSERT = 0x2D;
+        public const int VK_DELETE = 0x2E;
+        public const int VK_PRIOR = 0x21;
+        public const int VK_NEXT = 0x22;
+        public const int VK_END = 0x23;
+        public const int VK_HOME = 0x24;
+        public const int VK_LEFT = 0x25;
+        public const int VK_UP = 0x26;
+        public const int VK_RIGHT = 0x27;
+        public const int VK_DOWN = 0x28;
+        public const int VK_LWIN = 0x5B;
+        public const int VK_RWIN = 0x5C;
+        public const int VK_NUMPAD0 = 0x60;
+        public const int VK_NUMPAD1 = 0x61;
+        public const int VK_NUMPAD2 = 0x62;
+        public const int VK_NUMPAD3 = 0x63;
+        public const int VK_NUMPAD4 = 0x64;
+        public const int VK_NUMPAD5 = 0x65;
+        public const int VK_NUMPAD6 = 0x66;
+        public const int VK_NUMPAD7 = 0x67;
+        public const int VK_NUMPAD8 = 0x68;
+        public const int VK_NUMPAD9 = 0x69;
+        public const int VK_MULTIPLY = 0x6A;
+        public const int VK_ADD = 0x6B;
+        public const int VK_SUBTRACT = 0x6D;
+        public const int VK_DECIMAL = 0x6E;
+        public const int VK_DIVIDE = 0x6F;
+        public const int VK_NUMLOCK = 0x90;
+        public const int VK_LSHIFT = 0xA0;
+        public const int VK_RSHIFT = 0xA1;
+        public const int VK_LCONTROL = 0xA2;
+        public const int VK_RCONTROL = 0xA3;
+        public const int VK_LMENU = 0xA4;
+        public const int VK_RMENU = 0xA5;
 
         #region 按钮开关消息_ 
         /// <summary>

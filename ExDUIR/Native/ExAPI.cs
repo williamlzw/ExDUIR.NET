@@ -26,10 +26,10 @@ namespace ExDuiR.NET.Native
 
     public struct ExRect
     {
-        public int nLeft;
-        public int nTop;
-        public int nRight;
-        public int nBottom;
+        public int nLeft { get; set; }
+        public int nTop{ get; set; }
+        public int nRight { get; set; }
+        public int nBottom { get; set; }
     }
 
     public struct ExPoint
@@ -1140,6 +1140,26 @@ namespace ExDuiR.NET.Native
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_createfrommemory")]
         public static extern bool _img_createfrommemory(byte[] lpData, IntPtr dwLen, out int hImg);
+
+        /// <summary>
+        /// 图像创建自png缓冲区,BGRA格式
+        /// </summary>
+        /// <param name="lpData">缓冲区,前4字节是width,4-8字节是height,8字节之后是数据</param>
+        /// <param name="hImg">输出图像句柄</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_createfrompngbits")]
+        public static extern bool _img_createfrompngbits(IntPtr lpData, out int hImg);
+
+        /// <summary>
+        /// 图像创建自png缓冲区2,BGRA格式
+        /// </summary>
+        /// <param name="nWidth">图像宽度</param>
+        /// <param name="nHeight">图像高度</param>
+        /// <param name="lpData">数据</param>
+        /// <param name="hImg">输出图像句柄</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_createfrompngbits2")]
+        public static extern bool _img_createfrompngbits2(int nWidth, int nHeight, IntPtr lpData, out int hImg);
 
         /// <summary>
         /// 图像创建
