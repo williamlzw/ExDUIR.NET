@@ -178,5 +178,8 @@ win10+, win7 need install KB2670838 patch
 ### winform:  
 ![image](demo_image/demo_winform.png)
 
+### cefsharp browser:  
+![image](demo_image/demo_cef.png)
+
 ### login demo
 ![image](demo_image/demo_login.png)

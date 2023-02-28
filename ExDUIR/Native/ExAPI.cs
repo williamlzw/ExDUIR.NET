@@ -26,10 +26,10 @@ namespace ExDuiR.NET.Native
 
     public struct ExRect
     {
-        public int nLeft;
-        public int nTop;
-        public int nRight;
-        public int nBottom;
+        public int nLeft { get; set; }
+        public int nTop{ get; set; }
+        public int nRight { get; set; }
+        public int nBottom { get; set; }
     }
 
     public struct ExPoint
@@ -1142,6 +1142,26 @@ namespace ExDuiR.NET.Native
         public static extern bool _img_createfrommemory(byte[] lpData, IntPtr dwLen, out int hImg);
 
         /// <summary>
+        /// 图像创建自png缓冲区,BGRA格式
+        /// </summary>
+        /// <param name="lpData">缓冲区,前4字节是width,4-8字节是height,8字节之后是数据</param>
+        /// <param name="hImg">输出图像句柄</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_createfrompngbits")]
+        public static extern bool _img_createfrompngbits(IntPtr lpData, out int hImg);
+
+        /// <summary>
+        /// 图像创建自png缓冲区2,BGRA格式
+        /// </summary>
+        /// <param name="nWidth">图像宽度</param>
+        /// <param name="nHeight">图像高度</param>
+        /// <param name="lpData">数据</param>
+        /// <param name="hImg">输出图像句柄</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_createfrompngbits2")]
+        public static extern bool _img_createfrompngbits2(int nWidth, int nHeight, IntPtr lpData, out int hImg);
+
+        /// <summary>
         /// 图像创建
         /// </summary>
         /// <param name="width"></param>
@@ -1552,7 +1572,7 @@ namespace ExDuiR.NET.Native
         /// <param name="cStopPts">点个数，只能两个传2</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_brush_createlinear_ex")]
-        public static extern IntPtr _brush_createlinear_ex(float xStart, float yStart, float xEnd, float yEnd, float[,] arrStopPts, int cStopPts);
+        public static extern IntPtr _brush_createlinear_ex(float xStart, float yStart, float xEnd, float yEnd, IntPtr arrStopPts, int cStopPts);
 
         /// <summary>
         /// 画刷销毁
@@ -1639,7 +1659,7 @@ namespace ExDuiR.NET.Native
         /// <param name="lpfnMsgProc"></param>
         /// <returns>返回组件句柄</returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjCreateEx")]
-        public static extern int Ex_ObjCreateEx(int dwStyleEx, string lptszClassName, string lptszObjTitle, int dwStyle, int x, int y, int width, int height, int hParent, int nID, int dwTextFormat, IntPtr lParam, int hTheme, ExObjProcDelegate lpfnMsgProc);
+        public static extern int Ex_ObjCreateEx(int dwStyleEx, string lptszClassName, string lptszObjTitle, int dwStyle, int x, int y, int width, int height, int hParent, int nID, int dwTextFormat, IntPtr lParam, IntPtr hTheme, ExObjProcDelegate lpfnMsgProc);
 
         /// <summary>
         /// 取DPI缩放值
@@ -2043,7 +2063,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dllPath">库文件名</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ObjMiniblinkBrowserInitialize")]
-        public static extern bool Ex_ObjMiniblinkBrowserInitialize(string libPath, string dllPath);
+        public static extern bool Ex_ObjMiniblinkBrowserInitialize(IntPtr libPath, IntPtr dllPath);
 
         /// <summary>
         /// 组件返回特定关系（如Z序或所有者）的组件句柄。
@@ -2083,7 +2103,7 @@ namespace ExDuiR.NET.Native
         /// <param name="bDefault"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ThemeLoadFromFile")]
-        public static extern int Ex_ThemeLoadFromFile(string lptszFile, byte[] lpKey, IntPtr dwKeyLen, bool bDefault);
+        public static extern IntPtr Ex_ThemeLoadFromFile(string lptszFile, byte[] lpKey, IntPtr dwKeyLen, bool bDefault);
 
         /// <summary>
         /// 加载主题包自内存
@@ -2095,7 +2115,7 @@ namespace ExDuiR.NET.Native
         /// <param name="bDefault"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ThemeLoadFromMemory")]
-        public static extern int Ex_ThemeLoadFromMemory(byte[] lpData, IntPtr dwDataLen, byte[] lpKey, IntPtr dwKeyLen, bool bDefault);
+        public static extern IntPtr Ex_ThemeLoadFromMemory(byte[] lpData, IntPtr dwDataLen, byte[] lpKey, IntPtr dwKeyLen, bool bDefault);
 
         /// <summary>
         /// 释放主题
@@ -2103,7 +2123,7 @@ namespace ExDuiR.NET.Native
         /// <param name="hTheme"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ThemeFree")]
-        public static extern bool Ex_ThemeFree(int hTheme);
+        public static extern bool Ex_ThemeFree(IntPtr hTheme);
 
         /// <summary>
         /// 获取字符串唯一原子号
@@ -2145,7 +2165,7 @@ namespace ExDuiR.NET.Native
         /// <param name="atomProp"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ThemeGetValuePtr")]
-        public static extern IntPtr Ex_ThemeGetValuePtr(int hTheme, int atomClass, int atomProp);
+        public static extern IntPtr Ex_ThemeGetValuePtr(IntPtr hTheme, int atomClass, int atomProp);
 
         /// <summary>
         /// 设置引擎数值
@@ -2456,7 +2476,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dwStyle"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_DUIBindWindow")]
-        public static extern IntPtr Ex_DUIBindWindow(IntPtr hWnd, int hTheme, int dwStyle);
+        public static extern IntPtr Ex_DUIBindWindow(IntPtr hWnd, IntPtr hTheme, int dwStyle);
 
         /// <summary>
         /// 获取组件句柄自ID
@@ -2493,7 +2513,7 @@ namespace ExDuiR.NET.Native
         /// <param name="nIndex"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ThemeGetColor")]
-        public static extern int Ex_ThemeGetColor(int hTheme, int nIndex);
+        public static extern int Ex_ThemeGetColor(IntPtr hTheme, int nIndex);
 
         /// <summary>
         /// 组件获取状态
@@ -2753,7 +2773,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dwAlpha"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ThemeDrawControl")]
-        public static extern bool Ex_ThemeDrawControl(int hTheme, int hCanvas, float dstLeft, float dstTop, float dstRight, float dstBottom, int atomClass, int atomSrcRect, int dwAlpha);
+        public static extern bool Ex_ThemeDrawControl(IntPtr hTheme, int hCanvas, float dstLeft, float dstTop, float dstRight, float dstBottom, int atomClass, int atomSrcRect, int dwAlpha);
 
         /// <summary>
         /// 画刷创建自图片句柄
@@ -3061,7 +3081,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dwAlpha"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_ThemeDrawControlEx")]
-        public static extern bool Ex_ThemeDrawControlEx(int hTheme, int hCanvas, float dstLeft, float dstTop, float dstRight, float dstBottom, int atomClass, int atomSrcRect, int atomBackgroundRepeat, int atomBackgroundPositon, int atomBackgroundGrid, int atomBackgroundFlags, int dwAlpha);
+        public static extern bool Ex_ThemeDrawControlEx(IntPtr hTheme, int hCanvas, float dstLeft, float dstTop, float dstRight, float dstBottom, int atomClass, int atomSrcRect, int atomBackgroundRepeat, int atomBackgroundPositon, int atomBackgroundGrid, int atomBackgroundFlags, int dwAlpha);
 
         /// <summary>
         /// 字体取描述表

@@ -175,5 +175,8 @@ win10+， win7 需要安装KB2670838补丁
 ### winform:  
 ![image](demo_image/demo_winform.png)
 
+### cefsharp browser:  
+![image](demo_image/demo_cef.png)
+
 ### login demo
 ![image](demo_image/demo_login.png)

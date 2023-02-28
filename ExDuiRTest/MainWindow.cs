@@ -29,6 +29,7 @@ namespace ExDuiRTest
             skin = new ExSkin(null, null, "ExDUIR演示,项目地址：https://gitee.com/william_lzw/ExDUIR", 0, 0, 600, 600,
             EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE | EWS_CENTERWINDOW |
             EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON, 0, 0, IntPtr.Zero, wndProc);
+
             if (skin.Validate)
             {
                 //设置窗口背景图片
@@ -107,6 +108,8 @@ namespace ExDuiRTest
                 }
                 //设置窗口可视,必须
                 skin.Visible = true;
+                //下面这句只能调用一次
+                CefChromeBrowser.Initialize();
                 //引擎消息循环,必须
                 theApp.Run();
             }
@@ -274,6 +277,7 @@ namespace ExDuiRTest
             else if (hObj == buttons[39].handle)
             {
                 
+                CefBrowserWindow.CreateCefBrowserWindow(skin);
             }
             else if (hObj == buttons[40].handle)
             {

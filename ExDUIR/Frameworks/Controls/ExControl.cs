@@ -12,7 +12,7 @@ namespace ExDuiR.NET.Frameworks.Controls
     public class ExControl : IExBaseUIEle, IDisposable
     {
         public ExControl(IExBaseUIEle oParent, string sClassName, string sTitle, int x, int y, int nWidth, int nHeight,
-            int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, int hTheme = 0, ExObjProcDelegate pfnObjProc = null)
+            int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, IntPtr hTheme = default, ExObjProcDelegate pfnObjProc = null)
         {
             m_hObj = ExAPI.Ex_ObjCreateEx(dwStyleEx, sClassName, sTitle, dwStyle, x, y, nWidth, nHeight, oParent.handle, nID, dwTextFormat, lParam, hTheme, pfnObjProc);
             if (m_hObj == 0)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>demo</title>
+
+  </head>
+
+  <body>
+	<button class="btn btn-primary " onclick="test()">测试按钮</button>
+    <script>
+        function test() {
+			var obj = new Object();
+			obj.message = "hello";
+			CefChromeBrowser.execute("TestJsEvent", JSON.stringify(obj)
+				, function (success) {//成功时回调
+					var result = JSON.parse(success);
+					console.log(success);
+				}, function (error) {//失败时回调
+					console.log(error);
+				});
+        }
+		
+		function test2() {
+			console.log("call");
+        }
+    </script>
+  </body>
+</html>

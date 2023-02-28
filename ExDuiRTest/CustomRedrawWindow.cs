@@ -37,7 +37,7 @@ namespace ExDuiRTest
                 var canvas = new ExCanvas((int)wParam);
                 canvas.AntiAlias = true;
                 var rc = skin.ClientRect;
-                float[,] arrStopPts = new float[2,2] { { 0, Util.ExRGBA(10, 127, 213, 220) }, { 1, Util.ExRGBA(200, 10, 10, 220) } };
+                float[] arrStopPts = new float[] { 0, Util.ExRGBA(10, 127, 213, 220), 1, Util.ExRGBA(200, 10, 10, 220) };
                 var brush = new ExBrush(0, 0, rc.nRight, rc.nBottom, arrStopPts, 2);
                 canvas.FillEllipse(brush, Util.LOWORD((uint)lParam) / 2, Util.HIWORD((uint)lParam) / 2, Util.LOWORD((uint)lParam) / 2 - 2, Util.HIWORD((uint)lParam) / 2 - 2);
                 brush.Dispose();

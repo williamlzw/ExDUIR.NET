@@ -53,6 +53,15 @@ namespace ExDuiR.NET.Native
             public UInt32 cch; // length of dwTypeData
             public IntPtr hbmpItem;
         }
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetAsyncKeyState")]
+        public static extern short GetAsyncKeyState(int nVirtKey);
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetKeyState")]
+        public static extern short GetKeyState(int nVirtKey);
+
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "GetWindowLong")]
+        public static extern IntPtr GetWindowLongPtrW(IntPtr hWnd, int nIndex);
+        [DllImport("User32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "SetWindowLong")]
+        public static extern IntPtr SetWindowLongPtrW(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
         [DllImport("user32.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "SetParent")]
         public static extern int SetParent(IntPtr hWndChild, IntPtr hWndNewParent);
 
