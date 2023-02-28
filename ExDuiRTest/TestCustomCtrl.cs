@@ -5,6 +5,7 @@ using ExDuiR.NET.Native;
 using static ExDuiR.NET.Native.ExConst;
 using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Drawing;
 using CefSharp;
 using CefSharp.OffScreen;
