@@ -40,7 +40,7 @@ namespace ExDuiRTest
 
                 image1.Mask(image2, 0, false, out var image3);
                 var canvas = new ExCanvas((int)wParam);
-                canvas.DrawImageRect(image3, 0, 0, 250, 250, 255);
+                canvas.DrawImageRect(image3, 0, 0, 200, 200, 255);
                 Marshal.WriteInt32(pResult, 1);
                 return (IntPtr)1;
             }

@@ -1380,7 +1380,7 @@ namespace ExDuiR.NET.Native
         /// <param name="nChannel">蒙板通道：0:Alpha,1:R,2:G,3:B</param>
         /// <param name="bBlackMask">蒙版通道是否为 黑色/透明</param>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_mask")]
-        public static extern void _img_mask(int hImgDst, int hImgSrc, int nChannel, bool bBlackMask);
+        public static extern bool _img_mask(int hImgDst, int hImgSrc, int nChannel, bool bBlackMask, out int hImgOut);
 
         /// <summary>
         /// 画布重新设置尺寸
