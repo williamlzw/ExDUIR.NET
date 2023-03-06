@@ -8,10 +8,10 @@ using System.Collections.Generic;
 using System.Collections.Generic;
 using System.Drawing;
 using CefSharp;
+using CefSharp.Structs;
 using CefSharp.OffScreen;
 using System.Runtime.InteropServices;
 using ExDuiR.NET.Frameworks.Utility;
-using CefSharp.Structs;
 using System.Security.Policy;
 using Newtonsoft.Json;
 using System.Linq;
@@ -26,26 +26,26 @@ namespace ExDuiRTest
     {
         private static ExObjClassProcDelegate s_pfnObjClassProc = new ExObjClassProcDelegate(
             (IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr pvData) =>
-        {
-            ExControl Obj = new ExControl(hObj);
-            switch (uMsg)
             {
-                case WM_PAINT:
-                    {
-                        //开始绘制与EndPaint配套调用
-                        Obj.BeginPaint(out var ps);
-                        ExCanvas canvas = new ExCanvas(ps.hCanvas);
-                        canvas.Clear(Color.Yellow.ToArgb());
-                        //结束绘制
-                        Obj.EndPaint(ref ps);
+                ExControl Obj = new ExControl(hObj);
+                switch (uMsg)
+                {
+                    case WM_PAINT:
+                        {
+                            //开始绘制与EndPaint配套调用
+                            Obj.BeginPaint(out var ps);
+                            ExCanvas canvas = new ExCanvas(ps.hCanvas);
+                            canvas.Clear(Color.Yellow.ToArgb());
+                            //结束绘制
+                            Obj.EndPaint(ref ps);
+                            break;
+                        }
+                    default:
                         break;
-                    }
-                default:
-                    break;
-            }
-            //组件默认回调
-            return CallDefProc(hWnd, hObj, uMsg, wParam, lParam);
-        });
+                }
+                //组件默认回调
+                return CallDefProc(hWnd, hObj, uMsg, wParam, lParam);
+            });
 
         public static int RegisterControl()
         {
@@ -68,13 +68,13 @@ namespace ExDuiRTest
                 ExControl Obj = new ExControl(hObj);
                 if (uMsg == WM_CREATE)
                 {
-
+                    Obj.EnableIME = true;
                 }
                 else if (uMsg == WM_DESTROY)
                 {
                     if (Obj.LParam != IntPtr.Zero)
                     {
-                        if(Obj.UserData != IntPtr.Zero)
+                        if (Obj.UserData != IntPtr.Zero)
                         {
                             var img = new ExImage((int)Obj.UserData);
                             img.Dispose();
@@ -162,8 +162,9 @@ namespace ExDuiRTest
                         GCHandle gcHandle = GCHandle.FromIntPtr(Obj.LParam);
                         ChromiumWebBrowser extend = (ChromiumWebBrowser)gcHandle.Target;
                         var host = extend.GetBrowserHost();
+                        var dpi = Util.GetDpi();
                         extend.Size = new System.Drawing.Size(Util.LOWORD((uint)lParam), Util.HIWORD((uint)lParam));
-                        host.WasResized();
+                        //host.WasResized();
                     }
                 }
                 else if (uMsg == WM_SETFOCUS)
@@ -173,7 +174,6 @@ namespace ExDuiRTest
                         GCHandle gcHandle = GCHandle.FromIntPtr(Obj.LParam);
                         ChromiumWebBrowser extend = (ChromiumWebBrowser)gcHandle.Target;
                         var host = extend.GetBrowserHost();
-
                         host.SendFocusEvent(true);
                     }
                 }
@@ -199,7 +199,7 @@ namespace ExDuiRTest
                         host.SendMouseWheelEvent(eventb, IsKeyDown(VK_SHIFT) ? delta : 0, IsKeyDown(VK_SHIFT) ? 0 : delta);
                     }
                 }
-                else if (uMsg == WM_KEYDOWN || uMsg == WM_SYSKEYDOWN || uMsg == WM_KEYUP || uMsg == WM_SYSKEYUP || uMsg == WM_CHAR || uMsg == WM_SYSCHAR || uMsg == WM_IME_CHAR)
+                else if (uMsg == WM_KEYDOWN || uMsg == WM_SYSKEYDOWN || uMsg == WM_KEYUP || uMsg == WM_SYSKEYUP || uMsg == WM_CHAR || uMsg == WM_SYSCHAR)
                 {
                     if (Obj.LParam != IntPtr.Zero)
                     {
@@ -210,71 +210,8 @@ namespace ExDuiRTest
                         host.SendKeyEvent(eventa);
                     }
                 }
-                else if (uMsg == WM_IME_COMPOSITION)
-                {
-                    if (Obj.LParam != IntPtr.Zero)
-                    {
-                        GCHandle gcHandle = GCHandle.FromIntPtr(Obj.LParam);
-                        ChromiumWebBrowser extend = (ChromiumWebBrowser)gcHandle.Target;
-                        var host = extend.GetBrowserHost();
-                        OnIMEComposition(host, hWnd, (int)lParam);
-                    }
-                }
-                else if (uMsg == WM_IME_SETCONTEXT)
-                {
-                    if (Obj.LParam != IntPtr.Zero)
-                    {
-                        GCHandle gcHandle = GCHandle.FromIntPtr(Obj.LParam);
-                        ChromiumWebBrowser extend = (ChromiumWebBrowser)gcHandle.Target;
-                        var host = extend.GetBrowserHost();
-                        OnImeSetContext(host, hWnd, uMsg, (int)wParam, (int)lParam);
-                    }
-                }
-                else if (uMsg == WM_IME_ENDCOMPOSITION)
-                {
-
-                }
                 return CallDefProc(hWnd, hObj, uMsg, wParam, lParam);
             });
-
-        private static void OnImeSetContext(IBrowserHost host, IntPtr hWnd, int uMsg, int wParam, int lParam)
-        {
-            var hIMC = ImeNative.ImmGetContext(hWnd);
-            ImeNative.GetCaretPos(out var point);
-            var compositionPotision = new ImeNative.COMPOSITIONFORM
-            {
-                dwStyle = (int)ImeNative.CFS_POINT,
-                ptCurrentPos = new ImeNative.POINT(point.X, point.Y),
-                rcArea = new ImeNative.RECT(0, 0, 0, 0)
-            };
-            ImeNative.ImmSetCompositionWindow(hIMC, ref compositionPotision);
-            ImeNative.ImmReleaseContext(hWnd, hIMC);
-        }
-
-        private static void OnIMEComposition(IBrowserHost host, IntPtr hWnd, int lParam)
-        {
-            string text = string.Empty;
-            if (ImeHandler.GetResult(hWnd, (uint)lParam, out text))
-            {
-                host.ImeCommitText(text, new Range(int.MaxValue, int.MaxValue), 0);
-                host.ImeSetComposition(text, new CompositionUnderline[0], new Range(int.MaxValue, int.MaxValue), new Range(0, 0));
-                host.ImeFinishComposingText(false);
-            }
-            else
-            {
-                var underlines = new List<CompositionUnderline>();
-                int compositionStart = 0;
-                if (ImeHandler.GetComposition(hWnd, (uint)lParam, underlines, ref compositionStart, out text))
-                {
-                    host.ImeSetComposition(text, underlines.ToArray(), new Range(int.MaxValue, int.MaxValue), new Range(compositionStart + underlines.Count, compositionStart + underlines.Count));
-
-                }
-                else
-                {
-                    host.ImeCancelComposition();
-                }
-            }
-        }
 
         private static KeyEvent GetKeyEvent(int uMsg, IntPtr wParam, IntPtr lParam)
         {
@@ -493,12 +430,13 @@ namespace ExDuiRTest
            : base(pOwner, "CefChromeBrowser", sText, x, y, nWidth, nHeight)
         {
             browser = new ChromiumWebBrowser();
-            browser.Size = new System.Drawing.Size(nWidth, nHeight);
+            var dpi = Util.GetDpi();
+            browser.Size = new System.Drawing.Size((int)(nWidth * dpi), (int)(nHeight * dpi));
             eventHandler = new JsEventHandler();
             browser.JavascriptObjectRepository.Register("CefChromeBrowser", eventHandler, false, BindingOptions.DefaultBinder);
             browser.FrameLoadEnd += (t, s) =>
             {
-                
+
                 StringBuilder sb = new StringBuilder();
                 sb.Append("(function(){").Append("CefSharp.BindObjectAsync('CefChromeBrowser');").Append("})();");
                 browser.GetMainFrame().EvaluateScriptAsync(sb.ToString());
@@ -519,23 +457,31 @@ namespace ExDuiRTest
 
         public void Load(string url)
         {
-            if(browser != null && browser.IsBrowserInitialized)
+            if (browser != null && browser.IsBrowserInitialized)
             {
                 browser.GetMainFrame().LoadUrl(url);
             }
         }
 
+        public void LoadHtml(string html)
+        {
+            if (browser != null && browser.IsBrowserInitialized)
+            {
+                browser.GetMainFrame().LoadHtml(html);
+            }
+        }
+
         public void GoForward()
         {
-            if (browser != null)
+            if (browser != null && browser.IsBrowserInitialized)
             {
                 browser.Forward();
-            }  
+            }
         }
 
         public void Back()
         {
-            if (browser != null)
+            if (browser != null && browser.IsBrowserInitialized)
             {
                 browser.Back();
             }
@@ -547,10 +493,10 @@ namespace ExDuiRTest
         /// <param name="javascript"></param>
         public void Execute(string javascript)
         {
-            if (browser != null)
+            if (browser != null && browser.IsBrowserInitialized)
             {
                 browser.ExecuteScriptAsync(javascript);
-            }   
+            }
         }
 
         /// <summary>
@@ -610,342 +556,5 @@ namespace ExDuiRTest
     public interface IJsEvent
     {
         void Execute(string jsonStr, IJavascriptCallback success, IJavascriptCallback error);
-    }
-
-    public static class ImeNative
-    {
-        internal const uint GCS_RESULTSTR = 0x0800;
-        internal const uint GCS_COMPSTR = 0x0008;
-        internal const uint GCS_COMPATTR = 0x0010;
-        internal const uint GCS_CURSORPOS = 0x0080;
-        internal const uint GCS_COMPCLAUSE = 0x0020;
-
-        internal const uint CPS_CANCEL = 0x0004;
-        internal const uint CS_NOMOVECARET = 0x4000;
-        internal const uint NI_COMPOSITIONSTR = 0x0015;
-
-        internal const uint ATTR_INPUT = 0x00;
-        internal const uint ATTR_TARGET_CONVERTED = 0x01;
-        internal const uint ATTR_TARGET_NOTCONVERTED = 0x03;
-
-        internal const uint ISC_SHOWUICOMPOSITIONWINDOW = 0x80000000;
-
-        internal const uint CFS_DEFAULT = 0x0000;
-        internal const uint CFS_RECT = 0x0001;
-        internal const uint CFS_POINT = 0x0002;
-        internal const uint CFS_FORCE_POSITION = 0x0020;
-        internal const uint CFS_CANDIDATEPOS = 0x0040;
-        internal const uint CFS_EXCLUDE = 0x0080;
-
-        internal const uint LANG_JAPANESE = 0x11;
-        internal const uint LANG_CHINESE = 0x04;
-        internal const uint LANG_KOREAN = 0x12;
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct POINT
-        {
-            public int X;
-            public int Y;
-
-            public POINT(int x, int y)
-            {
-                X = x;
-                Y = y;
-            }
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT
-        {
-            public int Left, Top, Right, Bottom;
-
-            public RECT(int left, int top, int right, int bottom)
-            {
-                Left = left;
-                Top = top;
-                Right = right;
-                Bottom = bottom;
-            }
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct COMPOSITIONFORM
-        {
-            public int dwStyle;
-            public POINT ptCurrentPos;
-            public RECT rcArea;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct CANDIDATEFORM
-        {
-            public int dwIndex;
-            public int dwStyle;
-            public POINT ptCurrentPos;
-            public RECT rcArea;
-        }
-
-        [DllImport("imm32.dll")]
-        internal static extern IntPtr ImmCreateContext();
-
-        [DllImport("imm32.dll")]
-        internal static extern IntPtr ImmAssociateContext(IntPtr hWnd, IntPtr hIMC);
-
-        [DllImport("imm32.dll")]
-        internal static extern bool ImmDestroyContext(IntPtr hIMC);
-
-        [DllImport("imm32.dll")]
-        internal static extern IntPtr ImmGetContext(IntPtr hWnd);
-
-        [DllImport("Imm32.dll")]
-        internal static extern bool ImmReleaseContext(IntPtr hWnd, IntPtr hIMC);
-
-        [DllImport("Imm32.dll")]
-        internal static extern bool ImmNotifyIME(IntPtr hIMC, uint action, uint index, uint value);
-
-        [DllImport("imm32.dll", CharSet = CharSet.Unicode)]
-        internal static extern uint ImmGetCompositionString(IntPtr hIMC, uint dwIndex, byte[] lpBuf, uint dwBufLen);
-
-        [DllImport("imm32.dll")]
-        internal static extern int ImmSetCompositionWindow(IntPtr hIMC, ref COMPOSITIONFORM lpCompForm);
-
-        [DllImport("imm32.dll")]
-        public static extern int ImmSetCandidateWindow(IntPtr hIMC, [MarshalAs(UnmanagedType.Struct)] ref CANDIDATEFORM lpCandidateForm);
-
-        [DllImport("user32.dll")]
-        internal static extern bool CreateCaret(IntPtr hWnd, IntPtr hBitmap, int nWidth, int nHeight);
-
-        [DllImport("user32.dll")]
-        internal static extern bool DestroyCaret();
-
-        [DllImport("user32.dll")]
-        internal static extern bool SetCaretPos(int x, int y);
-
-        [DllImport("user32.dll")]
-        internal static extern bool GetCaretPos(out POINT point);
-
-        [DllImport("user32.dll")]
-        internal static extern IntPtr DefWindowProc(IntPtr hWnd, uint uMsg, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll")]
-        internal static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        internal static extern uint GetWindowThreadProcessId(IntPtr hWnd, IntPtr ProcessId);
-
-        [DllImport("user32.dll")]
-        internal static extern IntPtr GetKeyboardLayout(uint idThread);
-
-        [DllImport("user32.dll")]
-        internal static extern IntPtr SetFocus(IntPtr hWnd);
-    }
-
-    public static class ImeHandler
-    {
-        // Black SkColor value for underline.
-        public static uint ColorUNDERLINE = 0xFF000000;
-        // Transparent SkColor value for background.
-        public static uint ColorBKCOLOR = 0x00000000;
-
-        public static bool GetResult(IntPtr hwnd, uint lParam, out string text)
-        {
-            var hIMC = ImeNative.ImmGetContext(hwnd);
-
-            var ret = GetString(hIMC, lParam, ImeNative.GCS_RESULTSTR, out text);
-
-            ImeNative.ImmReleaseContext(hwnd, hIMC);
-
-            return ret;
-        }
-
-        public static bool GetComposition(IntPtr hwnd, uint lParam, List<CompositionUnderline> underlines, ref int compositionStart, out string text)
-        {
-            var hIMC = ImeNative.ImmGetContext(hwnd);
-
-            bool ret = GetString(hIMC, lParam, ImeNative.GCS_COMPSTR, out text);
-            if (ret)
-            {
-                GetCompositionInfo(hwnd, lParam, text, underlines, ref compositionStart);
-            }
-
-            ImeNative.ImmReleaseContext(hwnd, hIMC);
-
-            return ret;
-        }
-
-        private static bool GetString(IntPtr hIMC, uint lParam, uint type, out string text)
-        {
-            text = string.Empty;
-
-            if (!IsParam(lParam, type))
-            {
-                return false;
-            }
-
-            var strLen = ImeNative.ImmGetCompositionString(hIMC, type, null, 0);
-            if (strLen <= 0)
-            {
-                return false;
-            }
-
-            // buffer contains char (2 bytes)
-            byte[] buffer = new byte[strLen];
-            ImeNative.ImmGetCompositionString(hIMC, type, buffer, strLen);
-            text = System.Text.Encoding.Unicode.GetString(buffer);
-
-            return true;
-        }
-
-        private static void GetCompositionInfo(IntPtr hwnd, uint lParam, string text, List<CompositionUnderline> underlines, ref int compositionStart)
-        {
-            var hIMC = ImeNative.ImmGetContext(hwnd);
-
-            underlines.Clear();
-
-            byte[] attributes = null;
-            int targetStart = text.Length;
-            int targetEnd = text.Length;
-            if (IsParam(lParam, ImeNative.GCS_COMPATTR))
-            {
-                attributes = GetCompositionSelectionRange(hIMC, ref targetStart, ref targetEnd);
-            }
-
-            // Retrieve the selection range information. If CS_NOMOVECARET is specified
-            // it means the cursor should not be moved and we therefore place the caret at
-            // the beginning of the composition string. Otherwise we should honour the
-            // GCS_CURSORPOS value if it's available.
-            if (!IsParam(lParam, ImeNative.CS_NOMOVECARET) && IsParam(lParam, ImeNative.GCS_CURSORPOS))
-            {
-                // IMM32 does not support non-zero-width selection in a composition. So
-                // always use the caret position as selection range.
-                int cursor = (int)ImeNative.ImmGetCompositionString(hIMC, ImeNative.GCS_CURSORPOS, null, 0);
-                compositionStart = cursor;
-            }
-            else
-            {
-                compositionStart = 0;
-            }
-
-            if (attributes != null &&
-                // character before
-                ((compositionStart > 0 && (compositionStart - 1) < attributes.Length && attributes[compositionStart - 1] == ImeNative.ATTR_INPUT)
-                ||
-                // character after
-                (compositionStart >= 0 && compositionStart < attributes.Length && attributes[compositionStart] == ImeNative.ATTR_INPUT)))
-            {
-                // as MS does with their ime implementation we should only use the GCS_CURSORPOS if the character
-                // before or after is new input.
-                // https://referencesource.microsoft.com/#PresentationFramework/src/Framework/System/windows/Documents/ImmComposition.cs,1079
-            }
-            else
-            {
-                compositionStart = text.Length;
-            }
-
-            if (IsParam(lParam, ImeNative.GCS_COMPCLAUSE))
-            {
-                GetCompositionUnderlines(hIMC, targetStart, targetEnd, underlines);
-            }
-
-            if (underlines.Count == 0)
-            {
-                var range = new Range();
-
-                bool thick = false;
-
-                if (targetStart > 0)
-                {
-                    range = new Range(0, targetStart);
-                }
-
-                if (targetEnd > targetStart)
-                {
-                    range = new Range(targetStart, targetEnd);
-                    thick = true;
-                }
-
-                if (targetEnd < text.Length)
-                {
-                    range = new Range(targetEnd, text.Length);
-                }
-
-                underlines.Add(new CompositionUnderline(range, ColorUNDERLINE, ColorBKCOLOR, thick));
-            }
-
-            ImeNative.ImmReleaseContext(hwnd, hIMC);
-        }
-
-        private static void GetCompositionUnderlines(IntPtr hIMC, int targetStart, int targetEnd, List<CompositionUnderline> underlines)
-        {
-            var clauseSize = ImeNative.ImmGetCompositionString(hIMC, ImeNative.GCS_COMPCLAUSE, null, 0);
-            if (clauseSize <= 0)
-            {
-                return;
-            }
-
-            int clauseLength = (int)clauseSize / sizeof(Int32);
-
-            // buffer contains 32 bytes (4 bytes) array
-            var clauseData = new byte[(int)clauseSize];
-            ImeNative.ImmGetCompositionString(hIMC, ImeNative.GCS_COMPCLAUSE, clauseData, clauseSize);
-
-            var clauseLength_1 = clauseLength - 1;
-            for (int i = 0; i < clauseLength_1; i++)
-            {
-                int from = BitConverter.ToInt32(clauseData, i * sizeof(Int32));
-                int to = BitConverter.ToInt32(clauseData, (i + 1) * sizeof(Int32));
-
-                var range = new Range(from, to);
-                bool thick = (range.From >= targetStart && range.To <= targetEnd);
-
-                underlines.Add(new CompositionUnderline(range, ColorUNDERLINE, ColorBKCOLOR, thick));
-            }
-        }
-
-        private static byte[] GetCompositionSelectionRange(IntPtr hIMC, ref int targetStart, ref int targetEnd)
-        {
-            var attributeSize = ImeNative.ImmGetCompositionString(hIMC, ImeNative.GCS_COMPATTR, null, 0);
-            if (attributeSize <= 0)
-            {
-                return null;
-            }
-
-            int start = 0;
-            int end = 0;
-
-            // Buffer contains 8bit array
-            var attributeData = new byte[attributeSize];
-            ImeNative.ImmGetCompositionString(hIMC, ImeNative.GCS_COMPATTR, attributeData, attributeSize);
-
-            for (start = 0; start < attributeSize; ++start)
-            {
-                if (IsSelectionAttribute(attributeData[start]))
-                {
-                    break;
-                }
-            }
-
-            for (end = start; end < attributeSize; ++end)
-            {
-                if (!IsSelectionAttribute(attributeData[end]))
-                {
-                    break;
-                }
-            }
-
-            targetStart = start;
-            targetEnd = end;
-            return attributeData;
-        }
-
-        private static bool IsSelectionAttribute(byte attribute)
-        {
-            return (attribute == ImeNative.ATTR_TARGET_CONVERTED || attribute == ImeNative.ATTR_TARGET_NOTCONVERTED);
-        }
-
-        private static bool IsParam(uint lParam, uint type)
-        {
-            return (lParam & type) == type;
-        }
     }
 }

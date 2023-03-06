@@ -83,6 +83,16 @@ namespace ExDuiRTest.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap BackgroundImage {
+            get {
+                object obj = ResourceManager.GetObject("BackgroundImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap btn1 {
             get {
                 object obj = ResourceManager.GetObject("btn1", resourceCulture);
@@ -197,6 +207,33 @@ namespace ExDuiRTest.Properties {
             get {
                 object obj = ResourceManager.GetObject("carousel3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 &lt;!DOCTYPE html&gt;
+        ///&lt;html lang=&quot;en&quot;&gt;
+        ///  &lt;head&gt;
+        ///    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+        ///    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
+        ///    &lt;title&gt;demo&lt;/title&gt;
+        ///
+        ///  &lt;/head&gt;
+        ///
+        ///  &lt;body&gt;
+        ///	&lt;button class=&quot;btn btn-primary &quot; onclick=&quot;test()&quot;&gt;测试按钮&lt;/button&gt;
+        ///    &lt;script&gt;
+        ///        function test() {
+        ///			var obj = new Object();
+        ///			obj.message = &quot;hello&quot;;
+        ///			CefChromeBrowser.execute(&quot;TestJsEvent&quot;, JSON.stringify(obj)
+        ///				, function (success) {//成功时回调
+        ///					var result = JSON.parse(success);
+        ///					console.log(success) [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        /// </summary>
+        internal static string cef {
+            get {
+                return ResourceManager.GetString("cef", resourceCulture);
             }
         }
         
@@ -376,6 +413,26 @@ namespace ExDuiRTest.Properties {
         internal static System.Drawing.Bitmap Main {
             get {
                 object obj = ResourceManager.GetObject("Main", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap mask1 {
+            get {
+                object obj = ResourceManager.GetObject("mask1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap mask4 {
+            get {
+                object obj = ResourceManager.GetObject("mask4", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

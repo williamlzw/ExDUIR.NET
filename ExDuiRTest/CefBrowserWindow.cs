@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using ExDuiR.NET.Frameworks.Controls;
 using ExDuiR.NET.Frameworks.Utility;
 using ExDuiR.NET.Frameworks;
@@ -33,11 +32,12 @@ namespace ExDuiRTest
                 CefChromeBrowser.RegisterControl();
                 browserObj = new CefChromeBrowser(skin, "", 30, 30, 700, 500);
                 //延时等待加载完毕
-                System.Threading.Thread.Sleep(500);
+                System.Threading.Thread.Sleep(1000);
                 //演示js调用c#代码,要在Load html前注册方法
                 browserObj.RegisterFun("TestJsEvent", new TestJsEvent());
-                //browserObj.Load(Environment.CurrentDirectory + "/cef.html");
-                browserObj.Load("www.bing.com");
+                var str = Properties.Resources.cef;
+                browserObj.LoadHtml(str);
+                //browserObj.Load("www.bing.com");
 
                 //直接调用js
                 string javascript = "test2();";
@@ -48,9 +48,9 @@ namespace ExDuiRTest
 
         static private IntPtr OnWndProc(IntPtr hWnd, int hExDui, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr lpResult)
         {
-            if(uMsg == WM_SIZE)
+            if (uMsg == WM_SIZE)
             {
-                if(browserObj != null)
+                if (browserObj != null)
                 {
                     var dpi = Util.GetDpi();
                     browserObj.Move(50, 50, (int)(Util.LOWORD((uint)lParam) / dpi) - 100, (int)(Util.HIWORD((uint)lParam) / dpi) - 100);

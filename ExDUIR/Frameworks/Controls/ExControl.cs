@@ -519,6 +519,17 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
+        /// 是否允许启用输入法
+        /// </summary>
+        public bool EnableIME
+        {
+            set
+            {
+                ExAPI.Ex_ObjEnableIME(m_hObj, value);
+            }
+        }
+
+        /// <summary>
         /// 取组件背景图信息
         /// </summary>
         /// <param name="pImageInfo"></param>

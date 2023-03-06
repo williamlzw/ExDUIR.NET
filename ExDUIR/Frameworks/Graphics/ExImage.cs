@@ -142,6 +142,20 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ret;
         }
 
+        public bool Mask(ExImage srcImg, int nChannel, bool bBlackMask, out ExImage dstImg)
+        {
+            ExAPI._img_mask(m_hImg, srcImg.handle, nChannel, bBlackMask);
+            var len = ExAPI._img_savetomemory(m_hImg, IntPtr.Zero);
+            var buf = ExAPI.Ex_AllocBuffer(len);
+            ExAPI._img_savetomemory(m_hImg, buf);
+            byte[] data = new byte[(int)len];
+            Marshal.Copy(buf, data, 0, (int)len);
+            ExAPI.Ex_FreeBuffer(buf);
+            ExAPI._img_createfrommemory(data, len, out var handle);
+            dstImg = new ExImage(handle);
+            return true;
+        }
+
         public bool Scale(int dstWidth, int dstHeight, out ExImage dstImg)
         {
             var ans = 0;

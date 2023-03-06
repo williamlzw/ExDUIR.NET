@@ -1373,6 +1373,16 @@ namespace ExDuiR.NET.Native
         public static extern bool _img_rotateflip(int hImg, int rfType, out int phImg);
 
         /// <summary>
+        /// 图像蒙板
+        /// </summary>
+        /// <param name="hImgDst">目标图句柄</param>
+        /// <param name="hImgSrc">原图句柄</param>
+        /// <param name="nChannel">蒙板通道：0:Alpha,1:R,2:G,3:B</param>
+        /// <param name="bBlackMask">蒙版通道是否为 黑色/透明</param>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_mask")]
+        public static extern void _img_mask(int hImgDst, int hImgSrc, int nChannel, bool bBlackMask);
+
+        /// <summary>
         /// 画布重新设置尺寸
         /// </summary>
         /// <param name="hCanvas"></param>
@@ -2882,7 +2892,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dwLen"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "Ex_AllocBuffer")]
-        public static extern IntPtr Ex_AllocBuffer(int dwLen);
+        public static extern IntPtr Ex_AllocBuffer(IntPtr dwLen);
 
         /// <summary>
         /// 图像缩放
