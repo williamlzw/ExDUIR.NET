@@ -812,12 +812,28 @@
         /// 消息_列表_清空表项
         /// </summary>
         ///
-        public const int LVM_DELETEALLITEMS = 4015;
+        public const int LVM_DELETEALLITEMS = 4105;
         /// <summary>
         /// 消息_列表_删除表项,wParam为是否立即重画，lParam为删除的索引
         /// </summary>
         ///
         public const int LVM_DELETEITEM = 4104;
+        /// <summary>
+        /// 消息_报表_获取单元格信息   lParam: EX_REPORTLIST_CELLINFO
+        /// </summary>
+        public const int LVM_GETCELL = 4106;
+        /// <summary>
+        /// 消息_报表_设置单元格信息   wParam:是否排除文本  lParam: EX_REPORTLIST_CELLINFO
+        /// </summary>
+        public const int LVM_SETCELL = 4107;
+        /// <summary>
+        /// 消息_报表_获取单元格lParam   wParam :iRow lParam:iCol  return: LPARAM
+        /// </summary>
+        public const int LVM_GETCELLLPARAM = 4108;
+        /// <summary>
+        /// 消息_报表_设置单元格lParam    wParam :新值  lParam: 低位 行 高位 列
+        /// </summary>
+        public const int LVM_SETCELLLPARAM = 4109;
         /// <summary>
         /// 消息_列表_保证显示表项
         /// </summary>
@@ -2917,6 +2933,11 @@
         /// </summary>
         ///
         public const int ERLS_NOHEAD = 1024;
+        /// <summary>
+        /// 报表风格_表项可编辑
+        /// </summary>
+        ///
+        public const int ERLS_EDIT = 2048;
         #endregion
 
         #region 报表表头风格_
@@ -2940,6 +2961,10 @@
         /// </summary>
         ///
         public const int ERLV_CS_SORTABLE = 4;
+        /// <summary>
+        /// 报表表头风格_自定义列表头背景色
+        /// </summary>
+        public const int ERLV_CS_COLCOR = 8;
         #endregion
 
         #region 事件_报表_
@@ -3409,6 +3434,25 @@
         /// </summary>
         ///
         public const int ERLV_RS_CHECKBOX_CHECK = 2;
+        /// <summary>
+        /// 报表表行风格_自定义整行格背景色
+        /// </summary>
+        public const int ERLV_RS_ROWCOLCOR = 4;
+        #endregion
+
+        #region 报表单元格风格_
+        /// <summary>
+        /// 报表单元格风格_背景色
+        /// </summary>
+        public const int ERLV_RS_CELLCOLCOR = 1;
+        /// <summary>
+        /// 报表单元格风格_文本色
+        /// </summary>
+        public const int ERLV_RS_CELLTEXTCOLCOR = 2;
+        /// <summary>
+        /// 报表单元格风格_字体
+        /// </summary>
+        public const int ERLV_RS_CELLFONT = 4;
         #endregion
 
         #region 图标列表风格_

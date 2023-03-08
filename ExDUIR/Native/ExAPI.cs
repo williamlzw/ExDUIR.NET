@@ -535,7 +535,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 插入位置,0为在最后
         /// </summary>
-        public int nInsertIndex; 
+        public int nInsertIndex;
+        /// <summary>
+        /// 列表头背景颜色, dwStyle具有ERLV_CS_COLCOR风格时生效
+        /// </summary>
+        public int crBkg;
     };
 
     /// <summary>
@@ -548,17 +552,9 @@ namespace ExDuiR.NET.Native
         /// </summary>
         public int iRow;
         /// <summary>
-        /// 所在列[IN / OUT]
-        /// </summary>
-        public int iCol;
-        /// <summary>
         /// 项目行风格(同行共用)
         /// </summary>
         public int dwStyle;
-        /// <summary>
-        /// 项目文本,unicode
-        /// </summary>
-        public IntPtr pwzText;
         /// <summary>
         /// 项目图片组索引(同行共用)
         /// </summary>
@@ -570,11 +566,51 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 项目状态(同行共用)
         /// </summary>
-        public int dwState;    
+        public int dwState;
+        /// <summary>
+        /// dwStyle具有ERLV_RS_ROWCOLCOR风格时,整行的背景色
+        /// </summary>
+        public int crRowBkg;
     };
 
+    public struct ExReportListCellInfo
+    {
+        /// <summary>
+        /// 所在行[IN / OUT]
+        /// </summary>
+        public int iRow;
+        /// <summary>
+        /// 所在列[IN / OUT]
+        /// </summary>
+        public int iCol;
+        /// <summary>
+        /// 单元格文本
+        /// </summary>
+        public IntPtr pwzText;
+        /// <summary>
+        /// 单元格风格
+        /// </summary>
+        public int cellStyle;
+        /// <summary>
+        /// cellStyle具有"ERLV_RS_CELLCOLCOR"风格时,单元格的背景色
+        /// </summary>
+        public int cellBkgCr;
+        /// <summary>
+        /// cellStyle具有"ERLV_RS_CELLTEXTCOLCOR"风格时,单元格的文本色
+        /// </summary>
+        public int cellTextCr;
+        /// <summary>
+        /// cellStyle具有"ERLV_RS_CELLFONT"风格时,单元格的字体,该字体(修改时)无需手动释放
+        /// </summary>
+        public int cellFont;
+        /// <summary>
+        /// 单元格参数
+        /// </summary>
+        public IntPtr lParam;
+    }
+
     /// <summary>
-    /// 报表行信息结构
+    /// 报表插入表项结构体
     /// </summary>
     public struct ExReportListRowInfo
     {
@@ -593,7 +629,11 @@ namespace ExDuiR.NET.Native
         /// <summary>
         /// 图片组索引
         /// </summary>
-        public int nImageIndex;     
+        public int nImageIndex;
+        /// <summary>
+        /// dwStyle具有"ERLV_RS_ROWCOLCOR"风格时,整行的背景色
+        /// </summary>
+        public int crRowBkg;
     };
 
     /// <summary>

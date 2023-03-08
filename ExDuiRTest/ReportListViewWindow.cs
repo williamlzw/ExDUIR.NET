@@ -28,7 +28,7 @@ namespace ExDuiRTest
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                reportlistview = new ExReportListView(skin, "", 25, 50, 350, 250, EOS_BORDER | EOS_VISIBLE | EOS_HSCROLL | EOS_VSCROLL);
+                reportlistview = new ExReportListView(skin, "", 25, 50, 350, 250, EOS_BORDER | EOS_VISIBLE | EOS_HSCROLL | EOS_VSCROLL | ERLS_EDIT | ERLS_DRAWVERTICALLINE);
                 reportlistview.ColorBackground = Util.ExRGB2ARGB(16777215, 100);
                 reportlistview.ColorBorder = Util.ExRGBA(120, 120, 120, 255);
                 reportlistview.ColorListViewHead = Util.ExRGB2ARGB(16777215, 100);
@@ -68,8 +68,9 @@ namespace ExDuiRTest
                     pwzText = Marshal.StringToHGlobalUni("居中可点击"),
                     nWidth = 110,
                     crText = Util.ExRGB2ARGB(65535, 255),
-                    dwStyle = ERLV_CS_CLICKABLE,
-                    dwTextFormat = DT_CENTER | DT_VCENTER
+                    dwStyle = ERLV_CS_CLICKABLE | ERLV_CS_COLCOR,
+                    dwTextFormat = DT_CENTER | DT_VCENTER,
+                    crBkg = Util.ExRGBA(120, 230, 180, 255)
                 };
                 reportlistview.SetColumn(col3);
 
@@ -83,7 +84,7 @@ namespace ExDuiRTest
                 };
                 reportlistview.SetColumn(col4);
                 Random rn = new Random();
-                for(int i = 1; i<=1000; i++)
+                for(int i = 1; i <= 1000; i++)
                 {
                     ExReportListRowInfo row = new ExReportListRowInfo
                     {
@@ -93,42 +94,50 @@ namespace ExDuiRTest
                     ExReportListItemInfo item1 = new ExReportListItemInfo
                     {
                         nImageIndex = i,
-                        dwStyle = (i % 3 == 0 ? ERLV_RS_CHECKBOX | ERLV_RS_CHECKBOX_CHECK : 0),
+                        dwStyle = (i % 3 == 0 ? ERLV_RS_CHECKBOX | ERLV_RS_CHECKBOX_CHECK | ERLV_RS_ROWCOLCOR : 0),
                         iRow = rowIndex,
-                        iCol = 1,
-                        pwzText = Marshal.StringToHGlobalUni("第" + i.ToString() + "项")
+                        crRowBkg = Util.ExRGBA(31, 100, 200, 255)
                     };
                     reportlistview.SetItem(item1);
 
-                    ExReportListItemInfo item2 = new ExReportListItemInfo
+                    ExReportListCellInfo cell1 = new ExReportListCellInfo
                     {
-                        nImageIndex = i,
-                        dwStyle = (i % 3 == 0 ? ERLV_RS_CHECKBOX | ERLV_RS_CHECKBOX_CHECK : 0),
-                        iRow = rowIndex,
+                        iCol = 1,
+                        iRow = i,
+                        pwzText = Marshal.StringToHGlobalUni("第" + i.ToString() + "项"),
+                        cellStyle = 0
+                    };
+                    reportlistview.SetCell(cell1);
+
+                    ExReportListCellInfo cell2 = new ExReportListCellInfo
+                    {
                         iCol = 2,
-                        pwzText = Marshal.StringToHGlobalUni("第二列")
+                        iRow = i,
+                        pwzText = Marshal.StringToHGlobalUni("第二列"),
+                        cellStyle = ERLV_RS_CELLCOLCOR,
+                        cellBkgCr = Util.ExRGBA(130,130,25,255)
                     };
-                    reportlistview.SetItem(item2);
+                    reportlistview.SetCell(cell2);
 
-                    ExReportListItemInfo item3 = new ExReportListItemInfo
+                    ExReportListCellInfo cell3 = new ExReportListCellInfo
                     {
-                        nImageIndex = i,
-                        dwStyle = (i % 3 == 0 ? ERLV_RS_CHECKBOX | ERLV_RS_CHECKBOX_CHECK : 0),
-                        iRow = rowIndex,
                         iCol = 3,
-                        pwzText = Marshal.StringToHGlobalUni("第三列")
+                        iRow = i,
+                        pwzText = Marshal.StringToHGlobalUni("第三列"),
+                        cellStyle = ERLV_RS_CELLTEXTCOLCOR,
+                        cellTextCr = Util.ExRGBA(130, 25, 130, 255)
                     };
-                    reportlistview.SetItem(item3);
+                    reportlistview.SetCell(cell3);
 
-                    ExReportListItemInfo item4 = new ExReportListItemInfo
+                    ExReportListCellInfo cell4 = new ExReportListCellInfo
                     {
-                        nImageIndex = i,
-                        dwStyle = (i % 3 == 0 ? ERLV_RS_CHECKBOX | ERLV_RS_CHECKBOX_CHECK : 0),
-                        iRow = rowIndex,
                         iCol = 4,
-                        pwzText = Marshal.StringToHGlobalUni(rn.Next(0, 1000).ToString())
+                        iRow = i,
+                        pwzText = Marshal.StringToHGlobalUni(rn.Next(0, 1000).ToString()),
+                        cellStyle = ERLV_RS_CELLFONT,
+                        cellFont = new ExFont("微软雅黑", 20, 0).handle
                     };
-                    reportlistview.SetItem(item4);
+                    reportlistview.SetCell(cell4);
                 }
                 reportlistview.Update();
                 reportlistview.HandleEvent(LVN_ITEMCHANGED, itemChangeProc);

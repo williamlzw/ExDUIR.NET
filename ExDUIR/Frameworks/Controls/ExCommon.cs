@@ -1735,6 +1735,18 @@ namespace ExDuiR.NET.Frameworks.Controls
             this.SendMessage(LVM_SETITEM, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
         }
+
+        /// <summary>
+        /// 设置单元格
+        /// </summary>
+        /// <param name="cellInfo"></param>
+        public void SetCell(ExReportListCellInfo cellInfo)
+        {
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListCellInfo)));
+            Marshal.StructureToPtr(cellInfo, ptr, true);
+            this.SendMessage(LVM_SETCELL, IntPtr.Zero, ptr);
+            Marshal.FreeHGlobal(ptr);
+        }
         public void Update()
         {
             this.SendMessage(LVM_UPDATE);
