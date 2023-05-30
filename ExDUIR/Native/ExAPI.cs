@@ -36,6 +36,11 @@ namespace ExDuiR.NET.Native
     {
         public int x;
         public int y;
+        public ExPoint(int x1, int y1)
+        {
+            x = x1;
+            y = y1;
+        }
     }
 
     /// <summary>
@@ -573,6 +578,9 @@ namespace ExDuiR.NET.Native
         public int crRowBkg;
     };
 
+    /// <summary>
+    /// 报表列表单元格信息结构
+    /// </summary>
     public struct ExReportListCellInfo
     {
         /// <summary>
@@ -1136,6 +1144,36 @@ namespace ExDuiR.NET.Native
         /// </summary>
         public ExRollMenuExtraIcon extraIcon;
     }
+
+    /// <summary>
+    /// 标注板路径数组信息结构
+    /// </summary>
+    public struct ExPolygonArray
+    {
+        /// <summary>
+        /// 数组数量
+        /// </summary>
+        public int count;
+        /// <summary>
+        /// 保存有count个EX_POlYGON*指针,注意最后一个是不闭合路径
+        /// </summary>
+        public IntPtr polygons;
+    };
+
+    /// <summary>
+    /// 标注板路径信息结构
+    /// </summary>
+    public struct ExPolygon
+    {
+        /// <summary>
+        /// 点数量
+        /// </summary>
+        public int count;
+        /// <summary>
+        /// 保存有count个POINT结构体数据:x,y
+        /// </summary>
+        public IntPtr points;
+    };
 
     /// <summary>
     /// API声明

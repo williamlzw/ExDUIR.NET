@@ -5,7 +5,6 @@ using ExDuiR.NET.Native;
 using static ExDuiR.NET.Native.ExConst;
 using System;
 using System.Collections.Generic;
-using System.Collections.Generic;
 using System.Drawing;
 using CefSharp;
 using CefSharp.Structs;
@@ -208,6 +207,17 @@ namespace ExDuiRTest
                         var host = extend.GetBrowserHost();
                         var eventa = GetKeyEvent(uMsg, wParam, lParam);
                         host.SendKeyEvent(eventa);
+                    }
+                }
+                else if(uMsg == WM_IME_COMPOSITION)
+                {
+                    if (Obj.LParam != IntPtr.Zero)
+                    {
+                        GCHandle gcHandle = GCHandle.FromIntPtr(Obj.LParam);
+                        ChromiumWebBrowser extend = (ChromiumWebBrowser)gcHandle.Target;
+                        var host = extend.GetBrowserHost();
+                       
+                        //host.
                     }
                 }
                 return CallDefProc(hWnd, hObj, uMsg, wParam, lParam);

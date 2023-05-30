@@ -5,6 +5,7 @@ using ExDuiR.NET.Frameworks.Utility;
 using System;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 
 namespace ExDuiR.NET.Frameworks.Controls
 {
@@ -1312,9 +1313,9 @@ namespace ExDuiR.NET.Frameworks.Controls
         public ExIconListView(ExControl parent) : base(parent)
         {
         }
-        public void SetImageSize(int size)
+        public void SetImageSize(int width, int height)
         {
-            this.SendMessage(ILVM_SETITEMSIZE, default, (IntPtr)Util.MAKELONG(70, 75));
+            this.SendMessage(ILVM_SETITEMSIZE, default, (IntPtr)Util.MAKELONG((uint)width, (uint)height));
         }
         public int SetItem(ExIconListViewItemInfo info)
         {
@@ -1372,6 +1373,23 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public ExListView(ExControl parent) : base(parent)
         {
+        }
+
+        public void ClearAll()
+        {
+            this.SendMessage(LVM_DELETEALLITEMS, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        public int ItemSelect
+        {
+            set
+            {
+                this.SendMessage(LVM_SETSELECTIONMARK, (IntPtr)1, (IntPtr)value);
+            }
+            get
+            {
+                return (int)this.SendMessage(LVM_GETSELECTIONMARK, IntPtr.Zero, IntPtr.Zero);
+            }
         }
 
         public int ItemCount
@@ -1682,6 +1700,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public ExReportListView(ExControl parent) : base(parent)
         {
+        }
+
+        public void ClearAll()
+        {
+            this.SendMessage(LVM_DELETEALLITEMS, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -2451,5 +2474,182 @@ namespace ExDuiR.NET.Frameworks.Controls
             }
         }
         public new string ClassName => "MediaFoundation";
+    }
+
+    public class ExTaggingBoard : ExControl
+    {
+        public ExTaggingBoard(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "TaggingBoard", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExTaggingBoard(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "TaggingBoard", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
+        {
+        }
+        public ExTaggingBoard(int hObj) : base(hObj)
+        {
+        }
+        public ExTaggingBoard(ExControl parent) : base(parent)
+        {
+        }
+
+        /// <summary>
+        /// 画笔颜色
+        /// </summary>
+        public int PenColor
+        {
+            set
+            {
+                this.SendMessage(TBM_SET_PEN_COLOR, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 标注图
+        /// </summary>
+        public ExImage TaggingImage
+        {
+            set
+            {
+                this.SendMessage(TBM_SET_BKG, IntPtr.Zero, (IntPtr)value.handle);
+            }
+        }
+
+        /// <summary>
+        /// 开始标注
+        /// </summary>
+        public bool StartTagging
+        {
+            set
+            {
+                this.SendMessage(TBM_START, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 结束标注
+        /// </summary>
+        public bool StopTagging
+        {
+            set
+            {
+                this.SendMessage(TBM_STOP, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 清空标注
+        /// </summary>
+        public bool ClearTagging
+        {
+            set
+            {
+                this.SendMessage(TBM_CLEAR, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 取/置标注数据,第一维度是闭合路径数量,第二维度是每条路径点坐标
+        /// </summary>
+        public List<List<ExPoint>> TaggingData
+        {
+            get
+            {
+                var arrPtr = this.SendMessage(TBM_GET_DATA, IntPtr.Zero, IntPtr.Zero);
+                var offsetLeft = this.OffsetLeft;
+                var offsetTop = this.OffsetTop;
+                var scale = this.ImgScale;
+                var polygonArr = Util.IntPtrToStructure<ExPolygonArray>(arrPtr);
+                List<List<ExPoint>> polygons = new List<List<ExPoint>>();
+
+                for (int i = 0; i < polygonArr.count - 1; i++)
+                {
+                    var ptr = Marshal.ReadIntPtr(polygonArr.polygons + i * Marshal.SizeOf(typeof(IntPtr)));
+                    var polygon = Util.IntPtrToStructure<ExPolygon>(ptr);
+                    List<ExPoint> points = new List<ExPoint>();
+                    if (polygon.count > 0)
+                    {
+                        for (int j = 0; j < polygon.count; j++)
+                        {
+                            int x = Marshal.ReadInt32(polygon.points + j * 8);
+                            int y = Marshal.ReadInt32(polygon.points + j * 8 + 4);
+                            var point = new ExPoint();
+                            point.x = (int)((x - offsetLeft) * scale);
+                            point.y = (int)((y - offsetTop) * scale);
+                            points.Add(point);
+                        }
+                    }
+                    polygons.Add(points);
+                }
+                return polygons;
+            }
+            set
+            {
+                var arrPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExPolygonArray)));
+                var offsetLeft = this.OffsetLeft;
+                var offsetTop = this.OffsetTop;
+                var scale = this.ImgScale;
+                var polygonArr = new ExPolygonArray();
+                polygonArr.count = value.Count;
+                polygonArr.polygons = Marshal.AllocHGlobal(value.Count * Marshal.SizeOf(typeof(IntPtr)));
+                for (int i = 0; i < polygonArr.count; i++)
+                {
+                    var points = value[i];
+                    var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExPolygon)));
+                    var polygon = new ExPolygon();
+                    polygon.count = points.Count;
+                    polygon.points = Marshal.AllocHGlobal(points.Count * Marshal.SizeOf(typeof(ExPoint)));
+                    for (int j = 0; j < points.Count; j++)
+                    {
+                        int x = (int)(points[j].x / scale + offsetLeft);
+                        int y = (int)(points[j].y / scale + offsetTop);
+                        Marshal.WriteInt32(polygon.points + j * Marshal.SizeOf(typeof(ExPoint)), x);
+                        Marshal.WriteInt32(polygon.points + j * Marshal.SizeOf(typeof(ExPoint)) + 4, y);
+                    }
+                    Marshal.StructureToPtr<ExPolygon>(polygon, ptr, true);
+                    Marshal.WriteIntPtr(polygonArr.polygons + i * Marshal.SizeOf(typeof(IntPtr)), ptr);
+                }
+                Marshal.StructureToPtr<ExPolygonArray>(polygonArr, arrPtr, true);
+                this.SendMessage(TBM_SET_DATA, IntPtr.Zero, arrPtr);
+            }
+        }
+
+        /// <summary>
+        /// 图像缩放系数
+        /// </summary>
+        public float ImgScale
+        {
+            get
+            {
+                var ptr = this.SendMessage(TBM_GET_IMG_SCALE, IntPtr.Zero, IntPtr.Zero);
+                var value = Util.IntPtrToFloat(ptr);
+                return value;
+            }
+        }
+
+        /// <summary>
+        /// 图像缩放后横坐标偏移
+        /// </summary>
+        public int OffsetLeft
+        {
+            get
+            {
+                return (int)this.SendMessage(TBM_GET_IMG_LEFT_OFFSET, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 图像缩放后纵坐标偏移
+        /// </summary>
+        public int OffsetTop
+        {
+            get
+            {
+                return (int)this.SendMessage(TBM_GET_IMG_TOP_OFFSET, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        public new string ClassName => "TaggingBoard";
     }
 }

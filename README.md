@@ -180,3 +180,6 @@ win10+， win7 需要安装KB2670838补丁
 
 ### login demo
 ![image](demo_image/demo_login.png)
+
+### demo taggingboard:
+![image](demo_image/demo_taggingboard.png)

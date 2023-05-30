@@ -183,3 +183,6 @@ win10+, win7 need install KB2670838 patch
 
 ### login demo
 ![image](demo_image/demo_login.png)
+
+### demo taggingboard:
+![image](demo_image/demo_taggingboard.png)

@@ -100,6 +100,7 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试卷帘菜单", 340, 390, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试托盘", 340, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试蒙板", 340, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试标注画板", 340, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
 
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
@@ -335,6 +336,10 @@ namespace ExDuiRTest
             else if (hObj == buttons[53].handle)
             {
                 ImageMaskWindow.CreateImageMaskWindow(skin);
+            }
+            else if (hObj == buttons[54].handle)
+            {
+                TaggingBoardWindow.CreateTaggingBoardWindow(skin);
             }
             return IntPtr.Zero;
         }

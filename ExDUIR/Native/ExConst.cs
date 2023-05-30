@@ -3838,5 +3838,48 @@
         /// </summary>
         public const int NIIF_USER = 0x04;
         #endregion
+
+        #region 消息_标注板_
+        /// <summary>
+        /// 消息_标注板_开始绘制
+        /// </summary>
+        public const int TBM_START = 10000;
+        /// <summary>
+        /// 消息_标注板_结束绘制
+        /// </summary>
+        public const int TBM_STOP = 10001;
+        /// <summary>
+        /// 消息_标注板_清空
+        /// </summary>
+        public const int TBM_CLEAR = 10002;
+        /// <summary>
+        /// 消息_标注板_设置背景图片
+        /// </summary>
+        public const int TBM_SET_BKG = 10003;
+        /// <summary>
+        /// 消息_标注板_设置画笔颜色, lParam颜色
+        /// </summary>
+        public const int TBM_SET_PEN_COLOR = 10004;
+        /// <summary>
+        /// 消息_标注板_取闭合路径点数组EX_POLYGON_ARRAY*指针, ret返回,不要释放
+        /// </summary>
+        public const int TBM_GET_DATA = 10005;
+        /// <summary>
+        /// 消息_标注板_置闭合路径点数组EX_POLYGON_ARRAY*指针,lParam设置,内部原指针释放,无需设置临时点,只需设置闭合路径
+        /// </summary>
+        public const int TBM_SET_DATA = 10006;
+        /// <summary>
+        /// 消息_标注板_取图像缩放系数,ret返回小数指针,不要释放
+        /// </summary>
+        public const int TBM_GET_IMG_SCALE = 10007;
+        /// <summary>
+        /// 消息_标注板_取图像缩放后横坐标偏移, ret返回
+        /// </summary>
+        public const int TBM_GET_IMG_LEFT_OFFSET = 10008;
+        /// <summary>
+        /// 消息_标注板_取图像缩放后纵坐标偏移, ret返回
+        /// </summary>
+        public const int TBM_GET_IMG_TOP_OFFSET = 10009;
+        #endregion
     }
 }

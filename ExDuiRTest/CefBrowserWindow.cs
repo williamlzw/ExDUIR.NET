@@ -36,8 +36,8 @@ namespace ExDuiRTest
                 //演示js调用c#代码,要在Load html前注册方法
                 browserObj.RegisterFun("TestJsEvent", new TestJsEvent());
                 var str = Properties.Resources.cef;
-                browserObj.LoadHtml(str);
-                //browserObj.Load("www.bing.com");
+                //browserObj.LoadHtml(str);
+                browserObj.Load("www.bing.com");
 
                 //直接调用js
                 string javascript = "test2();";

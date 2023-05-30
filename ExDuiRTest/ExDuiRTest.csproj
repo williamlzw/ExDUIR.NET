@@ -203,6 +203,7 @@
     <Compile Include="SliderBarWindow.cs" />
     <Compile Include="SVGWindow.cs" />
     <Compile Include="TableLayoutWindow.cs" />
+    <Compile Include="TaggingBoardWindow.cs" />
     <Compile Include="TemplateListView.cs" />
     <Compile Include="TestCustomCtrl.cs" />
     <Compile Include="TitleBarWindow.cs" />
@@ -213,8 +214,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="packages.config" />
     <None Include="Resources\Default.bin" />
     <None Include="Resources\test.rtf" />
   </ItemGroup>
