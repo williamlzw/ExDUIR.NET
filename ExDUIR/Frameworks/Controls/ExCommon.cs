@@ -1702,6 +1702,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
         }
 
+        public int ItemSelect
+        {
+            get
+            {
+                return (int)this.SendMessage(LVM_GETSELECTIONMARK, IntPtr.Zero, IntPtr.Zero);
+            }
+            set
+            {
+                this.SendMessage(LVM_SETSELECTIONMARK, (IntPtr)1, (IntPtr)value);
+            }
+        }
+
         public void ClearAll()
         {
             this.SendMessage(LVM_DELETEALLITEMS, IntPtr.Zero, IntPtr.Zero);
