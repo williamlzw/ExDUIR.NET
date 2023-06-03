@@ -839,6 +839,17 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
+        /// 设置焦点
+        /// </summary>
+        public bool Focus
+        {
+            set
+            {
+                ExAPI.Ex_ObjSetFocus(m_hObj);
+            }
+        }
+
+        /// <summary>
         /// 取焦点组件
         /// </summary>
         /// <returns></returns>
