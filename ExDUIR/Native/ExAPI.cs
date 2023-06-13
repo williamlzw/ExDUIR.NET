@@ -1047,6 +1047,10 @@ namespace ExDuiR.NET.Native
         /// </summary>
         public IntPtr text;
         /// <summary>
+        /// 编辑框风格,0默认能输入任何字符 1只能输入数字 2只能输入字母 3字母数字 4只读
+        /// </summary>
+        public int editStyle = 0;
+        /// <summary>
         /// 组合框数组内容
         /// </summary>
         [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 50, ArraySubType = UnmanagedType.Struct)]

@@ -6,6 +6,7 @@ using static ExDuiR.NET.Native.ExConst;
 using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace ExDuiRTest
 {
@@ -76,13 +77,16 @@ namespace ExDuiRTest
                     text = Marshal.StringToHGlobalUni(DateTime.Now.ToString("yyyy-M-dd"))
                 };
                 propertygrid.AddItem(PGT_OBJ_DATEBOX, item4);
-
-                for(int i = 0; i < 4; i++)
+                List<string> titles = new List<string> { "普通编辑框", "数字输入编辑框", "字母输入编辑框", "字母数字编辑框", "只读编辑框" };
+                List<string> texts = new List<string> { "中文123abc", "1234567890", "aA", "aA123", "测试只读" };
+                List<int> editStyles = new List<int> { 0, 1, 2, 3, 4, 5 };
+                for (int i = 0; i < 5; i++)
                 {
                     ExPropergridItemInfo item = new ExPropergridItemInfo
                     {
-                        title = Marshal.StringToHGlobalUni("名称" + (i+1).ToString()),
-                        text = Marshal.StringToHGlobalUni("值" + (i + 1).ToString()),
+                        title = Marshal.StringToHGlobalUni(titles[i]),
+                        text = Marshal.StringToHGlobalUni(texts[i]),
+                        editStyle = editStyles[i]
                     };
                     propertygrid.AddItem(PGT_OBJ_EDIT, item);
                 }
