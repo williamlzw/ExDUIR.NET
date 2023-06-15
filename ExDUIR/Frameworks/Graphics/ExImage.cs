@@ -95,6 +95,36 @@ namespace ExDuiR.NET.Frameworks.Graphics
             m_hImg = 0;
         }
 
+        /// <summary>
+        /// 粘贴本图像到大图
+        /// </summary>
+        /// <param name="bigImg">大图</param>
+        /// <param name="bigX">大图粘贴位置横坐标</param>
+        /// <param name="bigY">大图粘贴位置纵坐标</param>
+        /// <param name="retImg">返回新图像</param>
+        /// <returns></returns>
+        public bool PasteToBigImg(ExImage bigImg, int bigX, int bigY, out ExImage retImg)
+        {
+            var ret = ExAPI._img_paste(bigImg.handle, m_hImg, bigX, bigY, out var ans);
+            retImg = new ExImage(ans);
+            return ret;
+        }
+
+        /// <summary>
+        /// 粘贴小图到本图像
+        /// </summary>
+        /// <param name="smallImg">小图图像</param>
+        /// <param name="x">粘贴本图位置横坐标</param>
+        /// <param name="y">粘贴本图位置纵坐标</param>
+        /// <param name="retImg">返回新图像</param>
+        /// <returns></returns>
+        public bool PasteSmallImg(ExImage smallImg, int x, int y, out ExImage retImg)
+        {
+            var ret = ExAPI._img_paste(m_hImg, smallImg.handle, x, y, out var ans);
+            retImg = new ExImage(ans);
+            return ret;
+        }
+
         public bool Copy(out int dsgImg)
         {
             return ExAPI._img_copy(m_hImg, out dsgImg);

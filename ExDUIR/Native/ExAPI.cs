@@ -1372,6 +1372,18 @@ namespace ExDuiR.NET.Native
         public static extern int _img_height(int hImg);
 
         /// <summary>
+        /// 图像粘贴,粘贴小图到大图
+        /// </summary>
+        /// <param name="hDstImg">大图</param>
+        /// <param name="hSrcImg">小图</param>
+        /// <param name="x">大图粘贴位置横坐标</param>
+        /// <param name="y">大图粘贴位置纵坐标</param>
+        /// <param name="dstImg">输出新图像</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_img_paste")]
+        public static extern bool _img_paste(int hDstImg, int hSrcImg, int x, int y, out int dstImg);
+
+        /// <summary>
         /// 图像复制
         /// </summary>
         /// <param name="hImg"></param>
