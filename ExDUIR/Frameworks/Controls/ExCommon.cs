@@ -2524,7 +2524,14 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(TBM_SET_BKG, IntPtr.Zero, (IntPtr)value.handle);
+                if (value == null)
+                {
+                    this.SendMessage(TBM_SET_BKG, IntPtr.Zero, IntPtr.Zero);
+                }
+                else
+                {
+                    this.SendMessage(TBM_SET_BKG, IntPtr.Zero, (IntPtr)value.handle);
+                }
             }
         }
 
