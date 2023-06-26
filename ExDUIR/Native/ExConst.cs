@@ -2972,7 +2972,7 @@
         /// <summary>
         /// 报表表头风格_自定义列表头背景色
         /// </summary>
-        public const int ERLV_CS_COLCOR = 8;
+        public const int ERLV_CS_COLOUR = 8;
         #endregion
 
         #region 事件_报表_
@@ -3450,18 +3450,18 @@
         /// <summary>
         /// 报表表行风格_自定义整行格背景色
         /// </summary>
-        public const int ERLV_RS_ROWCOLCOR = 4;
+        public const int ERLV_RS_ROWCOLOUR = 4;
         #endregion
 
         #region 报表单元格风格_
         /// <summary>
         /// 报表单元格风格_背景色
         /// </summary>
-        public const int ERLV_RS_CELLCOLCOR = 1;
+        public const int ERLV_RS_CELLCOLOUR = 1;
         /// <summary>
         /// 报表单元格风格_文本色
         /// </summary>
-        public const int ERLV_RS_CELLTEXTCOLCOR = 2;
+        public const int ERLV_RS_CELLTEXTCOLOUR = 2;
         /// <summary>
         /// 报表单元格风格_字体
         /// </summary>
