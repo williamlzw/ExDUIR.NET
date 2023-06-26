@@ -21,10 +21,13 @@ namespace ExDuiRTest
         static private ExButton button5;
         static private ExObjEventProcDelegate objEvent;
         static private ExStatic label;
+        static private ExStatic labelX;
+        static private ExStatic labelY;
+        static private ExObjEventProcDelegate taggingboardEvent;
 
         static public void CreateTaggingBoardWindow(ExSkin pOwner)
         {
-            skin = new ExSkin(pOwner, null, "测试标注画板", 0, 0, 1200, 850,
+            skin = new ExSkin(pOwner, null, "测试标注画板", 0, 0, 1200, 900,
             EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
             EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
             if (skin.Validate)
@@ -43,16 +46,28 @@ namespace ExDuiRTest
                 button4.HandleEvent(NM_CLICK, objEvent);
                 button5.HandleEvent(NM_CLICK, objEvent);
 
-                label = new ExStatic(skin, "操作提示：\r\n1.点击【开始绘图】，鼠标在画板左键单击，开始绘制路径点，右键可以撤销点，达到3个点及以上可以闭合路径。 闭合路径后会自动调用【结束绘图】。此时再次点击【开始绘图】继续绘制下一条路径。\r\n2.绘制过程中点击【结束绘图】清空临时点。变为选中模式，可以选择画板上闭合的路径。\r\n3.点击【清空绘图】清空画板全部临时点和闭合路径。\r\n4.点击【取出数据】演示打印原图点坐标", 1050, 230, 130, 550, -1, -1, DT_WORDBREAK);
+                labelX = new ExStatic(skin, "x:", 1050, 230, 60, 30, -1);
+                labelY = new ExStatic(skin, "y:", 1120, 230, 60, 30, -1);
+
+                label = new ExStatic(skin, "操作提示：\r\n1.点击【开始绘图】，鼠标在画板左键单击，开始绘制路径点，右键可以撤销点，达到3个点及以上可以闭合路径。 闭合路径后会自动调用【结束绘图】。此时再次点击【开始绘图】继续绘制下一条路径。\r\n2.绘制过程中点击【结束绘图】清空临时点。变为选中模式，可以选择画板上闭合的路径。\r\n3.点击【清空绘图】清空画板全部临时点和闭合路径。\r\n4.点击【取出数据】演示打印原图点坐标 \r\n5.按住CTRL键+鼠标滚轮,可以放大缩小", 1050, 270, 130, 600, -1, -1, DT_WORDBREAK);
                 label.SetFont("微软雅黑", 16, FS_BOLD);
                 label.ColorTextNormal = Util.ExRGBA(133, 33, 53, 255);
 
                 taggingboard.PenColor = Util.ExRGBA(0, 255, 0, 255);
                 var bitmap = Properties.Resources.carousel3;
                 taggingboard.TaggingImage = new ExImage(bitmap);
+                taggingboardEvent = new ExObjEventProcDelegate(OnTaggingBoardEvent);
+                taggingboard.HandleEvent(TBN_MOUSE_MOVE, taggingboardEvent);
 
                 skin.Visible = true;
             }
+        }
+
+        static public IntPtr OnTaggingBoardEvent(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
+        {
+            labelX.Text = "x:" + wParam.ToInt32().ToString();
+            labelY.Text = "y:" + lParam.ToInt32().ToString();
+            return IntPtr.Zero;
         }
 
         static public IntPtr OnButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)

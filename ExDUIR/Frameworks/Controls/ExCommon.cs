@@ -2623,8 +2623,8 @@ namespace ExDuiR.NET.Frameworks.Controls
                     polygon.points = Marshal.AllocHGlobal(points.Count * Marshal.SizeOf(typeof(ExPoint)));
                     for (int j = 0; j < points.Count; j++)
                     {
-                        float x = (int)(points[j].x / scale + offsetLeft);
-                        float y = (int)(points[j].y / scale + offsetTop);
+                        float x = ((float)points[j].x / scale + offsetLeft);
+                        float y = ((float)points[j].y / scale + offsetTop);
                         IntPtr targetPtrX = IntPtr.Add(polygon.points, j * 8);
                         IntPtr targetPtrY = IntPtr.Add(polygon.points, j * 8 + 4);
                         Marshal.StructureToPtr(x, targetPtrX, false);
