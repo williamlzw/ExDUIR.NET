@@ -2569,6 +2569,30 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
+        /// 获取选中路径
+        /// </summary>
+        public int HitPath
+        {
+            get
+            {
+                return (int)this.SendMessage(TBM_GET_HIT_PATH, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 删除选中路径
+        /// </summary>
+        public bool DelTagging()
+        {
+            var hit = (int)this.SendMessage(TBM_GET_HIT_PATH, IntPtr.Zero, IntPtr.Zero);
+            if (hit > 0)
+            {
+                return (int)this.SendMessage(TBM_DELETE_PATH, IntPtr.Zero, (IntPtr)hit) == 1;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// 取/置标注数据,第一维度是闭合路径数量,第二维度是每条路径点坐标
         /// </summary>
         public List<List<ExPoint>> TaggingData

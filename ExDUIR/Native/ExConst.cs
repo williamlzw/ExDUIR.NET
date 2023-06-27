@@ -3893,6 +3893,14 @@
         /// 消息_标注板_取图像缩放后纵坐标偏移, ret返回
         /// </summary>
         public const int TBM_GET_IMG_TOP_OFFSET = 10009;
+        /// <summary>
+        /// 消息_标注板_删除路径, lParam路径索引,索引从1开始
+        /// </summary>
+        public const int TBM_DELETE_PATH = 10010;
+        /// <summary>
+        /// 消息_标注板_获取选中路径, 索引从1开始, 未选中返回0
+        /// </summary>
+        public const int TBM_GET_HIT_PATH = 10011;
         #endregion
 
         #region 事件_标注板_
