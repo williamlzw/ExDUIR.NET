@@ -16,7 +16,7 @@ namespace ExDuiRTest
         static public void CreateCustomBackgroundWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "", 0, 0, 175, 200,
-            EWS_NOINHERITBKG | EWS_MOVEABLE | EWS_CENTERWINDOW | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 var bitmap = Properties.Resources.custombkg;
@@ -27,9 +27,9 @@ namespace ExDuiRTest
                     nRight = 15,
                     nBottom = 15
                 };
-                skin.SetBackgroundImage(bitmap, 0, 0, BIR_DEFAULT, rc, BIF_DEFAULT, 220, true);
+                skin.SetBackgroundImage(bitmap, 0, 0, BACKGROUND_REPEAT_ZOOM, rc, BACKGROUND_FLAG_DEFAULT, 220, true);
 
-                sysbutton = new ExSysButton(skin, "", 140, 8, 30, 30, EOS_VISIBLE | EWS_BUTTON_CLOSE, EOS_EX_TOPMOST);
+                sysbutton = new ExSysButton(skin, "", 140, 8, 30, 30, OBJECT_STYLE_VISIBLE | WINDOW_STYLE_BUTTON_CLOSE, OBJECT_STYLE_EX_TOPMOST);
                 skin.Visible = true;
             }
         }

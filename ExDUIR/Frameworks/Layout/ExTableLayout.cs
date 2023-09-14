@@ -8,12 +8,12 @@ namespace ExDuiR.NET.Frameworks.Layout
     public class ExTableLayout : ExBaseLayout
     {
         public ExTableLayout(ExControl objBind)
-            : base(ELT_TABLE, objBind)
+            : base(LAYOUT_TYPE_TABLE, objBind)
         {
         }
 
         public ExTableLayout(ExSkin objBind)
-            : base(ELT_TABLE, objBind)
+            : base(LAYOUT_TYPE_TABLE, objBind)
         {
         }
 
@@ -40,7 +40,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetRow(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_TABLE_ROW, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_TABLE_ROW, (IntPtr)value);
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetRow(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_TABLE_ROW, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_TABLE_ROW, out var value);
             retValue = (int)value;
             return ret;
         }
@@ -58,7 +58,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetCell(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_TABLE_CELL, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_TABLE_CELL, (IntPtr)value);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetCell(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_TABLE_CELL, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_TABLE_CELL, out var value);
             retValue = (int)value;
             return ret;
         }
@@ -76,7 +76,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetRowSpan(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_TABLE_ROW_SPAN, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_TABLE_ROW_SPAN, (IntPtr)value);
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetRowSpan(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_TABLE_ROW_SPAN, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_TABLE_ROW_SPAN, out var value);
             retValue = (int)value;
             return ret;
         }
@@ -94,7 +94,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetCellSpan(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_TABLE_CELL_SPAN, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_TABLE_CELL_SPAN, (IntPtr)value);
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetCellSpan(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_TABLE_CELL_SPAN, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_TABLE_CELL_SPAN, out var value);
             retValue = (int)value;
             return ret;
         }
@@ -112,7 +112,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetFill(ExControl obj, bool value)
         {
-            return this.SetChildProp(obj, ELCP_TABLE_FILL, (IntPtr)Convert.ToInt32(value));
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_TABLE_FILL, (IntPtr)Convert.ToInt32(value));
         }
 
         /// <summary>
@@ -120,7 +120,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetFill(ExControl obj, ref bool retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_TABLE_FILL, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_TABLE_FILL, out var value);
             retValue = Convert.ToBoolean((int)value);
             return ret;
         }

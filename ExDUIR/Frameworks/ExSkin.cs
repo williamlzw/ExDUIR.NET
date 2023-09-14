@@ -24,7 +24,7 @@ namespace ExDuiR.NET.Frameworks
         /// <param name="y">纵坐标</param>
         /// <param name="nWidth">宽度</param>
         /// <param name="nHeight">高度</param>
-        /// <param name="dwStyleDUI">界面风格EWS_</param>
+        /// <param name="dwStyleDUI">界面风格WINDOW_STYLE_</param>
         /// <param name="dwStyle">win32窗口风格</param>
         /// <param name="dwStyleEx">win32窗口扩展风格</param>
         /// <param name="hTheme">主题包句柄,可以空</param>
@@ -50,7 +50,7 @@ namespace ExDuiR.NET.Frameworks
         /// 创建界面
         /// </summary>
         /// <param name="pWindow">父窗口</param>
-        /// <param name="dwStyleDUI">界面风格EWS_</param>
+        /// <param name="dwStyleDUI">界面风格WINDOW_STYLE_</param>
         /// <param name="hTheme">主题包句柄,可以空</param>
         /// <param name="pfnWndProc">窗口回调</param>
         public ExSkin(ExWindow pWindow, int dwStyleDUI, IntPtr hTheme = default, ExWndProcDelegate pfnWndProc = null)
@@ -67,7 +67,7 @@ namespace ExDuiR.NET.Frameworks
         /// 创建界面
         /// </summary>
         /// <param name="hWnd">父窗口句柄</param>
-        /// <param name="dwStyleDUI">界面风格EWS_</param>
+        /// <param name="dwStyleDUI">界面风格WINDOW_STYLE_</param>
         /// <param name="hTheme">主题包句柄,可以空</param>
         /// <param name="pfnWndProc">窗口回调</param>
         public ExSkin(IntPtr hWnd, int dwStyleDUI, IntPtr hTheme = default, ExWndProcDelegate pfnWndProc = null)
@@ -163,9 +163,9 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_ALPHA);
+                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_ALPHA);
             }
-            set =>  ExAPI.Ex_DUISetLong(m_hExDUI, EWL_ALPHA, (IntPtr)value);
+            set =>  ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_ALPHA, (IntPtr)value);
         }
 
         /// <summary>
@@ -175,11 +175,11 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_BLUR);
+                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_BLUR);
             }
             set
             {
-                ExAPI.Ex_DUISetLong(m_hExDUI, EWL_BLUR, (IntPtr)value);
+                ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_BLUR, (IntPtr)value);
             }
         }
 
@@ -188,8 +188,8 @@ namespace ExDuiR.NET.Frameworks
         /// </summary>
         public int BackgroundColor
         {
-            set => ExAPI.Ex_DUISetLong(m_hExDUI, EWL_CRBKG, (IntPtr)value);
-            get => (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_CRBKG); 
+            set => ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_CRBKG, (IntPtr)value);
+            get => (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_CRBKG); 
         }
 
         /// <summary>
@@ -199,11 +199,11 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_CRBORDER);
+                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_CRBORDER);
             }
             set
             {
-                ExAPI.Ex_DUISetLong(m_hExDUI, EWL_CRBORDER, (IntPtr)value);
+                ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_CRBORDER, (IntPtr)value);
             }
         }
 
@@ -214,11 +214,11 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_CRSD);
+                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_CRSD);
             }
             set
             {
-                ExAPI.Ex_DUISetLong(m_hExDUI, EWL_CRSD, (IntPtr)value);
+                ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_CRSD, (IntPtr)value);
             }
         }
 
@@ -229,11 +229,11 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_MINHEIGHT);
+                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_MINHEIGHT);
             }
             set
             {
-                ExAPI.Ex_DUISetLong(m_hExDUI, EWL_MINHEIGHT, (IntPtr)value);
+                ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_MINHEIGHT, (IntPtr)value);
             }
         }
 
@@ -244,11 +244,11 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_MINWIDTH);
+                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_MINWIDTH);
             }
             set
             {
-                ExAPI.Ex_DUISetLong(m_hExDUI, EWL_MINWIDTH, (IntPtr)value);
+                ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_MINWIDTH, (IntPtr)value);
             }
         }
 
@@ -259,11 +259,11 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_RADIUS);
+                return (int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_RADIUS);
             }
             set
             {
-                ExAPI.Ex_DUISetLong(m_hExDUI, EWL_RADIUS, (IntPtr)value);
+                ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_RADIUS, (IntPtr)value);
             }
         }
 
@@ -274,11 +274,11 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_LPARAM);
+                return ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_LPARAM);
             }
             set
             {
-                ExAPI.Ex_DUISetLong(m_hExDUI, EWL_LPARAM, value);
+                ExAPI.Ex_DUISetLong(m_hExDUI, ENGINE_LONG_LPARAM, value);
             }
         }
 
@@ -306,7 +306,7 @@ namespace ExDuiR.NET.Frameworks
         {
             get
             {
-                return new ExControl((int)ExAPI.Ex_DUIGetLong(m_hExDUI, EWL_OBJCAPTION));
+                return new ExControl((int)ExAPI.Ex_DUIGetLong(m_hExDUI, ENGINE_LONG_OBJCAPTION));
             }
         }
 
@@ -380,7 +380,7 @@ namespace ExDuiR.NET.Frameworks
         /// <param name="dwAlpha">透明度</param>
         /// <param name="fUpdate">是否立即刷新</param>
         /// <returns></returns>
-        public bool SetBackgroundImage(System.Drawing.Bitmap bitmap, int x, int y, int dwRepeat = BIR_DEFAULT, ExRect rcGrids = default, int dwFlags = BIF_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
+        public bool SetBackgroundImage(System.Drawing.Bitmap bitmap, int x, int y, int dwRepeat = BACKGROUND_REPEAT_ZOOM, ExRect rcGrids = default, int dwFlags = BACKGROUND_FLAG_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
         {
             byte[] image = Util.BitmapToByte(bitmap);
             return ExAPI.Ex_ObjSetBackgroundImage(m_hExDUI, image, image == null ? 0 : image.Length, x, y, dwRepeat, ref rcGrids, dwFlags, dwAlpha, fUpdate);
@@ -398,7 +398,7 @@ namespace ExDuiR.NET.Frameworks
         /// <param name="dwAlpha">透明度</param>
         /// <param name="fUpdate">是否立即刷新</param>
         /// <returns></returns>
-        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat = BIR_DEFAULT, ExRect rcGrids = default, int dwFlags = BIF_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
+        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat = BACKGROUND_REPEAT_ZOOM, ExRect rcGrids = default, int dwFlags = BACKGROUND_FLAG_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
         {
             return ExAPI.Ex_ObjSetBackgroundImage(m_hExDUI, image, image.Length, x, y, dwRepeat, ref rcGrids, dwFlags, dwAlpha, fUpdate);
         }
@@ -418,7 +418,7 @@ namespace ExDuiR.NET.Frameworks
         /// <summary>
         /// 设置引擎数值
         /// </summary>
-        /// <param name="nIndex">EWL_</param>
+        /// <param name="nIndex">ENGINE_LONG_</param>
         /// <param name="nValue"></param>
         /// <returns></returns>
         public IntPtr SetLong(int nIndex, IntPtr nValue)

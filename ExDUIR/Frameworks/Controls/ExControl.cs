@@ -107,11 +107,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return ExAPI.Ex_ObjGetLong(m_hObj, EOL_LPARAM);
+                return ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_LPARAM);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_LPARAM, value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_LPARAM, value);
             }
         }
 
@@ -122,11 +122,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_NODEID);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_NODEID);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_NODEID, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_NODEID, (IntPtr)value);
             }
         }
 
@@ -137,11 +137,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return ExAPI.Ex_ObjGetLong(m_hObj, EOL_OBJPROC);
+                return ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_OBJPROC);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_OBJPROC, value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_OBJPROC, value);
             }
         }
 
@@ -152,11 +152,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return ExAPI.Ex_ObjGetLong(m_hObj, EOL_USERDATA);
+                return ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_USERDATA);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_USERDATA, value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_USERDATA, value);
             }
         }
 
@@ -190,11 +190,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_ID);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_ID);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_ID, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_ID, (IntPtr)value);
             }
         }
 
@@ -205,11 +205,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_ALPHA);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_ALPHA);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_ALPHA, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_ALPHA, (IntPtr)value);
             }
         }
 
@@ -220,11 +220,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_BLUR);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_BLUR);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_BLUR, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_BLUR, (IntPtr)value);
             }
         }
 
@@ -235,11 +235,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_STYLE);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_STYLE);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_STYLE, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_STYLE, (IntPtr)value);
             }
         }
 
@@ -250,11 +250,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_EXSTYLE);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_EXSTYLE);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_EXSTYLE, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_EXSTYLE, (IntPtr)value);
             }
         }
 
@@ -265,11 +265,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_TEXTFORMAT);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_TEXTFORMAT);
             }
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, EOL_TEXTFORMAT, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, OBJECT_LONG_TEXTFORMAT, (IntPtr)value);
             }
         }
 
@@ -614,7 +614,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="dwAlpha">透明度</param>
         /// <param name="fUpdate">是否立即刷新</param>
         /// <returns></returns>
-        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat = BIR_DEFAULT, ExRect rcGrids = default, int dwFlags = BIF_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
+        public bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat = BACKGROUND_FLAG_DEFAULT, ExRect rcGrids = default, int dwFlags = BACKGROUND_FLAG_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
         {
             return ExAPI.Ex_ObjSetBackgroundImage(m_hObj, image, image == null ? 0 : image.Length, x, y, dwRepeat, ref rcGrids, dwFlags, dwAlpha, fUpdate);
         }
@@ -631,7 +631,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="dwAlpha">透明度</param>
         /// <param name="fUpdate">是否立即刷新</param>
         /// <returns></returns>
-        public bool SetBackgroundImage(System.Drawing.Bitmap bitmap, int x, int y, int dwRepeat = BIR_DEFAULT, ExRect rcGrids = default, int dwFlags = BIF_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
+        public bool SetBackgroundImage(System.Drawing.Bitmap bitmap, int x, int y, int dwRepeat = BACKGROUND_REPEAT_ZOOM, ExRect rcGrids = default, int dwFlags = BACKGROUND_FLAG_DEFAULT, int dwAlpha = 255, bool fUpdate = true)
         {
             byte[] image = Util.BitmapToByte(bitmap);
             return ExAPI.Ex_ObjSetBackgroundImage(m_hObj, image, image == null ? 0 : image.Length, x, y, dwRepeat, ref rcGrids, dwFlags, dwAlpha, fUpdate);
@@ -776,7 +776,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
 
         /// <summary>
-        /// 置是否可以重画。如果组件扩展风格存在EOS_EX_COMPOSITED,则该函数无效
+        /// 置是否可以重画。如果组件扩展风格存在OBJECT_STYLE_EX_COMPOSITED,则该函数无效
         /// </summary>
         /// <param name="fRedarw"></param>
         /// <returns></returns>
@@ -1016,7 +1016,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         public IntPtr SubClass(ExObjProcDelegate pfnObjProc)
         {
 
-            return ExAPI.Ex_ObjSetLong(m_hObj, ExConst.EOL_OBJPROC, pfnObjProc);
+            return ExAPI.Ex_ObjSetLong(m_hObj, ExConst.OBJECT_LONG_OBJPROC, pfnObjProc);
         }
 
         /// <summary>
@@ -1322,7 +1322,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return new ExCanvas((int)ExAPI.Ex_ObjGetLong(m_hObj, EOL_HCANVAS));
+                return new ExCanvas((int)ExAPI.Ex_ObjGetLong(m_hObj, OBJECT_LONG_HCANVAS));
             }
         }
 
@@ -1343,7 +1343,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <returns></returns>
         public IntPtr SetImageList(ExImageList imageList)
         {
-            return this.SendMessage(LVM_SETIMAGELIST, (IntPtr)1, imageList.handle);
+            return this.SendMessage(LISTVIEW_MESSAGE_SETIMAGELIST, (IntPtr)1, imageList.handle);
         }
 
         /// <summary>

@@ -21,8 +21,8 @@ namespace ExDuiRTest
         static public void CreateModalWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试模态窗口", 0, 0, 400, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -40,7 +40,7 @@ namespace ExDuiRTest
             {
                 WinAPI.MoveWindow(hWnd, 0, 0, 300, 200, false);
                 WinAPI.SetWindowText(hWnd, "我是模态对话框 我在的时候别的窗口不能动");
-                skinIndex = new ExSkin(hWnd, EWS_TITLE | EWS_SIZEABLE | EWS_MOVEABLE | EWS_BUTTON_CLOSE | EWS_ESCEXIT | EWS_CENTERWINDOW, IntPtr.Zero);
+                skinIndex = new ExSkin(hWnd, WINDOW_STYLE_TITLE | WINDOW_STYLE_SIZEABLE | WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_ESCEXIT | WINDOW_STYLE_CENTERWINDOW, IntPtr.Zero);
                 if (skinIndex.Validate)
                 {
                     var edit = new ExEdit(skinIndex, "", 20, 50, 250, 30, -1, -1, -1);

@@ -17,8 +17,8 @@ namespace ExDuiRTest
         static public void CreateDateBoxWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试日期框", 0, 0, 250, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -26,14 +26,14 @@ namespace ExDuiRTest
                 datebox.ColorBackground = -1;
                 datebox.ColorTextNormal = Util.ExRGB2ARGB(16711680, 255);
                 objProc = new ExObjEventProcDelegate(OnButtonEventProc);
-                datebox.HandleEvent(DBN_DATETIME, objProc);
+                datebox.HandleEvent(DATEBOX_EVENT_DATETIME, objProc);
                 skin.Visible = true;
             }
         }
 
         static public IntPtr OnButtonEventProc(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if(nCode == DBN_DATETIME)
+            if(nCode == DATEBOX_EVENT_DATETIME)
             {
                 var dt = Util.IntPtrToStructure<ExDateTimeInfo>(lParam);
                 Console.WriteLine($"日期已更改,{dt.Year},{dt.Mon},{dt.Mday},{dt.Wday}");

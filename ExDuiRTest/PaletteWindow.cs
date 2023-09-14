@@ -16,21 +16,21 @@ namespace ExDuiRTest
         static public void CreatePaletteWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试调色板", 0, 0, 400, 250,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 palette = new ExPalette(skin, "", 50, 50, 300, 150);
                 objProc = new ExObjEventProcDelegate(OnPaletteEvent);
-                palette.HandleEvent(PTN_MOUSEMOVE, objProc);
+                palette.HandleEvent(PALETTE_EVENT_MOUSEMOVE, objProc);
                 skin.Visible = true;
             }
         }
 
         static public IntPtr OnPaletteEvent(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if(nCode == PTN_MOUSEMOVE)
+            if(nCode == PALETTE_EVENT_MOUSEMOVE)
             {
                 skin.BackgroundColor = Util.ExRGB2ARGB((int)wParam, 255);
             }

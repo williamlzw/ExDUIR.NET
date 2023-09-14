@@ -20,8 +20,8 @@ namespace ExDuiRTest
         static public void CreateCheckButtonWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试单选框复选框", 0, 0, 300, 250,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -45,11 +45,11 @@ namespace ExDuiRTest
             if (wParam != IntPtr.Zero)
             {
                 bool check = true;
-                ExMessageBox.ShowEx(skin, "选中了", "取CheckButton状态", MB_USERICON, "不再提示", ref check, 10, EMBF_CENTEWINDOW);
+                ExMessageBox.ShowEx(skin, "选中了", "取CheckButton状态", MB_USERICON, "不再提示", ref check, 10, MESSAGEBOX_FLAG_CENTEWINDOW);
             }
             else
             {
-                ExMessageBox.Show(skin, "取消选中啦", "取CheckButton状态", MB_ICONWARNING, EMBF_CENTEWINDOW);
+                ExMessageBox.Show(skin, "取消选中啦", "取CheckButton状态", MB_ICONWARNING, MESSAGEBOX_FLAG_CENTEWINDOW);
             }
             return IntPtr.Zero;
         }

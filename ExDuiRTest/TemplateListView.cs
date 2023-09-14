@@ -28,8 +28,8 @@ namespace ExDuiRTest
         static public void CreateTemplateListView(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试模板列表", 0, 0, 800, 600,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -46,7 +46,7 @@ namespace ExDuiRTest
                         btnTitle = "按钮" + i.ToString()
                     });
                 }
-                templatelistview = new ExTemplateListView(groupbox, "", 20, 10, 650, 520, EOS_VISIBLE | EOS_HSCROLL | EOS_VSCROLL | ELVS_ITEMTRACKING, -1, -1, 0, default, listviewProc);
+                templatelistview = new ExTemplateListView(groupbox, "", 20, 10, 650, 520, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_HSCROLL | OBJECT_STYLE_VSCROLL | LISTVIEW_STYLE_ITEMTRACKING, -1, -1, 0, default, listviewProc);
                 templatelistview.ItemCount = items.Count;
                 templatelistview.ItemHoverColor = Util.ExRGB2ARGB(15066083, 200);
                 templatelistview.ItemSelectColor = Util.ExRGB2ARGB(124123, 250);
@@ -90,29 +90,29 @@ namespace ExDuiRTest
                         Marshal.WriteInt32(pResult, 1);
                         return (IntPtr)1;
                     }
-                    else if(ni.nCode == LVN_ITEMSELECTD)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
+                    else if(ni.nCode == LISTVIEW_EVENT_ITEMSELECTD)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
                     {
                         Console.WriteLine($"表项选中改变,当前选中索引:{ni.wParam},上次选中索引:{ni.lParam}");
                     }
-                    else if(ni.nCode == LVN_ITEMSELECTC)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
+                    else if(ni.nCode == LISTVIEW_EVENT_ITEMSELECTC)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
                     {
                         Console.WriteLine($"表项取消选中,当前选中索引:{ni.wParam},上次选中索引:{ni.lParam}");
                     }
-                    else if (ni.nCode == LVN_ITEMCHANGED)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
+                    else if (ni.nCode == LISTVIEW_EVENT_ITEMCHANGED)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
                     {
                         Console.WriteLine($"现行选中项被改变,当前选中索引:{ni.wParam},上次选中索引:{ni.lParam}");
                     }
-                    else if (ni.nCode == LVN_ITEMRCLICK)//ni->wParam:当前选中索引   ni->lParam:当前选中数目
+                    else if (ni.nCode == LISTVIEW_EVENT_ITEMRCLICK)//ni->wParam:当前选中索引   ni->lParam:当前选中数目
                     {
                         Console.WriteLine($"表项被右击,当前选中索引:{ni.wParam},当前选中数目:{ni.lParam}");
                     }
-                    else if (ni.nCode == LVN_ITEMDCLICK)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
+                    else if (ni.nCode == LISTVIEW_EVENT_ITEMDCLICK)//ni->wParam:当前选中索引   ni->lParam:上次选中索引  索引从1开始
                     {
                         Console.WriteLine($"表项被双击,当前选中索引:{ni.wParam},上次选中索引:{ni.lParam}");
                     }
                 }
             }
-            else if(uMsg == TLVM_ITEM_CREATED)
+            else if(uMsg == TEMPLATELISTVIEW_MESSAGE_ITEM_CREATED)
             {
                 var obj = new ExControl((int)lParam);
                 var obj1 = new ExStatic(obj, "", 0, 6, 128, 28, -1, -1, DT_CENTER | DT_VCENTER);
@@ -125,7 +125,7 @@ namespace ExDuiRTest
                 Marshal.WriteInt32(pResult, 1);
                 return (IntPtr)1;
             }
-            else if(uMsg == TLVM_ITEM_FILL)
+            else if(uMsg == TEMPLATELISTVIEW_MESSAGE_ITEM_FILL)
             {
                 var index = (int)wParam;
                 if(index > 0 && index <= items.Count)

@@ -8,12 +8,12 @@ namespace ExDuiR.NET.Frameworks.Layout
     public class ExAbsoluteLayout : ExBaseLayout
     {
         public ExAbsoluteLayout(ExControl objBind)
-            : base(ELT_ABSOLUTE, objBind)
+            : base(LAYOUT_TYPE_ABSOLUTE, objBind)
         {
         }
 
         public ExAbsoluteLayout(ExSkin objBind)
-            : base(ELT_ABSOLUTE, objBind)
+            : base(LAYOUT_TYPE_ABSOLUTE, objBind)
         {
         }
 
@@ -26,12 +26,12 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// 锁定组件位置
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="tLeft">ELCP_ABSOLUTE_XXX_TYPE</param>
-        /// <param name="tTop">ELCP_ABSOLUTE_XXX_TYPE</param>
-        /// <param name="tRight">ELCP_ABSOLUTE_XXX_TYPE</param>
-        /// <param name="tBottom">ELCP_ABSOLUTE_XXX_TYPE</param>
-        /// <param name="tWidth">ELCP_ABSOLUTE_XXX_TYPE</param>
-        /// <param name="tHeight">ELCP_ABSOLUTE_XXX_TYPE</param>
+        /// <param name="tLeft">LAYOUT_SUBPROP_ABSOLUTE_XXX_TYPE</param>
+        /// <param name="tTop">LAYOUT_SUBPROP_ABSOLUTE_XXX_TYPE</param>
+        /// <param name="tRight">LAYOUT_SUBPROP_ABSOLUTE_XXX_TYPE</param>
+        /// <param name="tBottom">LAYOUT_SUBPROP_ABSOLUTE_XXX_TYPE</param>
+        /// <param name="tWidth">LAYOUT_SUBPROP_ABSOLUTE_XXX_TYPE</param>
+        /// <param name="tHeight">LAYOUT_SUBPROP_ABSOLUTE_XXX_TYPE</param>
         /// <returns></returns>
         public bool Lock(ExControl obj, int tLeft, int tTop, int tRight, int tBottom, int tWidth, int tHeight)
         {
@@ -42,8 +42,8 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// 绝对布局置边界信息
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="dwEdge">ELCP_ABSOLUTE_</param>
-        /// <param name="dwType">ELCP_ABSOLUTE_TYPE_</param>
+        /// <param name="dwEdge">LAYOUT_SUBPROP_ABSOLUTE_</param>
+        /// <param name="dwType">LAYOUT_SUBPROP_ABSOLUTE_TYPE_</param>
         /// <param name="nValue"></param>
         /// <returns></returns>
         public bool SetEdge(ExControl obj, int dwEdge, int dwType, IntPtr nValue)
@@ -59,7 +59,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetLeftPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_LEFT, ELCP_ABSOLUTE_TYPE_PS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_LEFT, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PS, (IntPtr)value);
         }
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetLeftPX(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_LEFT, ELCP_ABSOLUTE_TYPE_PX, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_LEFT, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PX, (IntPtr)value);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetTopPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_TOP, ELCP_ABSOLUTE_TYPE_PS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_TOP, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PS, (IntPtr)value);
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetTopPX(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_TOP, ELCP_ABSOLUTE_TYPE_PX, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_TOP, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PX, (IntPtr)value);
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetRightPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_RIGHT, ELCP_ABSOLUTE_TYPE_PS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_RIGHT, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PS, (IntPtr)value);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetRightPX(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_RIGHT, ELCP_ABSOLUTE_TYPE_PX, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_RIGHT, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PX, (IntPtr)value);
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetBottomPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_BOTTOM, ELCP_ABSOLUTE_TYPE_PS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_BOTTOM, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PS, (IntPtr)value);
         }
 
         /// <summary>
@@ -136,7 +136,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetBottomPX(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_BOTTOM, ELCP_ABSOLUTE_TYPE_PX, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_BOTTOM, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PX, (IntPtr)value);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetWidthPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_WIDTH, ELCP_ABSOLUTE_TYPE_PS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_WIDTH, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PS, (IntPtr)value);
         }
 
         /// <summary>
@@ -158,7 +158,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetWidthPX(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_WIDTH, ELCP_ABSOLUTE_TYPE_PX, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_WIDTH, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PX, (IntPtr)value);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetHeightPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_HEIGHT, ELCP_ABSOLUTE_TYPE_PS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_HEIGHT, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PS, (IntPtr)value);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetHeightPX(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_HEIGHT, ELCP_ABSOLUTE_TYPE_PX, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_HEIGHT, LAYOUT_SUBPROP_ABSOLUTE_TYPE_PX, (IntPtr)value);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetHorizontalOffsetPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_OFFSET_H, ELCP_ABSOLUTE_TYPE_OBJPS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_OFFSET_H, LAYOUT_SUBPROP_ABSOLUTE_TYPE_OBJPS, (IntPtr)value);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// <returns></returns>
         public bool SetVerticalOffsetPS(ExControl obj, int value)
         {
-            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, ELCP_ABSOLUTE_OFFSET_V, ELCP_ABSOLUTE_TYPE_OBJPS, (IntPtr)value);
+            return ExAPI._layout_absolute_setedge(m_hLayout, obj.handle, LAYOUT_SUBPROP_ABSOLUTE_OFFSET_V, LAYOUT_SUBPROP_ABSOLUTE_TYPE_OBJPS, (IntPtr)value);
         }
     }
 }

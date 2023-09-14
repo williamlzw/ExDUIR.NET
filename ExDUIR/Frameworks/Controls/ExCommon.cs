@@ -114,7 +114,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             {
                 var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExImageInfo)));
                 Marshal.StructureToPtr(value, ptr, true);
-                this.SendMessage(BM_SETIMAGE, IntPtr.Zero, ptr);
+                this.SendMessage(BUTTON_MESSAGE_SETIMAGE, IntPtr.Zero, ptr);
                 Marshal.FreeHGlobal(ptr);
             }
         }
@@ -173,7 +173,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public  void SetSize(int width, int height)
         {
-            this.SendMessage(CM_SIZE, (IntPtr)500, (IntPtr)500);
+            this.SendMessage(CAROUSEL_MESSAGE_SIZE, (IntPtr)500, (IntPtr)500);
         }
         /// <summary>
         /// 添加轮播图片
@@ -181,7 +181,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="image"></param>
         public void AddImage(ExImage image)
         {
-            this.SendMessage(CM_ADDIMG, IntPtr.Zero, (IntPtr)image.handle);
+            this.SendMessage(CAROUSEL_MESSAGE_ADDIMG, IntPtr.Zero, (IntPtr)image.handle);
         }
         public new string ClassName => "Carousel";
     }
@@ -207,8 +207,8 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public bool Check
         {
-            set => this.SendMessage(BM_SETCHECK, (IntPtr)1, IntPtr.Zero);
-            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, IntPtr.Zero, IntPtr.Zero));
+            set => this.SendMessage(BUTTON_MESSAGE_SETCHECK, (IntPtr)1, IntPtr.Zero);
+            get => Convert.ToBoolean(this.SendMessage(BUTTON_MESSAGE_GETCHECK, IntPtr.Zero, IntPtr.Zero));
         }
         public new string ClassName => "CheckBox";
     }
@@ -256,7 +256,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public void SetCheck(int type)
         {
-            this.SendMessage(BM_SETCHECK, (IntPtr)type, IntPtr.Zero);
+            this.SendMessage(BUTTON_MESSAGE_SETCHECK, (IntPtr)type, IntPtr.Zero);
         }
         public new string ClassName => "CheckButtonEx";
     }
@@ -341,7 +341,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="text"></param>
         public void AddString(string text)
         {
-            this.SendMessage(CB_ADDSTRING, default, Marshal.StringToHGlobalUni(text));
+            this.SendMessage(COMBOBOX_MESSAGE_ADDSTRING, default, Marshal.StringToHGlobalUni(text));
         }
 
         /// <summary>
@@ -350,7 +350,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="index">索引</param>
         public void DeleteString(int index)
         {
-            this.SendMessage(CB_DELETESTRING, (IntPtr)index, default);
+            this.SendMessage(COMBOBOX_MESSAGE_DELETESTRING, (IntPtr)index, default);
         }
 
         /// <summary>
@@ -360,7 +360,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="text">内容</param>
         public void InsertString(int index, string text)
         {
-            this.SendMessage(CB_INSERTSTRING, (IntPtr)index, Marshal.StringToHGlobalUni(text));
+            this.SendMessage(COMBOBOX_MESSAGE_INSERTSTRING, (IntPtr)index, Marshal.StringToHGlobalUni(text));
         }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="text">寻找内容</param>
         public bool FindString(int index, string text)
         {
-            return (int)this.SendMessage(CB_FINDSTRING, (IntPtr)index, Marshal.StringToHGlobalUni(text)) == 1;
+            return (int)this.SendMessage(COMBOBOX_MESSAGE_FINDSTRING, (IntPtr)index, Marshal.StringToHGlobalUni(text)) == 1;
         }
 
         /// <summary>
@@ -378,7 +378,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void ResetContent()
         {
-            this.SendMessage(CB_RESETCONTENT, default, default);
+            this.SendMessage(COMBOBOX_MESSAGE_RESETCONTENT, default, default);
         }
 
         /// <summary>
@@ -388,7 +388,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(CB_SHOWDROPDOWN, (IntPtr)Convert.ToInt32(value), default);
+                this.SendMessage(COMBOBOX_MESSAGE_SHOWDROPDOWN, (IntPtr)Convert.ToInt32(value), default);
             }
         }
 
@@ -399,7 +399,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(CB_GETCOUNT, default, default);
+                return (int)this.SendMessage(COMBOBOX_MESSAGE_GETCOUNT, default, default);
             }
         }
 
@@ -410,11 +410,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(CB_GETCURSEL, default, default);
+                return (int)this.SendMessage(COMBOBOX_MESSAGE_GETCURSEL, default, default);
             }
             set
             {
-                this.SendMessage(CB_SETCURSEL, (IntPtr)value, default);
+                this.SendMessage(COMBOBOX_MESSAGE_SETCURSEL, (IntPtr)value, default);
             }
         }
 
@@ -426,11 +426,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(CB_GETDROPPEDWIDTH, default, default);
+                return (int)this.SendMessage(COMBOBOX_MESSAGE_GETDROPPEDWIDTH, default, default);
             }
             set
             {
-                this.SendMessage(CB_SETDROPPEDWIDTH, (IntPtr)value, default);
+                this.SendMessage(COMBOBOX_MESSAGE_SETDROPPEDWIDTH, (IntPtr)value, default);
             }
         }
 
@@ -441,11 +441,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(CB_GETITEMHEIGHT, default, default);
+                return (int)this.SendMessage(COMBOBOX_MESSAGE_GETITEMHEIGHT, default, default);
             }
             set
             {
-                this.SendMessage(CB_SETITEMHEIGHT, (IntPtr)(-1), (IntPtr)value);
+                this.SendMessage(COMBOBOX_MESSAGE_SETITEMHEIGHT, (IntPtr)(-1), (IntPtr)value);
             }
         }
 
@@ -456,11 +456,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(CB_GETMINVISIBLE, default, default);
+                return (int)this.SendMessage(COMBOBOX_MESSAGE_GETMINVISIBLE, default, default);
             }
             set
             {
-                this.SendMessage(CB_SETMINVISIBLE, (IntPtr)value, default);
+                this.SendMessage(COMBOBOX_MESSAGE_SETMINVISIBLE, (IntPtr)value, default);
             }
         }
 
@@ -516,7 +516,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Clear()
         {
-            this.SendMessage(DBM_CLEAR, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(DRAWINGBOARD_MESSAGE_CLEAR, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -526,7 +526,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(DBM_SETPENWIDTH, IntPtr.Zero, (IntPtr)value);
+                this.SendMessage(DRAWINGBOARD_MESSAGE_SETPENWIDTH, IntPtr.Zero, (IntPtr)value);
             }
         }
 
@@ -537,7 +537,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(DBM_SETPENCOLOR, IntPtr.Zero, (IntPtr)value);
+                this.SendMessage(DRAWINGBOARD_MESSAGE_SETPENCOLOR, IntPtr.Zero, (IntPtr)value);
             }
         }
 
@@ -548,7 +548,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(DBM_SETPENTYPE, IntPtr.Zero, (IntPtr)value);
+                this.SendMessage(DRAWINGBOARD_MESSAGE_SETPENTYPE, IntPtr.Zero, (IntPtr)value);
             }
         }
         public new string ClassName => "DrawingBoard";
@@ -582,7 +582,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="color"></param>
         public void SetBanner(string text, int color)
         {
-            this.SendMessage(EM_SETCUEBANNER, (IntPtr)color, Marshal.StringToHGlobalUni(text));
+            this.SendMessage(EDIT_MESSAGE_SETCUEBANNER, (IntPtr)color, Marshal.StringToHGlobalUni(text));
         }
 
         /// <summary>
@@ -592,8 +592,8 @@ namespace ExDuiR.NET.Frameworks.Controls
         public void AddText(string text)
         {
             var ptr = Marshal.StringToHGlobalAuto(text);
-            this.SendMessage(EM_SETSEL, (IntPtr)(-1), (IntPtr)(-1));
-            this.SendMessage(EM_REPLACESEL, (IntPtr)(-1), ptr);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, (IntPtr)(-1), (IntPtr)(-1));
+            this.SendMessage(EDIT_MESSAGE_REPLACESEL, (IntPtr)(-1), ptr);
             Marshal.FreeHGlobal(ptr);
         }
 
@@ -607,7 +607,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             try
             {
                 Marshal.Copy(data, 0, allocIntPtr, data.Length);
-                this.SendMessage(EM_LOAD_RTF, (IntPtr)data.Length, allocIntPtr);
+                this.SendMessage(EDIT_MESSAGE_LOAD_RTF, (IntPtr)data.Length, allocIntPtr);
             }
             finally
             {
@@ -626,13 +626,13 @@ namespace ExDuiR.NET.Frameworks.Controls
             int size = Marshal.SizeOf(typeof(ExCharRange));
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(charRange, allocIntPtr, true);
-            this.SendMessage(EM_EXSETSEL, IntPtr.Zero, allocIntPtr);
+            this.SendMessage(EDIT_MESSAGE_EXSETSEL, IntPtr.Zero, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
         public void CancelSelect()
         {
-            this.SendMessage(EM_SETSEL, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -642,7 +642,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="end"></param>
         public void Select(int start, int end)
         {
-            this.SendMessage(EM_SETSEL, (IntPtr)start, (IntPtr)end);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, (IntPtr)start, (IntPtr)end);
         }
 
         /// <summary>
@@ -650,7 +650,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Undo()
         {
-            this.SendMessage(EM_UNDO, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(EDIT_MESSAGE_UNDO, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -658,7 +658,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Redo()
         {
-            this.SendMessage(EM_REDO, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(EDIT_MESSAGE_REDO, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -698,7 +698,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public int GetLineCount()
         {
-            return (int)this.SendMessage(EM_GETLINECOUNT, IntPtr.Zero, IntPtr.Zero);
+            return (int)this.SendMessage(EDIT_MESSAGE_GETLINECOUNT, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -707,18 +707,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         public void FindText(string find)
         {
             ExTextRange textRange = new ExTextRange();
-            textRange.chrg.cpMin = Utility.Util.HIWORD((uint)(this.SendMessage(EM_GETSEL, IntPtr.Zero, IntPtr.Zero)));
+            textRange.chrg.cpMin = Utility.Util.HIWORD((uint)(this.SendMessage(EDIT_MESSAGE_GETSEL, IntPtr.Zero, IntPtr.Zero)));
             textRange.chrg.cpMax = -1;
             textRange.pwzText = Marshal.StringToHGlobalUni(find);
             int size = Marshal.SizeOf(typeof(ExTextRange));
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(textRange, allocIntPtr, true);
-            textRange.chrg.cpMin = (int)(this.SendMessage(EM_FINDTEXTW, (IntPtr)1, allocIntPtr));
+            textRange.chrg.cpMin = (int)(this.SendMessage(EDIT_MESSAGE_FINDTEXTW, (IntPtr)1, allocIntPtr));
             if (textRange.chrg.cpMin != -1)
             {
                 textRange.chrg.cpMax = textRange.chrg.cpMin + find.Length;
             }
-            this.SendMessage(EM_SETSEL, (IntPtr)textRange.chrg.cpMin, (IntPtr)textRange.chrg.cpMax);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, (IntPtr)textRange.chrg.cpMin, (IntPtr)textRange.chrg.cpMax);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
@@ -740,7 +740,7 @@ namespace ExDuiR.NET.Frameworks.Controls
              };
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(textRange));
             Marshal.StructureToPtr<ExTextRange>(textRange, ptr, true);
-            this.SendMessage(EM_GETTEXTRANGE, IntPtr.Zero, ptr);
+            this.SendMessage(EDIT_MESSAGE_GETTEXTRANGE, IntPtr.Zero, ptr);
             string retStr = Marshal.PtrToStringUni(textRange.pwzText);
             Marshal.FreeHGlobal(ptr);
             Marshal.FreeHGlobal(textRange.pwzText);
@@ -759,7 +759,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(textformat, allocIntPtr, true);
             IntPtr strPtr = Marshal.StringToHGlobalUni(replace);
-            this.SendMessage(EM_SETTEXTEX, allocIntPtr, strPtr);
+            this.SendMessage(EDIT_MESSAGE_SETTEXTEX, allocIntPtr, strPtr);
             Marshal.FreeHGlobal(allocIntPtr);
             Marshal.FreeHGlobal(strPtr);
         }
@@ -769,7 +769,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void AlignLeft()
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_ALIGNMENT, 0, 0, 0, 0, PFA_LEFT);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_ALIGNMENT, 0, 0, 0, 0, EDIT_PARAGRAPHFALIGN_LEFT);
         }
 
         /// <summary>
@@ -777,7 +777,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void AlignRight()
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_ALIGNMENT, 0, 0, 0, 0, PFA_RIGHT);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_ALIGNMENT, 0, 0, 0, 0, EDIT_PARAGRAPHFALIGN_RIGHT);
         }
 
         /// <summary>
@@ -785,7 +785,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void AlignCenter()
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_ALIGNMENT, 0, 0, 0, 0, PFA_CENTER);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_ALIGNMENT, 0, 0, 0, 0, EDIT_PARAGRAPHFALIGN_CENTER);
         }
 
         /// <summary>
@@ -793,7 +793,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParStartIndentation(int size)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_STARTINDENT, 0, size, 0, 0, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_STARTINDENT, 0, size, 0, 0, 0);
         }
 
         /// <summary>
@@ -801,7 +801,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParRightIndentation(int size)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_RIGHTINDENT, 0, 0, size, 0, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_RIGHTINDENT, 0, 0, size, 0, 0);
         }
 
         /// <summary>
@@ -809,7 +809,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParOffset(int size)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_OFFSET, 0, 0, 0, size, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_OFFSET, 0, 0, 0, size, 0);
         }
 
         /// <summary>
@@ -817,7 +817,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParNumbering(ushort type)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_NUMBERING, type, 0, 0, 0, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_NUMBERING, type, 0, 0, 0, 0);
         }
 
         /// <summary>
@@ -825,7 +825,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharColor(int crText)
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_COLOR, crText, "", 0, 0, false, false, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_COLOR, crText, "", 0, 0, false, false, false, false, false);
         }
 
         /// <summary>
@@ -833,7 +833,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharBold()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_BOLD, 0, "", 0, 0, true, false, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_BOLD, 0, "", 0, 0, true, false, false, false, false);
         }
 
         /// <summary>
@@ -841,7 +841,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharItalic()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_ITALIC, 0, "", 0, 0, false, true, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_ITALIC, 0, "", 0, 0, false, true, false, false, false);
         }
 
         /// <summary>
@@ -849,7 +849,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharUnderLine()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_UNDERLINE, 0, "", 0, 0, false, false, true, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_UNDERLINE, 0, "", 0, 0, false, false, true, false, false);
         }
 
         /// <summary>
@@ -857,7 +857,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharStrikeOut()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_STRIKEOUT, 0, "", 0, 0, false, false, false, true, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_STRIKEOUT, 0, "", 0, 0, false, false, false, true, false);
         }
 
         /// <summary>
@@ -865,7 +865,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharLink()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_LINK, 0, "", 0, 0, false, false, false, false, true);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_LINK, 0, "", 0, 0, false, false, false, false, true);
         }
 
         /// <summary>
@@ -873,7 +873,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharFont(string fontName, int size)
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_FACE | CFM_SIZE, 0, fontName, size, 0, false, false, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_FACE | EDIT_SELECT_CHARFORMAT_SIZE, 0, fontName, size, 0, false, false, false, false, false);
         }
 
         public new string ClassName => "Edit";
@@ -930,8 +930,8 @@ namespace ExDuiR.NET.Frameworks.Controls
         public void AddText(string text)
         {
             var ptr = Marshal.StringToHGlobalAuto(text);
-            this.SendMessage(EM_SETSEL, (IntPtr)(-1), (IntPtr)(-1));
-            this.SendMessage(EM_REPLACESEL, (IntPtr)(-1), ptr);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, (IntPtr)(-1), (IntPtr)(-1));
+            this.SendMessage(EDIT_MESSAGE_REPLACESEL, (IntPtr)(-1), ptr);
             Marshal.FreeHGlobal(ptr);
         }
 
@@ -942,7 +942,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="color"></param>
         public void SetBanner(string text, int color)
         {
-            this.SendMessage(EM_SETCUEBANNER, (IntPtr)color, Marshal.StringToHGlobalUni(text));
+            this.SendMessage(EDIT_MESSAGE_SETCUEBANNER, (IntPtr)color, Marshal.StringToHGlobalUni(text));
         }
 
         /// <summary>
@@ -955,7 +955,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             try
             {
                 Marshal.Copy(data, 0, allocIntPtr, data.Length);
-                this.SendMessage(EM_LOAD_RTF, (IntPtr)data.Length, allocIntPtr);
+                this.SendMessage(EDIT_MESSAGE_LOAD_RTF, (IntPtr)data.Length, allocIntPtr);
             }
             finally
             {
@@ -974,13 +974,13 @@ namespace ExDuiR.NET.Frameworks.Controls
             int size = Marshal.SizeOf(typeof(ExCharRange));
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(charRange, allocIntPtr, true);
-            this.SendMessage(EM_EXSETSEL, IntPtr.Zero, allocIntPtr);
+            this.SendMessage(EDIT_MESSAGE_EXSETSEL, IntPtr.Zero, allocIntPtr);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
         public void CancelSelect()
         {
-            this.SendMessage(EM_SETSEL, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -990,7 +990,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="end"></param>
         public void Select(int start, int end)
         {
-            this.SendMessage(EM_SETSEL, (IntPtr)start, (IntPtr)end);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, (IntPtr)start, (IntPtr)end);
         }
 
         /// <summary>
@@ -998,7 +998,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Undo()
         {
-            this.SendMessage(EM_UNDO, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(EDIT_MESSAGE_UNDO, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -1006,7 +1006,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void Redo()
         {
-            this.SendMessage(EM_REDO, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(EDIT_MESSAGE_REDO, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -1046,7 +1046,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public int GetLineCount()
         {
-            return (int)this.SendMessage(EM_GETLINECOUNT, IntPtr.Zero, IntPtr.Zero);
+            return (int)this.SendMessage(EDIT_MESSAGE_GETLINECOUNT, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -1055,18 +1055,18 @@ namespace ExDuiR.NET.Frameworks.Controls
         public void FindText(string find)
         {
             ExTextRange textRange = new ExTextRange();
-            textRange.chrg.cpMin = Utility.Util.HIWORD((uint)(this.SendMessage(EM_GETSEL, IntPtr.Zero, IntPtr.Zero)));
+            textRange.chrg.cpMin = Utility.Util.HIWORD((uint)(this.SendMessage(EDIT_MESSAGE_GETSEL, IntPtr.Zero, IntPtr.Zero)));
             textRange.chrg.cpMax = -1;
             textRange.pwzText = Marshal.StringToHGlobalUni(find);
             int size = Marshal.SizeOf(typeof(ExTextRange));
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(textRange, allocIntPtr, true);
-            textRange.chrg.cpMin = (int)(this.SendMessage(EM_FINDTEXTW, (IntPtr)1, allocIntPtr));
+            textRange.chrg.cpMin = (int)(this.SendMessage(EDIT_MESSAGE_FINDTEXTW, (IntPtr)1, allocIntPtr));
             if (textRange.chrg.cpMin != -1)
             {
                 textRange.chrg.cpMax = textRange.chrg.cpMin + find.Length;
             }
-            this.SendMessage(EM_SETSEL, (IntPtr)textRange.chrg.cpMin, (IntPtr)textRange.chrg.cpMax);
+            this.SendMessage(EDIT_MESSAGE_SETSEL, (IntPtr)textRange.chrg.cpMin, (IntPtr)textRange.chrg.cpMax);
             Marshal.FreeHGlobal(allocIntPtr);
         }
 
@@ -1088,7 +1088,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             };
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(textRange));
             Marshal.StructureToPtr<ExTextRange>(textRange, ptr, true);
-            this.SendMessage(EM_GETTEXTRANGE, IntPtr.Zero, ptr);
+            this.SendMessage(EDIT_MESSAGE_GETTEXTRANGE, IntPtr.Zero, ptr);
             string retStr = Marshal.PtrToStringUni(textRange.pwzText);
             Marshal.FreeHGlobal(ptr);
             Marshal.FreeHGlobal(textRange.pwzText);
@@ -1107,7 +1107,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             IntPtr allocIntPtr = Marshal.AllocHGlobal(size);
             Marshal.StructureToPtr(textformat, allocIntPtr, true);
             IntPtr strPtr = Marshal.StringToHGlobalUni(replace);
-            this.SendMessage(EM_SETTEXTEX, allocIntPtr, strPtr);
+            this.SendMessage(EDIT_MESSAGE_SETTEXTEX, allocIntPtr, strPtr);
             Marshal.FreeHGlobal(allocIntPtr);
             Marshal.FreeHGlobal(strPtr);
         }
@@ -1117,7 +1117,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void AlignLeft()
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_ALIGNMENT, 0, 0, 0, 0, PFA_LEFT);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_ALIGNMENT, 0, 0, 0, 0, EDIT_PARAGRAPHFALIGN_LEFT);
         }
 
         /// <summary>
@@ -1125,7 +1125,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void AlignRight()
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_ALIGNMENT, 0, 0, 0, 0, PFA_RIGHT);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_ALIGNMENT, 0, 0, 0, 0, EDIT_PARAGRAPHFALIGN_RIGHT);
         }
 
         /// <summary>
@@ -1133,7 +1133,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void AlignCenter()
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_ALIGNMENT, 0, 0, 0, 0, PFA_CENTER);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_ALIGNMENT, 0, 0, 0, 0, EDIT_PARAGRAPHFALIGN_CENTER);
         }
 
         /// <summary>
@@ -1141,7 +1141,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParStartIndentation(int size)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_STARTINDENT, 0, size, 0, 0, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_STARTINDENT, 0, size, 0, 0, 0);
         }
 
         /// <summary>
@@ -1149,7 +1149,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParRightIndentation(int size)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_RIGHTINDENT, 0, 0, size, 0, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_RIGHTINDENT, 0, 0, size, 0, 0);
         }
 
         /// <summary>
@@ -1157,7 +1157,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParOffset(int size)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_OFFSET, 0, 0, 0, size, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_OFFSET, 0, 0, 0, size, 0);
         }
 
         /// <summary>
@@ -1165,7 +1165,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelParNumbering(ushort type)
         {
-            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, PFM_NUMBERING, type, 0, 0, 0, 0);
+            ExAPI.Ex_ObjEditSetSelParFormat(m_hObj, EDIT_SELECT_PARAGRAPHFORMAT_NUMBERING, type, 0, 0, 0, 0);
         }
 
         /// <summary>
@@ -1173,7 +1173,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharColor(int crText)
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_COLOR, crText, "", 0, 0, false, false, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_COLOR, crText, "", 0, 0, false, false, false, false, false);
         }
 
         /// <summary>
@@ -1181,7 +1181,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharBold()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_BOLD, 0, "", 0, 0, true, false, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_BOLD, 0, "", 0, 0, true, false, false, false, false);
         }
 
         /// <summary>
@@ -1189,7 +1189,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharItalic()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_ITALIC, 0, "", 0, 0, false, true, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_ITALIC, 0, "", 0, 0, false, true, false, false, false);
         }
 
         /// <summary>
@@ -1197,7 +1197,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharUnderLine()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_UNDERLINE, 0, "", 0, 0, false, false, true, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_UNDERLINE, 0, "", 0, 0, false, false, true, false, false);
         }
 
         /// <summary>
@@ -1205,7 +1205,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharStrikeOut()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_STRIKEOUT, 0, "", 0, 0, false, false, false, true, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_STRIKEOUT, 0, "", 0, 0, false, false, false, true, false);
         }
 
         /// <summary>
@@ -1213,7 +1213,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharLink()
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_LINK, 0, "", 0, 0, false, false, false, false, true);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_LINK, 0, "", 0, 0, false, false, false, false, true);
         }
 
         /// <summary>
@@ -1221,7 +1221,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public void SetSelCharFont(string fontName, int size)
         {
-            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, CFM_FACE | CFM_SIZE, 0, fontName, size, 0, false, false, false, false, false);
+            ExAPI.Ex_ObjEditSetSelCharFormat(m_hObj, EDIT_SELECT_CHARFORMAT_FACE | EDIT_SELECT_CHARFORMAT_SIZE, 0, fontName, size, 0, false, false, false, false, false);
         }
         public new string ClassName => "EditEx";
     }
@@ -1253,11 +1253,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SetLong(GROUPBOX_TEXT_OFFSET, (IntPtr)value);
+                this.SetLong(GROUPBOX_LONG_TEXT_OFFSET, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetLong(GROUPBOX_TEXT_OFFSET);
+                return (int)this.GetLong(GROUPBOX_LONG_TEXT_OFFSET);
             }
         }
 
@@ -1268,11 +1268,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SetLong(GROUPBOX_RADIUS, (IntPtr)value);
+                this.SetLong(GROUPBOX_LONG_RADIUS, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetLong(GROUPBOX_RADIUS);
+                return (int)this.GetLong(GROUPBOX_LONG_RADIUS);
             }
         }
 
@@ -1283,11 +1283,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SetLong(GROUPBOX_STROKEWIDTH, (IntPtr)value);
+                this.SetLong(GROUPBOX_LONG_STROKEWIDTH, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetLong(GROUPBOX_STROKEWIDTH);
+                return (int)this.GetLong(GROUPBOX_LONG_STROKEWIDTH);
             }
         }
         public new string ClassName => "GroupBox";
@@ -1315,19 +1315,19 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public void SetImageSize(int width, int height)
         {
-            this.SendMessage(ILVM_SETITEMSIZE, default, (IntPtr)Util.MAKELONG((uint)width, (uint)height));
+            this.SendMessage(ICONLISTVIEW_MESSAGE_SETITEMSIZE, default, (IntPtr)Util.MAKELONG((uint)width, (uint)height));
         }
         public int SetItem(ExIconListViewItemInfo info)
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExIconListViewItemInfo)));
             Marshal.StructureToPtr(info, ptr, true);
-            var ret = (int)this.SendMessage(LVM_INSERTITEM, IntPtr.Zero, ptr);
+            var ret = (int)this.SendMessage(LISTVIEW_MESSAGE_INSERTITEM, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
             return ret;
         }
         public void Update()
         {
-            this.SendMessage(LVM_UPDATE);
+            this.SendMessage(LISTVIEW_MESSAGE_UPDATE);
         }
         public new string ClassName => "IconListView";
     }
@@ -1377,18 +1377,18 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public void ClearAll()
         {
-            this.SendMessage(LVM_DELETEALLITEMS, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(LISTVIEW_MESSAGE_DELETEALLITEMS, IntPtr.Zero, IntPtr.Zero);
         }
 
         public int ItemSelect
         {
             set
             {
-                this.SendMessage(LVM_SETSELECTIONMARK, (IntPtr)1, (IntPtr)value);
+                this.SendMessage(LISTVIEW_MESSAGE_SETSELECTIONMARK, (IntPtr)1, (IntPtr)value);
             }
             get
             {
-                return (int)this.SendMessage(LVM_GETSELECTIONMARK, IntPtr.Zero, IntPtr.Zero);
+                return (int)this.SendMessage(LISTVIEW_MESSAGE_GETSELECTIONMARK, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -1396,7 +1396,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(LVM_SETITEMCOUNT, (IntPtr)value, (IntPtr)value);
+                this.SendMessage(LISTVIEW_MESSAGE_SETITEMCOUNT, (IntPtr)value, (IntPtr)value);
             }
         }
         public new string ClassName => "ListView";
@@ -1440,7 +1440,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(BM_SETCHECK, (IntPtr)1, (IntPtr)Convert.ToInt32(value));
+                this.SendMessage(BUTTON_MESSAGE_SETCHECK, (IntPtr)1, (IntPtr)Convert.ToInt32(value));
             }
         }
 
@@ -1451,7 +1451,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="image"></param>
         public void SetImage(int type, ExImage image)
         {
-            this.SendMessage(BM_SETIMAGE, (IntPtr)type, (IntPtr)image.handle);
+            this.SendMessage(BUTTON_MESSAGE_SETIMAGE, (IntPtr)type, (IntPtr)image.handle);
         }
         public new string ClassName => "NavButtonEx";
     }
@@ -1529,7 +1529,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(PBM_SETRADIUS, (IntPtr)value, IntPtr.Zero);
+                this.SendMessage(PROGRESSBAR_MESSAGE_SETRADIUS, (IntPtr)value, IntPtr.Zero);
             }
         }
 
@@ -1540,7 +1540,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(PBM_SETBKCOLOR, (IntPtr)value, IntPtr.Zero);
+                this.SendMessage(PROGRESSBAR_MESSAGE_SETBKCOLOR, (IntPtr)value, IntPtr.Zero);
             }
         }
 
@@ -1551,7 +1551,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(PBM_SETBARCOLOR, (IntPtr)value, IntPtr.Zero);
+                this.SendMessage(PROGRESSBAR_MESSAGE_SETBARCOLOR, (IntPtr)value, IntPtr.Zero);
             }
         }
 
@@ -1562,11 +1562,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(PBM_SETPOS, (IntPtr)value, IntPtr.Zero);
+                this.SendMessage(PROGRESSBAR_MESSAGE_SETPOS, (IntPtr)value, IntPtr.Zero);
             }
             get
             {
-                return (int)this.SendMessage(PBM_GETPOS, IntPtr.Zero, IntPtr.Zero);
+                return (int)this.SendMessage(PROGRESSBAR_MESSAGE_GETPOS, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -1577,11 +1577,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(PBM_SETRANGE, (IntPtr)value, IntPtr.Zero);
+                this.SendMessage(PROGRESSBAR_MESSAGE_SETRANGE, (IntPtr)value, IntPtr.Zero);
             }
             get
             {
-                return (int)this.SendMessage(PBM_GETRANGE, IntPtr.Zero, IntPtr.Zero);
+                return (int)this.SendMessage(PROGRESSBAR_MESSAGE_GETRANGE, IntPtr.Zero, IntPtr.Zero);
             }
         }
         public new string ClassName => "ProgressBar";
@@ -1609,7 +1609,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public string GetItemValue(string itemName)
         {
-            var ret = this.SendMessage(PGM_GETITEMVALUE, IntPtr.Zero, Marshal.StringToHGlobalUni(itemName));
+            var ret = this.SendMessage(PROPERTYGRID_MESSAGE_GETITEMVALUE, IntPtr.Zero, Marshal.StringToHGlobalUni(itemName));
             if(ret != IntPtr.Zero)
             {
                 return Marshal.PtrToStringUni(ret);
@@ -1619,7 +1619,7 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public void SetItemValue(string itemName, string ItemValue)
         {
-            this.SendMessage(PGM_SETITEMVALUE, Marshal.StringToHGlobalUni(ItemValue), Marshal.StringToHGlobalUni(itemName));
+            this.SendMessage(PROPERTYGRID_MESSAGE_SETITEMVALUE, Marshal.StringToHGlobalUni(ItemValue), Marshal.StringToHGlobalUni(itemName));
         }
 
         /// <summary>
@@ -1631,7 +1631,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExPropergridItemInfo)));
             Marshal.StructureToPtr(info, ptr, false);
-            this.SendMessage(PGM_ADDITEM, (IntPtr)type, ptr);
+            this.SendMessage(PROPERTYGRID_MESSAGE_ADDITEM, (IntPtr)type, ptr);
             Marshal.FreeHGlobal(ptr);
         }
 
@@ -1706,17 +1706,17 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(LVM_GETSELECTIONMARK, IntPtr.Zero, IntPtr.Zero);
+                return (int)this.SendMessage(LISTVIEW_MESSAGE_GETSELECTIONMARK, IntPtr.Zero, IntPtr.Zero);
             }
             set
             {
-                this.SendMessage(LVM_SETSELECTIONMARK, (IntPtr)1, (IntPtr)value);
+                this.SendMessage(LISTVIEW_MESSAGE_SETSELECTIONMARK, (IntPtr)1, (IntPtr)value);
             }
         }
 
         public void ClearAll()
         {
-            this.SendMessage(LVM_DELETEALLITEMS, IntPtr.Zero, IntPtr.Zero);
+            this.SendMessage(LISTVIEW_MESSAGE_DELETEALLITEMS, IntPtr.Zero, IntPtr.Zero);
         }
 
         /// <summary>
@@ -1742,7 +1742,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListColumnInfo)));
             Marshal.StructureToPtr(colInfo, ptr, true);
-            this.SendMessage(LVM_INSERTCOLUMN, IntPtr.Zero, ptr);
+            this.SendMessage(LISTVIEW_MESSAGE_INSERTCOLUMN, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
         }
 
@@ -1754,7 +1754,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListRowInfo)));
             Marshal.StructureToPtr(rowInfo, ptr, true);
-            var ret = (int)this.SendMessage(LVM_INSERTITEM, IntPtr.Zero, ptr);
+            var ret = (int)this.SendMessage(LISTVIEW_MESSAGE_INSERTITEM, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
             return ret;
         }
@@ -1767,7 +1767,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListItemInfo)));
             Marshal.StructureToPtr(itemInfo, ptr, true);
-            this.SendMessage(LVM_SETITEM, IntPtr.Zero, ptr);
+            this.SendMessage(LISTVIEW_MESSAGE_SETITEM, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
         }
 
@@ -1779,12 +1779,12 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListCellInfo)));
             Marshal.StructureToPtr(cellInfo, ptr, true);
-            this.SendMessage(LVM_SETCELL, IntPtr.Zero, ptr);
+            this.SendMessage(LISTVIEW_MESSAGE_SETCELL, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
         }
         public void Update()
         {
-            this.SendMessage(LVM_UPDATE);
+            this.SendMessage(LISTVIEW_MESSAGE_UPDATE);
         }
         public new string ClassName => "ReportListView";
     }
@@ -1857,7 +1857,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="image"></param>
         public void SetImage(int type, ExImage image)
         {
-            this.SendMessage(BM_SETIMAGE, (IntPtr)type, (IntPtr)image.handle);
+            this.SendMessage(BUTTON_MESSAGE_SETIMAGE, (IntPtr)type, (IntPtr)image.handle);
         }
         public new string ClassName => "ScoreButton";
     }
@@ -1913,11 +1913,11 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                ExAPI.Ex_ObjSetLong(m_hObj, SBL_BLOCK_POINT, (IntPtr)value);
+                ExAPI.Ex_ObjSetLong(m_hObj, SLIDERBAR_LONG_BLOCK_POINT, (IntPtr)value);
             }
             get
             {
-                return (int)ExAPI.Ex_ObjGetLong(m_hObj, SBL_BLOCK_POINT);
+                return (int)ExAPI.Ex_ObjGetLong(m_hObj, SLIDERBAR_LONG_BLOCK_POINT);
             }
         }
         public new string ClassName => "SliderBar";
@@ -1944,8 +1944,8 @@ namespace ExDuiR.NET.Frameworks.Controls
         }
         public bool Check
         {
-            set => this.SendMessage(BM_SETCHECK, (IntPtr)1, IntPtr.Zero);
-            get => Convert.ToBoolean(this.SendMessage(BM_GETCHECK, IntPtr.Zero, IntPtr.Zero));
+            set => this.SendMessage(BUTTON_MESSAGE_SETCHECK, (IntPtr)1, IntPtr.Zero);
+            get => Convert.ToBoolean(this.SendMessage(BUTTON_MESSAGE_GETCHECK, IntPtr.Zero, IntPtr.Zero));
         }
 
         public ExObjProps Props
@@ -2007,7 +2007,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(LVM_SETITEMCOUNT, (IntPtr)value, (IntPtr)value);
+                this.SendMessage(LISTVIEW_MESSAGE_SETITEMCOUNT, (IntPtr)value, (IntPtr)value);
             }
         }
 
@@ -2018,7 +2018,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(TLVM_SET_ITEM_HOVERCOLOR, IntPtr.Zero, (IntPtr)value);
+                this.SendMessage(TEMPLATELISTVIEW_MESSAGE_SET_ITEM_HOVERCOLOR, IntPtr.Zero, (IntPtr)value);
             }
         }
 
@@ -2026,7 +2026,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(TLVM_SET_ITEM_SELECTCOLOR, IntPtr.Zero, (IntPtr)value);
+                this.SendMessage(TEMPLATELISTVIEW_MESSAGE_SET_ITEM_SELECTCOLOR, IntPtr.Zero, (IntPtr)value);
             }
         }
 
@@ -2056,13 +2056,13 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExTreeViewInsertInfo)));
             Marshal.StructureToPtr(info, ptr, true);
-            var ret = this.SendMessage(TVM_INSERTITEM, IntPtr.Zero, ptr);
+            var ret = this.SendMessage(TREEVIEW_MESSAGE_INSERTITEM, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
             return ret;
         }
         public void Update()
         {
-            this.SendMessage(TVM_UPDATE);
+            this.SendMessage(TREEVIEW_MESSAGE_UPDATE);
         }
         public new string ClassName => "TreeView";
     }
@@ -2097,7 +2097,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(MBBM_LOAD, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+                this.SendMessage(MINIBLINKBROWSER_MESSAGE_LOAD, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
             }
         }
 
@@ -2108,7 +2108,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(MBBM_JS, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+                this.SendMessage(MINIBLINKBROWSER_MESSAGE_JS, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
             }
         }
         public new string ClassName => "MbBrowser";
@@ -2145,7 +2145,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             IntPtr intptr = Marshal.AllocHGlobal(Marshal.SizeOf(itemInfo));
             Marshal.StructureToPtr(itemInfo, intptr, true);
-            var ret = this.SendMessage(LVM_INSERTITEM, (IntPtr)1, intptr);
+            var ret = this.SendMessage(LISTVIEW_MESSAGE_INSERTITEM, (IntPtr)1, intptr);
             Marshal.FreeHGlobal(intptr);
             return ret;
         }
@@ -2183,7 +2183,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             IntPtr intptr = Marshal.AllocHGlobal(Marshal.SizeOf(itemInfo));
             Marshal.StructureToPtr(itemInfo, intptr, true);
-            var ret = this.SendMessage(LVM_INSERTITEM, (IntPtr)1, intptr);
+            var ret = this.SendMessage(LISTVIEW_MESSAGE_INSERTITEM, (IntPtr)1, intptr);
             Marshal.FreeHGlobal(intptr);
             return ret;
         }
@@ -2221,7 +2221,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             IntPtr intptr = Marshal.AllocHGlobal(Marshal.SizeOf(itemInfo));
             Marshal.StructureToPtr(itemInfo, intptr, true);
-            var ret = this.SendMessage(LVM_INSERTITEM, (IntPtr)1, intptr);
+            var ret = this.SendMessage(LISTVIEW_MESSAGE_INSERTITEM, (IntPtr)1, intptr);
             Marshal.FreeHGlobal(intptr);
             return ret;
         }
@@ -2324,7 +2324,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="index">分组索引 从1开始</param>
         public void DelGroup(int index)
         {
-            this.SendMessage(RM_DELGROUP, (IntPtr)index, IntPtr.Zero);
+            this.SendMessage(ROLLMENU_MESSAGE_DELGROUP, (IntPtr)index, IntPtr.Zero);
         }
 
         /// <summary>
@@ -2334,7 +2334,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="indexItem">项目索引 从1开始</param>
         public void DelItem(int indexGroup,int indexItem)
         {
-            this.SendMessage(RM_DELITEM, (IntPtr)indexGroup, (IntPtr)indexItem);
+            this.SendMessage(ROLLMENU_MESSAGE_DELITEM, (IntPtr)indexGroup, (IntPtr)indexItem);
         }
 
         /// <summary>
@@ -2344,7 +2344,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="expand">是否展开</param>
         public void SetExpand(int indexGroup, bool expand)
         {
-            this.SendMessage(RM_SETEXPAND, (IntPtr)indexGroup, (IntPtr)Convert.ToInt32(expand));
+            this.SendMessage(ROLLMENU_MESSAGE_SETEXPAND, (IntPtr)indexGroup, (IntPtr)Convert.ToInt32(expand));
         }
 
         /// 添加分组
@@ -2356,7 +2356,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExRollMenuGroup)));
             Marshal.StructureToPtr(info, ptr, true);
-            var ret = (int)this.SendMessage(RM_ADDGROUP, (IntPtr)indexGroup, ptr);
+            var ret = (int)this.SendMessage(ROLLMENU_MESSAGE_ADDGROUP, (IntPtr)indexGroup, ptr);
             Marshal.FreeHGlobal(ptr);
             return ret;
         }
@@ -2371,7 +2371,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExRollMenuItem)));
             Marshal.StructureToPtr(info, ptr, false);
-            var ret = (int)this.SendMessage(RM_ADDITEM, (IntPtr)indexGroup, ptr);
+            var ret = (int)this.SendMessage(ROLLMENU_MESSAGE_ADDITEM, (IntPtr)indexGroup, ptr);
             Marshal.FreeHGlobal(ptr);
             return ret;
         }
@@ -2386,7 +2386,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             var ptrIndexGroup = Marshal.AllocHGlobal(4);
             var ptrIndexItem = Marshal.AllocHGlobal(4);
-            var ret = this.SendMessage(RM_GETSEL, ptrIndexGroup, ptrIndexItem);
+            var ret = this.SendMessage(ROLLMENU_MESSAGE_GETSEL, ptrIndexGroup, ptrIndexItem);
             string retStr = "";
             if(ret!=IntPtr.Zero)
             {
@@ -2406,7 +2406,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// <param name="indexItem">项目索引</param>
         public void SetSel(int indexGroup, int indexItem)
         {
-            this.SendMessage(RM_SETSEL, (IntPtr)indexGroup, (IntPtr)indexItem);
+            this.SendMessage(ROLLMENU_MESSAGE_SETSEL, (IntPtr)indexGroup, (IntPtr)indexItem);
         }
         public new string ClassName => "RollMenu";
     }
@@ -2439,7 +2439,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(MFM_STATE_PLAY, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+                this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_PLAY, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
             }
         }
 
@@ -2452,11 +2452,11 @@ namespace ExDuiR.NET.Frameworks.Controls
             {
                 if(value)
                 {
-                    this.SendMessage(MFM_STATE_PAUSE, IntPtr.Zero, IntPtr.Zero);
+                    this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_PAUSE, IntPtr.Zero, IntPtr.Zero);
                 }
                 else
                 {
-                    this.SendMessage(MFM_STATE_CONTINUE, IntPtr.Zero, IntPtr.Zero);
+                    this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_CONTINUE, IntPtr.Zero, IntPtr.Zero);
                 }
             }
         }
@@ -2470,7 +2470,7 @@ namespace ExDuiR.NET.Frameworks.Controls
             {
                 if (value)
                 {
-                    this.SendMessage(MFM_STATE_STOP, IntPtr.Zero, IntPtr.Zero);
+                    this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_STOP, IntPtr.Zero, IntPtr.Zero);
                 }
             }
         }
@@ -2482,7 +2482,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-               this.SendMessage(MFM_SET_POSITION, IntPtr.Zero, (IntPtr)value);
+               this.SendMessage(MEDIAPLAYER_MESSAGE_SET_POSITION, IntPtr.Zero, (IntPtr)value);
             }
         }
         public new string ClassName => "MediaFoundation";
@@ -2513,7 +2513,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(TBM_SET_PEN_COLOR, IntPtr.Zero, (IntPtr)value);
+                this.SendMessage(TAGGINGBOARD_MESSAGE_SET_PEN_COLOR, IntPtr.Zero, (IntPtr)value);
             }
         }
 
@@ -2526,11 +2526,11 @@ namespace ExDuiR.NET.Frameworks.Controls
             {
                 if (value == null)
                 {
-                    this.SendMessage(TBM_SET_BKG, IntPtr.Zero, IntPtr.Zero);
+                    this.SendMessage(TAGGINGBOARD_MESSAGE_SET_BKG, IntPtr.Zero, IntPtr.Zero);
                 }
                 else
                 {
-                    this.SendMessage(TBM_SET_BKG, IntPtr.Zero, (IntPtr)value.handle);
+                    this.SendMessage(TAGGINGBOARD_MESSAGE_SET_BKG, IntPtr.Zero, (IntPtr)value.handle);
                 }
             }
         }
@@ -2542,7 +2542,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(TBM_START, IntPtr.Zero, IntPtr.Zero);
+                this.SendMessage(TAGGINGBOARD_MESSAGE_START, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -2553,7 +2553,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(TBM_STOP, IntPtr.Zero, IntPtr.Zero);
+                this.SendMessage(TAGGINGBOARD_MESSAGE_STOP, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -2564,7 +2564,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             set
             {
-                this.SendMessage(TBM_CLEAR, IntPtr.Zero, IntPtr.Zero);
+                this.SendMessage(TAGGINGBOARD_MESSAGE_CLEAR, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -2575,7 +2575,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(TBM_GET_HIT_PATH, IntPtr.Zero, IntPtr.Zero);
+                return (int)this.SendMessage(TAGGINGBOARD_MESSAGE_GET_HIT_PATH, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -2584,10 +2584,10 @@ namespace ExDuiR.NET.Frameworks.Controls
         /// </summary>
         public bool DelTagging()
         {
-            var hit = (int)this.SendMessage(TBM_GET_HIT_PATH, IntPtr.Zero, IntPtr.Zero);
+            var hit = (int)this.SendMessage(TAGGINGBOARD_MESSAGE_GET_HIT_PATH, IntPtr.Zero, IntPtr.Zero);
             if (hit > 0)
             {
-                return (int)this.SendMessage(TBM_DELETE_PATH, IntPtr.Zero, (IntPtr)hit) == 1;
+                return (int)this.SendMessage(TAGGINGBOARD_MESSAGE_DELETE_PATH, IntPtr.Zero, (IntPtr)hit) == 1;
             }
             return false;
         }
@@ -2599,7 +2599,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                var arrPtr = this.SendMessage(TBM_GET_DATA, IntPtr.Zero, IntPtr.Zero);
+                var arrPtr = this.SendMessage(TAGGINGBOARD_MESSAGE_GET_DATA, IntPtr.Zero, IntPtr.Zero);
                 var offsetLeft = this.OffsetLeft;
                 var offsetTop = this.OffsetTop;
                 var scale = this.ImgScale;
@@ -2658,7 +2658,7 @@ namespace ExDuiR.NET.Frameworks.Controls
                     Marshal.WriteIntPtr(polygonArr.polygons + i * Marshal.SizeOf(typeof(IntPtr)), ptr);
                 }
                 Marshal.StructureToPtr<ExPolygonArray>(polygonArr, arrPtr, true);
-                this.SendMessage(TBM_SET_DATA, IntPtr.Zero, arrPtr);
+                this.SendMessage(TAGGINGBOARD_MESSAGE_SET_DATA, IntPtr.Zero, arrPtr);
             }
         }
 
@@ -2669,7 +2669,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                var ptr = this.SendMessage(TBM_GET_IMG_SCALE, IntPtr.Zero, IntPtr.Zero);
+                var ptr = this.SendMessage(TAGGINGBOARD_MESSAGE_GET_IMG_SCALE, IntPtr.Zero, IntPtr.Zero);
                 var value = Util.IntPtrToFloat(ptr);
                 return value;
             }
@@ -2682,7 +2682,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(TBM_GET_IMG_LEFT_OFFSET, IntPtr.Zero, IntPtr.Zero);
+                return (int)this.SendMessage(TAGGINGBOARD_MESSAGE_GET_IMG_LEFT_OFFSET, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -2693,7 +2693,7 @@ namespace ExDuiR.NET.Frameworks.Controls
         {
             get
             {
-                return (int)this.SendMessage(TBM_GET_IMG_TOP_OFFSET, IntPtr.Zero, IntPtr.Zero);
+                return (int)this.SendMessage(TAGGINGBOARD_MESSAGE_GET_IMG_TOP_OFFSET, IntPtr.Zero, IntPtr.Zero);
             }
         }
 

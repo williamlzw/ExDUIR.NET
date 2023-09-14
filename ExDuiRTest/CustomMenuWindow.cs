@@ -23,8 +23,8 @@ namespace ExDuiRTest
         static public void CreateCustomMenuWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试扩展菜单", 0, 0, 300, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -175,7 +175,7 @@ namespace ExDuiRTest
                     var btn3 = new ExImage(Properties.Resources.btn3);
                     var button3 = new ExButton(new ExSkin(hExDui), "文件", (int)(rc.nLeft + rc.nRight * 0.666), rc.nTop, (int)(rc.nRight * 0.333), (int)ExAPI.Ex_Scale(70), -1, -1, -1, 102, (IntPtr)btn3.handle, buttonMsgProc);
                     var icondata = Util.BitmapToByte(Properties.Resources.Icon3);
-                    var label = new ExStatic(new ExSkin(hExDui), icondata, 0, 0, 45, 38, -1, EOS_EX_TRANSPARENT | EOS_EX_TOPMOST);
+                    var label = new ExStatic(new ExSkin(hExDui), icondata, 0, 0, 45, 38, -1, OBJECT_STYLE_EX_TRANSPARENT | OBJECT_STYLE_EX_TOPMOST);
                     rc.nTop = rc.nTop + (int)ExAPI.Ex_Scale(75);
                     rc.nBottom = rc.nBottom - (int)ExAPI.Ex_Scale(75);
                 }
@@ -230,7 +230,7 @@ namespace ExDuiRTest
             if(hObj == button.handle)
             {
                 WinAPI.GetCursorPos(out var pt);
-                button.TrackPopupMenu(menu.Handle, 0, pt.x, pt.y, (IntPtr)hObj, wndProc, EMNF_NOSHADOW);
+                button.TrackPopupMenu(menu.Handle, 0, pt.x, pt.y, (IntPtr)hObj, wndProc, MENU_FLAG_NOSHADOW);
             }
             return IntPtr.Zero;
         }

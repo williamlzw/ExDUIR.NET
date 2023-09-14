@@ -17,8 +17,8 @@ namespace ExDuiRTest
         static public void CreateProgressBarWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试进度条", 0, 0, 400, 300,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -45,7 +45,7 @@ namespace ExDuiRTest
                 if(range == pos)
                 {
                     progressbar.Timer = 0;
-                    ExMessageBox.Show(progressbar, "加载完毕", "提示", MB_OK, EMBF_CENTEWINDOW);
+                    ExMessageBox.Show(progressbar, "加载完毕", "提示", MB_OK, MESSAGEBOX_FLAG_CENTEWINDOW);
                 }
             }
             return IntPtr.Zero;

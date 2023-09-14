@@ -20,11 +20,11 @@ namespace ExDuiRTest
         {
             wndProc = new ExWndProcDelegate(OnWinMsgProc);
             skin = new ExSkin(pOwner, null, "", 0, 0, 300, 200,
-            EWS_MOVEABLE | EWS_CENTERWINDOW | EWS_NOSHADOW, 0, 0, default, wndProc);
+            WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_NOSHADOW, 0, 0, default, wndProc);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                sysbutton = new ExSysButton(skin, "", (300 - 32) / 2, (200 - 32) / 2, 32, 32, EOS_VISIBLE | EWS_BUTTON_CLOSE, EOS_EX_TOPMOST);
+                sysbutton = new ExSysButton(skin, "", (300 - 32) / 2, (200 - 32) / 2, 32, 32, OBJECT_STYLE_VISIBLE | WINDOW_STYLE_BUTTON_CLOSE, OBJECT_STYLE_EX_TOPMOST);
 
                 skin.Visible = true;
             }

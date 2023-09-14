@@ -19,17 +19,17 @@ namespace ExDuiRTest
         static public void CreateEditExWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试扩展编辑框", 0, 0, 400, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                edit1 = new ExEditEx(skin, "", 30, 50, 150, 30, EOS_VISIBLE | EES_UNDERLINE, -1, -1);
+                edit1 = new ExEditEx(skin, "", 30, 50, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_UNDERLINE, -1, -1);
                 edit1.SetBanner("请输入账户名称", Util.ExRGBA(255, 255, 255, 100));
                 edit1.ColorTextNormal = Util.ExRGBA(255, 255, 255, 200);
                 edit1.Icon = new ExImage(Properties.Resources.icon_contacts_normal);
 
-                edit2 = new ExEditEx(skin, "", 30, 100, 150, 30, EOS_VISIBLE | EES_UNDERLINE | EES_USEPASSWORD, -1, -1);
+                edit2 = new ExEditEx(skin, "", 30, 100, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_UNDERLINE | EDIT_STYLE_USEPASSWORD, -1, -1);
                 edit2.SetBanner("请输入账户密码", Util.ExRGBA(255, 255, 255, 100));
                 edit2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 200);
                 edit2.Icon = new ExImage(Properties.Resources.psw_normal);

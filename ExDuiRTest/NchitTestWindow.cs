@@ -16,13 +16,13 @@ namespace ExDuiRTest
         static public void CreateNchitTestWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试限制通知区域", 0, 0, 400, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnNchitTestButtonMsgProc);
-                label = new ExStatic(skin, "鼠标只能在红色区域里响应", 50, 50, 300, 100, -1, EOS_EX_FOCUSABLE, DT_CENTER | DT_VCENTER | DT_SINGLELINE, 0, default, objProc);
+                label = new ExStatic(skin, "鼠标只能在红色区域里响应", 50, 50, 300, 100, -1, OBJECT_STYLE_EX_FOCUSABLE, DT_CENTER | DT_VCENTER | DT_SINGLELINE, 0, default, objProc);
 
 
                 skin.Visible = true;

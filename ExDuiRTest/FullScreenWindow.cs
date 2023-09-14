@@ -16,7 +16,7 @@ namespace ExDuiRTest
         {
             wndProc = new ExWndProcDelegate(OnFullScreenWndMsgProc);
             skin = new ExSkin(pOwner, null, "测试全屏,最大化,置顶,不可移动改变大小,只能右上角关闭", 0, 0, 200, 200,
-            EWS_NOINHERITBKG | EWS_MOVEABLE | EWS_TITLE | EWS_CENTERWINDOW | EWS_FULLSCREEN | EWS_NOSHADOW | EWS_BUTTON_CLOSE, 0, 0, default, wndProc);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_TITLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_FULLSCREEN | WINDOW_STYLE_NOSHADOW | WINDOW_STYLE_BUTTON_CLOSE, 0, 0, default, wndProc);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);

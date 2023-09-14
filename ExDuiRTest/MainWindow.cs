@@ -23,12 +23,12 @@ namespace ExDuiRTest
             var cursor = Properties.Resources.cursor;
             var hCursor = Util.ExLoadImage(cursor, IMAGE_CURSOR);
             //初始化引擎,必须。开启DPI缩放,渲染全部菜单(二级子菜单改背景色需启用此风格)
-            theApp = new ExApp(theme, EXGF_DPI_ENABLE | EXGF_MENU_ALL, hCursor);
+            theApp = new ExApp(theme, ENGINE_FLAG_DPI_ENABLE | ENGINE_FLAG_MENU_ALL, hCursor);
             wndProc = new ExWndProcDelegate(MainWndProc);
             //创建窗口皮肤,必须
             skin = new ExSkin(null, null, "ExDUIR演示,项目地址：https://gitee.com/william_lzw/ExDUIR", 0, 0, 600, 600,
-            EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE | EWS_CENTERWINDOW |
-            EWS_ESCEXIT | EWS_TITLE | EWS_SIZEABLE | EWS_HASICON, 0, 0, IntPtr.Zero, wndProc);
+            WINDOW_STYLE_MAINWINDOW | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_CENTERWINDOW |
+            WINDOW_STYLE_ESCEXIT | WINDOW_STYLE_TITLE | WINDOW_STYLE_SIZEABLE | WINDOW_STYLE_HASICON, 0, 0, IntPtr.Zero, wndProc);
 
             if (skin.Validate)
             {
@@ -37,7 +37,7 @@ namespace ExDuiRTest
                 //改变标题栏标题组件颜色
                 var caption = skin.Caption;
                 //标题栏窗口风格就是标题栏子组件的ID,类似关闭，最大化，最小化按钮也可以这样获取
-                var title = caption.GetObjFromID(EWS_TITLE);
+                var title = caption.GetObjFromID(WINDOW_STYLE_TITLE);
                 title.ColorTextNormal = Util.ExRGBA(120, 230, 21, 255);
                 //改变窗口阴影色
                 skin.ShadowColor = Util.ExRGBA(30, 30, 250, 255);

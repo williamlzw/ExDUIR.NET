@@ -19,12 +19,12 @@ namespace ExDuiRTest
         static public void CreateDropWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试接收拖曳信息", 0, 0, 300, 300,
-            EWS_NOINHERITBKG | EWS_MOVEABLE | EWS_CENTERWINDOW | EWS_NOSHADOW | EWS_BUTTON_CLOSE | EWS_TITLE | EWS_HASICON);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_NOSHADOW | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnDropMsgProc);
-                label1 = new ExStatic(skin, "拖拽文本、文件到这里", 30, 30, 250, 250, EOS_VISIBLE | EOS_BORDER, EOS_EX_DRAGDROP | EOS_EX_ACCEPTFILES, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, IntPtr.Zero, objProc);
+                label1 = new ExStatic(skin, "拖拽文本、文件到这里", 30, 30, 250, 250, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_BORDER, OBJECT_STYLE_EX_DRAGDROP | OBJECT_STYLE_EX_ACCEPTFILES, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, IntPtr.Zero, objProc);
                 skin.Visible = true;
             }
         }
@@ -50,7 +50,7 @@ namespace ExDuiRTest
                     }
                 }
             }
-            else if (uMsg == WM_DROPFILES)//若上面未处理,且控件拥有#EOS_EX_ACCEPTFILES风格,则继续触发本消息
+            else if (uMsg == WM_DROPFILES)//若上面未处理,且控件拥有#OBJECT_STYLE_EX_ACCEPTFILES风格,则继续触发本消息
             {
                 Console.WriteLine("bbbbbbbbb");
                 var fileNumber = WinAPI.DragQueryFile(wParam, 0xFFFFFFFF, null, 0);

@@ -19,8 +19,8 @@ namespace ExDuiRTest
         static public void CreateButtonWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试按钮开关", 0, 0, 300, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -30,9 +30,9 @@ namespace ExDuiRTest
                 buttons[1] = new ExButton(skin, "解除按钮1禁用", 10, 70, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[2] = new ExButton(skin, "改动自身文本", 10, 110, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 buttons[3] = new ExButton(skin, "取按钮1文本", 10, 150, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
-                buttons[4] = new ExButton(skin, "重画按钮1", 150, 30, 120, 30, -1, EOS_EX_FOCUSABLE | EOS_EX_CUSTOMDRAW | EOS_EX_COMPOSITED, DT_VCENTER | DT_CENTER);
+                buttons[4] = new ExButton(skin, "重画按钮1", 150, 30, 120, 30, -1, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_CUSTOMDRAW | OBJECT_STYLE_EX_COMPOSITED, DT_VCENTER | DT_CENTER);
                 buttons[5] = new ExButton(skin, "重画按钮2", 150, 70, 120, 30, -1,
-                    EOS_EX_FOCUSABLE | EOS_EX_CUSTOMDRAW | EOS_EX_COMPOSITED, DT_VCENTER | DT_CENTER, 0, default, objProc);
+                    OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_CUSTOMDRAW | OBJECT_STYLE_EX_COMPOSITED, DT_VCENTER | DT_CENTER, 0, default, objProc);
                 objEvent = new ExObjEventProcDelegate(OnButtonEventProc);
                 foreach (var button in buttons)
                 {
@@ -133,11 +133,11 @@ namespace ExDuiRTest
             {
                 if (wParam != IntPtr.Zero)
                 {
-                    ExMessageBox.Show(skin, "开启", "取开关状态", MB_USERICON, EMBF_CENTEWINDOW);
+                    ExMessageBox.Show(skin, "开启", "取开关状态", MB_USERICON, MESSAGEBOX_FLAG_CENTEWINDOW);
                 }
                 else
                 {
-                    ExMessageBox.Show(skin, "关闭", "取开关状态", MB_ICONWARNING, EMBF_CENTEWINDOW);
+                    ExMessageBox.Show(skin, "关闭", "取开关状态", MB_ICONWARNING, MESSAGEBOX_FLAG_CENTEWINDOW);
                 }
             }
             return IntPtr.Zero;

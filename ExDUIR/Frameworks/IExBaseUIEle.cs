@@ -16,7 +16,7 @@ namespace ExDuiR.NET.Frameworks
         bool Move(int x, int y, int nWidth, int nHeight, bool fRedraw = true);
         bool SetPos(int x, int y, int nWidth, int nHeight, IntPtr hEleAfter, int dwFlags);
 
-        bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat = BIR_DEFAULT, ExRect rcGrids = default, int dwFlags = BIF_DEFAULT, int dwAlpha = 255, bool fUpdate = true);
+        bool SetBackgroundImage(byte[] image, int x, int y, int dwRepeat = BACKGROUND_REPEAT_ZOOM, ExRect rcGrids = default, int dwFlags = BACKGROUND_FLAG_DEFAULT, int dwAlpha = 255, bool fUpdate = true);
 
         bool SetBackgroundPlayState(bool fPlayFrames, bool fResetFrame, bool fUpdate);
         bool GetBackgroundImage(out ExBackgroundImageInfo pImageInfo);

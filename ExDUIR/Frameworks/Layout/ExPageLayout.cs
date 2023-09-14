@@ -7,12 +7,12 @@ namespace ExDuiR.NET.Frameworks.Layout
     public class ExPageLayout : ExBaseLayout
     {
         public ExPageLayout(ExControl objBind)
-            : base(ELT_PAGE, objBind)
+            : base(LAYOUT_TYPE_PAGE, objBind)
         {
         }
 
         public ExPageLayout(ExSkin objBind)
-            : base(ELT_PAGE, objBind)
+            : base(LAYOUT_TYPE_PAGE, objBind)
         {
         }
 
@@ -28,11 +28,11 @@ namespace ExDuiR.NET.Frameworks.Layout
         {
             set
             {
-                this.SetProp(ELP_PAGE_CURRENT, (IntPtr)value);
+                this.SetProp(LAYOUT_PROP_PAGE_CURRENT, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetProp(ELP_PAGE_CURRENT);
+                return (int)this.GetProp(LAYOUT_PROP_PAGE_CURRENT);
             }
         }
 
@@ -41,7 +41,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetFill(ExControl obj, bool value)
         {
-            return this.SetChildProp(obj, ELCP_PAGE_FILL, (IntPtr)Convert.ToInt32(value));
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_PAGE_FILL, (IntPtr)Convert.ToInt32(value));
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetFill(ExControl obj, ref bool retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_PAGE_FILL, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_PAGE_FILL, out var value);
             retValue = Convert.ToBoolean((int)value);
             return ret;
         }

@@ -13,7 +13,7 @@ namespace ExDuiRTest
     {
         static public void CreateMessageBoxWindow(ExSkin pOwner)
         {
-            ExMessageBox.Show(pOwner, "内容", "标题", MB_YESNO | MB_ICONQUESTION, EMBF_CENTEWINDOW);
+            ExMessageBox.Show(pOwner, "内容", "标题", MB_YESNO | MB_ICONQUESTION, MESSAGEBOX_FLAG_CENTEWINDOW);
         }
     }
 }

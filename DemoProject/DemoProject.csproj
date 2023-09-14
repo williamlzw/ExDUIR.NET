@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>DemoProject</RootNamespace>
     <AssemblyName>DemoProject</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -76,10 +77,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ExDUIR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ExDUIR\bin\Debug\ExDUIR.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -130,6 +127,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ExDUIR\ExDUIR.csproj">
+      <Project>{e06ea4af-b766-4867-8b8f-3f4593a85a41}</Project>
+      <Name>ExDUIR</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

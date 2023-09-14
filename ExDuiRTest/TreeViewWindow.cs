@@ -17,12 +17,12 @@ namespace ExDuiRTest
         static public void CreateTreeViewWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试树形列表", 0, 0, 350, 350,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                treeview = new ExTreeView(skin, "", 50, 50, 250, 250, EOS_BORDER | EOS_VISIBLE | EOS_HSCROLL | EOS_VSCROLL);
+                treeview = new ExTreeView(skin, "", 50, 50, 250, 250, OBJECT_STYLE_BORDER | OBJECT_STYLE_VISIBLE | OBJECT_STYLE_HSCROLL | OBJECT_STYLE_VSCROLL);
                 treeview.ColorBackground = Util.ExRGBA(255, 255, 255, 125);
                 treeview.ColorBorder = Util.ExRGBA(255, 255, 255, 255);
                 ExTreeViewInsertInfo ti1 = new ExTreeViewInsertInfo

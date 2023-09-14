@@ -19,13 +19,13 @@ namespace ExDuiRTest
         static public void CreateMatrixWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试矩阵", 0, 0, 400, 400,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnMatrixMsgProc);
-                label = new ExStatic(skin, "", 50, 50, 200, 250, -1, EOS_EX_FOCUSABLE, DT_VCENTER, 0, default, objProc);
+                label = new ExStatic(skin, "", 50, 50, 200, 250, -1, OBJECT_STYLE_EX_FOCUSABLE, DT_VCENTER, 0, default, objProc);
                 label.ColorBackground = Util.ExRGBA(180, 230, 22, 255);
                 skin.Visible = true;
             }
@@ -82,27 +82,27 @@ namespace ExDuiRTest
             else if (uMsg == WM_MOUSEHOVER)
             {
                 ExControl Obj = new ExControl(hObj);
-                var easing = new ExEasing(ET_OutElastic, IntPtr.Zero, ES_SINGLE | ES_THREAD | ES_DISPATCHNOTIFY, (IntPtr)hObj, 500, 20, EES_PLAY, 0, 100);
+                var easing = new ExEasing(EASING_TYPE_OUTELASTIC, IntPtr.Zero, EASING_MODE_SINGLE | EASING_MODE_THREAD | EASING_MODE_DISPATCHNOTIFY, (IntPtr)hObj, 500, 20, EASING_STATE_PLAY, 0, 100);
                 var old = Obj.UserData;
                 Obj.UserData = easing.handle;
                 
                 if (old != IntPtr.Zero)//如果前一个缓动未结束,则停止前面的缓动
                 {
                     var oldeasing = new ExEasing(old);
-                    oldeasing.State = EES_STOP;
+                    oldeasing.State = EASING_STATE_STOP;
                 }
                 Obj.SetUIState(STATE_HOVER, false, false);//设置悬浮状态
             }
             else if (uMsg == WM_MOUSELEAVE)
             {
                 ExControl Obj = new ExControl(hObj);
-                var easing = new ExEasing(ET_OutElastic, IntPtr.Zero, ES_SINGLE | ES_THREAD | ES_DISPATCHNOTIFY | ES_REVERSE, (IntPtr)hObj, 500, 20, EES_PLAY, 0, 100);
+                var easing = new ExEasing(EASING_TYPE_OUTELASTIC, IntPtr.Zero, EASING_MODE_SINGLE | EASING_MODE_THREAD | EASING_MODE_DISPATCHNOTIFY | EASING_MODE_REVERSE, (IntPtr)hObj, 500, 20, EASING_STATE_PLAY, 0, 100);
                 var old = Obj.UserData;
                 Obj.UserData = easing.handle;
                 if (old != IntPtr.Zero)//如果前一个缓动未结束,则停止前面的缓动
                 {
                     var oldeasing = new ExEasing(old);
-                    oldeasing.State = EES_STOP;
+                    oldeasing.State = EASING_STATE_STOP;
                 }
                 Obj.SetUIState(STATE_HOVER, true, false);//删除悬浮状态
             }

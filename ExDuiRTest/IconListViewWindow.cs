@@ -18,12 +18,12 @@ namespace ExDuiRTest
         static public void CreateIconListViewWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试图标列表", 0, 0, 500, 300,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                iconListView = new ExIconListView(skin, "", 25, 50, 400, 225, EOS_VISIBLE | EOS_HSCROLL | EOS_VSCROLL | EILVS_BUTTON);
+                iconListView = new ExIconListView(skin, "", 25, 50, 400, 225, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_HSCROLL | OBJECT_STYLE_VSCROLL | ICONLISTVIEW_STYLE_BUTTON);
                 imglist = new ExImageList(36, 36);
                 imglist.AddImage(new ExImage(Properties.Resources.close), 0);
                 imglist.AddImage(new ExImage(Properties.Resources.closehover), 0);

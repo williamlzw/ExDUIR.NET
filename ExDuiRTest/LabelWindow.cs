@@ -15,8 +15,8 @@ namespace ExDuiRTest
         static public void CreateLabelWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试标签", 0, 0, 200, 250,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -26,7 +26,7 @@ namespace ExDuiRTest
                 label.GetBackgroundImage(out ExBackgroundImageInfo bkgInfo);
                 var rc = label.Rect;
                 label2 = new ExStatic(skin, "标签可以填充动画,支持PNG,GIF,JPG,BMP格式,标签可以自动换行", 10, 190, 180, 90, DT_WORDBREAK);
-                label2.SetFont("宋体", 14, FS_BOLD, false);
+                label2.SetFont("宋体", 14, FONT_STYLE_BOLD, false);
                 label2.ColorTextNormal = Util.ExRGBA(133, 33, 53, 255);
 
                 Console.WriteLine(string.Format("标签矩形:{0},{1}", rc.nRight, rc.nBottom));

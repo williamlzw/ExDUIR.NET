@@ -28,26 +28,26 @@ namespace ExDuiRTest
         static public void CreateEditWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试编辑框", 0, 0, 850, 350,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                edit1 = new ExEdit(skin, "背景图片编辑框", 10, 30, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_CUSTOMDRAW, DT_VCENTER);
+                edit1 = new ExEdit(skin, "背景图片编辑框", 10, 30, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_HIDESELECTION, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED | OBJECT_STYLE_EX_CUSTOMDRAW, DT_VCENTER);
                 var bitmap = Properties.Resources.editbkg;
                 edit1.SetBackgroundImage(bitmap, 0, 0, 0, default, 0, 255, true);
-                edit2 = new ExEdit(skin, "测试密码输入编辑框", 10, 70, 150, 30, EOS_VISIBLE | EES_USEPASSWORD, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
-                edit3 = new ExEdit(skin, "测试数值输入编辑框", 10, 110, 150, 30, EOS_VISIBLE | EES_NUMERICINPUT, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
-                edit4 = new ExEdit(skin, "测试只读编辑框", 10, 150, 150, 30, EOS_VISIBLE | EES_READONLY, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_SINGLELINE);
-                edit5 = new ExEdit(skin, "测试透明圆角编辑框", 10, 190, 150, 30, EOS_VISIBLE | EES_HIDESELECTION, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED | EOS_EX_TABSTOP | EOS_EX_CUSTOMDRAW, DT_VCENTER);
-                edit5.SetFont("微软雅黑", 16, FS_UNDERLINE | FS_ITALIC, false);
+                edit2 = new ExEdit(skin, "测试密码输入编辑框", 10, 70, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_USEPASSWORD, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED, DT_SINGLELINE);
+                edit3 = new ExEdit(skin, "测试数值输入编辑框", 10, 110, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_NUMERICINPUT, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED, DT_SINGLELINE);
+                edit4 = new ExEdit(skin, "测试只读编辑框", 10, 150, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_READONLY, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED, DT_SINGLELINE);
+                edit5 = new ExEdit(skin, "测试透明圆角编辑框", 10, 190, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_HIDESELECTION, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED | OBJECT_STYLE_EX_TABSTOP | OBJECT_STYLE_EX_CUSTOMDRAW, DT_VCENTER);
+                edit5.SetFont("微软雅黑", 16, FONT_STYLE_UNDERLINE | FONT_STYLE_ITALIC, false);
 
                 edit5.ColorBackground = Util.ExRGBA(200, 120, 130, 100);
                 edit5.ColorTextNormal = Util.ExRGBA(23, 115, 1, 100);
                 edit5.SetRadius(10, 10, 10, 0, false);
                 edit6 = new ExEdit(skin, "测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框",
-                    10, 230, 150, 100, EOS_VISIBLE | EOS_VSCROLL, EOS_EX_FOCUSABLE | EOS_EX_COMPOSITED, DT_VCENTER);
-                edit7 = new ExEdit(skin, "测试透明圆角编辑框", 180, 30, 300, 300, EOS_VISIBLE | EOS_VSCROLL | EOS_HSCROLL | EES_RICHTEXT | EES_PARSEURL | EES_ALLOWTAB | EES_NEWLINE, EOS_EX_FOCUSABLE, DT_LEFT | DT_TOP, 101);
+                    10, 230, 150, 100, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_VSCROLL, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED, DT_VCENTER);
+                edit7 = new ExEdit(skin, "测试透明圆角编辑框", 180, 30, 300, 300, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_VSCROLL | OBJECT_STYLE_HSCROLL | EDIT_STYLE_RICHTEXT | EDIT_STYLE_PARSEURL | EDIT_STYLE_ALLOWTAB | EDIT_STYLE_NEWLINE, OBJECT_STYLE_EX_FOCUSABLE, DT_LEFT | DT_TOP, 101);
                 var rtf = Properties.Resources.testrtf;
                 byte[] rtfdata = System.Text.Encoding.UTF8.GetBytes(rtf.ToCharArray());
                 //byte[] rtfdata = System.IO.File.ReadAllBytes(".\\res\\test.rtf");
@@ -77,13 +77,13 @@ namespace ExDuiRTest
                         title = buttonTiles[i];
                     }
 
-                    buttons.Add(new ExButton(page, title, 10, 30, 10, 10, -1, EOS_EX_AUTOSIZE, -1, 201 + i));
-                    var ret = flowLayout.SetChildProp(buttons[i], ELCP_MARGIN_RIGHT, (IntPtr)5);
+                    buttons.Add(new ExButton(page, title, 10, 30, 10, 10, -1, OBJECT_STYLE_EX_AUTOSIZE, -1, 201 + i));
+                    var ret = flowLayout.SetChildProp(buttons[i], LAYOUT_SUBPROP_MARGIN_RIGHT, (IntPtr)5);
 
-                    flowLayout.SetChildProp(buttons[i], ELCP_MARGIN_BOTTOM, (IntPtr)5);
+                    flowLayout.SetChildProp(buttons[i], LAYOUT_SUBPROP_MARGIN_BOTTOM, (IntPtr)5);
                     if (bWrapLine)
                     {
-                        flowLayout.SetChildProp(buttons[i], ELCP_FLOW_NEW_LINE, (IntPtr)1);
+                        flowLayout.SetChildProp(buttons[i], LAYOUT_SUBPROP_FLOW_NEW_LINE, (IntPtr)1);
                     }
                     buttons[i].HandleEvent(NM_CLICK, editButtonEventProc);
                 }
@@ -126,7 +126,7 @@ namespace ExDuiRTest
                         edit7.SetSelParOffset(50);
                         break;
                     case 210:
-                        edit7.SetSelParNumbering(PFN_LCROMAN);
+                        edit7.SetSelParNumbering(EDIT_PARAGRAPHFSYMBOL_LCROMAN);
                         break;
                     case 211:
                         edit7.SetSelCharColor(Util.ExRGB2ARGB(16711680, 255));

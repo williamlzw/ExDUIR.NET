@@ -25,8 +25,8 @@ namespace ExDuiRTest
         {
             wndProc = new ExWndProcDelegate(OnWinMsgProc);
             skin = new ExSkin(pOwner, null, "测试缓动窗口", 0, 0, 400, 300,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW, 0, 0, IntPtr.Zero, wndProc);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW, 0, 0, IntPtr.Zero, wndProc);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -36,7 +36,7 @@ namespace ExDuiRTest
                 button4 = new ExButton(skin, "点击窗口动", 10, 220, 120, 50, -1);
                 buttonProc = new ExObjEventProcDelegate(OnButtonEventProc);
 
-                easing = new ExEasing(ET_InOutCirc, IntPtr.Zero, ES_CYCLE | ES_BACKANDFORTH | ES_THREAD | ES_DISPATCHNOTIFY, (IntPtr)(button3.handle), 200, 20, EES_PAUSE, 150, 300);
+                easing = new ExEasing(EASING_TYPE_INOUTCIRC, IntPtr.Zero, EASING_MODE_CYCLE | EASING_MODE_BACKANDFORTH | EASING_MODE_THREAD | EASING_MODE_DISPATCHNOTIFY, (IntPtr)(button3.handle), 200, 20, EASING_STATE_PAUSE, 150, 300);
                 button1.HandleEvent(NM_CLICK, buttonProc);
                 button2.HandleEvent(NM_CLICK, buttonProc);
                 button2.HandleEvent(NM_EASING, buttonProc);
@@ -51,7 +51,7 @@ namespace ExDuiRTest
         static private void AniShow(bool show)
         {
             int alpha = 255;
-            var mode = ES_REVERSE;
+            var mode = EASING_MODE_REVERSE;
             if (show)
             {
                 alpha = 0;
@@ -61,7 +61,7 @@ namespace ExDuiRTest
             skin.Alpha = alpha;
             skin.Visible = true;
             var rc = skin.WindowRect;
-            var easing0 = new ExEasing(ET_InOutQuint, IntPtr.Zero, ES_SINGLE | ES_CALLFUNCTION | mode, OnAniEasing, 500, 20, EES_PLAY, 0, 1, (IntPtr)rc.nLeft, IntPtr.Zero, (IntPtr)(rc.nTop - 100), (IntPtr)100);
+            var easing0 = new ExEasing(EASING_TYPE_INOUTQUINT, IntPtr.Zero, EASING_MODE_SINGLE | EASING_MODE_CALLFUNCTION | mode, OnAniEasing, 500, 20, EASING_STATE_PLAY, 0, 1, (IntPtr)rc.nLeft, IntPtr.Zero, (IntPtr)(rc.nTop - 100), (IntPtr)100);
             if (show)
             {
                 skin.Visible = true;
@@ -109,14 +109,14 @@ namespace ExDuiRTest
             {
                 if (nCode == NM_CLICK)
                 {
-                    var easing1 = new ExEasing(ET_InOutCubic, IntPtr.Zero, ES_SINGLE | ES_THREAD | ES_CALLFUNCTION, OnButtonEasing, 200, 20, EES_PLAY, 150, 300, (IntPtr)hObj);
+                    var easing1 = new ExEasing(EASING_TYPE_INOUTCUBIC, IntPtr.Zero, EASING_MODE_SINGLE | EASING_MODE_THREAD | EASING_MODE_CALLFUNCTION, OnButtonEasing, 200, 20, EASING_STATE_PLAY, 150, 300, (IntPtr)hObj);
                 }
             }
             else if (hObj == button2.handle)
             {
                 if (nCode == NM_CLICK)
                 {
-                    var easing2 = new ExEasing(ET_InOutCubic, IntPtr.Zero, Util.MAKELONG(ES_MANYTIMES | ES_BACKANDFORTH | ES_THREAD | ES_DISPATCHNOTIFY, 10 * 2), (IntPtr)hObj, 150, 20, EES_PLAY, 150, 300);
+                    var easing2 = new ExEasing(EASING_TYPE_INOUTCUBIC, IntPtr.Zero, Util.MAKELONG(EASING_MODE_MANYTIMES | EASING_MODE_BACKANDFORTH | EASING_MODE_THREAD | EASING_MODE_DISPATCHNOTIFY, 10 * 2), (IntPtr)hObj, 150, 20, EASING_STATE_PLAY, 150, 300);
                 }
                 else if (nCode == NM_EASING)
                 {
@@ -128,18 +128,18 @@ namespace ExDuiRTest
             {
                 if (nCode == NM_CLICK)
                 {
-                    if (easing.State == EES_PAUSE)
+                    if (easing.State == EASING_STATE_PAUSE)
                     {
-                        easing.State = EES_PLAY;
+                        easing.State = EASING_STATE_PLAY;
                     }
                     else
                     {
-                        easing.State = EES_PAUSE;
+                        easing.State = EASING_STATE_PAUSE;
                     }
                 }
                 else if (nCode == NM_DESTROY)
                 {
-                    easing.State = EES_STOP;
+                    easing.State = EASING_STATE_STOP;
                 }
                 else if (nCode == NM_EASING)
                 {
@@ -151,7 +151,7 @@ namespace ExDuiRTest
             {
                 if (nCode == NM_CLICK)
                 {
-                    var easing4 = new ExEasing(ET_InOutCubic, IntPtr.Zero, Util.MAKELONG(ES_MANYTIMES | ES_BACKANDFORTH | ES_CALLFUNCTION, 4), OnButtonEasing4, 400, 25, EES_PLAY, 400, 150);
+                    var easing4 = new ExEasing(EASING_TYPE_INOUTCUBIC, IntPtr.Zero, Util.MAKELONG(EASING_MODE_MANYTIMES | EASING_MODE_BACKANDFORTH | EASING_MODE_CALLFUNCTION, 4), OnButtonEasing4, 400, 25, EASING_STATE_PLAY, 400, 150);
                 }
             }
             return IntPtr.Zero;

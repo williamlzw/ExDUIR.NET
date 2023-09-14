@@ -33,11 +33,11 @@ namespace ExDuiR.NET.Frameworks.Layout
         {
             set
             {
-                this.SetProp(ELP_PADDING_LEFT, (IntPtr)value);
+                this.SetProp(LAYOUT_PROP_PADDING_LEFT, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetProp(ELP_PADDING_LEFT);
+                return (int)this.GetProp(LAYOUT_PROP_PADDING_LEFT);
             }
         }
 
@@ -48,11 +48,11 @@ namespace ExDuiR.NET.Frameworks.Layout
         {
             set
             {
-                this.SetProp(ELP_PADDING_RIGHT, (IntPtr)value);
+                this.SetProp(LAYOUT_PROP_PADDING_RIGHT, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetProp(ELP_PADDING_RIGHT);
+                return (int)this.GetProp(LAYOUT_PROP_PADDING_RIGHT);
             }
         }
 
@@ -63,11 +63,11 @@ namespace ExDuiR.NET.Frameworks.Layout
         {
             set
             {
-                this.SetProp(ELP_PADDING_TOP, (IntPtr)value);
+                this.SetProp(LAYOUT_PROP_PADDING_TOP, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetProp(ELP_PADDING_TOP);
+                return (int)this.GetProp(LAYOUT_PROP_PADDING_TOP);
             }
         }
 
@@ -78,11 +78,11 @@ namespace ExDuiR.NET.Frameworks.Layout
         {
             set
             {
-                this.SetProp(ELP_PADDING_BOTTOM, (IntPtr)value);
+                this.SetProp(LAYOUT_PROP_PADDING_BOTTOM, (IntPtr)value);
             }
             get
             {
-                return (int)this.GetProp(ELP_PADDING_BOTTOM);
+                return (int)this.GetProp(LAYOUT_PROP_PADDING_BOTTOM);
             }
         }
 
@@ -91,7 +91,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetMarginLeft(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_MARGIN_LEFT, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_MARGIN_LEFT, (IntPtr)value);
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetMarginLeft(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_MARGIN_LEFT, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_MARGIN_LEFT, out var value);
             retValue = (int)value;
             return ret;
         }
@@ -109,7 +109,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetMarginTop(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_MARGIN_TOP, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_MARGIN_TOP, (IntPtr)value);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetMarginTop(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_MARGIN_TOP, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_MARGIN_TOP, out var value);
             retValue = (int)value;
             return ret;
         }
@@ -127,7 +127,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetMarginRight(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_MARGIN_RIGHT, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_MARGIN_RIGHT, (IntPtr)value);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetMarginRight(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_MARGIN_RIGHT, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_MARGIN_RIGHT, out var value);
             retValue = (int)value;
             return ret;
         }
@@ -145,7 +145,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool SetMarginBottom(ExControl obj, int value)
         {
-            return this.SetChildProp(obj, ELCP_MARGIN_BOTTOM, (IntPtr)value);
+            return this.SetChildProp(obj, LAYOUT_SUBPROP_MARGIN_BOTTOM, (IntPtr)value);
         }
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace ExDuiR.NET.Frameworks.Layout
         /// </summary>
         public bool GetMarginBottom(ExControl obj, ref int retValue)
         {
-            var ret = this.GetChildProp(obj, ELCP_MARGIN_BOTTOM, out var value);
+            var ret = this.GetChildProp(obj, LAYOUT_SUBPROP_MARGIN_BOTTOM, out var value);
             retValue = (int)value;
             return ret;
         }

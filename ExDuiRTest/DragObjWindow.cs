@@ -17,15 +17,15 @@ namespace ExDuiRTest
         static public void CreateDragObjWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试拖动组件", 0, 0, 500, 500,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnDragMsgProc);
-                label1 = new ExStatic(skin, "可拖动组件1", 25, 35, 250, 250, EOS_VISIBLE | EOS_BORDER, EOS_EX_FOCUSABLE, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, default, objProc);
+                label1 = new ExStatic(skin, "可拖动组件1", 25, 35, 250, 250, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_BORDER, OBJECT_STYLE_EX_FOCUSABLE, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, default, objProc);
                 label1.ColorBackground = Util.ExRGB2ARGB(255, 100);
-                label2 = new ExStatic(label1, "可拖动组件2", 25, 35, 150, 150, EOS_VISIBLE | EOS_BORDER, EOS_EX_FOCUSABLE, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, default, objProc);
+                label2 = new ExStatic(label1, "可拖动组件2", 25, 35, 150, 150, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_BORDER, OBJECT_STYLE_EX_FOCUSABLE, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, default, objProc);
                 label2.ColorBackground = Util.ExRGB2ARGB(16722680, 100);
 
                 skin.Visible = true;

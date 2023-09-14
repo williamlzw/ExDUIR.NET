@@ -26,12 +26,12 @@ namespace ExDuiRTest
         static public void CreateComboBoxWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试组合框", 0, 0, 450, 300,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                combobox = new ExComboBox(skin, "测试组合框", 10, 30, 200, 30, EOS_VISIBLE | ECS_ALLOWEDIT);
+                combobox = new ExComboBox(skin, "测试组合框", 10, 30, 200, 30, OBJECT_STYLE_VISIBLE | COMBOBOX_STYLE_ALLOWEDIT);
                 combobox.AddString("英文字母abc");
                 combobox.AddString("数字123");
                 combobox.AddString("中文");

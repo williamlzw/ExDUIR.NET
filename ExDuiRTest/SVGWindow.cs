@@ -17,7 +17,7 @@ namespace ExDuiRTest
         {
             wndProc = new ExWndProcDelegate(OnWndMsgProc);
             skin = new ExSkin(pOwner, null, "自定义字体和SVG测试", 0, 0, 500, 600,
-            EWS_MOVEABLE | EWS_CENTERWINDOW | EWS_NOSHADOW | EWS_BUTTON_CLOSE | EWS_TITLE, 0, 0, default, wndProc);
+            WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_NOSHADOW | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_TITLE, 0, 0, default, wndProc);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);

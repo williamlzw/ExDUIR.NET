@@ -28,13 +28,13 @@ namespace ExDuiRTest
         static public void CreateListViewWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试列表框", 0, 0, 200, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
                 listviewProc = new ExObjProcDelegate(OnListViewProc);
-                listview = new ExListView(skin, "", 30, 30, 150, 150, EOS_VISIBLE | ELVS_VERTICALLIST | EOS_VSCROLL, EOS_EX_COMPOSITED, -1, 0, default, listviewProc);
+                listview = new ExListView(skin, "", 30, 30, 150, 150, OBJECT_STYLE_VISIBLE | LISTVIEW_STYLE_VERTICALLIST | OBJECT_STYLE_VSCROLL, OBJECT_STYLE_EX_COMPOSITED, -1, 0, default, listviewProc);
                 listview.ColorBackground = Util.ExRGBA(120, 255, 240, 150);
                 listviewItemInfo = new List<LISTVIEW_ITEM>();
                 Random rn = new Random();
@@ -49,7 +49,7 @@ namespace ExDuiRTest
                 }
                 listview.ItemCount = listviewItemInfo.Count;
                 //取出列表框内部滚动条
-                var scroll = new ExScrollBar(listview.GetScrollControl(SB_VERT));
+                var scroll = new ExScrollBar(listview.GetScrollControl(SCROLLBAR_TYPE_VERT));
                 
                 scrollbarProc = new ExObjProcDelegate(OnScrollBarMsg);
                 //改变内部滚动条回调
@@ -120,7 +120,7 @@ namespace ExDuiRTest
                         canvas.DrawText(item.Font, listviewItemInfo[cd.iItem - 1].color, listviewItemInfo[cd.iItem - 1].text, -1, DT_SINGLELINE | DT_VCENTER, cd.nLeft + listviewItemInfo[cd.iItem - 1].depth * 5, cd.nTop, cd.nRight, cd.nBottom);
                         return (IntPtr)1;
                     }
-                    else if (ni.nCode == LVN_ITEMCHANGED)
+                    else if (ni.nCode == LISTVIEW_EVENT_ITEMCHANGED)
                     {
                         Console.WriteLine($"改变选中ID:{ni.idFrom},新选中项:{ni.wParam},旧选中项:{ni.lParam}");
                     }

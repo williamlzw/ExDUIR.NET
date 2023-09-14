@@ -25,8 +25,8 @@ namespace ExDuiRTest
         static public void CreateListButtonWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试列表按钮", 0, 0, 480, 200,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
@@ -167,8 +167,8 @@ namespace ExDuiRTest
                 toolbar.InsertItem(item1info2);
 
                 listButtonEventProc = new ExObjEventProcDelegate(OnListButtonEvent);
-                toolbar.HandleEvent(LBN_CLICK, listButtonEventProc);
-                toolbar.HandleEvent(LBN_CHECK, listButtonEventProc);
+                toolbar.HandleEvent(LISTBUTTON_EVENT_CLICK, listButtonEventProc);
+                toolbar.HandleEvent(LISTBUTTON_EVENT_CHECK, listButtonEventProc);
 
 
                 statusbar = new ExStatusBar(skin, "", 0, 120, 300, 22);
@@ -196,11 +196,11 @@ namespace ExDuiRTest
 
         static private IntPtr OnListButtonEvent(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if (nCode == LBN_CLICK)
+            if (nCode == LISTBUTTON_EVENT_CLICK)
             {
                 Console.WriteLine($"点击项目索引:{wParam}");
             }
-            else if (nCode == LBN_CHECK)
+            else if (nCode == LISTBUTTON_EVENT_CHECK)
             {
                 Console.WriteLine($"选择项目索引:{wParam},状态:{lParam}");
             }
@@ -220,7 +220,7 @@ namespace ExDuiRTest
                     menubar.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单项目背景颜色
                 }
             }
-            else if (uMsg == MN_SELECTITEM && (int)((long)wParam << 32 >> 32) == -1)//恢复正常状态
+            else if (uMsg == MENU_MESSAGE_SELECTITEM && (int)((long)wParam << 32 >> 32) == -1)//恢复正常状态
             {
                 WinAPI.GetCursorPos(out var point);
                 var currentWnd = WinAPI.WindowFromPoint(point);
@@ -229,7 +229,7 @@ namespace ExDuiRTest
                 if(obj != null)
                 {
                     var menuBar = new ExMenuBar(obj.handle);
-                    menuBar.PostMessage(LBM_SELECTITEM, IntPtr.Zero, IntPtr.Zero);
+                    menuBar.PostMessage(LISTBUTTON_MESSAGE_SELECTITEM, IntPtr.Zero, IntPtr.Zero);
                 }
             }
             return IntPtr.Zero;
@@ -237,12 +237,12 @@ namespace ExDuiRTest
 
         static private IntPtr OnListButtonMsgProc(IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr lpResult)
         {
-            if (uMsg == LBM_DOWNITEM)
+            if (uMsg == LISTBUTTON_MESSAGE_DOWNITEM)
             {
                 var rcWindow = skin.WindowRect;
                 ExMenuBar button = new ExMenuBar(hObj);
                 var rcObj = button.WindowRect;
-                button.TrackPopupMenu(lParam, 1, rcWindow.nLeft + rcObj.nLeft + (int)wParam, rcWindow.nTop + (int)ExAPI.Ex_Scale(rcObj.nBottom), IntPtr.Zero, listButtonWndProc, EMNF_NOSHADOW);
+                button.TrackPopupMenu(lParam, 1, rcWindow.nLeft + rcObj.nLeft + (int)wParam, rcWindow.nTop + (int)ExAPI.Ex_Scale(rcObj.nBottom), IntPtr.Zero, listButtonWndProc, MENU_FLAG_NOSHADOW);
                 Marshal.WriteInt32(lpResult, 1);
                 return (IntPtr)1;
             }

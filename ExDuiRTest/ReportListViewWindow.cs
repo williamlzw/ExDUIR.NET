@@ -23,12 +23,12 @@ namespace ExDuiRTest
         static public void CreateReportListViewWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试报表列表", 0, 0, 400, 400,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                reportlistview = new ExReportListView(skin, "", 25, 50, 350, 250, EOS_BORDER | EOS_VISIBLE | EOS_HSCROLL | EOS_VSCROLL | ERLS_EDIT | ERLS_DRAWVERTICALLINE);
+                reportlistview = new ExReportListView(skin, "", 25, 50, 350, 250, OBJECT_STYLE_BORDER | OBJECT_STYLE_VISIBLE | OBJECT_STYLE_HSCROLL | OBJECT_STYLE_VSCROLL | REPORTLISTVIEW_STYLE_EDIT | REPORTLISTVIEW_STYLE_DRAWVERTICALLINE);
                 reportlistview.ColorBackground = Util.ExRGB2ARGB(16777215, 100);
                 reportlistview.ColorBorder = Util.ExRGBA(120, 120, 120, 255);
                 reportlistview.ColorListViewHead = Util.ExRGB2ARGB(16777215, 100);
@@ -48,7 +48,7 @@ namespace ExDuiRTest
                     pwzText = Marshal.StringToHGlobalUni("第一列"),
                     nWidth = 60,
                     crText = Util.ExRGB2ARGB(255, 255),
-                    dwStyle = ERLV_CS_DEFAULT,
+                    dwStyle = REPORTLISTVIEW_HEADER_STYLE_DEFAULT,
                     dwTextFormat = DT_LEFT
                 };
                 reportlistview.SetColumn(col1);
@@ -58,7 +58,7 @@ namespace ExDuiRTest
                     pwzText = Marshal.StringToHGlobalUni("固定列宽"),
                     nWidth = 110,
                     crText = Util.ExRGB2ARGB(16711680, 255),
-                    dwStyle = ERLV_CS_LOCKWIDTH,
+                    dwStyle = REPORTLISTVIEW_HEADER_STYLE_LOCKWIDTH,
                     dwTextFormat = DT_LEFT
                 };
                 reportlistview.SetColumn(col2);
@@ -68,7 +68,7 @@ namespace ExDuiRTest
                     pwzText = Marshal.StringToHGlobalUni("居中可点击"),
                     nWidth = 110,
                     crText = Util.ExRGB2ARGB(65535, 255),
-                    dwStyle = ERLV_CS_CLICKABLE | ERLV_CS_COLOUR,
+                    dwStyle = REPORTLISTVIEW_HEADER_STYLE_CLICKABLE | REPORTLISTVIEW_HEADER_STYLE_COLOUR,
                     dwTextFormat = DT_CENTER | DT_VCENTER,
                     crBkg = Util.ExRGBA(120, 230, 180, 255)
                 };
@@ -79,7 +79,7 @@ namespace ExDuiRTest
                     pwzText = Marshal.StringToHGlobalUni("可排序"),
                     nWidth = 60,
                     crText = Util.ExRGB2ARGB(16777215, 255),
-                    dwStyle = ERLV_CS_CLICKABLE | ERLV_CS_SORTABLE,
+                    dwStyle = REPORTLISTVIEW_HEADER_STYLE_CLICKABLE | REPORTLISTVIEW_HEADER_STYLE_SORTABLE,
                     dwTextFormat = DT_RIGHT | DT_VCENTER
                 };
                 reportlistview.SetColumn(col4);
@@ -94,7 +94,7 @@ namespace ExDuiRTest
                     ExReportListItemInfo item1 = new ExReportListItemInfo
                     {
                         nImageIndex = i,
-                        dwStyle = (i % 3 == 0 ? ERLV_RS_CHECKBOX | ERLV_RS_CHECKBOX_CHECK | ERLV_RS_ROWCOLOUR : 0),
+                        dwStyle = (i % 3 == 0 ? REPORTLISTVIEW_LINESTYLE_CHECKBOX | REPORTLISTVIEW_LINESTYLE_CHECKBOX_CHECK | REPORTLISTVIEW_LINESTYLE_ROWCOLOUR : 0),
                         iRow = rowIndex,
                         crRowBkg = Util.ExRGBA(31, 100, 200, 255)
                     };
@@ -114,7 +114,7 @@ namespace ExDuiRTest
                         iCol = 2,
                         iRow = i,
                         pwzText = Marshal.StringToHGlobalUni("第二列"),
-                        cellStyle = ERLV_RS_CELLCOLOUR,
+                        cellStyle = REPORTLISTVIEW_CELLSTYLE_CELLCOLOUR,
                         cellBkgCr = Util.ExRGBA(130,130,25,255)
                     };
                     reportlistview.SetCell(cell2);
@@ -124,7 +124,7 @@ namespace ExDuiRTest
                         iCol = 3,
                         iRow = i,
                         pwzText = Marshal.StringToHGlobalUni("第三列"),
-                        cellStyle = ERLV_RS_CELLTEXTCOLOUR,
+                        cellStyle = REPORTLISTVIEW_CELLSTYLE_CELLTEXTCOLOUR,
                         cellTextCr = Util.ExRGBA(130, 25, 130, 255)
                     };
                     reportlistview.SetCell(cell3);
@@ -134,15 +134,15 @@ namespace ExDuiRTest
                         iCol = 4,
                         iRow = i,
                         pwzText = Marshal.StringToHGlobalUni(rn.Next(0, 1000).ToString()),
-                        cellStyle = ERLV_RS_CELLFONT,
+                        cellStyle = REPORTLISTVIEW_CELLSTYLE_CELLFONT,
                         cellFont = new ExFont("微软雅黑", 20, 0).handle
                     };
                     reportlistview.SetCell(cell4);
                 }
                 reportlistview.Update();
-                reportlistview.HandleEvent(LVN_ITEMCHANGED, itemChangeProc);
-                reportlistview.HandleEvent(RLVN_COLUMNCLICK, columnClickProc);
-                reportlistview.HandleEvent(RLVN_CHECK, itemCheckProc);
+                reportlistview.HandleEvent(LISTVIEW_EVENT_ITEMCHANGED, itemChangeProc);
+                reportlistview.HandleEvent(REPORTLISTVIEW_EVENT_COLUMNCLICK, columnClickProc);
+                reportlistview.HandleEvent(REPORTLISTVIEW_EVENT_CHECK, itemCheckProc);
 
                 button = new ExButton(skin, "删除列", 20, 330, 100, 30);
                 button.HandleEvent(NM_CLICK, buttonClickProc);
@@ -153,7 +153,7 @@ namespace ExDuiRTest
 
         static private IntPtr OnReportListViewItemChange(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if(nCode == LVN_ITEMCHANGED)
+            if(nCode == LISTVIEW_EVENT_ITEMCHANGED)
             {
                 Console.WriteLine($"你选择了第" + ((int)wParam).ToString() + "项");
             }
@@ -162,7 +162,7 @@ namespace ExDuiRTest
 
         static private IntPtr OnReportListViewColumnClick(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if(nCode == RLVN_COLUMNCLICK)
+            if(nCode == REPORTLISTVIEW_EVENT_COLUMNCLICK)
             {
                 Console.WriteLine($"你选择了第" + ((int)wParam).ToString() + "列表头");
             }
@@ -171,7 +171,7 @@ namespace ExDuiRTest
 
         static private IntPtr OnReportListViewItemChecked(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            if(nCode == RLVN_CHECK)
+            if(nCode == REPORTLISTVIEW_EVENT_CHECK)
             {
                 Console.WriteLine($"第" + ((int)wParam).ToString() + "项选择框状态发生变化,选中状态：" + ((int)lParam).ToString());
             }
@@ -180,7 +180,7 @@ namespace ExDuiRTest
 
         static private IntPtr OnReportListViewButtonEvent(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            reportlistview.SendMessage(LVM_DELETECOLUMN, (IntPtr)1, (IntPtr)2);
+            reportlistview.SendMessage(LISTVIEW_MESSAGE_DELETECOLUMN, (IntPtr)1, (IntPtr)2);
             return default;
         }
     }

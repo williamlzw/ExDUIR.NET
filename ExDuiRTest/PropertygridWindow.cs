@@ -23,16 +23,16 @@ namespace ExDuiRTest
         static public void CreatePropertygridWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试属性框", 0, 0, 500, 400,
-            EWS_NOINHERITBKG | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW | EWS_TITLE | EWS_HASICON | EWS_NOSHADOW);
+            WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                propertygrid = new ExPropertyGrid(skin, "属性框", 50, 50, 300, 300, EOS_VISIBLE | EOS_VSCROLL, -1, DT_LEFT);
+                propertygrid = new ExPropertyGrid(skin, "属性框", 50, 50, 300, 300, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_VSCROLL, -1, DT_LEFT);
                 propertygrid.ColorBackground = Util.ExRGB2ARGB(14737632, 255);
                 buttonProc = new ExObjEventProcDelegate(OnButtonEventProc);
                 propertygridProc = new ExObjEventProcDelegate(OnPropertyGridEvent);
-                propertygrid.HandleEvent(PGN_ITEMVALUECHANGE, propertygridProc);  
+                propertygrid.HandleEvent(PROPERTYGRID_EVENT_ITEMVALUECHANGE, propertygridProc);  
                 button1 = new ExButton(skin, "取表项内容", 380, 70, 100, 30);
                 button2 = new ExButton(skin, "置表项内容", 380, 120, 100, 30);
                 button3 = new ExButton(skin, "修改组件大小", 380, 170, 100, 30);
@@ -44,7 +44,7 @@ namespace ExDuiRTest
                 {
                     title = Marshal.StringToHGlobalUni("小组A")
                 };
-                propertygrid.AddItem(PGT_OBJ_GROUP, item1);
+                propertygrid.AddItem(PROPERTYGRID_OBJTYPE_GROUP, item1);
 
                 ExPropergridItemInfoCombobox combobox1 = new ExPropergridItemInfoCombobox
                 {
@@ -62,21 +62,21 @@ namespace ExDuiRTest
                 item2.textCombobox[0] = combobox1;
                 item2.textCombobox[1] = combobox2;
                 item2.comboboxNum = 2;
-                propertygrid.AddItem(PGT_OBJ_COMBOBOX, item2);
+                propertygrid.AddItem(PROPERTYGRID_OBJTYPE_COMBOBOX, item2);
 
                 ExPropergridItemInfo item3 = new ExPropergridItemInfo
                 {
                     title = Marshal.StringToHGlobalUni("颜色"),
                     text = Marshal.StringToHGlobalUni(Util.ExRGB2ARGB(167549,255).ToString())
                 };
-                propertygrid.AddItem(PGT_OBJ_COLORPICKER, item3);
+                propertygrid.AddItem(PROPERTYGRID_OBJTYPE_COLORPICKER, item3);
 
                 ExPropergridItemInfo item4 = new ExPropergridItemInfo
                 {
                     title = Marshal.StringToHGlobalUni("日期"),
                     text = Marshal.StringToHGlobalUni(DateTime.Now.ToString("yyyy-M-dd"))
                 };
-                propertygrid.AddItem(PGT_OBJ_DATEBOX, item4);
+                propertygrid.AddItem(PROPERTYGRID_OBJTYPE_DATEBOX, item4);
                 List<string> titles = new List<string> { "普通编辑框", "数字输入编辑框", "字母输入编辑框", "字母数字编辑框", "只读编辑框" };
                 List<string> texts = new List<string> { "中文123abc", "1234567890", "aA", "aA123", "测试只读" };
                 List<int> editStyles = new List<int> { 0, 1, 2, 3, 4, 5 };
@@ -88,14 +88,14 @@ namespace ExDuiRTest
                         text = Marshal.StringToHGlobalUni(texts[i]),
                         editStyle = editStyles[i]
                     };
-                    propertygrid.AddItem(PGT_OBJ_EDIT, item);
+                    propertygrid.AddItem(PROPERTYGRID_OBJTYPE_EDIT, item);
                 }
 
                 ExPropergridItemInfo item5 = new ExPropergridItemInfo
                 {
                     title = Marshal.StringToHGlobalUni("小组B")
                 };
-                propertygrid.AddItem(PGT_OBJ_GROUP, item5);
+                propertygrid.AddItem(PROPERTYGRID_OBJTYPE_GROUP, item5);
                 for (int i = 0; i < 4; i++)
                 {
                     ExPropergridItemInfo item = new ExPropergridItemInfo
@@ -103,7 +103,7 @@ namespace ExDuiRTest
                         title = Marshal.StringToHGlobalUni("名称" + (i + 1).ToString()),
                         text = Marshal.StringToHGlobalUni("值" + (i + 1).ToString()),
                     };
-                    propertygrid.AddItem(PGT_OBJ_EDIT, item);
+                    propertygrid.AddItem(PROPERTYGRID_OBJTYPE_EDIT, item);
                 }
                 skin.Visible = true;
             }

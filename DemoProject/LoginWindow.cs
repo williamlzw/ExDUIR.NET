@@ -36,12 +36,12 @@ namespace DemoProject
             //读入主题包
             var theme = Properties.Resources.Default;
             //初始化引擎,必须。开启DPI缩放,渲染全部菜单(二级子菜单改背景色需启用此风格)
-            theApp = new ExApp(theme, EXGF_DPI_ENABLE | EXGF_MENU_ALL);
+            theApp = new ExApp(theme, ENGINE_FLAG_DPI_ENABLE | ENGINE_FLAG_MENU_ALL);
             //创建窗口皮肤,必须
             wndProc = new ExWndProcDelegate(OnWndMsgProc);
             skin = new ExSkin(null, null, "测试客户端", 0, 0, 1440, 900,
-            EWS_MAINWINDOW | EWS_BUTTON_CLOSE | EWS_BUTTON_MIN | EWS_MOVEABLE |
-            EWS_CENTERWINDOW, 0, 0, default, wndProc);
+            WINDOW_STYLE_MAINWINDOW | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_BUTTON_MIN | WINDOW_STYLE_MOVEABLE |
+            WINDOW_STYLE_CENTERWINDOW, 0, 0, default, wndProc);
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(0, 0, 0, 255);
@@ -50,12 +50,12 @@ namespace DemoProject
                 containerProc = new ExObjProcDelegate(OnContainerProc);
                 bkg = new ExStatic(skin, "", 0, 0, 975, 900, -1, -1, -1, 0, default, bkgProc);
                 icon = new ExStatic(skin, "", 0, 0, 1440, 900, -1, -1, -1, 0, default, iconProc);
-                iconEasing = new ExEasing(ET_OutBounce, IntPtr.Zero, Util.MAKELONG(ES_MANYTIMES | ES_DISPATCHNOTIFY | ES_THREAD, 2), (IntPtr)icon.handle, 80, 1, EES_PLAY, 0, 100);
+                iconEasing = new ExEasing(EASING_TYPE_OUTBOUNCE, IntPtr.Zero, Util.MAKELONG(EASING_MODE_MANYTIMES | EASING_MODE_DISPATCHNOTIFY | EASING_MODE_THREAD, 2), (IntPtr)icon.handle, 80, 1, EASING_STATE_PLAY, 0, 100);
 
                 container = new ExStatic(skin, "", 0, 80, 1440, 900, -1, -1, -1, 0, default, containerProc);
                
                 editProc = new ExObjProcDelegate(OnEditMsgProc);
-                edit1 = new ExEditEx(container, "", 1048, 420, 320, 40, -1, EOS_EX_CUSTOMDRAW | EOS_EX_FOCUSABLE | EOS_EX_TABSTOP, -1, 0, default);
+                edit1 = new ExEditEx(container, "", 1048, 420, 320, 40, -1, OBJECT_STYLE_EX_CUSTOMDRAW | OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_TABSTOP, -1, 0, default);
                 edit1.SetFont("Microsoft Yahei", 14);
                 edit1.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
                 edit1.SetBanner("请输入账号", Util.ExRGBA(255, 255, 255, 100));
@@ -70,7 +70,7 @@ namespace DemoProject
                 };
                 edit1.Icon = new ExImage(Properties.Resources.icon_contacts_normal);
 
-                edit2 = new ExEditEx(container, "", 1048, 476, 320, 40, EOS_VISIBLE | EES_USEPASSWORD, EOS_EX_CUSTOMDRAW | EOS_EX_FOCUSABLE | EOS_EX_TABSTOP, -1, 0, default);
+                edit2 = new ExEditEx(container, "", 1048, 476, 320, 40, OBJECT_STYLE_VISIBLE | EDIT_STYLE_USEPASSWORD, OBJECT_STYLE_EX_CUSTOMDRAW | OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_TABSTOP, -1, 0, default);
                 edit2.SetFont("Microsoft Yahei", 14);
                 edit2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
                 edit2.SetBanner("请输入密码", Util.ExRGBA(255, 255, 255, 100));
@@ -104,7 +104,7 @@ namespace DemoProject
             if (uMsg == WM_EX_EASING)
             {
                 var es = Util.IntPtrToStructure<ExEasingInfo>(lParam);
-                obj.Move(EOP_DEFAULT, (int)(ExAPI.Ex_Scale(80) - es.nCurrent / 100 * ExAPI.Ex_Scale(80)), EOP_DEFAULT, EOP_DEFAULT, true);
+                obj.Move(OBJECT_POSITION_DEFAULT, (int)(ExAPI.Ex_Scale(80) - es.nCurrent / 100 * ExAPI.Ex_Scale(80)), OBJECT_POSITION_DEFAULT, OBJECT_POSITION_DEFAULT, true);
                 obj.Alpha = (int)(es.nCurrent / 100 * 255);
             }
             return IntPtr.Zero;
@@ -118,11 +118,11 @@ namespace DemoProject
                 var es = Util.IntPtrToStructure<ExEasingInfo>(lParam);
                 if (es.nProgress == 1 && es.nTimesSurplus == 1)
                 {
-                    var easing = new ExEasing(ET_Linear, IntPtr.Zero, ES_SINGLE | ES_DISPATCHNOTIFY | ES_THREAD, (IntPtr)bkg.handle, 20, 1, EES_PLAY, 0, 100);
+                    var easing = new ExEasing(EASING_TYPE_LINEAR, IntPtr.Zero, EASING_MODE_SINGLE | EASING_MODE_DISPATCHNOTIFY | EASING_MODE_THREAD, (IntPtr)bkg.handle, 20, 1, EASING_STATE_PLAY, 0, 100);
                 }
                 if (es.nProgress == 1 && es.nTimesSurplus == 0)
                 {
-                    var easing = new ExEasing(ET_Linear, IntPtr.Zero, ES_SINGLE | ES_DISPATCHNOTIFY | ES_THREAD, (IntPtr)container.handle, 20, 1, EES_PLAY, 0, 100);
+                    var easing = new ExEasing(EASING_TYPE_LINEAR, IntPtr.Zero, EASING_MODE_SINGLE | EASING_MODE_DISPATCHNOTIFY | EASING_MODE_THREAD, (IntPtr)container.handle, 20, 1, EASING_STATE_PLAY, 0, 100);
                 }
                 var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExEasingInfo)));
                 Marshal.StructureToPtr(es, ptr, false);
