@@ -35,14 +35,35 @@ namespace ExDuiR.NET.Frameworks.Graphics
             m_hRgn = IntPtr.Zero;
         }
 
-        public IntPtr Combine(ExRegion RgnDst,int nCombineMode,int dstOffsetX,int dstOffsetY)
+        public ExRegion Combine(ExRegion RgnDst,int nCombineMode,int dstOffsetX,int dstOffsetY)
         {
-            return ExAPI._rgn_combine(m_hRgn, RgnDst.m_hRgn, nCombineMode, dstOffsetX, dstOffsetY);
+            var ret = ExAPI._rgn_combine(m_hRgn, RgnDst.m_hRgn, nCombineMode, dstOffsetX, dstOffsetY);
+            return new ExRegion(ret);
+        }
+
+        public bool GetLines(ExtractPathLinePROCDelegate proc1, ExtractPathCubicPROCDelegate proc2)
+        {
+            return ExAPI._rgn_getlines(m_hRgn, proc1, proc2);
         }
 
         public bool HitTest(float x, float y)
         {
             return ExAPI._rgn_hittest(m_hRgn, x, y);
+        }
+
+        public bool HitTest2(ExRegion region, ref int retRelation)
+        {
+            return ExAPI._rgn_hittest2(m_hRgn, region.handle, out retRelation);
+        }
+
+        public ExRectF Bounds
+        {
+            get
+            {
+                ExRectF lpBounds = new ExRectF();
+                ExAPI._rgn_getbounds(m_hRgn, ref lpBounds);
+                return lpBounds;
+            }
         }
     }
 }

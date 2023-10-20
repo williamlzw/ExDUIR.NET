@@ -190,6 +190,7 @@
     <Compile Include="NavButtonWindow.cs" />
     <Compile Include="NchitTestWindow.cs" />
     <Compile Include="PaletteWindow.cs" />
+    <Compile Include="PathAndRegionWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProgressBarWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

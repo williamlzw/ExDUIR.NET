@@ -3484,10 +3484,24 @@
 
         #region 路径标识_
         /// <summary>
+        /// 路径标识_缩放
+        /// </summary>
+        public const int PATH_FLAG_NORMAL = 0;
+        /// <summary>
         /// 路径标识_禁止缩放
         /// </summary>
-        ///
         public const int PATH_FLAG_DISABLESCALE = 1;
+        #endregion
+
+        #region 路径开始标识_
+        /// <summary>
+        /// 路径开始标识_填充圆，影响hittest
+        /// </summary>
+        public const int PATH_BEGIN_FLAG_FILLED = 0;
+        /// <summary>
+        /// 路径开始标识_空心，影响hittest
+        /// </summary>
+        public const int PATH_BEGIN_FLAG_HOLLOW = 1;
         #endregion
 
         #region 位置信息标识_

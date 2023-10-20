@@ -36,6 +36,11 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._path_addarc2(m_hPath, x, y, width, height, startAngle, sweepAngle);
         }
 
+        public bool AddArc3(float x, float y, float radiusX, float radiusY, float startAngle, float sweepAngle, bool fClockwise, bool barcSize)
+        {
+            return ExAPI._path_addarc3(m_hPath, x, y, radiusX, radiusY, startAngle, sweepAngle, fClockwise, barcSize);
+        }
+
         public bool AddLine(float x1, float y1, float x2, float y2)
         {
             return ExAPI._path_addline(m_hPath, x1, y1, x2, y2);
@@ -101,7 +106,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._path_reset(m_hPath);
         }
 
-        public bool AddBezier(IntPtr hPath, float x1, float y1, float x2, float y2, float x3, float y3)
+        public bool AddBezier(float x1, float y1, float x2, float y2, float x3, float y3)
         {
             return ExAPI._path_addbezier(m_hPath, x1, y1, x2, y2, x3, y3);
         }

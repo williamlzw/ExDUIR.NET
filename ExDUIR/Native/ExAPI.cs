@@ -15,6 +15,8 @@ namespace ExDuiR.NET.Native
     public delegate IntPtr ExObjPropEnumCallbackDelegate(int hObj, IntPtr nKey, IntPtr nValue, IntPtr lParam);
     public delegate void ExCefBeforeCommandLineCallbackDelegate(int uMsg, IntPtr handler, int hObj, IntPtr attach1, IntPtr attach2, IntPtr attach3, IntPtr attach4, IntPtr pbHWEBVIEWd, IntPtr lParam);
     public delegate IntPtr ExEasingProcDelegate(IntPtr pEasing, double nProgress, double nCurrent, IntPtr pContext, int nTimeSurplus, IntPtr param1, IntPtr param2, IntPtr param3, IntPtr param4);
+    public delegate void ExtractPathLinePROCDelegate(IntPtr points, int pointsCount);
+    public delegate void ExtractPathCubicPROCDelegate(IntPtr cubics, int cubicCount);
 
     public struct ExRectF
     {
@@ -40,6 +42,30 @@ namespace ExDuiR.NET.Native
         {
             x = x1;
             y = y1;
+        }
+    }
+
+    public struct ExPointF
+    {
+        public float x;
+        public float y;
+        public ExPointF(float x1, float y1)
+        {
+            x = x1;
+            y = y1;
+        }
+    }
+
+    public struct ExBezierSegment
+    {
+        public ExPointF point1;
+        public ExPointF point2;
+        public ExPointF point3;
+        public ExBezierSegment(ExPointF pt1, ExPointF pt2, ExPointF pt3)
+        {
+            point1 = pt1;
+            point2 = pt2;
+            point3 = pt3;
         }
     }
 
@@ -2929,6 +2955,25 @@ namespace ExDuiR.NET.Native
         public static extern bool _rgn_destroy(IntPtr hRgn);
 
         /// <summary>
+        /// 区域取外接矩形
+        /// </summary>
+        /// <param name="hRgn"></param>
+        /// <param name="lpRect">返回外接矩形</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_rgn_getbounds")]
+        public static extern bool _rgn_getbounds(IntPtr hRgn, ref ExRectF lpRect);
+
+        /// <summary>
+        /// 区域取路径点
+        /// </summary>
+        /// <param name="hRgn"></param>
+        /// <param name="proc1"></param>
+        /// <param name="proc2"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_rgn_getlines")]
+        public static extern bool _rgn_getlines(IntPtr hRgn, ExtractPathLinePROCDelegate proc1, ExtractPathCubicPROCDelegate proc2);
+
+        /// <summary>
         /// 区域命中测试
         /// </summary>
         /// <param name="hRgn"></param>
@@ -2937,6 +2982,16 @@ namespace ExDuiR.NET.Native
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_rgn_hittest")]
         public static extern bool _rgn_hittest(IntPtr hRgn, float x, float y);
+
+        /// <summary>
+        /// 区域命中测试2
+        /// </summary>
+        /// <param name="hRgn1">区域1</param>
+        /// <param name="hRgn2">区域2</param>
+        /// <param name="retRelation">返回关系 0无法确定 1不相交 2属于(被包含) 3包含 4相交</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_rgn_hittest2")]
+        public static extern bool _rgn_hittest2(IntPtr hRgn1, IntPtr hRgn2, out int retRelation);
         #endregion
 
         #region 路径
@@ -2973,15 +3028,15 @@ namespace ExDuiR.NET.Native
         /// 添加弧 v2
         /// </summary>
         /// <param name="hPath"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="width">宽度</param>
-        /// <param name="height">高度</param>
-        /// <param name="startAngle">开始角度</param>
-        /// <param name="sweepAngle">扫描角度</param>
+        /// <param name="left">弧所在椭圆的左边</param>
+        /// <param name="top">弧所在椭圆的顶边</param>
+        /// <param name="right">弧所在椭圆的右边</param>
+        /// <param name="bottom">弧所在椭圆的底边</param>
+        /// <param name="nAngleBegin">弧的起始角度</param>
+        /// <param name="nAngleEnd">弧的终止角度</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_path_addarc2")]
-        public static extern bool _path_addarc2(int hPath, float x, float y, float width, float height, float startAngle, float sweepAngle);
+        public static extern bool _path_addarc2(int hPath, float left, float top, float right, float bottom, float nAngleBegin, float nAngleEnd);
 
         /// <summary>
         /// 添加弧 v3
@@ -2997,7 +3052,7 @@ namespace ExDuiR.NET.Native
         /// <param name="barcSize">是否大于180°</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_path_addarc3")]
-        public static extern bool _path_addarc3(IntPtr hPath, float x, float y, float radiusX, float radiusY, float startAngle, float sweepAngle, bool fClockwise, bool barcSize);
+        public static extern bool _path_addarc3(int hPath, float x, float y, float radiusX, float radiusY, float startAngle, float sweepAngle, bool fClockwise, bool barcSize);
 
         /// <summary>
         /// 路径添加直线
@@ -3077,7 +3132,7 @@ namespace ExDuiR.NET.Native
         /// <param name="y"></param>
         /// <param name="figureBegin"></param>
         /// <returns></returns>
-        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_path_beginfigure2")]
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_path_beginfigure3")]
         public static extern bool _path_beginfigure3(int hPath, float x, float y, int figureBegin);
 
         /// <summary>
