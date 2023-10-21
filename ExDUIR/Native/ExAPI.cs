@@ -15,8 +15,6 @@ namespace ExDuiR.NET.Native
     public delegate IntPtr ExObjPropEnumCallbackDelegate(int hObj, IntPtr nKey, IntPtr nValue, IntPtr lParam);
     public delegate void ExCefBeforeCommandLineCallbackDelegate(int uMsg, IntPtr handler, int hObj, IntPtr attach1, IntPtr attach2, IntPtr attach3, IntPtr attach4, IntPtr pbHWEBVIEWd, IntPtr lParam);
     public delegate IntPtr ExEasingProcDelegate(IntPtr pEasing, double nProgress, double nCurrent, IntPtr pContext, int nTimeSurplus, IntPtr param1, IntPtr param2, IntPtr param3, IntPtr param4);
-    public delegate void ExtractPathLinePROCDelegate(IntPtr points, int pointsCount);
-    public delegate void ExtractPathCubicPROCDelegate(IntPtr cubics, int cubicCount);
 
     public struct ExRectF
     {
@@ -24,14 +22,28 @@ namespace ExDuiR.NET.Native
         public float nTop;
         public float nRight;
         public float nBottom;
+        public ExRectF(float left, float top, float right, float bottom)
+        {
+            nLeft = left;
+            nTop = top;
+            nRight = right;
+            nBottom = bottom;
+        }
     }
 
     public struct ExRect
     {
         public int nLeft { get; set; }
-        public int nTop{ get; set; }
+        public int nTop { get; set; }
         public int nRight { get; set; }
         public int nBottom { get; set; }
+        public ExRect(int left, int top, int right, int bottom)
+        {
+            nLeft = left;
+            nTop = top;
+            nRight = right;
+            nBottom = bottom;
+        }
     }
 
     public struct ExPoint
@@ -56,18 +68,6 @@ namespace ExDuiR.NET.Native
         }
     }
 
-    public struct ExBezierSegment
-    {
-        public ExPointF point1;
-        public ExPointF point2;
-        public ExPointF point3;
-        public ExBezierSegment(ExPointF pt1, ExPointF pt2, ExPointF pt3)
-        {
-            point1 = pt1;
-            point2 = pt2;
-            point3 = pt3;
-        }
-    }
 
     /// <summary>
     /// 绘制信息结构
@@ -2964,14 +2964,14 @@ namespace ExDuiR.NET.Native
         public static extern bool _rgn_getbounds(IntPtr hRgn, ref ExRectF lpRect);
 
         /// <summary>
-        /// 区域取路径点
+        /// 区域转为线段并取出线段所有点
         /// </summary>
         /// <param name="hRgn"></param>
-        /// <param name="proc1"></param>
-        /// <param name="proc2"></param>
+        /// <param name="points">返回所有点数组</param>
+        /// <param name="pointsCount">返回点个数</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.StdCall, EntryPoint = "_rgn_getlines")]
-        public static extern bool _rgn_getlines(IntPtr hRgn, ExtractPathLinePROCDelegate proc1, ExtractPathCubicPROCDelegate proc2);
+        public static extern bool _rgn_getlines(IntPtr hRgn, ref IntPtr points, ref int pointsCount);
 
         /// <summary>
         /// 区域命中测试

@@ -18,8 +18,6 @@ namespace ExDuiRTest
         static private ExSkin skin;
         static private ExStatic obj;
         static private ExObjProcDelegate objProc;
-        static private ExtractPathLinePROCDelegate proc1;
-        static private ExtractPathCubicPROCDelegate proc2;
 
         static public void CreatePathAndRegionWindow(ExSkin pOwner)
         {
@@ -29,8 +27,6 @@ namespace ExDuiRTest
             if (skin.Validate)
             {
                 skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                proc1 = new ExtractPathLinePROCDelegate(OnExtractPathLinePROC);
-                proc2 = new ExtractPathCubicPROCDelegate(OnExtractPathCubicPROC);
                 objProc = new ExObjProcDelegate(OnPathAndRgnMsgProc);
                 obj = new ExStatic(skin, "", 50, 50, 300, 200, -1, OBJECT_STYLE_EX_FOCUSABLE, -1, 0, IntPtr.Zero, objProc);
                 skin.Visible = true;
@@ -42,12 +38,8 @@ namespace ExDuiRTest
             var obj = new ExStatic(hObj);
             if (uMsg == WM_CREATE)
             {
-                obj.InitPropList(2);
-            }
-            else if (uMsg == WM_PAINT)
-            {
-                obj.BeginPaint(out var ps);
-                var canvas = new ExCanvas(ps.hCanvas);
+                obj.InitPropList(4);
+
                 var path = new ExPath();
                 path.Open();
                 path.BeginFigue(70, 155, PATH_BEGIN_FLAG_FILLED);
@@ -80,10 +72,18 @@ namespace ExDuiRTest
                 path.EndFigure(false);
 
                 path.Close();
+                var rgn = new ExRegion(path);
+                obj.SetProp((IntPtr)2, (IntPtr)path.handle);
+                obj.SetProp((IntPtr)3, rgn.handle);
+            }
+            else if (uMsg == WM_PAINT)
+            {
+                obj.BeginPaint(out var ps);
+                var canvas = new ExCanvas(ps.hCanvas);
 
                 var x = (int)obj.GetProp((IntPtr)0);
                 var y = (int)obj.GetProp((IntPtr)1);
-
+                var path = new ExPath((int)obj.GetProp((IntPtr)2));
                 var path2 = new ExPath();
                 path2.Open();
                 path2.BeginFigue(x - 25, y - 25, PATH_BEGIN_FLAG_FILLED);
@@ -91,7 +91,7 @@ namespace ExDuiRTest
                 path2.EndFigure(true);
                 path2.Close();
 
-                var rgn1 = new ExRegion(path);
+                var rgn1 = new ExRegion(obj.GetProp((IntPtr)3));
                 var rgn2 = new ExRegion(path2);
                 var brush = new ExBrush(Util.ExRGBA(255, 0, 0, 255));
                 var brushRgn = new ExBrush(Util.ExRGBA(255, 255, 0, 255));
@@ -109,7 +109,16 @@ namespace ExDuiRTest
                         brushRgn.Color = Util.ExRGBA(0, 0, 255, 255);
                         var rgn3 = rgn1.Combine(rgn2, REGION_COMBINE_EXCLUDE, 0, 0);
                         canvas.FillRegion(rgn3, brushRgn);
-                        rgn3.GetLines(proc1, proc2);
+                        List<ExPointF> points = new List<ExPointF>();
+                        int pointsCount = 0;
+                        rgn2.GetLines(ref points, ref pointsCount);
+                        for (int i = 0; i < pointsCount; i++)
+                        {
+                            if (i != 0)
+                            {
+                                canvas.DrawLine(brushRgn, points[i].x, points[i].y, points[i - 1].x, points[i - 1].y, 1, 0);
+                            }
+                        }
                     }
                     else
                     {
@@ -127,37 +136,14 @@ namespace ExDuiRTest
                 obj.SetProp((IntPtr)1, (IntPtr)y);
                 obj.Invalidate();
             }
+            else if (uMsg == WM_DESTROY)
+            {
+                var path = new ExPath((int)obj.GetProp((IntPtr)2));
+                var rgn1 = new ExRegion(obj.GetProp((IntPtr)3));
+                path.Dispose();
+                rgn1.Dispose();
+            }
             return IntPtr.Zero;
-        }
-
-        static public void OnExtractPathLinePROC(IntPtr points, int pointsCount)
-        {
-            ExPointF[] pts = new ExPointF[pointsCount];
-            for (int i = 0; i < pointsCount; i++)
-            {
-                pts[i] = Util.IntPtrToStructure<ExPointF>(points + i * Marshal.SizeOf(typeof(ExPointF)));
-            }
-
-            Console.WriteLine("检索线段数据");
-            foreach (var index in pts)
-            {
-                Console.WriteLine($"{index.x}, {index.y}");
-            }
-        }
-
-        static public void OnExtractPathCubicPROC(IntPtr cubics, int cubicsCount)
-        {
-            ExBezierSegment[] pts = new ExBezierSegment[cubicsCount];
-            for (int i = 0; i < cubicsCount; i++)
-            {
-                pts[i] = Util.IntPtrToStructure<ExBezierSegment>(cubics + i * Marshal.SizeOf(typeof(ExBezierSegment)));
-            }
-
-            Console.WriteLine("检索贝塞尔曲线数据");
-            foreach (var index in pts)
-            {
-                Console.WriteLine($"{index.point1.x}, {index.point1.y},{index.point2.x}, {index.point2.y},{index.point3.x}, {index.point3.y}");
-            }
         }
     }
 }

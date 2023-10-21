@@ -1,5 +1,7 @@
 ﻿using ExDuiR.NET.Native;
 using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace ExDuiR.NET.Frameworks.Graphics
 {
@@ -41,9 +43,21 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return new ExRegion(ret);
         }
 
-        public bool GetLines(ExtractPathLinePROCDelegate proc1, ExtractPathCubicPROCDelegate proc2)
+        public bool GetLines(ref List<ExPointF> points, ref int pointsCount)
         {
-            return ExAPI._rgn_getlines(m_hRgn, proc1, proc2);
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExPointF)));
+            var ret = ExAPI._rgn_getlines(m_hRgn, ref ptr, ref pointsCount);
+            for (int i = 0; i < pointsCount; i++)
+            {
+                IntPtr targetPtrX = IntPtr.Add(ptr, i * 8);
+                float x = Marshal.PtrToStructure<float>(targetPtrX);
+                IntPtr targetPtrY = IntPtr.Add(ptr, i * 8 + 4);
+                float y = Marshal.PtrToStructure<float>(targetPtrY);
+                ExPointF point = new ExPointF(x, y);
+                points.Add(point);
+            }
+            Marshal.FreeHGlobal(ptr);
+            return ret;
         }
 
         public bool HitTest(float x, float y)
