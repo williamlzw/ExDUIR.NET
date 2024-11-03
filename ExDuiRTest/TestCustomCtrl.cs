@@ -7,14 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using CefSharp;
-using CefSharp.Structs;
 using CefSharp.OffScreen;
 using System.Runtime.InteropServices;
 using ExDuiR.NET.Frameworks.Utility;
-using System.Security.Policy;
 using Newtonsoft.Json;
-using System.Linq;
 using System.Text;
+
 
 namespace ExDuiRTest
 {
@@ -508,14 +506,14 @@ namespace ExDuiRTest
         public CefChromeBrowser(IExBaseUIEle pOwner, string sText, int x, int y, int nWidth, int nHeight)
            : base(pOwner, "CefChromeBrowser", sText, x, y, nWidth, nHeight)
         {
-            browser = new ChromiumWebBrowser();
+            browser = new ChromiumWebBrowser("home.html");
             var dpi = Util.GetDpi();
             browser.Size = new System.Drawing.Size((int)(nWidth * dpi), (int)(nHeight * dpi));
             eventHandler = new JsEventHandler();
+            
             browser.JavascriptObjectRepository.Register("CefChromeBrowser", eventHandler, false, BindingOptions.DefaultBinder);
             browser.FrameLoadEnd += (t, s) =>
             {
-
                 StringBuilder sb = new StringBuilder();
                 sb.Append("(function(){").Append("CefSharp.BindObjectAsync('CefChromeBrowser');").Append("})();");
                 browser.GetMainFrame().EvaluateScriptAsync(sb.ToString());

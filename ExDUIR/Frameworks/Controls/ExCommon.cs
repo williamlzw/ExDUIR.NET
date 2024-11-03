@@ -2068,53 +2068,6 @@ namespace ExDuiR.NET.Frameworks.Controls
     }
 
     /// <summary>
-    /// Miniblink浏览框
-    /// </summary>
-    public class ExMiniblinkBrowser : ExControl
-    {
-        public ExMiniblinkBrowser(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
-            : base(oParent, "MbBrowser", sTitle, x, y, nWidth, nHeight)
-        {
-        }
-        public ExMiniblinkBrowser(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
-            : base(oParent, "MbBrowser", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
-        {
-        }
-        public ExMiniblinkBrowser(int hObj) : base(hObj)
-        {
-        }
-        public ExMiniblinkBrowser(ExControl parent) : base(parent)
-        {
-        }
-        public static bool Initialize(IntPtr libPath, IntPtr dllPath)
-        {
-            return ExAPI.Ex_ObjMiniblinkBrowserInitialize(libPath, dllPath);
-        }
-        /// <summary>
-        /// 加载url,可以是网址或本地html
-        /// </summary>
-        public string LoadUrl
-        {
-            set
-            {
-                this.SendMessage(MINIBLINKBROWSER_MESSAGE_LOAD, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
-            }
-        }
-
-        /// <summary>
-        /// 执行js
-        /// </summary>
-        public string RunJS
-        {
-            set
-            {
-                this.SendMessage(MINIBLINKBROWSER_MESSAGE_JS, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
-            }
-        }
-        public new string ClassName => "MbBrowser";
-    }
-
-    /// <summary>
     /// 菜单条
     /// </summary>
     public class ExMenuBar : ExControl
@@ -2412,52 +2365,67 @@ namespace ExDuiR.NET.Frameworks.Controls
     }
 
     /// <summary>
-    /// 媒体播放器,win10以上,H265格式mp4需要安装Microsoft.HEVCVideoExtension.Appx
+    /// VLC播放器, 版本3.0.21
     /// </summary>
-    public class ExMediaPlay : ExControl
+    public class ExVLCPlayer : ExControl
     {
-        public ExMediaPlay(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
-            : base(oParent, "MediaFoundation", sTitle, x, y, nWidth, nHeight)
+        public ExVLCPlayer(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "VLCPlayer", sTitle, x, y, nWidth, nHeight)
         {
         }
 
-        public ExMediaPlay(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
-            : base(oParent, "MediaFoundation", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
+        public ExVLCPlayer(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "VLCPlayer", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
         {
         }
-        public ExMediaPlay(int hObj) : base(hObj)
+        public ExVLCPlayer(int hObj) : base(hObj)
         {
         }
-        public ExMediaPlay(ExControl parent) : base(parent)
+        public ExVLCPlayer(ExControl parent) : base(parent)
         {
         }
 
         /// <summary>
-        /// 置播放地址
+        /// 置本地文件播放地址
         /// </summary>
         public string StartPlay
         {
             set
             {
-                this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_PLAY, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+                this.SendMessage(VLCPLAYER_MESSAGE_STATE_PLAY, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
             }
         }
 
         /// <summary>
-        /// 暂停/继续 播放
+        /// 置URL播放地址 如https://media.w3.org/2010/05/sintel/trailer.mp4
+        /// </summary>
+        public string StartPlayFromUrl
+        {
+            set
+            {
+                this.SendMessage(VLCPLAYER_MESSAGE_STATE_PLAYFROMURL, IntPtr.Zero, Marshal.StringToHGlobalUni(value));
+            }
+        }
+
+        /// <summary>
+        /// 暂停播放
         /// </summary>
         public bool PausePlay
         {
             set
             {
-                if(value)
-                {
-                    this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_PAUSE, IntPtr.Zero, IntPtr.Zero);
-                }
-                else
-                {
-                    this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_CONTINUE, IntPtr.Zero, IntPtr.Zero);
-                }
+                this.SendMessage(VLCPLAYER_MESSAGE_STATE_PAUSE, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 继续播放
+        /// </summary>
+        public bool ResumePlay
+        {
+            set
+            {
+                this.SendMessage(VLCPLAYER_MESSAGE_STATE_RESUME, IntPtr.Zero, IntPtr.Zero);
             }
         }
 
@@ -2470,22 +2438,68 @@ namespace ExDuiR.NET.Frameworks.Controls
             {
                 if (value)
                 {
-                    this.SendMessage(MEDIAPLAYER_MESSAGE_STATE_STOP, IntPtr.Zero, IntPtr.Zero);
+                    this.SendMessage(VLCPLAYER_MESSAGE_STATE_STOP, IntPtr.Zero, IntPtr.Zero);
                 }
             }
         }
 
         /// <summary>
-        /// 置播放位置
+        /// 取媒体总时长 单位毫秒
         /// </summary>
-        public int PlayPosition
+        public Int64 TotalTime
+        {
+            get
+            {
+                return (Int64)this.SendMessage(VLCPLAYER_MESSAGE_GET_DURATION, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 取/置播放媒体时间 单位 INT64类型 毫秒
+        /// </summary>
+        public Int64 PlayPosition
         {
             set
             {
-               this.SendMessage(MEDIAPLAYER_MESSAGE_SET_POSITION, IntPtr.Zero, (IntPtr)value);
+               this.SendMessage(VLCPLAYER_MESSAGE_SET_MEDIATIME, IntPtr.Zero, (IntPtr)value);
+            }
+            get
+            {
+                return (Int64)this.SendMessage(VLCPLAYER_MESSAGE_GET_MEDIATIME, IntPtr.Zero, IntPtr.Zero);
             }
         }
-        public new string ClassName => "MediaFoundation";
+
+        /// <summary>
+        /// 取/置音量大小 0到100之间
+        /// </summary>
+        public int PlayVolume
+        {
+            set
+            {
+                this.SendMessage(VLCPLAYER_MESSAGE_SET_VOLUME, IntPtr.Zero, (IntPtr)value);
+            }
+            get
+            {
+                return (int)this.SendMessage(VLCPLAYER_MESSAGE_GET_VOLUME, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// 取/置播放速率 整数 取值1,2,3
+        /// </summary>
+        public int PlayRate
+        {
+            set
+            {
+                this.SendMessage(VLCPLAYER_MESSAGE_SET_RATE, IntPtr.Zero, (IntPtr)value);
+            }
+            get
+            {
+                return (int)this.SendMessage(VLCPLAYER_MESSAGE_GET_RATE, IntPtr.Zero, IntPtr.Zero);
+            }
+        }
+
+        public new string ClassName => "VLCPlayer";
     }
 
     public class ExTaggingBoard : ExControl

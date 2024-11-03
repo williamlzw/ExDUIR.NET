@@ -3403,32 +3403,6 @@
         public const int PROPERTYGRID_OBJTYPE_DATEBOX = 3;
         #endregion
 
-        #region miniblink浏览框加载类型_
-        /// <summary>
-        /// miniblink浏览框加载类型_URL
-        /// </summary>
-        ///
-        public const int MINIBLINKBROWSER_TYPE_URL = 0;
-        #endregion
-
-        #region 消息_miniblink浏览框_
-        /// <summary>
-        /// 消息_miniblink浏览框_获取浏览框句柄
-        /// </summary>
-        ///
-        public const int MINIBLINKBROWSER_MESSAGE_GETWEBVIEW = 100011;
-        /// <summary>
-        /// 消息_miniblink浏览框_加载
-        /// </summary>
-        ///
-        public const int MINIBLINKBROWSER_MESSAGE_LOAD = 100012;
-        /// <summary>
-        /// 消息_miniblink浏览框_执行js
-        /// </summary>
-        ///
-        public const int MINIBLINKBROWSER_MESSAGE_JS = 100013;
-        #endregion
-
         #region 报表表行风格_
         /// <summary>
         /// 报表表行风格_默认
@@ -3810,35 +3784,55 @@
         public const int WS_EX_LAYERED = 0x00080000;
         #endregion
 
-        #region 消息_媒体播放状态_
+        #region 消息_VLC播放器_
         /// <summary>
-        /// 消息_媒体播放状态_播放
+        /// 消息_vlc播放器_播放自文件 lParam :本地文件名
         /// </summary>
-        public const int MEDIAPLAYER_MESSAGE_STATE_PLAY = 10010;
+        public const int VLCPLAYER_MESSAGE_STATE_PLAY = 20000;
         /// <summary>
-        /// 消息_媒体播放状态_暂停
+        /// 消息_vlc播放器_播放自url lParam :URL 如https://media.w3.org/2010/05/sintel/trailer.mp4
         /// </summary>
-        public const int MEDIAPLAYER_MESSAGE_STATE_PAUSE = 10011;
+        public const int VLCPLAYER_MESSAGE_STATE_PLAYFROMURL = 20001;
         /// <summary>
-        /// 消息_媒体播放状态_继续播放
+        /// 消息_vlc播放器_暂停播放
         /// </summary>
-        public const int MEDIAPLAYER_MESSAGE_STATE_CONTINUE = 10012;
+        public const int VLCPLAYER_MESSAGE_STATE_PAUSE = 20002;
         /// <summary>
-        /// 消息_媒体播放状态_停止
+        /// 消息_vlc播放器_继续播放
         /// </summary>
-        public const int MEDIAPLAYER_MESSAGE_STATE_STOP = 10013;
+        public const int VLCPLAYER_MESSAGE_STATE_RESUME = 20003;
         /// <summary>
-        /// 消息_播放速率 lParam: (int)速率
+        /// 消息_vlc播放器_停止播放
         /// </summary>
-        public const int MEDIAPLAYER_MESSAGE_RATE = 10014;
+        public const int VLCPLAYER_MESSAGE_STATE_STOP = 20004;
         /// <summary>
-        /// 消息_置播放位置 lParam: 单位 秒
+        /// 消息_vlc播放器_置播放速率 lParam: 速率 int类型 0到3之间
         /// </summary>
-        public const int MEDIAPLAYER_MESSAGE_SET_POSITION = 10015;
+        public const int VLCPLAYER_MESSAGE_SET_RATE = 20005;
         /// <summary>
-        /// 消息_取视频时长 单位 秒
+        /// 消息_vlc播放器_取播放速率 lParam: 速率 int类型
         /// </summary>
-        public const int MEDIAPLAYER_MESSAGE_GET_DURATION = 10016;
+        public const int VLCPLAYER_MESSAGE_GET_RATE = 20006;
+        /// <summary>
+        /// 消息_vlc播放器_置播放音量 lParam: 音量 int类型 0到100之间
+        /// </summary>
+        public const int VLCPLAYER_MESSAGE_SET_VOLUME = 20007;
+        /// <summary>
+        /// 消息_vlc播放器_取播放音量 lParam: 音量 int类型 0到100之间
+        /// </summary>
+        public const int VLCPLAYER_MESSAGE_GET_VOLUME = 20008;
+        /// <summary>
+        /// 消息_vlc播放器_置播放媒体时间 lParam: 单位 INT64类型 毫秒
+        /// </summary>
+        public const int VLCPLAYER_MESSAGE_SET_MEDIATIME = 20009;
+        /// <summary>
+        /// 消息_vlc播放器_取播放媒体时间 单位 INT64类型 毫秒
+        /// </summary>
+        public const int VLCPLAYER_MESSAGE_GET_MEDIATIME = 20010;
+        /// <summary>
+        /// 消息_取视频总时长 单位 INT64类型 毫秒
+        /// </summary>
+        public const int VLCPLAYER_MESSAGE_GET_DURATION = 20011;
         #endregion
 
         #region 标识_托盘_

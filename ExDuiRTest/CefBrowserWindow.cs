@@ -37,7 +37,7 @@ namespace ExDuiRTest
                 browserObj.RegisterFun("TestJsEvent", new TestJsEvent());
                 var str = Properties.Resources.cef;
                 //browserObj.LoadHtml(str);
-                browserObj.Load("www.bing.com");
+                browserObj.Load("www.baidu.com");
 
                 //直接调用js
                 string javascript = "test2();";
