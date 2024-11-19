@@ -207,9 +207,31 @@ namespace ExDuiRTest
             return IntPtr.Zero;
         }
 
+        static private IntPtr OnMenuItemMsgProc(IntPtr hWnd, int hObj, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr pResult)
+        {
+            if (uMsg == WM_EX_LCLICK)
+            {
+                ExControl obj = new ExControl(hObj);
+                var text = obj.Text;
+                Console.WriteLine($"菜单项目text:{text}");
+            }
+            return IntPtr.Zero;
+        }
+
         static private IntPtr OnListButtonWndProc(IntPtr hWnd, int hExDui, int uMsg, IntPtr wParam, IntPtr lParam, IntPtr lpResult)
         {
-            if (uMsg == WM_NOTIFY)
+            if (uMsg == WM_INITMENUPOPUP)
+            {
+                var nskin = new ExSkin(hExDui);
+                var find = nskin.Find(null, "Item", null);
+                var objproc = new ExObjProcDelegate(OnMenuItemMsgProc);
+                while (find != null)
+                {
+                    find.ObjProc = Marshal.GetFunctionPointerForDelegate(objproc);
+                    find = find.GetObj(GW_HWNDNEXT);
+                }
+            }
+            else if (uMsg == WM_NOTIFY)
             {
                 var ni = Util.IntPtrToStructure<ExNMHDR>(lParam);
                 if (ni.nCode == NM_CREATE)
