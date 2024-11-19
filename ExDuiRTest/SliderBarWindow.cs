@@ -23,25 +23,25 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 objProc = new ExObjEventProcDelegate(OnSliderBarPosChangeEvent);
                 sliderbar1 = new ExSliderBar(skin, "", 80, 50, 250, 20);
-                sliderbar1.ColorBackground = Util.ExRGBA(100, 36, 255, 250);
+                sliderbar1.ColorBackground = Util.ExARGB(100, 36, 255, 250);
                 sliderbar1.HandleEvent(SLIDERBAR_EVENT_VALUE, objProc);
 
                 sliderbar2 = new ExSliderBar(skin, "", 50, 60, 20, 100, OBJECT_STYLE_VISIBLE | SLIDERBAR_STYLE_VERTICAL);
-                sliderbar2.ColorBackground = Util.ExRGBA(100, 236, 255, 250);
+                sliderbar2.ColorBackground = Util.ExARGB(100, 236, 255, 250);
                 sliderbar2.HandleEvent(SLIDERBAR_EVENT_VALUE, objProc);
                 sliderbar2.BlockDirection = 1;
 
                 sliderbar3 = new ExSliderBar(skin, "", 350, 60, 20, 100, OBJECT_STYLE_VISIBLE | SLIDERBAR_STYLE_VERTICAL);
-                sliderbar3.ColorBackground = Util.ExRGBA(100, 136, 255, 250);
+                sliderbar3.ColorBackground = Util.ExARGB(100, 136, 255, 250);
                 sliderbar3.HandleEvent(SLIDERBAR_EVENT_VALUE, objProc);
-                sliderbar3.ColorTextNormal = Util.ExRGBA(255, 255, 255, 125);
-                sliderbar3.ColorTextChecked = Util.ExRGBA(200, 16, 25, 250);
+                sliderbar3.ColorTextNormal = Util.ExARGB(255, 255, 255, 125);
+                sliderbar3.ColorTextChecked = Util.ExARGB(200, 16, 25, 250);
 
                 sliderbar4 = new ExSliderBar(skin, "", 80, 150, 250, 20, -1);
-                sliderbar4.ColorBackground = Util.ExRGBA(0, 136, 255, 250);
+                sliderbar4.ColorBackground = Util.ExARGB(0, 136, 255, 250);
                 sliderbar4.HandleEvent(SLIDERBAR_EVENT_VALUE, objProc);
                 sliderbar4.BlockDirection = 1;
 

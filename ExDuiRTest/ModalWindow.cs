@@ -25,7 +25,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 objEventProc = new ExObjEventProcDelegate(OnButtonEventProc);
                 dlgProc = new DlgWndProcDelegate(OnDialgWndProc);
                 button = new ExButton(skin, "弹出模态对话框", 50, 50, 300, 100);

@@ -34,7 +34,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         /// <returns>返回图片索引</returns>
         public int Add(byte[] lpImage, int cbImage, int nIndex)
         {
-            return (int)ExAPI._imglist_add(m_hImgList, lpImage, (IntPtr)cbImage, (IntPtr)nIndex);
+            return (int)ExAPI._imglist_add(m_hImgList, (IntPtr)nIndex, lpImage, (IntPtr)cbImage);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
         /// <returns>返回图片索引</returns>
         public int AddImage(ExImage image, int nIndex)
         {
-            return (int)ExAPI._imglist_addimage(m_hImgList, image.handle, (IntPtr)nIndex);
+            return (int)ExAPI._imglist_addimage(m_hImgList, (IntPtr)nIndex, image.handle);
         }
 
         public int Count

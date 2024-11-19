@@ -80,7 +80,7 @@ namespace ExDuiRTest
                             //开始绘制与EndPaint配套调用
                             Obj.BeginPaint(out var ps);
                             ExCanvas canvas = new ExCanvas(ps.hCanvas);
-                            var brush = new ExBrush(Util.ExRGBA(255, 0, 0, 255));
+                            var brush = new ExBrush(Util.ExARGB(255, 0, 0, 255));
                             canvas.Clear(Color.Yellow.ToArgb());
                             canvas.DrawText(Obj.Font, brush, Obj.Text, -1, DT_CENTER | DT_VCENTER, ps.rcPaint.nLeft, ps.rcPaint.nTop, ps.rcPaint.nRight, ps.rcPaint.nBottom);
                             //结束绘制

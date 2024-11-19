@@ -28,7 +28,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 drawingboard = new ExDrawingBoard(skin, "", 30, 30, 500, 350);
                 objProc = new ExObjEventProcDelegate(OnButtonEventProc);
                 switchProc = new ExObjEventProcDelegate(OnDrawingBoardSwitchEvent);
@@ -79,7 +79,7 @@ namespace ExDuiRTest
                 }
                 else if (hObj == button3.handle)
                 {
-                    drawingboard.PenColor = Util.ExRGBA(255, 0, 0, 255);
+                    drawingboard.PenColor = Util.ExARGB(255, 0, 0, 255);
                 }
                 else if (hObj == button4.handle)
                 {

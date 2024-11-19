@@ -44,7 +44,7 @@ namespace DemoProject
             WINDOW_STYLE_CENTERWINDOW, 0, 0, default, wndProc);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(0, 0, 0, 255);
+                skin.BackgroundColor = Util.ExARGB(0, 0, 0, 255);
                 bkgProc = new ExObjProcDelegate(OnBkgProc);
                 iconProc = new ExObjProcDelegate(OnIconProc);
                 containerProc = new ExObjProcDelegate(OnContainerProc);
@@ -57,13 +57,13 @@ namespace DemoProject
                 editProc = new ExObjProcDelegate(OnEditMsgProc);
                 edit1 = new ExEditEx(container, "", 1048, 420, 320, 40, -1, OBJECT_STYLE_EX_CUSTOMDRAW | OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_TABSTOP, -1, 0, default);
                 edit1.SetFont("Microsoft Yahei", 14);
-                edit1.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
-                edit1.SetBanner("请输入账号", Util.ExRGBA(255, 255, 255, 100));
+                edit1.ColorTextNormal = Util.ExARGB(255, 255, 255, 255);
+                edit1.SetBanner("请输入账号", Util.ExARGB(255, 255, 255, 100));
                 edit1.Props = new ExObjProps
                 {
-                    crBkgNormal = Util.ExRGBA(70, 70, 70, 255),
-                    crBorderHover = Util.ExRGBA(255, 255, 255, 255),
-                    crBorderDownOrChecked = Util.ExRGBA(255, 255, 255, 255),
+                    crBkgNormal = Util.ExARGB(70, 70, 70, 255),
+                    crBorderHover = Util.ExARGB(255, 255, 255, 255),
+                    crBorderDownOrChecked = Util.ExARGB(255, 255, 255, 255),
                     radius = 0,
                     strokeWidth = 1,
                     nIconPosition = 0
@@ -72,13 +72,13 @@ namespace DemoProject
 
                 edit2 = new ExEditEx(container, "", 1048, 476, 320, 40, OBJECT_STYLE_VISIBLE | EDIT_STYLE_USEPASSWORD, OBJECT_STYLE_EX_CUSTOMDRAW | OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_TABSTOP, -1, 0, default);
                 edit2.SetFont("Microsoft Yahei", 14);
-                edit2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
-                edit2.SetBanner("请输入密码", Util.ExRGBA(255, 255, 255, 100));
+                edit2.ColorTextNormal = Util.ExARGB(255, 255, 255, 255);
+                edit2.SetBanner("请输入密码", Util.ExARGB(255, 255, 255, 100));
                 edit2.Props = new ExObjProps
                 {
-                    crBkgNormal = Util.ExRGBA(70, 70, 70, 255),
-                    crBorderHover = Util.ExRGBA(255, 255, 255, 255),
-                    crBorderDownOrChecked = Util.ExRGBA(255, 255, 255, 255),
+                    crBkgNormal = Util.ExARGB(70, 70, 70, 255),
+                    crBorderHover = Util.ExARGB(255, 255, 255, 255),
+                    crBorderDownOrChecked = Util.ExARGB(255, 255, 255, 255),
                     radius = 0,
                     strokeWidth = 1,
                     nIconPosition = 0
@@ -214,8 +214,8 @@ namespace DemoProject
             if(uMsg == WM_ERASEBKGND)
             {
                 var canvas = new ExCanvas((int)wParam);
-                canvas.FillRect(Util.ExRGBA(255, 255, 255, 255), 0, 0, ExAPI.Ex_Scale(976), ExAPI.Ex_Scale(900));
-                canvas.FillRect(Util.ExRGBA(5, 97, 221, 255), ExAPI.Ex_Scale(975), 0, ExAPI.Ex_Scale(1440), ExAPI.Ex_Scale(900));
+                canvas.FillRect(Util.ExARGB(255, 255, 255, 255), 0, 0, ExAPI.Ex_Scale(976), ExAPI.Ex_Scale(900));
+                canvas.FillRect(Util.ExARGB(5, 97, 221, 255), ExAPI.Ex_Scale(975), 0, ExAPI.Ex_Scale(1440), ExAPI.Ex_Scale(900));
                 return (IntPtr)1;
             }
             return IntPtr.Zero;

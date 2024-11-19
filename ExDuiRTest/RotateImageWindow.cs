@@ -19,7 +19,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 var bitmap = Properties.Resources.nav1;
                 //加入OBJECT_STYLE_EX_FOCUSABLE风格鼠标移入停止旋转，不加入此风格一直旋转
                 imagebox = new ExRotateImageBox(skin, bitmap, 50, 50, 100, 100, -1, OBJECT_STYLE_EX_FOCUSABLE);

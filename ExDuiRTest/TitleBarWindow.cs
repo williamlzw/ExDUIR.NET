@@ -22,7 +22,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 titlebar1 = new ExTitleBar(skin, "标题框1", 30, 50, 300, 20);
                 titlebar1.ColorBackground = -1;
                 titlebar1.ColorTextNormal = Util.ExRGB2ARGB(0, 255);

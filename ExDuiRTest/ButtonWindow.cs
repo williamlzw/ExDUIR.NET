@@ -23,7 +23,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnButtonMsgProc);
                 buttons = new ExButton[6];
                 buttons[0] = new ExButton(skin, "禁用自身", 10, 30, 120, 30, -1, -1, DT_VCENTER | DT_CENTER);
@@ -46,9 +46,9 @@ namespace ExDuiRTest
                 switchs[1].Check = true;
                 ExObjProps props = new ExObjProps()
                 {
-                    crBkgNormal = Util.ExRGBA(255, 255, 255, 100),
-                    crBkgDownOrChecked = Util.ExRGBA(200, 50, 100, 100),
-                    crBorderNormal = Util.ExRGBA(255, 255, 255, 255),
+                    crBkgNormal = Util.ExARGB(255, 255, 255, 100),
+                    crBkgDownOrChecked = Util.ExARGB(200, 50, 100, 100),
+                    crBorderNormal = Util.ExARGB(255, 255, 255, 255),
                     radius = 15,
                     strokeWidth = 1
                 };
@@ -66,15 +66,15 @@ namespace ExDuiRTest
                 int crBkg;
                 if ((ps.dwState & STATE_DOWN) == STATE_DOWN)
                 {
-                    crBkg = Util.ExRGBA(255, 0, 0, 51);
+                    crBkg = Util.ExARGB(255, 0, 0, 51);
                 }
                 else if ((ps.dwState & STATE_HOVER) == STATE_HOVER)
                 {
-                    crBkg = Util.ExRGBA(255, 168, 255, 51);
+                    crBkg = Util.ExARGB(255, 168, 255, 51);
                 }
                 else
                 {
-                    crBkg = Util.ExRGBA(255, 255, 255, 51);
+                    crBkg = Util.ExARGB(255, 255, 255, 51);
                 }
                 ExBrush hBrush = new ExBrush(crBkg);
                 ExCanvas hCanvas = new ExCanvas(ps.hCanvas);
@@ -112,15 +112,15 @@ namespace ExDuiRTest
                     int crBkg;
                     if ((ps.dwState & STATE_DOWN) != 0)
                     {
-                        crBkg = Util.ExRGBA(255, 0, 0, 51);
+                        crBkg = Util.ExARGB(255, 0, 0, 51);
                     }
                     else if ((ps.dwState & STATE_HOVER) != 0)
                     {
-                        crBkg = Util.ExRGBA(255, 168, 255, 51);
+                        crBkg = Util.ExARGB(255, 168, 255, 51);
                     }
                     else
                     {
-                        crBkg = Util.ExRGBA(255, 255, 255, 51);
+                        crBkg = Util.ExARGB(255, 255, 255, 51);
                     }
                     ExBrush hBrush = new ExBrush(crBkg);
                     ExCanvas hCanvas = new ExCanvas(ps.hCanvas);

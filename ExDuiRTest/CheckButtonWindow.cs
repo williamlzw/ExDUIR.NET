@@ -24,7 +24,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 checkButton1 = new ExCheckButton(skin, "复选框", 10, 30, 60, 20, -1);
                 radiobutton1 = new ExRadioButton(skin, "单选框1", 10, 60, 80, 20, -1);
                 radiobutton2 = new ExRadioButton(skin, "单选框2", 100, 60, 80, 20, -1);

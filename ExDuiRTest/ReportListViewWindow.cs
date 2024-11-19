@@ -27,10 +27,10 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 reportlistview = new ExReportListView(skin, "", 25, 50, 350, 250, OBJECT_STYLE_BORDER | OBJECT_STYLE_VISIBLE | OBJECT_STYLE_HSCROLL | OBJECT_STYLE_VSCROLL | REPORTLISTVIEW_STYLE_EDIT | REPORTLISTVIEW_STYLE_DRAWVERTICALLINE);
                 reportlistview.ColorBackground = Util.ExRGB2ARGB(16777215, 100);
-                reportlistview.ColorBorder = Util.ExRGBA(120, 120, 120, 255);
+                reportlistview.ColorBorder = Util.ExARGB(120, 120, 120, 255);
                 reportlistview.ColorListViewHead = Util.ExRGB2ARGB(16777215, 100);
                 reportlistview.ColorTextHover = Util.ExRGB2ARGB(12632256, 100);
                 imglist = new ExImageList(30, 30);
@@ -70,7 +70,7 @@ namespace ExDuiRTest
                     crText = Util.ExRGB2ARGB(65535, 255),
                     dwStyle = REPORTLISTVIEW_HEADER_STYLE_CLICKABLE | REPORTLISTVIEW_HEADER_STYLE_COLOUR,
                     dwTextFormat = DT_CENTER | DT_VCENTER,
-                    crBkg = Util.ExRGBA(120, 230, 180, 255)
+                    crBkg = Util.ExARGB(120, 230, 180, 255)
                 };
                 reportlistview.SetColumn(col3);
 
@@ -96,7 +96,7 @@ namespace ExDuiRTest
                         nImageIndex = i,
                         dwStyle = (i % 3 == 0 ? REPORTLISTVIEW_LINESTYLE_CHECKBOX | REPORTLISTVIEW_LINESTYLE_CHECKBOX_CHECK | REPORTLISTVIEW_LINESTYLE_ROWCOLOUR : 0),
                         iRow = rowIndex,
-                        crRowBkg = Util.ExRGBA(31, 100, 200, 255)
+                        crRowBkg = Util.ExARGB(31, 100, 200, 255)
                     };
                     reportlistview.SetItem(item1);
 
@@ -115,7 +115,7 @@ namespace ExDuiRTest
                         iRow = i,
                         pwzText = Marshal.StringToHGlobalUni("第二列"),
                         cellStyle = REPORTLISTVIEW_CELLSTYLE_CELLCOLOUR,
-                        cellBkgCr = Util.ExRGBA(130,130,25,255)
+                        cellBkgCr = Util.ExARGB(130,130,25,255)
                     };
                     reportlistview.SetCell(cell2);
 
@@ -125,7 +125,7 @@ namespace ExDuiRTest
                         iRow = i,
                         pwzText = Marshal.StringToHGlobalUni("第三列"),
                         cellStyle = REPORTLISTVIEW_CELLSTYLE_CELLTEXTCOLOUR,
-                        cellTextCr = Util.ExRGBA(130, 25, 130, 255)
+                        cellTextCr = Util.ExARGB(130, 25, 130, 255)
                     };
                     reportlistview.SetCell(cell3);
 

@@ -30,7 +30,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 combobox = new ExComboBox(skin, "测试组合框", 10, 30, 200, 30, OBJECT_STYLE_VISIBLE | COMBOBOX_STYLE_ALLOWEDIT);
                 combobox.AddString("英文字母abc");
                 combobox.AddString("数字123");

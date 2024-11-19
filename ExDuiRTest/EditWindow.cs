@@ -32,7 +32,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 edit1 = new ExEdit(skin, "背景图片编辑框", 10, 30, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_HIDESELECTION, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED | OBJECT_STYLE_EX_CUSTOMDRAW, DT_VCENTER);
                 var bitmap = Properties.Resources.editbkg;
                 edit1.SetBackgroundImage(bitmap, 0, 0, 0, default, 0, 255, true);
@@ -42,8 +42,8 @@ namespace ExDuiRTest
                 edit5 = new ExEdit(skin, "测试透明圆角编辑框", 10, 190, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_HIDESELECTION, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED | OBJECT_STYLE_EX_TABSTOP | OBJECT_STYLE_EX_CUSTOMDRAW, DT_VCENTER);
                 edit5.SetFont("微软雅黑", 16, FONT_STYLE_UNDERLINE | FONT_STYLE_ITALIC, false);
 
-                edit5.ColorBackground = Util.ExRGBA(200, 120, 130, 100);
-                edit5.ColorTextNormal = Util.ExRGBA(23, 115, 1, 100);
+                edit5.ColorBackground = Util.ExARGB(200, 120, 130, 100);
+                edit5.ColorTextNormal = Util.ExARGB(23, 115, 1, 100);
                 edit5.SetRadius(10, 10, 10, 0, false);
                 edit6 = new ExEdit(skin, "测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框\r\n测试多行编辑框",
                     10, 230, 150, 100, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_VSCROLL, OBJECT_STYLE_EX_FOCUSABLE | OBJECT_STYLE_EX_COMPOSITED, DT_VCENTER);

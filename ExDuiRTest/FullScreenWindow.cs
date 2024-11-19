@@ -19,7 +19,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_TITLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_FULLSCREEN | WINDOW_STYLE_NOSHADOW | WINDOW_STYLE_BUTTON_CLOSE, 0, 0, default, wndProc);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 //最大化
                 WinAPI.PostMessage(skin.Hwnd, 274, (IntPtr)61488, IntPtr.Zero);
                 //置顶

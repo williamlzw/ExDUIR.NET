@@ -21,7 +21,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 calendar = new ExCalendar(skin, "", 50, 50, 310, 320, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_BORDER);
                 objEvent = new ExObjEventProcDelegate(OnCalendarEvent);
                 calendar.HandleEvent(CALENDAR_EVENT_DATETIME, objEvent);

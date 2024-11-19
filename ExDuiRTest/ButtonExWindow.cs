@@ -29,13 +29,13 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 button1 = new ExButtonEx(skin, "☏直角纯色按钮", 50, 50, 100, 30);
                 ExObjProps props1 = new ExObjProps
                 {
-                    crBkgNormal = Util.ExRGBA(76, 175, 80, 225),
-                    crBkgHover = Util.ExRGBA(76, 175, 80, 250),
-                    crBkgDownOrChecked = Util.ExRGBA(76, 175, 80, 200)
+                    crBkgNormal = Util.ExARGB(76, 175, 80, 225),
+                    crBkgHover = Util.ExARGB(76, 175, 80, 250),
+                    crBkgDownOrChecked = Util.ExARGB(76, 175, 80, 200)
                 };
                 button1.Props = props1;
 
@@ -52,12 +52,12 @@ namespace ExDuiRTest
                 button3 = new ExButtonEx(skin, "Metro按钮☪", 50, 150, 100, 30);
                 ExObjProps props3 = new ExObjProps
                 {
-                    crBkgNormal = Util.ExRGBA(130, 130, 130, 255),
-                    crBkgHover = Util.ExRGBA(130, 130, 130, 235),
-                    crBkgDownOrChecked = Util.ExRGBA(200, 200, 200, 100),
-                    crBorderNormal = Util.ExRGBA(130, 130, 130, 255),
-                    crBorderHover = Util.ExRGBA(0, 0, 0, 135),
-                    crBorderDownOrChecked = Util.ExRGBA(0, 0, 0, 150),
+                    crBkgNormal = Util.ExARGB(130, 130, 130, 255),
+                    crBkgHover = Util.ExARGB(130, 130, 130, 235),
+                    crBkgDownOrChecked = Util.ExARGB(200, 200, 200, 100),
+                    crBorderNormal = Util.ExARGB(130, 130, 130, 255),
+                    crBorderHover = Util.ExARGB(0, 0, 0, 135),
+                    crBorderDownOrChecked = Util.ExARGB(0, 0, 0, 150),
                     strokeWidth = 2
                 };
                 button3.Props = props3;
@@ -68,7 +68,7 @@ namespace ExDuiRTest
                     crBkgNormal = Util.ExRGB2ARGB(10066176, 255),
                     crBkgHover = Util.ExRGB2ARGB(10066176, 220),
                     crBkgDownOrChecked = Util.ExRGB2ARGB(10066176, 200),
-                    crBorderNormal = Util.ExRGBA(130, 130, 130, 255)
+                    crBorderNormal = Util.ExARGB(130, 130, 130, 255)
                 };
                 button4.Props = props4;
                 button4.SetFont("楷体", 16);
@@ -105,8 +105,8 @@ namespace ExDuiRTest
                 button7 = new ExButtonEx(skin, "渐变按钮🔊", 180, 100, 100, 30);
                 ExObjProps props7 = new ExObjProps
                 {
-                    crBkgBegin = Util.ExRGBA(0, 173, 241, 255),
-                    crBkgEnd = Util.ExRGBA(100, 25, 129, 255),
+                    crBkgBegin = Util.ExARGB(0, 173, 241, 255),
+                    crBkgEnd = Util.ExARGB(100, 25, 129, 255),
                     strokeWidth = 2
                 };
                 button7.Props = props7;
@@ -115,7 +115,7 @@ namespace ExDuiRTest
                 button8 = new ExButtonEx(skin, "线框按钮", 180, 150, 100, 30);
                 ExObjProps props8 = new ExObjProps
                 {
-                    crBorderBegin = Util.ExRGBA(227, 34, 103, 255),
+                    crBorderBegin = Util.ExARGB(227, 34, 103, 255),
                     crBorderEnd = Util.ExRGB2ARGB(16746496, 255),
                     strokeWidth = 2
                 };
@@ -141,12 +141,12 @@ namespace ExDuiRTest
                 button10 = new ExButtonEx(skin, "图标在右", 180, 250, 100, 30);
                 ExObjProps props10 = new ExObjProps
                 {
-                    crBkgNormal = Util.ExRGBA(255, 255, 255, 50),
-                    crBkgHover = Util.ExRGBA(255, 255, 255, 80),
-                    crBkgDownOrChecked = Util.ExRGBA(255, 255, 255, 100),
-                    crBorderNormal = Util.ExRGBA(0, 0, 0, 150),
-                    crBorderHover = Util.ExRGBA(0, 0, 0, 180),
-                    crBorderDownOrChecked = Util.ExRGBA(0, 0, 0, 200),
+                    crBkgNormal = Util.ExARGB(255, 255, 255, 50),
+                    crBkgHover = Util.ExARGB(255, 255, 255, 80),
+                    crBkgDownOrChecked = Util.ExARGB(255, 255, 255, 100),
+                    crBorderNormal = Util.ExARGB(0, 0, 0, 150),
+                    crBorderHover = Util.ExARGB(0, 0, 0, 180),
+                    crBorderDownOrChecked = Util.ExARGB(0, 0, 0, 200),
                     strokeWidth = 1,
                     nIconPosition = 1,
                     radius = 7

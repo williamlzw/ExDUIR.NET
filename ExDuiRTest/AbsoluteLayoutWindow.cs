@@ -25,7 +25,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_SIZEABLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 layout = new ExAbsoluteLayout(skin);
                 label1 = new ExStatic(skin, "固定在右下角50,50的位置，不变大小", 0, 0, 200, 100, DT_CENTER | DT_VCENTER);
                 label1.ColorBackground = Util.ExRGB2ARGB(255, 100);

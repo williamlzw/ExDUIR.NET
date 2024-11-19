@@ -27,7 +27,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 propertygrid = new ExPropertyGrid(skin, "属性框", 50, 50, 300, 300, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_VSCROLL, -1, DT_LEFT);
                 propertygrid.ColorBackground = Util.ExRGB2ARGB(14737632, 255);
                 buttonProc = new ExObjEventProcDelegate(OnButtonEventProc);

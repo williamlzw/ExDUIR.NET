@@ -29,7 +29,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
 
                 Dictionary<string, List<string>> itemInfo = new Dictionary<string, List<string>>();
                 //分隔条用"-"
@@ -83,10 +83,10 @@ namespace ExDuiRTest
                 listButtonProc = new ExObjProcDelegate(OnListButtonMsgProc);
                 listButtonWndProc = new ExWndProcDelegate(OnListButtonWndProc);
                 menubar2 = new ExMenuBar(skin, "", 0, 60, 220, 22, -1, -1, -1, 0, IntPtr.Zero, listButtonProc);
-                menubar2.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单按钮背景色
-                menubar2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);//改变菜单按钮字体正常色
-                menubar2.ColorTextHover = Util.ExRGBA(255, 255, 255, 55);//改变菜单按钮字体悬浮色
-                menubar2.ColorTextDown = Util.ExRGBA(255, 255, 255, 100);//改变菜单按钮字体按下色
+                menubar2.ColorBackground = Util.ExARGB(110, 120, 55, 255);//改变菜单按钮背景色
+                menubar2.ColorTextNormal = Util.ExARGB(255, 255, 255, 255);//改变菜单按钮字体正常色
+                menubar2.ColorTextHover = Util.ExARGB(255, 255, 255, 55);//改变菜单按钮字体悬浮色
+                menubar2.ColorTextDown = Util.ExARGB(255, 255, 255, 100);//改变菜单按钮字体按下色
 
                 //列表按钮插入一级菜单句柄
                 foreach (MenuItem index in mainMenu.MenuItems)
@@ -173,8 +173,8 @@ namespace ExDuiRTest
 
                 statusbar = new ExStatusBar(skin, "", 0, 120, 300, 22);
                 statusbar.ColorBackground = Util.ExRGB2ARGB(12557930, 255);
-                statusbar.ColorBorder = Util.ExRGBA(255, 255, 255, 255);
-                statusbar.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
+                statusbar.ColorBorder = Util.ExARGB(255, 255, 255, 255);
+                statusbar.ColorTextNormal = Util.ExARGB(255, 255, 255, 255);
 
                 ExListButtonItemInfo item1info3 = new ExListButtonItemInfo();
                 item1info3.nWidth = 100;
@@ -215,9 +215,9 @@ namespace ExDuiRTest
                 if (ni.nCode == NM_CREATE)
                 {
                     var menubar = new ExMenuBar(ni.hObjFrom);
-                    menubar.ColorTextNormal = Util.ExRGBA(210, 120, 55, 255);//改变菜单项目字体正常颜色
+                    menubar.ColorTextNormal = Util.ExARGB(210, 120, 55, 255);//改变菜单项目字体正常颜色
                     menubar.ColorTextHover = Util.ExRGB2ARGB(16711680, 255);//改变菜单项目字体悬浮颜色
-                    menubar.ColorBackground = Util.ExRGBA(110, 120, 55, 255);//改变菜单项目背景颜色
+                    menubar.ColorBackground = Util.ExARGB(110, 120, 55, 255);//改变菜单项目背景颜色
                 }
             }
             else if (uMsg == MENU_MESSAGE_SELECTITEM && (int)((long)wParam << 32 >> 32) == -1)//恢复正常状态

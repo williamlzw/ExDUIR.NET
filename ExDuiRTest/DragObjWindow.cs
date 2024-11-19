@@ -21,7 +21,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnDragMsgProc);
                 label1 = new ExStatic(skin, "可拖动组件1", 25, 35, 250, 250, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_BORDER, OBJECT_STYLE_EX_FOCUSABLE, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, default, objProc);
                 label1.ColorBackground = Util.ExRGB2ARGB(255, 100);

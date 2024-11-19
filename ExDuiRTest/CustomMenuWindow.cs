@@ -27,7 +27,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 button = new ExButton(skin, "弹出菜单", 50, 50, 100, 30);
                 wndProc = new ExWndProcDelegate(OnMenuWndMsgProc);
                 buttonProc = new ExObjEventProcDelegate(OnButtonEvent);

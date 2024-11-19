@@ -20,7 +20,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnNchitTestButtonMsgProc);
                 label = new ExStatic(skin, "鼠标只能在红色区域里响应", 50, 50, 300, 100, -1, OBJECT_STYLE_EX_FOCUSABLE, DT_CENTER | DT_VCENTER | DT_SINGLELINE, 0, default, objProc);
 

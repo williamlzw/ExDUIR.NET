@@ -1673,12 +1673,12 @@
         /// 进度条属性_背景颜色
         /// </summary>
         ///
-        public const int PROGRESSBAR_LONG_BKCOLOR = 3;
+        public const int PROGRESSBAR_LONG_BACKGROUNDCOLOR = 3;
         /// <summary>
         /// 进度条属性_前景颜色
         /// </summary>
         ///
-        public const int PROGRESSBAR_LONG_BARCOLOR = 4;
+        public const int PROGRESSBAR_LONG_FOREGROUNDCOLOR = 4;
         #endregion
 
         #region 信息框标识_
@@ -3047,45 +3047,6 @@
         /// </summary>
         ///
         public const int SW_SHOWNOACTIVATE = 4;
-        #endregion
-
-        #region 消息_进度条_
-        /// <summary>
-        /// 消息_进度条_设置进度条范围  wParam范围
-        /// </summary>
-        ///
-        public const int PROGRESSBAR_MESSAGE_SETRANGE = 1025;
-        /// <summary>
-        /// 消息_进度条_设置进度条位置 wParam位置
-        /// </summary>
-        ///
-        public const int PROGRESSBAR_MESSAGE_SETPOS = 1026;
-
-        /// <summary>
-        /// 消息_进度条_获取进度条范围
-        /// </summary>
-        ///
-        public const int PROGRESSBAR_MESSAGE_GETRANGE = 1031;
-        /// <summary>
-        /// 消息_进度条_获取进度条位置
-        /// </summary>
-        ///
-        public const int PROGRESSBAR_MESSAGE_GETPOS = 1032;
-        /// <summary>
-        /// 消息_进度条_设置进度条颜色  wParam颜色
-        /// </summary>
-        ///
-        public const int PROGRESSBAR_MESSAGE_SETBARCOLOR = 1033;
-        /// <summary>
-        /// 消息_进度条_设置进度条背景颜色 wParam颜色
-        /// </summary>
-        ///
-        public const int PROGRESSBAR_MESSAGE_SETBKCOLOR = 8193;
-        /// <summary>
-        /// 消息_进度条_设置进度条圆角度 wParam圆角度
-        /// </summary>
-        ///
-        public const int PROGRESSBAR_MESSAGE_SETRADIUS = 1027;
         #endregion
 
         #region 菜单消息_

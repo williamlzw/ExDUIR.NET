@@ -43,14 +43,11 @@ namespace ExDuiR.NET.Frameworks.Graphics
         /// <param name="yStart">起点Y</param>
         /// <param name="xEnd">终点X</param>
         /// <param name="yEnd">终点Y</param>
-        /// <param name="arrStopPts">两个点位置和颜色数据,只能两个{位置(0-1.0),颜色(ARGB),位置(0-1.0),颜色(ARGB)}这样传参</param>
-        /// <param name="cStopPts">点个数，只能两个传2</param>
-        public ExBrush(int xStart, int yStart, int xEnd, int yEnd, float[] arrStopPts, int cStopPts)
+        /// <param name="arrPts">位置数组(取值0-1.0),两个</param>
+        /// <param name="arrColors">ARGB颜色数组,两个</param>
+        public ExBrush(int xStart, int yStart, int xEnd, int yEnd, float[] arrPts, int[] arrColors)
         {
-            var ptr = Marshal.AllocHGlobal(4 * sizeof(float));
-            Marshal.Copy(arrStopPts, 0, ptr, arrStopPts.Length);
-            m_hBrush = ExAPI._brush_createlinear_ex(xStart, yStart, xEnd, yEnd, ptr, cStopPts);
-            Marshal.FreeHGlobal(ptr);
+            m_hBrush = ExAPI._brush_createlinear_ex(xStart, yStart, xEnd, yEnd, arrPts, arrColors);
         }
 
         public ExBrush(ExImage img)

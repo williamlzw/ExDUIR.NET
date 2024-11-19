@@ -21,7 +21,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 progressbar = new ExProgressBar(skin, "", 50, 100, 300, 20);
                 objProc = new ExObjProcDelegate(OnProgressBarProc);
                 progressbar.ObjProc = Marshal.GetFunctionPointerForDelegate(objProc);

@@ -26,7 +26,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnPathAndRgnMsgProc);
                 obj = new ExStatic(skin, "", 50, 50, 300, 200, -1, OBJECT_STYLE_EX_FOCUSABLE, -1, 0, IntPtr.Zero, objProc);
                 skin.Visible = true;
@@ -93,8 +93,8 @@ namespace ExDuiRTest
 
                 var rgn1 = new ExRegion(obj.GetProp((IntPtr)3));
                 var rgn2 = new ExRegion(path2);
-                var brush = new ExBrush(Util.ExRGBA(255, 0, 0, 255));
-                var brushRgn = new ExBrush(Util.ExRGBA(255, 255, 0, 255));
+                var brush = new ExBrush(Util.ExARGB(255, 0, 0, 255));
+                var brushRgn = new ExBrush(Util.ExARGB(255, 255, 0, 255));
 
                 canvas.DrawPath(path, brush, 1, 1);
                 int relation = -1;
@@ -102,11 +102,11 @@ namespace ExDuiRTest
                 {
                     if (relation == 3)
                     {
-                        brushRgn.Color = Util.ExRGBA(0, 255, 0, 255);
+                        brushRgn.Color = Util.ExARGB(0, 255, 0, 255);
                     }
                     else if (relation == 4)
                     {
-                        brushRgn.Color = Util.ExRGBA(0, 0, 255, 255);
+                        brushRgn.Color = Util.ExARGB(0, 0, 255, 255);
                         var rgn3 = rgn1.Combine(rgn2, REGION_COMBINE_EXCLUDE, 0, 0);
                         canvas.FillRegion(rgn3, brushRgn);
                         List<ExPointF> points = new List<ExPointF>();
@@ -122,7 +122,7 @@ namespace ExDuiRTest
                     }
                     else
                     {
-                        brushRgn.Color = Util.ExRGBA(255, 255, 0, 255);
+                        brushRgn.Color = Util.ExARGB(255, 255, 0, 255);
                     }
                 }
                 canvas.DrawPath(path2, brushRgn, 1, 1);

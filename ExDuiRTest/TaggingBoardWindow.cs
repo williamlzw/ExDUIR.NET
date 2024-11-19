@@ -32,7 +32,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 taggingboard = new ExTaggingBoard(skin, "", 30, 30, 1000, 800);
                 button1 = new ExButton(skin, "开始绘图", 1050, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
                 button2 = new ExButton(skin, "结束绘图", 1050, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER);
@@ -51,9 +51,9 @@ namespace ExDuiRTest
 
                 label = new ExStatic(skin, "操作提示：\r\n1.点击【开始绘图】，鼠标在画板左键单击，开始绘制路径点，右键可以撤销点，达到3个点及以上可以闭合路径。 闭合路径后会自动调用【结束绘图】。此时再次点击【开始绘图】继续绘制下一条路径。\r\n2.绘制过程中点击【结束绘图】清空临时点。变为选中模式，可以选择画板上闭合的路径。\r\n3.点击【清空绘图】清空画板全部临时点和闭合路径。\r\n4.点击【取出数据】演示打印原图点坐标 \r\n5.按住CTRL键+鼠标滚轮,可以放大缩小", 1050, 270, 130, 600, -1, -1, DT_WORDBREAK);
                 label.SetFont("微软雅黑", 16, FONT_STYLE_BOLD);
-                label.ColorTextNormal = Util.ExRGBA(133, 33, 53, 255);
+                label.ColorTextNormal = Util.ExARGB(133, 33, 53, 255);
 
-                taggingboard.PenColor = Util.ExRGBA(0, 255, 0, 255);
+                taggingboard.PenColor = Util.ExARGB(0, 255, 0, 255);
                 var bitmap = Properties.Resources.carousel3;
                 taggingboard.TaggingImage = new ExImage(bitmap);
                 taggingboardEvent = new ExObjEventProcDelegate(OnTaggingBoardEvent);

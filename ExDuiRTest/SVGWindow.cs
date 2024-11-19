@@ -20,7 +20,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_NOSHADOW | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_TITLE, 0, 0, default, wndProc);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
  
                 skin.Visible = true;
             }
@@ -31,9 +31,9 @@ namespace ExDuiRTest
             if(uMsg == WM_ERASEBKGND)
             {
                 var canvas = new ExCanvas((int)wParam);
-                canvas.Clear(Util.ExRGBA(150, 150, 150, 255));
+                canvas.Clear(Util.ExARGB(150, 150, 150, 255));
                 var font = new ExFont("res/文道灵飞小楷.ttf", 64);
-                canvas.DrawText(font, Util.ExRGBA(200, 0, 200, 200), "我是测试文本", -1, -1, 20, 450, 450, 530);
+                canvas.DrawText(font, Util.ExARGB(200, 0, 200, 200), "我是测试文本", -1, -1, 20, 450, 450, 530);
 
                 font.Dispose();
 
@@ -41,8 +41,8 @@ namespace ExDuiRTest
                 var data = Properties.Resources.niu1;
                 var ptr = Marshal.AllocHGlobal(data.Length);
                 Marshal.Copy(data, 0, ptr, data.Length);
-                canvas.DrawSvg(ptr, Util.ExRGBA(55, 250, 20, 255), 250, 50, 400, 200);
-                canvas.DrawSvgFromFile("res/niu1.svg", Util.ExRGBA(55, 0, 250, 255), 50, 250, 200, 400);
+                canvas.DrawSvg(ptr, Util.ExARGB(55, 250, 20, 255), 250, 50, 400, 200);
+                canvas.DrawSvgFromFile("res/niu1.svg", Util.ExARGB(55, 0, 250, 255), 50, 250, 200, 400);
                 canvas.DrawSvgFromFile("res/niu.svg", 0, 250, 250, 400, 450);
                 return (IntPtr)1;
             }

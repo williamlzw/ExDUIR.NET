@@ -29,7 +29,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW, 0, 0, default, wndProc);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 /*消息(WM_/XXM_)分发的流程是：
 	            控件产生消息->控件类回调函数->控件回调函数->默认控件回调函数(在此部分消息会产生事件)
 	            事件(NM_/XXN_)分发的流程是：
@@ -44,10 +44,10 @@ namespace ExDuiRTest
                 label1.ColorBackground = Util.ExRGB2ARGB(65535, 100);
 
                 label2 = new ExStatic(label1, "按钮内间接父控件", 10, 20, 330, 200, -1, -1, DT_SINGLELINE, 0, default, objSideProc);
-                label2.ColorBackground = Util.ExRGBA(100, 100, 100, 100);
+                label2.ColorBackground = Util.ExARGB(100, 100, 100, 100);
 
                 label3 = new ExStatic(label2, "按钮直接父控件", 10, 20, 330, 200, -1, -1, DT_SINGLELINE, 0, default, objParentProc);
-                label3.ColorBackground = Util.ExRGBA(26, 100, 12, 100);
+                label3.ColorBackground = Util.ExARGB(26, 100, 12, 100);
 
                 button = new ExButton(label3, "按钮", 10, 20, 200, 100, -1, -1, -1, 1001, default, objMsgProc);
                 button.HandleEvent(NM_CLICK, objEventProc);

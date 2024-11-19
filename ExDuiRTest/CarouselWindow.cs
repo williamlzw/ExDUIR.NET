@@ -20,7 +20,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 carousel = new ExCarousel(skin, "", 20, 40, 760, 550);
                 carousel.SetSize(500, 500);
                 carousel.AddImage(new ExImage(Properties.Resources.carousel1));

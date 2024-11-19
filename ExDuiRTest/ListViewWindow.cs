@@ -32,10 +32,10 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 listviewProc = new ExObjProcDelegate(OnListViewProc);
                 listview = new ExListView(skin, "", 30, 30, 150, 150, OBJECT_STYLE_VISIBLE | LISTVIEW_STYLE_VERTICALLIST | OBJECT_STYLE_VSCROLL, OBJECT_STYLE_EX_COMPOSITED, -1, 0, default, listviewProc);
-                listview.ColorBackground = Util.ExRGBA(120, 255, 240, 150);
+                listview.ColorBackground = Util.ExARGB(120, 255, 240, 150);
                 listviewItemInfo = new List<LISTVIEW_ITEM>();
                 Random rn = new Random();
                 for (int i = 0; i < 100; i++)

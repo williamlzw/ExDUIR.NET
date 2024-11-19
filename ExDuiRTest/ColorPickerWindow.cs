@@ -20,7 +20,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 colorpicker = new ExColorPicker(skin, "", 50, 50, 80, 30);
                 colorpicker.ColorBackground = Util.ExRGB2ARGB(0, 255);
                 objEvent = new ExObjEventProcDelegate(OnColorPickerButtonEvent);

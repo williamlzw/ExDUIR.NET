@@ -27,7 +27,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 button1 = new ExButton(skin, "播放", 50, 560, 100, 30);
                 button2 = new ExButton(skin, "暂停", 160, 560, 100, 30);
                 button3 = new ExButton(skin, "继续", 270, 560, 100, 30);

@@ -29,7 +29,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW, 0, 0, IntPtr.Zero, wndProc);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 button1 = new ExButton(skin, "点击动一次", 10, 40, 120, 50, -1);
                 button2 = new ExButton(skin, "来回", 10, 100, 120, 50, -1);
                 button3 = new ExButton(skin, "点击动/停", 10, 160, 120, 50, -1);
@@ -57,7 +57,7 @@ namespace ExDuiRTest
                 alpha = 0;
                 mode = 0;
             }
-            skin.BackgroundColor = Util.ExRGBA(150, 150, 150, alpha);
+            skin.BackgroundColor = Util.ExARGB(150, 150, 150, alpha);
             skin.Alpha = alpha;
             skin.Visible = true;
             var rc = skin.WindowRect;
@@ -75,7 +75,7 @@ namespace ExDuiRTest
         static private IntPtr OnAniEasing(IntPtr pEasing, double nProgress, double nCurrent, IntPtr pContext, int nTimeSurplus, IntPtr param1, IntPtr param2, IntPtr param3, IntPtr param4)
         {
             int index = (int)(nCurrent * 255);
-            skin.BackgroundColor = Util.ExRGBA(150, 150, 150, index);
+            skin.BackgroundColor = Util.ExARGB(150, 150, 150, index);
             skin.Alpha = index;
             skin.SetPos((int)((int)param1 + (int)param2 * nCurrent), (int)((int)param3 + (int)param4 * nCurrent), 0, 0, IntPtr.Zero, SWP_NOSIZE | SWP_NOACTIVATE | SWP_NOZORDER);
             return IntPtr.Zero;

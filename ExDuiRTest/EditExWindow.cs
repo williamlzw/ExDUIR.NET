@@ -23,25 +23,25 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 edit1 = new ExEditEx(skin, "", 30, 50, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_UNDERLINE, -1, -1);
-                edit1.SetBanner("请输入账户名称", Util.ExRGBA(255, 255, 255, 100));
-                edit1.ColorTextNormal = Util.ExRGBA(255, 255, 255, 200);
+                edit1.SetBanner("请输入账户名称", Util.ExARGB(255, 255, 255, 100));
+                edit1.ColorTextNormal = Util.ExARGB(255, 255, 255, 200);
                 edit1.Icon = new ExImage(Properties.Resources.icon_contacts_normal);
 
                 edit2 = new ExEditEx(skin, "", 30, 100, 150, 30, OBJECT_STYLE_VISIBLE | EDIT_STYLE_UNDERLINE | EDIT_STYLE_USEPASSWORD, -1, -1);
-                edit2.SetBanner("请输入账户密码", Util.ExRGBA(255, 255, 255, 100));
-                edit2.ColorTextNormal = Util.ExRGBA(255, 255, 255, 200);
+                edit2.SetBanner("请输入账户密码", Util.ExARGB(255, 255, 255, 100));
+                edit2.ColorTextNormal = Util.ExARGB(255, 255, 255, 200);
                 edit2.Icon = new ExImage(Properties.Resources.psw_normal);
 
                 edit3 = new ExEditEx(skin, "", 200, 50, 150, 30, -1, -1, -1);
-                edit3.SetBanner("搜索一下", Util.ExRGBA(255, 255, 255, 100));
-                edit3.ColorTextNormal = Util.ExRGBA(255, 255, 255, 200);
+                edit3.SetBanner("搜索一下", Util.ExARGB(255, 255, 255, 100));
+                edit3.ColorTextNormal = Util.ExARGB(255, 255, 255, 200);
                 edit3.Props = new ExObjProps
                 {
-                    crBkgNormal = Util.ExRGBA(20, 20, 120, 150),
-                    crBorderHover = Util.ExRGBA(255, 77, 77, 150),
-                    crBorderDownOrChecked = Util.ExRGBA(255, 77, 77, 200),
+                    crBkgNormal = Util.ExARGB(20, 20, 120, 150),
+                    crBorderHover = Util.ExARGB(255, 77, 77, 150),
+                    crBorderDownOrChecked = Util.ExARGB(255, 77, 77, 200),
                     radius = 15,
                     strokeWidth = 1,
                     nIconPosition = 1
@@ -49,8 +49,8 @@ namespace ExDuiRTest
                 edit3.Icon = new ExImage(Properties.Resources.search_normal);
 
                 edit4 = new ExEditEx(skin, "", 200, 100, 150, 30, -1, -1, -1);
-                edit4.SetBanner("搜索一下", Util.ExRGBA(255, 255, 255, 100));
-                edit4.ColorTextNormal = Util.ExRGBA(255, 255, 255, 200);
+                edit4.SetBanner("搜索一下", Util.ExARGB(255, 255, 255, 100));
+                edit4.ColorTextNormal = Util.ExARGB(255, 255, 255, 200);
                 edit4.Icon = new ExImage(Properties.Resources.search_normal);
                 editProc = new ExObjEventProcDelegate(OnEditChangeEvent);
                 edit4.HandleEvent(NM_CHAR, editProc);

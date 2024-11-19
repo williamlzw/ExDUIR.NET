@@ -25,7 +25,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_SIZEABLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 layout = new ExRelativateLayout(skin);
                 layout.PaddingLeft = 10;
                 layout.PaddingTop = 25;
@@ -33,7 +33,7 @@ namespace ExDuiRTest
                 layout.PaddingBottom = 10;
  
                 label1 = new ExStatic(skin, "控件A：父容器的左下角", 0, 0, 200, 150, DT_VCENTER);
-                label1.ColorBackground = Util.ExRGBA(255, 0, 0, 100);
+                label1.ColorBackground = Util.ExARGB(255, 0, 0, 100);
                 layout.SetLeftAlignOf(label1, -1);//左侧与父容器对齐
                 layout.SetBottomAlignOf(label1, -1);//底边与父容器对齐
 

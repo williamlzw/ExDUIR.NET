@@ -32,7 +32,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW, 0, 0, default, wndProc);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 rollmenu = new ExRollMenu(skin, "", 30, 50, 220, 400);
                 
                 rollmenuProc = new ExObjEventProcDelegate(OnRollMenuEvent);

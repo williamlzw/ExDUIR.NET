@@ -20,10 +20,10 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 groupbox = new ExGroupBox(skin, "分组框", 30, 30, 230, 230);
-                groupbox.ColorTextNormal = Util.ExRGBA(255, 255, 255, 255);
-                groupbox.ColorBorder = Util.ExRGBA(55, 0, 250, 255);
+                groupbox.ColorTextNormal = Util.ExARGB(255, 255, 255, 255);
+                groupbox.ColorBorder = Util.ExARGB(55, 0, 250, 255);
                 groupbox.TextOffset = 50;
                 groupbox.Radius = 30;
                 groupbox.StrokeWidth = 3;

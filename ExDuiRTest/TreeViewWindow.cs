@@ -21,10 +21,10 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
-                treeview = new ExTreeView(skin, "", 50, 50, 250, 250, OBJECT_STYLE_BORDER | OBJECT_STYLE_VISIBLE | OBJECT_STYLE_HSCROLL | OBJECT_STYLE_VSCROLL);
-                treeview.ColorBackground = Util.ExRGBA(255, 255, 255, 125);
-                treeview.ColorBorder = Util.ExRGBA(255, 255, 255, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
+                treeview = new ExTreeView(skin, "", 50, 50, 250, 250, OBJECT_STYLE_BORDER | OBJECT_STYLE_VISIBLE | OBJECT_STYLE_HSCROLL | OBJECT_STYLE_VSCROLL | TREEVIEW_STYLE_SHOWADDANDSUB);
+                treeview.ColorBackground = Util.ExARGB(255, 255, 255, 125);
+                treeview.ColorBorder = Util.ExARGB(255, 255, 255, 255);
                 ExTreeViewInsertInfo ti1 = new ExTreeViewInsertInfo
                 {
                     fExpand = false,

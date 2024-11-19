@@ -22,7 +22,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_NOINHERITBKG | WINDOW_STYLE_MOVEABLE | WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_NOSHADOW | WINDOW_STYLE_BUTTON_CLOSE | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 objProc = new ExObjProcDelegate(OnDropMsgProc);
                 label1 = new ExStatic(skin, "拖拽文本、文件到这里", 30, 30, 250, 250, OBJECT_STYLE_VISIBLE | OBJECT_STYLE_BORDER, OBJECT_STYLE_EX_DRAGDROP | OBJECT_STYLE_EX_ACCEPTFILES, DT_SINGLELINE | DT_VCENTER | DT_CENTER, 0, IntPtr.Zero, objProc);
                 skin.Visible = true;

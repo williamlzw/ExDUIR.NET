@@ -21,7 +21,7 @@ namespace ExDuiRTest
             WINDOW_STYLE_CENTERWINDOW | WINDOW_STYLE_TITLE | WINDOW_STYLE_HASICON | WINDOW_STYLE_NOSHADOW);
             if (skin.Validate)
             {
-                skin.BackgroundColor = Util.ExRGBA(150, 150, 150, 255);
+                skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 datebox = new ExDateBox(skin, "", 50, 80, 150, 30);
                 datebox.ColorBackground = -1;
                 datebox.ColorTextNormal = Util.ExRGB2ARGB(16711680, 255);

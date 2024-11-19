@@ -178,22 +178,17 @@ namespace ExDuiR.NET.Frameworks.Utility
 
         public static int ExRGB(int red, int green, int blue)
         {
-            var color =  Color.FromArgb(255, red, green, blue);
-            var r = color.R;
-            var g = color.G;
-            var b = color.B;
-            int rgb = (r & 0xff) | ((g & 0xff) << 8) | ((b & 0xff) << 16);
-            return rgb;
+            return (blue) | (green << 8) | (red << 16);
         }
 
-        public static int ExRGBA(int red, int green, int blue, int alpha)
+        public static int ExARGB(int red, int green, int blue, int alpha)
         {
-            return Color.FromArgb(alpha, red, green, blue).ToArgb();
+            return (ExRGB(red, green, blue) | (alpha << 24));
         }
 
         public static int ExRGB2ARGB(int rgb, int alpha)
         {
-            return Color.FromArgb(alpha, ExGetB(rgb), ExGetG(rgb), ExGetR(rgb)).ToArgb();
+            return (ExGetB(rgb) | (ExGetG(rgb) << 8) | (ExGetR(rgb) << 16) | (alpha << 24));
         }
 
         /// <summary>
