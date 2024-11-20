@@ -34,7 +34,7 @@ namespace ExDuiRTest
             {
                 skin.BackgroundColor = Util.ExARGB(150, 150, 150, 255);
                 listviewProc = new ExObjProcDelegate(OnListViewProc);
-                listview = new ExListView(skin, "", 30, 30, 150, 150, OBJECT_STYLE_VISIBLE | LISTVIEW_STYLE_VERTICALLIST | OBJECT_STYLE_VSCROLL, OBJECT_STYLE_EX_COMPOSITED, -1, 0, default, listviewProc);
+                listview = new ExListView(skin, "", 30, 30, 150, 150, OBJECT_STYLE_VISIBLE  | LISTVIEW_STYLE_VERTICALLIST | OBJECT_STYLE_VSCROLL, OBJECT_STYLE_EX_COMPOSITED, -1, 0, default, listviewProc);
                 listview.ColorBackground = Util.ExARGB(120, 255, 240, 150);
                 listviewItemInfo = new List<LISTVIEW_ITEM>();
                 Random rn = new Random();
@@ -56,7 +56,6 @@ namespace ExDuiRTest
                 scroll.ObjProc = Marshal.GetFunctionPointerForDelegate(scrollbarProc);
                 //隐藏滚动条
                 scroll.PostMessage(SBM_SETVISIBLE, IntPtr.Zero, IntPtr.Zero);
-                
                 skin.Visible = true;
             }
         }
