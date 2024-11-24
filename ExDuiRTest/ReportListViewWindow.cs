@@ -20,6 +20,8 @@ namespace ExDuiRTest
         static private ExObjEventProcDelegate itemCheckProc;
         static private ExObjEventProcDelegate buttonClickProc;
         static private ExButton button;
+        static private ExButton button2;
+
         static public void CreateReportListViewWindow(ExSkin pOwner)
         {
             skin = new ExSkin(pOwner, null, "测试报表列表", 0, 0, 400, 400,
@@ -144,9 +146,10 @@ namespace ExDuiRTest
                 reportlistview.HandleEvent(REPORTLISTVIEW_EVENT_COLUMNCLICK, columnClickProc);
                 reportlistview.HandleEvent(REPORTLISTVIEW_EVENT_CHECK, itemCheckProc);
 
-                button = new ExButton(skin, "删除列", 20, 330, 100, 30);
+                button = new ExButton(skin, "删除列", 20, 330, 100, 30, -1, -1, -1, 1001);
                 button.HandleEvent(NM_CLICK, buttonClickProc);
-
+                button2 = new ExButton(skin, "取表项信息", 150, 330, 100, 30, -1, -1, -1, 1002);
+                button2.HandleEvent(NM_CLICK, buttonClickProc);
                 skin.Visible = true;
             }
         }
@@ -180,7 +183,15 @@ namespace ExDuiRTest
 
         static private IntPtr OnReportListViewButtonEvent(int hObj, int nID, int nCode, IntPtr wParam, IntPtr lParam)
         {
-            reportlistview.SendMessage(LISTVIEW_MESSAGE_DELETECOLUMN, (IntPtr)1, (IntPtr)2);
+            if (nID == 1001)
+            {
+                reportlistview.SendMessage(LISTVIEW_MESSAGE_DELETECOLUMN, (IntPtr)1, (IntPtr)2);
+            }
+            else if (nID == 1002)
+            {
+                ExReportListCellInfo cell = reportlistview.GetCell(1, 4);
+                Console.WriteLine(Marshal.PtrToStringUni(cell.pwzText));
+            }
             return default;
         }
     }

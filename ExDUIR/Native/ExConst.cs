@@ -1125,7 +1125,7 @@
         ///
         public const int EASING_TYPE_INOUTELASTIC = 34;
         /// <summary>
-        /// 缓动类型_自定义 pEasingContext为自定义回调函数(nProcess,nStart,nStop,nCurrent///,pEasingContext)
+        /// 缓动类型_自定义 pEasingContext为自定义回调函数(nProcess,nStart,nStop,nCurrent,pEasingContext)
         /// </summary>
         ///
         public const int EASING_TYPE_CUSTOM = 50;
@@ -1949,6 +1949,11 @@
         public const int ENGINE_LONG_LPARAM = -7;
 
         /// <summary>
+        /// 引擎数值_阴影圆角大小
+        /// </summary>
+        public const int ENGINE_LONG_RADIUS = -11;
+
+        /// <summary>
         /// 引擎数值_边框颜色
         /// </summary>
         public const int ENGINE_LONG_CRBORDER = -30;
@@ -1957,11 +1962,6 @@
         /// 引擎数值_背景颜色
         /// </summary>
         public const int ENGINE_LONG_CRBKG = -31;
-
-        /// <summary>
-        /// 引擎数值_阴影颜色
-        /// </summary>
-        public const int ENGINE_LONG_CRSD = -35;
 
         /// <summary>
         /// 引擎数值_最小高度
@@ -1974,6 +1974,11 @@
         public const int ENGINE_LONG_MINWIDTH = -34;
 
         /// <summary>
+        /// 引擎数值_阴影颜色
+        /// </summary>
+        public const int ENGINE_LONG_CRSD = -35;
+
+        /// <summary>
         /// 引擎数值_焦点组件组件
         /// </summary>
         public const int ENGINE_LONG_OBJFOCUS = -53;
@@ -1982,11 +1987,6 @@
         /// 引擎数值_标题栏组件句柄
         /// </summary>
         public const int ENGINE_LONG_OBJCAPTION = -54;
-
-        /// <summary>
-        /// 引擎数值_阴影圆角大小
-        /// </summary>
-        public const int ENGINE_LONG_RADIUS = -11;
         #endregion
 
         #region 消息_扩展_

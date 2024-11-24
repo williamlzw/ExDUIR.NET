@@ -1782,6 +1782,26 @@ namespace ExDuiR.NET.Frameworks.Controls
             this.SendMessage(LISTVIEW_MESSAGE_SETCELL, IntPtr.Zero, ptr);
             Marshal.FreeHGlobal(ptr);
         }
+
+        /// <summary>
+        /// 取表项信息
+        /// </summary>
+        /// <param name="row">行索引，从1开始</param>
+        /// <param name="col">列索引，从1开始</param>
+        /// <returns></returns>
+        public ExReportListCellInfo GetCell(int row, int col)
+        {
+            ExReportListCellInfo cellInfo = new ExReportListCellInfo();
+            cellInfo.iRow = row;
+            cellInfo.iCol = col;
+            var ptr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExReportListCellInfo)));
+            Marshal.StructureToPtr(cellInfo, ptr, true);
+            this.SendMessage(LISTVIEW_MESSAGE_GETCELL, IntPtr.Zero, ptr);
+            ExReportListCellInfo retrievedCellInfo = Marshal.PtrToStructure<ExReportListCellInfo>(ptr);
+            Marshal.FreeHGlobal(ptr);
+            return retrievedCellInfo;
+        }
+
         public void Update()
         {
             this.SendMessage(LISTVIEW_MESSAGE_UPDATE);
