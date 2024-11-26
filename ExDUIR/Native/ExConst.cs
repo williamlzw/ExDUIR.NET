@@ -1589,6 +1589,11 @@
         /// <summary>
         /// 
         /// </summary>
+        public const int MB_RETRYCANCEL = 5;
+
+        /// <summary>
+        /// 
+        /// </summary>
         ///
         public const int MB_ICONERROR = 16;
 
@@ -1624,32 +1629,36 @@
         /// <summary>
         /// 信息框返回钮_是钮
         /// </summary>
-        ///
         public const int IDYES = 6;
+
         /// <summary>
         /// 信息框返回钮_否钮
         /// </summary>
-        ///
         public const int IDNO = 7;
+
         /// <summary>
         /// 信息框返回钮_取消钮
         /// </summary>
-        ///
         public const int IDCANCEL = 2;
+
         /// <summary>
-        /// 信息框返回钮_确认钮
+        /// 信息框返回钮_确定钮
         /// </summary>
-        ///
         public const int IDOK = 1;
+
         /// <summary>
         /// 信息框返回钮_关闭钮
         /// </summary>
-        ///
         public const int IDCLOSE = 8;
+
+        /// <summary>
+        /// 信息框返回钮_重试钮
+        /// </summary>
+        public const int IDRETRY = 4;
+
         /// <summary>
         /// 信息框返回钮_默认
         /// </summary>
-        ///
         public const int NULL = 0;
         #endregion
 
@@ -1693,10 +1702,10 @@
         ///
         public const int MESSAGEBOX_FLAG_CENTEWINDOW = 1073741824;
         /// <summary>
-        /// 信息框标识_显示倒计时
+        /// 信息框标识_不继承窗口背景
         /// </summary>
         ///
-        public const int MESSAGEBOX_FLAG_SHOWTIMEOUT = 536870912;
+        public const int MESSAGEBOX_FLAG_NOINHERITBKG = 536870912;
         #endregion
 
         #region 菜单标识_
