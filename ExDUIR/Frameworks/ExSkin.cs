@@ -253,9 +253,9 @@ namespace ExDuiR.NET.Frameworks
         }
 
         /// <summary>
-        /// 窗口阴影圆角度
+        /// 窗口圆角度
         /// </summary>
-        public int ShadowRadius
+        public int Radius
         {
             get
             {

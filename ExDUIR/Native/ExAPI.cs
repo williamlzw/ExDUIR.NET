@@ -2190,7 +2190,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dwFileLen"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Ex_ResGetFile")]
-        public static extern bool Ex_ResGetFile(IntPtr hRes, string lpwzPath, out byte[] lpFile, out IntPtr dwFileLen);
+        public static extern bool Ex_ResGetFile(IntPtr hRes, string lpwzPath, out IntPtr lpFile, out IntPtr dwFileLen);
 
         /// <summary>
         /// 获取资源文件从路径原子
@@ -2201,7 +2201,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dwFileLen"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Ex_ResGetFileFromAtom")]
-        public static extern bool Ex_ResGetFileFromAtom(IntPtr hRes, int atomPath, out byte[] lpFile, out IntPtr dwFileLen);
+        public static extern bool Ex_ResGetFileFromAtom(IntPtr hRes, int atomPath, out IntPtr lpFile, out IntPtr dwFileLen);
 
         /// <summary>
         /// 资源释放
@@ -2899,6 +2899,18 @@ namespace ExDuiR.NET.Native
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_matrix_translate")]
         public static extern bool _matrix_translate(IntPtr pMatrix, float offsetX, float offsetY);
+        #endregion
+
+        #region 资源包
+        /// <summary>
+        /// 打包素材包或资源包
+        /// </summary>
+        /// <param name="root">待打包文件夹，绝对路径</param>
+        /// <param name="file">打包后主题包文件保存路径如test_theme.ext</param>
+        /// <param name="byteHeader">打包类型，可选PACKAGEHEADER_THEME主题包或者PACKAGEHEADER_FILES资源包。资源包可用Ex_ResLoadFromMemory加载，并用Ex_ResGetFile读取资源或者_img_createfromres创建图像</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_res_pack")]
+        public static extern void _res_pack(string root, string file, char byteHeader);
         #endregion
 
         #region 区域

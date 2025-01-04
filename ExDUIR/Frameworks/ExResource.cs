@@ -25,12 +25,12 @@ namespace ExDuiR.NET.Frameworks
             m_hRes = IntPtr.Zero;
         }
 
-        public bool GetFile(string lpwzPath, out byte[] lpFile, out IntPtr dwFileLen)
+        public bool GetFile(string lpwzPath, out IntPtr lpFile, out IntPtr dwFileLen)
         {
             return ExAPI.Ex_ResGetFile(m_hRes, lpwzPath, out lpFile, out dwFileLen);
         }
 
-        public bool GetFileFromAtom(int atomPath, out byte[] lpFile, out IntPtr dwFileLen)
+        public bool GetFileFromAtom(int atomPath, out IntPtr lpFile, out IntPtr dwFileLen)
         {
             return ExAPI.Ex_ResGetFileFromAtom(m_hRes, atomPath, out lpFile, out dwFileLen);
         }

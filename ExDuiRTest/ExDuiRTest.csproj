@@ -201,6 +201,7 @@
     <Compile Include="PropertygridWindow.cs" />
     <Compile Include="RelativeLayoutWindow.cs" />
     <Compile Include="ReportListViewWindow.cs" />
+    <Compile Include="ResPackWindow.cs" />
     <Compile Include="RollMenuWindow.cs" />
     <Compile Include="RotateImageWindow.cs" />
     <Compile Include="ScoreButtonWindow.cs" />

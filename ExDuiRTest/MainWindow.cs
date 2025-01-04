@@ -6,6 +6,7 @@ using static ExDuiR.NET.Native.ExConst;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ExDuiRTest
 {
@@ -20,6 +21,7 @@ namespace ExDuiRTest
         {
             //读入主题包
             var theme = Properties.Resources.Default;
+            //var theme = System.IO.File.ReadAllBytes("res/test_theme.ext");//打包的主题包
             var cursor = Properties.Resources.cursor;
             var hCursor = Util.ExLoadImage(cursor, IMAGE_CURSOR);
             //初始化引擎,必须。开启DPI缩放,渲染全部菜单(二级子菜单改背景色需启用此风格)
@@ -39,14 +41,15 @@ namespace ExDuiRTest
                 //标题栏窗口风格就是标题栏子组件的ID,类似关闭，最大化，最小化按钮也可以这样获取
                 var title = caption.GetObjFromID(WINDOW_STYLE_TITLE);
                 title.ColorTextNormal = Util.ExARGB(120, 230, 21, 255);
+                title.TextFormat = DT_VCENTER | DT_CENTER | DT_SINGLELINE;
                 //改变窗口阴影色
                 skin.ShadowColor = Util.ExARGB(30, 30, 250, 255);
-
+                skin.Radius = 30;
                 buttons = new List<ExButton>();
-                buttons.Add(new ExButton(skin, "测试按钮开关", 10, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
-                buttons.Add(new ExButton(skin, "测试标签", 10, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "🐸测试按钮开关", 10, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "🐓测试标签", 10, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试单选复选框", 10, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
-                buttons.Add(new ExButton(skin, "测试编辑框", 10, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "🦜测试编辑框", 10, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试列表框", 10, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试列表按钮", 10, 230, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试自定义背景", 10, 270, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
@@ -101,7 +104,7 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试托盘", 340, 430, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试蒙板", 340, 470, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试标注画板", 340, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
-                
+                buttons.Add(new ExButton(skin, "测试打包", 340, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
 
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
@@ -341,7 +344,10 @@ namespace ExDuiRTest
             {
                 TaggingBoardWindow.CreateTaggingBoardWindow(skin);
             }
-
+            else if (hObj == buttons[55].handle)
+            {
+                ResPackWindow.CreateResPackWindow(skin);
+            }
             return IntPtr.Zero;
         }
 

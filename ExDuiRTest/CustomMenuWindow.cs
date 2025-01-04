@@ -67,7 +67,6 @@ namespace ExDuiRTest
                     Text = "SubItem 1",
                 };
                 menuItem4.MenuItems.Add(subitem);
-
                 menu.MenuItems.Add(menuItem4);
 
                 skin.Visible = true;
