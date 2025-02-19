@@ -3067,6 +3067,18 @@ namespace ExDuiR.NET.Native
         public static extern bool _path_addarc3(int hPath, float x, float y, float radiusX, float radiusY, float startAngle, float sweepAngle, bool fClockwise, bool barcSize);
 
         /// <summary>
+        /// 路径添加椭圆, 起始点坐标(left, (top + bottom) / 2)
+        /// </summary>
+        /// <param name="hPath"></param>
+        /// <param name="left">椭圆所处矩形左边</param>
+        /// <param name="top">椭圆所处矩形顶边</param>
+        /// <param name="right">椭圆所处矩形右边</param>
+        /// <param name="bottom">椭圆所处矩形底边</param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_path_addellipse")]
+        public static extern bool _path_addellipse(int hPath, float left, float top, float right, float bottom);
+
+        /// <summary>
         /// 路径添加直线
         /// </summary>
         /// <param name="hPath"></param>

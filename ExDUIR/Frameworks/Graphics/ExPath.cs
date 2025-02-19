@@ -41,9 +41,19 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._path_addarc3(m_hPath, x, y, radiusX, radiusY, startAngle, sweepAngle, fClockwise, barcSize);
         }
 
+        public bool AddEllipse(float left, float top, float right, float bottom)
+        {
+            return ExAPI._path_addellipse(m_hPath, left, top, right, bottom);
+        }
+
         public bool AddLine(float x1, float y1, float x2, float y2)
         {
             return ExAPI._path_addline(m_hPath, x1, y1, x2, y2);
+        }
+
+        public bool AddQuadraticBezier(float x1, float y1, float x2, float y2)
+        {
+            return ExAPI._path_addquadraticbezier(m_hPath, x1, y1, x2, y2);
         }
 
         public bool AddRect(float left, float top, float right, float bottom)
