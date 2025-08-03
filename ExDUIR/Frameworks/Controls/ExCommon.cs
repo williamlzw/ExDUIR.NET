@@ -2733,4 +2733,1207 @@ namespace ExDuiR.NET.Frameworks.Controls
 
         public new string ClassName => "TaggingBoard";
     }
+
+    /// <summary>
+    /// 环形进度条
+    /// </summary>
+    public class ExCircleProgressBar : ExControl
+    {
+        public ExCircleProgressBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "CircleProgressBar", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExCircleProgressBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "CircleProgressBar", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
+        {
+        }
+        public ExCircleProgressBar(int hObj) : base(hObj)
+        {
+        }
+        public ExCircleProgressBar(ExControl parent) : base(parent)
+        {
+        }
+
+        /// <summary>
+        /// 位置
+        /// </summary>
+        public int Pos
+        {
+            get
+            {
+                return (int)this.GetLong(CIRCLEPROGRESSBAR_LONG_POS);
+            }
+            set
+            {
+                this.SetLong(CIRCLEPROGRESSBAR_LONG_POS, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 范围
+        /// </summary>
+        public int Range
+        {
+            get
+            {
+                return (int)this.GetLong(CIRCLEPROGRESSBAR_LONG_RANGE);
+            }
+            set
+            {
+                this.SetLong(CIRCLEPROGRESSBAR_LONG_RANGE, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 两端样式
+        /// </summary>
+        public int LineCap
+        {
+            get
+            {
+                return (int)this.GetLong(CIRCLEPROGRESSBAR_LONG_LINECAP);
+            }
+            set
+            {
+                this.SetLong(CIRCLEPROGRESSBAR_LONG_LINECAP, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 环宽度
+        /// </summary>
+        public int LineHeight
+        {
+            get
+            {
+                return (int)this.GetLong(CIRCLEPROGRESSBAR_LONG_LINEHEIGHT);
+            }
+            set
+            {
+                this.SetLong(CIRCLEPROGRESSBAR_LONG_LINEHEIGHT, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 字体句柄，无需手动释放
+        /// </summary>
+        public ExFont Font
+        {
+            get
+            {
+                return new ExFont((int)this.GetLong(CIRCLEPROGRESSBAR_LONG_FONT));
+            }
+            set
+            {
+                this.SetLong(CIRCLEPROGRESSBAR_LONG_FONT, (IntPtr)value.handle);
+            }
+        }
+
+        /// <summary>
+        /// 背景色
+        /// </summary>
+        public int BackgroundColor
+        {
+            get
+            {
+                return (int)this.GetLong(CIRCLEPROGRESSBAR_LONG_BACKGROUNDCOLOR);
+            }
+            set
+            {
+                this.SetLong(CIRCLEPROGRESSBAR_LONG_BACKGROUNDCOLOR, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 前景色
+        /// </summary>
+        public int ForegroundColor
+        {
+            get
+            {
+                return (int)this.GetLong(CIRCLEPROGRESSBAR_LONG_FOREGROUNDCOLOR);
+            }
+            set
+            {
+                this.SetLong(CIRCLEPROGRESSBAR_LONG_FOREGROUNDCOLOR, (IntPtr)value);
+            }
+        }
+
+        public new string ClassName => "CircleProgressBar";
+    }
+
+    /// <summary>
+    /// 水波进度条
+    /// </summary>
+    public class ExWaveProgressBar : ExControl
+    {
+        public ExWaveProgressBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "WaveProgressBar", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExWaveProgressBar(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "WaveProgressBar", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
+        {
+        }
+        public ExWaveProgressBar(int hObj) : base(hObj)
+        {
+        }
+        public ExWaveProgressBar(ExControl parent) : base(parent)
+        {
+        }
+
+        /// <summary>
+        /// 位置 0到100
+        /// </summary>
+        public int Pos
+        {
+            get
+            {
+                return (int)this.GetLong(WAVEPROGRESSBAR_LONG_POS);
+            }
+            set
+            {
+                this.SetLong(WAVEPROGRESSBAR_LONG_POS, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 水波宽度
+        /// </summary>
+        public int WaveWidth
+        {
+            get
+            {
+                return (int)this.GetLong(WAVEPROGRESSBAR_LONG_WAVE_WIDTH);
+            }
+            set
+            {
+                this.SetLong(WAVEPROGRESSBAR_LONG_WAVE_WIDTH, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 水波高度
+        /// </summary>
+        public int WaveHeight
+        {
+            get
+            {
+                return (int)this.GetLong(WAVEPROGRESSBAR_LONG_WAVE_HEIGHT);
+            }
+            set
+            {
+                this.SetLong(WAVEPROGRESSBAR_LONG_WAVE_HEIGHT, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 水波左边，初始值为水波宽度取负数
+        /// </summary>
+        public int LeftX
+        {
+            get
+            {
+                return (int)this.GetLong(WAVEPROGRESSBAR_LONG_LEFT_X);
+            }
+            set
+            {
+                this.SetLong(WAVEPROGRESSBAR_LONG_LEFT_X, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 字体句柄，无需手动释放
+        /// </summary>
+        public ExFont Font
+        {
+            get
+            {
+                return new ExFont((int)this.GetLong(WAVEPROGRESSBAR_LONG_FONT));
+            }
+            set
+            {
+                this.SetLong(WAVEPROGRESSBAR_LONG_FONT, (IntPtr)value.handle);
+            }
+        }
+
+        /// <summary>
+        /// 背景色
+        /// </summary>
+        public int BackgroundColor
+        {
+            get
+            {
+                return (int)this.GetLong(WAVEPROGRESSBAR_LONG_BACKGROUNDCOLOR);
+            }
+            set
+            {
+                this.SetLong(WAVEPROGRESSBAR_LONG_BACKGROUNDCOLOR, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 前景色
+        /// </summary>
+        public int ForegroundColor
+        {
+            get
+            {
+                return (int)this.GetLong(WAVEPROGRESSBAR_LONG_FOREGROUNDCOLOR);
+            }
+            set
+            {
+                this.SetLong(WAVEPROGRESSBAR_LONG_FOREGROUNDCOLOR, (IntPtr)value);
+            }
+        }
+
+        public new string ClassName => "WaveProgressBar";
+    }
+
+    /// <summary>
+    /// 折线图
+    /// </summary>
+    public class ExLineChart : ExControl
+    {
+        public ExLineChart(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "LineChart", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExLineChart(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "LineChart", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
+        {
+        }
+        public ExLineChart(int hObj) : base(hObj)
+        {
+        }
+        public ExLineChart(ExControl parent) : base(parent)
+        {
+        }
+
+        /// <summary>
+        /// 位置 0到100
+        /// </summary>
+        public int SetValue
+        {
+            set
+            {
+                this.SendMessage(LINECHART_MESSAGE_SETVALUE, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 置背景色
+        /// </summary>
+        public int SetBackgroundColor
+        {
+            set
+            {
+                this.SendMessage(LINECHART_MESSAGE_BACKGROUNDCOLOR, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 设置填充前景色
+        /// </summary>
+        public int SetForegroundColorFill
+        {
+            set
+            {
+                this.SendMessage(LINECHART_MESSAGE_FOREGROUNDCOLOR_FILL, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        /// <summary>
+        /// 设置边缘前景色
+        /// </summary>
+        public int SetForegroundColorDraw
+        {
+            set
+            {
+                this.SendMessage(LINECHART_MESSAGE_FOREGROUNDCOLOR_DRAW, IntPtr.Zero, (IntPtr)value);
+            }
+        }
+
+        public new string ClassName => "LineChart";
+    }
+
+    /// <summary>
+    /// 对话盒
+    /// </summary>
+    public class ExChatBox : ExControl
+    {
+        public ExChatBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "ChatBox", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExChatBox(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "ChatBox", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
+        {
+        }
+        public ExChatBox(int hObj) : base(hObj)
+        {
+        }
+        public ExChatBox(ExControl parent) : base(parent)
+        {
+        }
+
+        public ExImage UserImg
+        {
+            set
+            {
+                this.SendMessage(CHATBOX_MESSAGE_SETIMAGE_USER, IntPtr.Zero, (IntPtr)value.handle);
+            }
+        }
+
+        public ExImage AssistantImg
+        {
+            set
+            {
+                this.SendMessage(CHATBOX_MESSAGE_SETIMAGE_ASSISTANT, IntPtr.Zero, (IntPtr)value.handle);
+            }
+        }
+
+        /// <summary>
+        /// 添加项目_文本
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="user">是否是用户</param>
+        public void AddItemText(string text, bool user = false)
+        {
+            var stringPtr = Marshal.StringToHGlobalUni(text);
+            ExChatBoxItemInfoText info = new ExChatBoxItemInfoText
+            {
+                text = stringPtr
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoText));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_TEXT,
+                role = user ? CHATBOX_ITEMROLE_USER : CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoText>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_ADDITEM, IntPtr.Zero, subitemPtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(stringPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 更新项目_文本
+        /// </summary>
+        /// <param name="index">项目索引,从0开始</param>
+        /// <param name="text"></param>
+        /// <param name="user">是否是用户</param>
+        public void UpdateItemText(int index, string text, bool user = false)
+        {
+            var stringPtr = Marshal.StringToHGlobalUni(text);
+            ExChatBoxItemInfoText info = new ExChatBoxItemInfoText
+            {
+                text = stringPtr
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoText));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_TEXT,
+                role = user ? CHATBOX_ITEMROLE_USER : CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoText>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_UPDATEITEM, (IntPtr)index, subitemPtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(stringPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 添加项目_卡片
+        /// </summary>
+        /// <param name="image">图标</param>
+        /// <param name="title">标题</param>
+        /// <param name="content">内容</param>
+        /// <param name="reasonTitle">子标题</param>
+        /// <param name="reason">子内容</param>
+        /// <param name="buttonText">按钮文本</param>
+        public void AddItemCard(ExImage image, string title, string content,
+            string reasonTitle, string reason, string buttonText)
+        {
+            var titlePtr = Marshal.StringToHGlobalUni(title);
+            var contentPtr = Marshal.StringToHGlobalUni(content);
+            var reasonTitlePtr = Marshal.StringToHGlobalUni(reasonTitle);
+            var reasonPtr = Marshal.StringToHGlobalUni(reason);
+            var buttonTextPtr = Marshal.StringToHGlobalUni(buttonText);
+            ExChatBoxItemInfoCard info = new ExChatBoxItemInfoCard
+            {
+                title = titlePtr,
+                content = contentPtr,
+                reason = reasonPtr,
+                reasonTitle = reasonTitlePtr,
+                buttonText = buttonTextPtr,
+                imageHandle = image.handle
+            };
+            int size = Marshal.SizeOf<ExChatBoxItemInfoCard>();
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_CARD,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf<ExChatBoxItemInfoSubitem>();
+            Marshal.StructureToPtr<ExChatBoxItemInfoCard>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_ADDITEM, IntPtr.Zero, subitemPtr);
+            Marshal.FreeHGlobal(titlePtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(contentPtr);
+            Marshal.FreeHGlobal(reasonTitlePtr);
+            Marshal.FreeHGlobal(reasonPtr);
+            Marshal.FreeHGlobal(buttonTextPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 更新项目_卡片
+        /// </summary>
+        /// <param name="index">项目索引,从0开始</param>
+        /// <param name="image">图标</param>
+        /// <param name="title">标题</param>
+        /// <param name="content">内容</param>
+        /// <param name="reasonTitle">子标题</param>
+        /// <param name="reason">子内容</param>
+        /// <param name="buttonText">按钮文本</param>
+        public void UpdateItemCard(int index, ExImage image, string title, string content,
+            string reasonTitle, string reason, string buttonText)
+        {
+            var titlePtr = Marshal.StringToHGlobalUni(title);
+            var contentPtr = Marshal.StringToHGlobalUni(content);
+            var reasonTitlePtr = Marshal.StringToHGlobalUni(reasonTitle);
+            var reasonPtr = Marshal.StringToHGlobalUni(reason);
+            var buttonTextPtr = Marshal.StringToHGlobalUni(buttonText);
+            ExChatBoxItemInfoCard info = new ExChatBoxItemInfoCard
+            {
+                title = titlePtr,
+                content = contentPtr,
+                reason = reasonPtr,
+                reasonTitle = reasonTitlePtr,
+                buttonText = buttonTextPtr,
+                imageHandle = image.handle
+            };
+            int size = Marshal.SizeOf<ExChatBoxItemInfoCard>();
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_CARD,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf<ExChatBoxItemInfoSubitem>();
+            Marshal.StructureToPtr<ExChatBoxItemInfoCard>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_UPDATEITEM, (IntPtr)index, subitemPtr);
+            Marshal.FreeHGlobal(titlePtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(contentPtr);
+            Marshal.FreeHGlobal(reasonTitlePtr);
+            Marshal.FreeHGlobal(reasonPtr);
+            Marshal.FreeHGlobal(buttonTextPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 添加项目_模式
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        public void AddItemMode(ExImage image, string title, string content)
+        {
+            var titlePtr = Marshal.StringToHGlobalUni(title);
+            var contentPtr = Marshal.StringToHGlobalUni(content);
+            ExChatBoxItemInfoMode info = new ExChatBoxItemInfoMode
+            {
+                title = titlePtr,
+                content = contentPtr,
+                imageHandle = image.handle
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoMode));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_BOOSTMODE,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoMode>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_ADDITEM, IntPtr.Zero, subitemPtr);
+            Marshal.FreeHGlobal(titlePtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(contentPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 更新项目_模式
+        /// </summary>
+        /// <param name="index">项目索引,从0开始</param>
+        /// <param name="image"></param>
+        /// <param name="title"></param>
+        /// <param name="content"></param>
+        public void UpdateItemMode(int index, ExImage image, string title, string content)
+        {
+            var titlePtr = Marshal.StringToHGlobalUni(title);
+            var contentPtr = Marshal.StringToHGlobalUni(content);
+            ExChatBoxItemInfoMode info = new ExChatBoxItemInfoMode
+            {
+                title = titlePtr,
+                content = contentPtr,
+                imageHandle = image.handle
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoMode));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_BOOSTMODE,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoMode>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_UPDATEITEM, (IntPtr)index, subitemPtr);
+            Marshal.FreeHGlobal(titlePtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(contentPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 添加项目_错误列表
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="title"></param>
+        /// <param name="units"></param>
+        public void AddItemErrorList(ExImage image, string title, List<ExChatBoxItemInfoErrorListUnit> units)
+        {
+            var titlePtr = Marshal.StringToHGlobalUni(title);
+            var infoPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExChatBoxItemInfoErrorListUnit)) * units.Count);
+            int i = 0;
+            foreach (var item in units)
+            {
+                Marshal.StructureToPtr(item, infoPtr + i * Marshal.SizeOf(typeof(ExChatBoxItemInfoErrorListUnit)), false);
+                i++;
+            }
+
+            ExChatBoxItemInfoErrorList info = new ExChatBoxItemInfoErrorList
+            {
+                title = titlePtr,
+                listInfo = infoPtr,
+                listCount = units.Count,
+                imageHandle = image.handle
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoErrorList));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_ERRORLIST,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoErrorList>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_ADDITEM, IntPtr.Zero, subitemPtr);
+            Marshal.FreeHGlobal(titlePtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(infoPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 更新项目_错误列表
+        /// </summary>
+        /// <param name="index">项目索引,从0开始</param>
+        /// <param name="image"></param>
+        /// <param name="title"></param>
+        /// <param name="units"></param>
+        public void UpdateItemErrorList(int index, ExImage image, string title, List<ExChatBoxItemInfoErrorListUnit> units)
+        {
+            var titlePtr = Marshal.StringToHGlobalUni(title);
+            var infoPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExChatBoxItemInfoErrorListUnit)) * units.Count);
+            int i = 0;
+            foreach (var item in units)
+            {
+                Marshal.StructureToPtr(item, infoPtr + i * Marshal.SizeOf(typeof(ExChatBoxItemInfoErrorListUnit)), false);
+                i++;
+            }
+
+            ExChatBoxItemInfoErrorList info = new ExChatBoxItemInfoErrorList
+            {
+                title = titlePtr,
+                listInfo = infoPtr,
+                listCount = units.Count,
+                imageHandle = image.handle
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoErrorList));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_ERRORLIST,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoErrorList>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_UPDATEITEM, (IntPtr)index, subitemPtr);
+            Marshal.FreeHGlobal(titlePtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(infoPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 添加项目_信息列表
+        /// </summary>
+        /// <param name="image"></param>
+        /// <param name="content"></param>
+        /// <param name="units"></param>
+        public void AddItemInfoList(ExImage image, string content, List<ExChatBoxItemInfoInfoListUnit> units)
+        {
+            var contentPtr = Marshal.StringToHGlobalUni(content);
+            var infoPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExChatBoxItemInfoInfoListUnit)) * units.Count);
+            int i = 0;
+            foreach (var item in units)
+            {
+                Marshal.StructureToPtr(item, infoPtr + i * Marshal.SizeOf(typeof(ExChatBoxItemInfoInfoListUnit)), false);
+                i++;
+            }
+
+            ExChatBoxItemInfoInfoList info = new ExChatBoxItemInfoInfoList
+            {
+                content = contentPtr,
+                listInfo = infoPtr,
+                listCount = units.Count,
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoInfoList));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_INFOLIST,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoInfoList>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_ADDITEM, IntPtr.Zero, subitemPtr);
+            Marshal.FreeHGlobal(contentPtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(infoPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 更新项目_信息列表
+        /// </summary>
+        /// <param name="index">项目索引,从0开始</param>
+        /// <param name="image"></param>
+        /// <param name="content"></param>
+        /// <param name="units"></param>
+        public void UpdateItemInfoList(int index, ExImage image, string content, List<ExChatBoxItemInfoInfoListUnit> units)
+        {
+            var contentPtr = Marshal.StringToHGlobalUni(content);
+            var infoPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(ExChatBoxItemInfoInfoListUnit)) * units.Count);
+            int i = 0;
+            foreach (var item in units)
+            {
+                Marshal.StructureToPtr(item, infoPtr + i * Marshal.SizeOf(typeof(ExChatBoxItemInfoInfoListUnit)), false);
+                i++;
+            }
+
+            ExChatBoxItemInfoInfoList info = new ExChatBoxItemInfoInfoList
+            {
+                content = contentPtr,
+                listInfo = infoPtr,
+                listCount = units.Count,
+            };
+            int size = Marshal.SizeOf(typeof(ExChatBoxItemInfoInfoList));
+            IntPtr dataPtr = Marshal.AllocHGlobal(size);
+            ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+            {
+                type = CHATBOX_ITEMTYPE_INFOLIST,
+                role = CHATBOX_ITEMROLE_ASSISTANT,
+                data = dataPtr
+            };
+            int size2 = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+            Marshal.StructureToPtr<ExChatBoxItemInfoInfoList>(info, subitem.data, false);
+            IntPtr subitemPtr = Marshal.AllocHGlobal(size2);
+            Marshal.StructureToPtr(subitem, subitemPtr, false);
+            this.SendMessage(CHATBOX_MESSAGE_UPDATEITEM, (IntPtr)index, subitemPtr);
+            Marshal.FreeHGlobal(contentPtr);
+            Marshal.FreeHGlobal(dataPtr);
+            Marshal.FreeHGlobal(infoPtr);
+            Marshal.FreeHGlobal(subitemPtr);
+        }
+
+        /// <summary>
+        /// 添加项目_表格列表
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="rows"></param>
+        /// <param name="totalColumnCount"></param>
+        public void AddItemTableList(string content, List<string[]> rows, int totalColumnCount)
+        {
+            List<IntPtr> allAllocations = new List<IntPtr>();
+
+            try
+            {
+                // 1. 分配内容文本
+                IntPtr contentPtr = Marshal.StringToHGlobalUni(content);
+                allAllocations.Add(contentPtr);
+
+                // 2. 分配行结构体数组
+                int unitSize = Marshal.SizeOf<ExChatBoxItemInfoTableListUnit>();
+                IntPtr unitsArrayPtr = Marshal.AllocHGlobal(unitSize * rows.Count);
+                allAllocations.Add(unitsArrayPtr);
+
+                // 3. 填充行数据
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    // 3.1 分配列文本单元数组
+                    int actualColCount = Math.Min(totalColumnCount, rows[i].Length);
+                    int textUnitSize = Marshal.SizeOf<ExChatBoxItemInfoTableListText>();
+                    IntPtr columnsArrayPtr = Marshal.AllocHGlobal(textUnitSize * actualColCount);
+                    allAllocations.Add(columnsArrayPtr);
+
+                    // 3.2 填充列文本单元
+                    for (int j = 0; j < actualColCount; j++)
+                    {
+                        var textUnit = new ExChatBoxItemInfoTableListText
+                        {
+                            text = rows[i][j]
+                        };
+
+                        IntPtr textUnitPtr = columnsArrayPtr + j * textUnitSize;
+                        Marshal.StructureToPtr(textUnit, textUnitPtr, false);
+                    }
+
+                    // 3.3 创建行单元结构
+                    ExChatBoxItemInfoTableListUnit unit = new ExChatBoxItemInfoTableListUnit
+                    {
+                        columns = columnsArrayPtr,
+                    };
+
+                    // 3.4 复制行单元到数组
+                    IntPtr unitPtr = unitsArrayPtr + i * unitSize;
+                    Marshal.StructureToPtr(unit, unitPtr, false);
+                }
+
+                // 4. 创建主结构体
+                ExChatBoxItemInfoTableList tableList = new ExChatBoxItemInfoTableList
+                {
+                    content = contentPtr,
+                    listInfo = unitsArrayPtr,
+                    listCount = rows.Count,
+                    columnCount = totalColumnCount
+                };
+
+                // 5. 分配主结构体内存
+                int tableListSize = Marshal.SizeOf<ExChatBoxItemInfoTableList>();
+                IntPtr tableListPtr = Marshal.AllocHGlobal(tableListSize);
+                allAllocations.Add(tableListPtr);
+                Marshal.StructureToPtr(tableList, tableListPtr, false);
+
+                // 6. 创建子项
+                ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+                {
+                    type = CHATBOX_ITEMTYPE_TABLELIST,
+                    role = CHATBOX_ITEMROLE_ASSISTANT,
+                    data = tableListPtr
+                };
+
+                // 7. 分配子项内存
+                int subitemSize = Marshal.SizeOf<ExChatBoxItemInfoSubitem>();
+                IntPtr subitemPtr = Marshal.AllocHGlobal(subitemSize);
+                allAllocations.Add(subitemPtr);
+                Marshal.StructureToPtr(subitem, subitemPtr, false);
+                // 8. 发送消息
+                this.SendMessage(CHATBOX_MESSAGE_ADDITEM, IntPtr.Zero, subitemPtr);
+            }
+            finally
+            {
+                // 9. 释放所有内存
+                foreach (var ptr in allAllocations)
+                {
+                    Marshal.FreeHGlobal(ptr);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 更新项目_表格列表
+        /// </summary>
+        /// <param name="index">项目索引,从0开始</param>
+        /// <param name="content"></param>
+        /// <param name="rows"></param>
+        /// <param name="totalColumnCount"></param>
+        public void UpdateItemTableList(int index, string content, List<string[]> rows, int totalColumnCount)
+        {
+            List<IntPtr> allAllocations = new List<IntPtr>();
+
+            try
+            {
+                // 1. 分配内容文本
+                IntPtr contentPtr = Marshal.StringToHGlobalUni(content);
+                allAllocations.Add(contentPtr);
+
+                // 2. 分配行结构体数组
+                int unitSize = Marshal.SizeOf<ExChatBoxItemInfoTableListUnit>();
+                IntPtr unitsArrayPtr = Marshal.AllocHGlobal(unitSize * rows.Count);
+                allAllocations.Add(unitsArrayPtr);
+
+                // 3. 填充行数据
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    // 3.1 分配列文本单元数组
+                    int actualColCount = Math.Min(totalColumnCount, rows[i].Length);
+                    int textUnitSize = Marshal.SizeOf<ExChatBoxItemInfoTableListText>();
+                    IntPtr columnsArrayPtr = Marshal.AllocHGlobal(textUnitSize * actualColCount);
+                    allAllocations.Add(columnsArrayPtr);
+
+                    // 3.2 填充列文本单元
+                    for (int j = 0; j < actualColCount; j++)
+                    {
+                        var textUnit = new ExChatBoxItemInfoTableListText
+                        {
+                            text = rows[i][j]
+                        };
+
+                        IntPtr textUnitPtr = columnsArrayPtr + j * textUnitSize;
+                        Marshal.StructureToPtr(textUnit, textUnitPtr, false);
+                    }
+
+                    // 3.3 创建行单元结构
+                    ExChatBoxItemInfoTableListUnit unit = new ExChatBoxItemInfoTableListUnit
+                    {
+                        columns = columnsArrayPtr,
+                    };
+
+                    // 3.4 复制行单元到数组
+                    IntPtr unitPtr = unitsArrayPtr + i * unitSize;
+                    Marshal.StructureToPtr(unit, unitPtr, false);
+                }
+
+                // 4. 创建主结构体
+                ExChatBoxItemInfoTableList tableList = new ExChatBoxItemInfoTableList
+                {
+                    content = contentPtr,
+                    listInfo = unitsArrayPtr,
+                    listCount = rows.Count,
+                    columnCount = totalColumnCount
+                };
+
+                // 5. 分配主结构体内存
+                int tableListSize = Marshal.SizeOf<ExChatBoxItemInfoTableList>();
+                IntPtr tableListPtr = Marshal.AllocHGlobal(tableListSize);
+                allAllocations.Add(tableListPtr);
+                Marshal.StructureToPtr(tableList, tableListPtr, false);
+
+                // 6. 创建子项
+                ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+                {
+                    type = CHATBOX_ITEMTYPE_TABLELIST,
+                    role = CHATBOX_ITEMROLE_ASSISTANT,
+                    data = tableListPtr
+                };
+
+                // 7. 分配子项内存
+                int subitemSize = Marshal.SizeOf<ExChatBoxItemInfoSubitem>();
+                IntPtr subitemPtr = Marshal.AllocHGlobal(subitemSize);
+                allAllocations.Add(subitemPtr);
+                Marshal.StructureToPtr(subitem, subitemPtr, false);
+                // 8. 发送消息
+                this.SendMessage(CHATBOX_MESSAGE_UPDATEITEM, (IntPtr)index, subitemPtr);
+            }
+            finally
+            {
+                // 9. 释放所有内存
+                foreach (var ptr in allAllocations)
+                {
+                    Marshal.FreeHGlobal(ptr);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 添加项目_链接
+        /// </summary>
+        /// <param name="content"></param>
+        /// <param name="title"></param>
+        /// <param name="linkItems"></param>
+        public void AddItemInfoLink(string content, string title, List<string> linkItems)
+        {
+            List<IntPtr> allocatedMemory = new List<IntPtr>();
+
+            try
+            {
+                // 分配并复制内容字符串
+                IntPtr contentPtr = Marshal.StringToHGlobalUni(content);
+                allocatedMemory.Add(contentPtr);
+
+                // 分配并复制标题字符串
+                IntPtr titlePtr = Marshal.StringToHGlobalUni(title);
+                allocatedMemory.Add(titlePtr);
+
+                // 分配链接单元数组
+                int unitSize = Marshal.SizeOf(typeof(ExChatBoxItemInfoLinkUnit));
+                IntPtr listInfoPtr = Marshal.AllocHGlobal(unitSize * linkItems.Count);
+                allocatedMemory.Add(listInfoPtr);
+
+                // 创建并填充链接单元
+                for (int i = 0; i < linkItems.Count; i++)
+                {
+                    var unit = new ExChatBoxItemInfoLinkUnit { Text = linkItems[i] };
+                    IntPtr unitPtr = IntPtr.Add(listInfoPtr, i * unitSize);
+                    Marshal.StructureToPtr(unit, unitPtr, false);
+                }
+
+                // 创建主链接结构
+                ExChatBoxItemInfoLink linkInfo = new ExChatBoxItemInfoLink
+                {
+                    content = contentPtr,
+                    title = titlePtr,
+                    listInfo = listInfoPtr,
+                    listCount = linkItems.Count
+                };
+
+                // 分配并复制链接结构
+                int linkInfoSize = Marshal.SizeOf(typeof(ExChatBoxItemInfoLink));
+                IntPtr linkInfoPtr = Marshal.AllocHGlobal(linkInfoSize);
+                allocatedMemory.Add(linkInfoPtr);
+                Marshal.StructureToPtr(linkInfo, linkInfoPtr, false);
+
+                // 创建子项
+                ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+                {
+                    type = CHATBOX_ITEMTYPE_LINK,
+                    role = CHATBOX_ITEMROLE_ASSISTANT,
+                    data = linkInfoPtr
+                };
+
+                // 分配并复制子项
+                int subitemSize = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+                IntPtr subitemPtr = Marshal.AllocHGlobal(subitemSize);
+                allocatedMemory.Add(subitemPtr);
+                Marshal.StructureToPtr(subitem, subitemPtr, false);
+
+                // 发送消息
+                this.SendMessage(CHATBOX_MESSAGE_ADDITEM, IntPtr.Zero, subitemPtr);
+            }
+            finally
+            {
+                // 释放所有分配的内存
+                foreach (IntPtr ptr in allocatedMemory)
+                {
+                    Marshal.FreeHGlobal(ptr);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 更新项目_链接
+        /// </summary>
+        /// <param name="index">项目索引,从0开始</param>
+        /// <param name="content"></param>
+        /// <param name="title"></param>
+        /// <param name="linkItems"></param>
+        public void UpdateItemInfoLink(int index, string content, string title, List<string> linkItems)
+        {
+            List<IntPtr> allocatedMemory = new List<IntPtr>();
+
+            try
+            {
+                // 分配并复制内容字符串
+                IntPtr contentPtr = Marshal.StringToHGlobalUni(content);
+                allocatedMemory.Add(contentPtr);
+
+                // 分配并复制标题字符串
+                IntPtr titlePtr = Marshal.StringToHGlobalUni(title);
+                allocatedMemory.Add(titlePtr);
+
+                // 分配链接单元数组
+                int unitSize = Marshal.SizeOf(typeof(ExChatBoxItemInfoLinkUnit));
+                IntPtr listInfoPtr = Marshal.AllocHGlobal(unitSize * linkItems.Count);
+                allocatedMemory.Add(listInfoPtr);
+
+                // 创建并填充链接单元
+                for (int i = 0; i < linkItems.Count; i++)
+                {
+                    var unit = new ExChatBoxItemInfoLinkUnit { Text = linkItems[i] };
+                    IntPtr unitPtr = IntPtr.Add(listInfoPtr, i * unitSize);
+                    Marshal.StructureToPtr(unit, unitPtr, false);
+                }
+
+                // 创建主链接结构
+                ExChatBoxItemInfoLink linkInfo = new ExChatBoxItemInfoLink
+                {
+                    content = contentPtr,
+                    title = titlePtr,
+                    listInfo = listInfoPtr,
+                    listCount = linkItems.Count
+                };
+
+                // 分配并复制链接结构
+                int linkInfoSize = Marshal.SizeOf(typeof(ExChatBoxItemInfoLink));
+                IntPtr linkInfoPtr = Marshal.AllocHGlobal(linkInfoSize);
+                allocatedMemory.Add(linkInfoPtr);
+                Marshal.StructureToPtr(linkInfo, linkInfoPtr, false);
+
+                // 创建子项
+                ExChatBoxItemInfoSubitem subitem = new ExChatBoxItemInfoSubitem
+                {
+                    type = CHATBOX_ITEMTYPE_LINK,
+                    role = CHATBOX_ITEMROLE_ASSISTANT,
+                    data = linkInfoPtr
+                };
+
+                // 分配并复制子项
+                int subitemSize = Marshal.SizeOf(typeof(ExChatBoxItemInfoSubitem));
+                IntPtr subitemPtr = Marshal.AllocHGlobal(subitemSize);
+                allocatedMemory.Add(subitemPtr);
+                Marshal.StructureToPtr(subitem, subitemPtr, false);
+
+                // 发送消息
+                this.SendMessage(CHATBOX_MESSAGE_UPDATEITEM, (IntPtr)index, subitemPtr);
+            }
+            finally
+            {
+                // 释放所有分配的内存
+                foreach (IntPtr ptr in allocatedMemory)
+                {
+                    Marshal.FreeHGlobal(ptr);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 取项目类型
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>返回CHATBOX_ITEMTYPE_常量</returns>
+        public int GetItemType(int index)
+        {
+            return (int)this.SendMessage(CHATBOX_MESSAGE_GETITEMTYPE, (IntPtr)index, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// 取项目总数
+        /// </summary>
+        /// <returns></returns>
+        public int GetItemCount()
+        {
+            return (int)this.SendMessage(CHATBOX_MESSAGE_GETITEMCOUNT, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// 取文本项目内容
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public string GetItemText(int index)
+        {
+            var dataPtr = this.SendMessage(CHATBOX_MESSAGE_GETITEMDATA, (IntPtr)index, IntPtr.Zero);
+            var data = Marshal.PtrToStructure<ExChatBoxItemInfoText>(dataPtr);
+            return Marshal.PtrToStringUni(data.text);
+        }
+
+        public ExChatBoxItemInfoCard GetItemCard(int index)
+        {
+            var dataPtr = this.SendMessage(CHATBOX_MESSAGE_GETITEMDATA, (IntPtr)index, IntPtr.Zero);
+            var data = Marshal.PtrToStructure<ExChatBoxItemInfoCard>(dataPtr);
+            return data;
+        }
+
+        public ExChatBoxItemInfoMode GetItemMode(int index)
+        {
+            var dataPtr = this.SendMessage(CHATBOX_MESSAGE_GETITEMDATA, (IntPtr)index, IntPtr.Zero);
+            var data = Marshal.PtrToStructure<ExChatBoxItemInfoMode>(dataPtr);
+            return data;
+        }
+
+        public ExChatBoxItemInfoErrorList GetItemErrorList(int index)
+        {
+            var dataPtr = this.SendMessage(CHATBOX_MESSAGE_GETITEMDATA, (IntPtr)index, IntPtr.Zero);
+            var data = Marshal.PtrToStructure<ExChatBoxItemInfoErrorList>(dataPtr);
+            return data;
+        }
+
+        public ExChatBoxItemInfoInfoList GetItemInfoList(int index)
+        {
+            var dataPtr = this.SendMessage(CHATBOX_MESSAGE_GETITEMDATA, (IntPtr)index, IntPtr.Zero);
+            var data = Marshal.PtrToStructure<ExChatBoxItemInfoInfoList>(dataPtr);
+            return data;
+        }
+
+        public ExChatBoxItemInfoTableList GetItemTableList(int index)
+        {
+            var dataPtr = this.SendMessage(CHATBOX_MESSAGE_GETITEMDATA, (IntPtr)index, IntPtr.Zero);
+            var data = Marshal.PtrToStructure<ExChatBoxItemInfoTableList>(dataPtr);
+            return data;
+        }
+
+        public ExChatBoxItemInfoLink GetItemLink(int index)
+        {
+            var dataPtr = this.SendMessage(CHATBOX_MESSAGE_GETITEMDATA, (IntPtr)index, IntPtr.Zero);
+            var data = Marshal.PtrToStructure<ExChatBoxItemInfoLink>(dataPtr);
+            return data;
+        }
+
+        public new string ClassName => "ChatBox";
+    }
+
+    /// <summary>
+    /// 流程图
+    /// </summary>
+    public class ExFlowChart : ExControl
+    {
+        public ExFlowChart(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight)
+            : base(oParent, "FlowChart", sTitle, x, y, nWidth, nHeight)
+        {
+        }
+
+        public ExFlowChart(IExBaseUIEle oParent, string sTitle, int x, int y, int nWidth, int nHeight, int dwStyle = -1, int dwStyleEx = -1, int dwTextFormat = -1, int nID = 0, IntPtr lParam = default, ExObjProcDelegate pfnObjProc = null)
+            : base(oParent, "FlowChart", sTitle, x, y, nWidth, nHeight, dwStyle, dwStyleEx, dwTextFormat, nID, lParam, IntPtr.Zero, pfnObjProc)
+        {
+        }
+        public ExFlowChart(int hObj) : base(hObj)
+        {
+        }
+        public ExFlowChart(ExControl parent) : base(parent)
+        {
+        }
+        public new string ClassName => "FlowChart";
+    }
 }

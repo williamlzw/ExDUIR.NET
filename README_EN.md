@@ -186,3 +186,18 @@ win10+, win7 need install KB2670838 patch
 
 ### demo taggingboard:
 ![image](demo_image/demo_taggingboard.png)
+
+### demo circleprogressbar:
+![image](demo_image/demo_circleprogressbar.png)
+
+### demo waveprogressbar:
+![image](demo_image/demo_waveprogressbar.png)
+
+### demo linechart:
+![image](demo_image/demo_linechart.png)
+
+### demo chatbox:
+![image](demo_image/demo_chatbox.png)
+
+### demo flowchart:
+![image](demo_image/demo_flowchart.png)

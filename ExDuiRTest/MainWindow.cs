@@ -106,6 +106,12 @@ namespace ExDuiRTest
                 buttons.Add(new ExButton(skin, "测试标注画板", 340, 510, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
                 buttons.Add(new ExButton(skin, "测试打包", 340, 550, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
 
+                buttons.Add(new ExButton(skin, "测试环形进度条", 450, 30, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试水波进度条", 450, 70, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试折线图", 450, 110, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试对话盒", 450, 150, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+                buttons.Add(new ExButton(skin, "测试流程图", 450, 190, 100, 30, -1, -1, DT_VCENTER | DT_CENTER));
+
                 //类成员保存委托,不会被垃圾回收
                 buttonEventProc = new ExObjEventProcDelegate(MainButtonEventProc);
                 for (int i = 0; i < buttons.Count; i++)
@@ -347,6 +353,26 @@ namespace ExDuiRTest
             else if (hObj == buttons[55].handle)
             {
                 ResPackWindow.CreateResPackWindow(skin);
+            }
+            else if (hObj == buttons[56].handle)
+            {
+                CircleProgressBarWindow.CreateCircleProgressBarWindow(skin);
+            }
+            else if (hObj == buttons[57].handle)
+            {
+                WaveProgressBarWindow.CreateWaveProgressBarWindow(skin);
+            }
+            else if (hObj == buttons[58].handle)
+            {
+                LineChartWindow.CreateLineChartWindow(skin);
+            }
+            else if (hObj == buttons[59].handle)
+            {
+                ChatBoxWindow.CreateChatBoxWindow(skin);
+            }
+            else if (hObj == buttons[60].handle)
+            {
+                FlowChartWindow.CreateFlowChartWindow(skin);
             }
             return IntPtr.Zero;
         }

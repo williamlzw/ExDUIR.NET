@@ -172,14 +172,29 @@ win10+， win7 需要安装KB2670838补丁
 ### trayicon
 ![image](demo_image/demo_trayicon.png)
 
-### winform:  
+### winform
 ![image](demo_image/demo_winform.png)
 
-### cefsharp browser:  
+### cefsharp browser  
 ![image](demo_image/demo_cef.png)
 
 ### login demo
 ![image](demo_image/demo_login.png)
 
-### demo taggingboard:
+### demo taggingboard
 ![image](demo_image/demo_taggingboard.png)
+
+### demo circleprogressbar:
+![image](demo_image/demo_circleprogressbar.png)
+
+### demo waveprogressbar:
+![image](demo_image/demo_waveprogressbar.png)
+
+### demo linechart:
+![image](demo_image/demo_linechart.png)
+
+### demo chatbox:
+![image](demo_image/demo_chatbox.png)
+
+### demo flowchart:
+![image](demo_image/demo_flowchart.png)

@@ -1205,6 +1205,495 @@ namespace ExDuiR.NET.Native
         public IntPtr points;
     };
 
+    public struct ExChatBoxItemLayoutText
+    {
+        public ExRect rcAvatar;
+        public ExRect rcBubble;
+        public ExRect rcContent;
+    }
+
+    /// <summary>
+    /// 对话盒项目信息_文本
+    /// </summary>
+    public struct ExChatBoxItemInfoText
+    {
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public IntPtr text;
+        /// <summary>
+        /// 组件内部使用，无需设置
+        /// </summary>
+        private ExChatBoxItemLayoutText layout;
+    };
+
+    public struct ExChatBoxItemLayoutCard
+    {
+        public ExRect rcAvatar;
+        public ExRect rcBubble;
+        public ExRect rcContent;
+        public ExRect rcCardImage;
+        public ExRect rcCardTitle;
+        public ExRect rcCardContent;
+        public ExRect rcReasonRect;
+        public ExRect rcReasonTitle;
+        public ExRect rcReason;
+        public ExRect rcButton;
+    }
+
+    /// <summary>
+    /// 对话盒项目信息_卡片
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExChatBoxItemInfoCard
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// 卡片图标
+        /// </summary>
+        public int imageHandle;
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public IntPtr content;
+        /// <summary>
+        /// 原因标题
+        /// </summary>
+        public IntPtr reasonTitle;
+        /// <summary>
+        /// 原因内容
+        /// </summary>
+        public IntPtr reason;
+        /// <summary>
+        /// 按钮标题
+        /// </summary>
+        public IntPtr buttonText;
+        /// <summary>
+        /// 组件内部使用，无需设置
+        /// </summary>
+        private ExChatBoxItemLayoutCard layout;
+    };
+
+    public struct ExChatBoxItemLayoutMode
+    {
+        public ExRect rcAvatar;
+        public ExRect rcBubble;
+        public ExRect rcImage;
+        public ExRect rcTitle;
+        public ExRect rcContent;
+    }
+
+    /// <summary>
+    /// 对话盒项目信息_模式
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExChatBoxItemInfoMode
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public IntPtr content;
+        /// <summary>
+        /// 卡片图标
+        /// </summary>
+        public int imageHandle;
+        /// <summary>
+        /// 组件内部使用，无需设置
+        /// </summary>
+        private ExChatBoxItemLayoutMode layout;
+    };
+
+    /// <summary>
+    /// 对话盒项目信息_错误列表单元
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ExChatBoxItemInfoErrorListUnit
+    {
+        /// <summary>
+        /// 错误码标题
+        /// </summary>
+        public IntPtr errorCode;
+        /// <summary>
+        /// 错误码内容
+        /// </summary>
+        public IntPtr errorCodeText;
+        /// <summary>
+        /// 描述标题
+        /// </summary>
+        public IntPtr description;
+        /// <summary>
+        /// 描述内容
+        /// </summary>
+        public IntPtr descriptionText;
+    };
+
+    public struct ExChatBoxItemLayoutErrorList
+    {
+        public ExRect rcAvatar;
+        public ExRect rcBubble;
+        public ExRect rcImage;
+        public ExRect rcTitle;
+        public IntPtr rcErrorCodeList;
+        public IntPtr rcErrorCodeTextList;
+        public IntPtr rcDescriptionList;
+        public IntPtr rcDescriptionTextList;
+    }
+
+    /// <summary>
+    /// 对话盒项目信息_错误列表
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExChatBoxItemInfoErrorList
+    {
+        /// <summary>
+        /// 卡片图标
+        /// </summary>
+        public int imageHandle;
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// ExChatBoxItemInfoErrorListUnit数组
+        /// </summary>
+        public IntPtr listInfo;
+        /// <summary>
+        /// 数组数量
+        /// </summary>
+        public int listCount;
+        /// <summary>
+        /// 组件内部使用，无需设置
+        /// </summary>
+        private ExChatBoxItemLayoutErrorList layout;
+    };
+
+    /// <summary>
+    /// 对话盒项目信息_信息列表单元
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ExChatBoxItemInfoInfoListUnit
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// 描述
+        /// </summary>
+        public IntPtr description;
+    };
+
+    public struct ExChatBoxItemLayoutInfoList
+    {
+        public ExRect rcAvatar;
+        public ExRect rcBubble;
+        public ExRect rcContent;
+        public IntPtr rcTitleList;
+        public IntPtr rcDescriptionList;
+    }
+
+    /// <summary>
+    /// 对话盒项目信息_信息列表
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExChatBoxItemInfoInfoList
+    {
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public IntPtr content;
+        /// <summary>
+        /// ExChatBoxItemInfoInfoListUnit数组
+        /// </summary>
+        public IntPtr listInfo;
+        /// <summary>
+        /// 数组数量
+        /// </summary>
+        public int listCount;
+        /// <summary>
+        /// 组件内部使用，无需设置
+        /// </summary>
+        private ExChatBoxItemLayoutInfoList layout;
+    };
+
+    /// <summary>
+    /// 对话盒项目信息_表格_列文本单元结构体
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExChatBoxItemInfoTableListText
+    {
+        /// <summary>
+        /// 列文本数组
+        /// </summary>
+        [MarshalAs(UnmanagedType.LPWStr)]
+        public string text;
+    };
+
+    /// <summary>
+    /// 对话盒项目信息_表格_行单元结构体
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ExChatBoxItemInfoTableListUnit
+    {
+        /// <summary>
+        /// 指向 ExChatBoxItemInfoTableListText 数组的指针
+        /// </summary>
+        public IntPtr columns;
+    };
+
+    public struct ExChatBoxItemLayoutTableList
+    {
+        public ExRect rcAvatar;
+        public ExRect rcBubble;
+        public ExRect rcContent;
+        public IntPtr rcUnitList;
+    }
+
+    /// <summary>
+    /// 对话盒项目信息_表格列表
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExChatBoxItemInfoTableList
+    {
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public IntPtr content;
+        /// <summary>
+        /// ExChatBoxItemInfoTableListUnit数组
+        /// </summary>
+        public IntPtr listInfo;
+        /// <summary>
+        /// 行数 ExChatBoxItemInfoTableListUnit数组数量
+        /// </summary>
+        public int listCount;
+        /// <summary>
+        /// 组件内部使用，无需设置
+        /// </summary>
+        private ExChatBoxItemLayoutTableList layout;
+        /// <summary>
+        /// 总列数（每行共享列数）
+        /// </summary>
+        public int columnCount;
+    };
+
+    /// <summary>
+    /// 对话盒项目信息_链接单元
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExChatBoxItemInfoLinkUnit
+    {
+        /// <summary>
+        /// 文本
+        /// </summary>
+        [MarshalAs(UnmanagedType.LPWStr)]
+        public string Text;
+    };
+
+    public struct ExChatBoxItemLayoutInfoLink
+    {
+        public ExRect rcAvatar;
+        public ExRect rcBubble;
+        public ExRect rcContent;
+        public ExRect rcTitle;
+        public IntPtr rcUnitList;
+    }
+
+    /// <summary>
+    /// 对话盒项目信息_链接
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExChatBoxItemInfoLink
+    {
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public IntPtr content;
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// ExChatBoxItemInfoLinkUnit数组
+        /// </summary>
+        public IntPtr listInfo;
+        /// <summary>
+        /// 数组数量
+        /// </summary>
+        public int listCount;
+        /// <summary>
+        /// 组件内部使用，无需设置
+        /// </summary>
+        private ExChatBoxItemLayoutInfoLink layout;
+    };
+
+    /// <summary>
+    /// 对话盒项目信息子项目
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExChatBoxItemInfoSubitem
+    {
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public int type;
+        /// <summary>
+        /// 角色
+        /// </summary>
+        public int role;
+        /// <summary>
+        /// 子数据结构
+        /// </summary>
+        public IntPtr data;
+        /// <summary>
+        /// 组件内部使用，整个项目的矩形区域
+        /// </summary>
+        private ExRect rcItem;
+        /// <summary>
+        /// 组件内部使用，项目总高度
+        /// </summary>
+        private int nHeight;
+    };
+
+    /// <summary>
+    /// 流程图节点选项数据结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExFlowChartNodeComboData
+    {
+        /// <summary>
+        /// 选项数组
+        /// </summary>
+        public IntPtr options;
+        /// <summary>
+        /// 选项数量
+        /// </summary>
+        public int count;
+        /// <summary>
+        /// 当前选中的索引
+        /// </summary>
+        public int current;
+    }
+
+    /// <summary>
+    /// 流程图节点数据结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ExFlowChartNodeData
+    {
+        /// <summary>
+        /// 数据类型
+        /// </summary>
+        public int type;
+        /// <summary>
+        /// 数据id
+        /// </summary>
+        public int id;
+        /// <summary>
+        /// 该项的位置和大小
+        /// </summary>
+        public ExRect rect;
+        /// <summary>
+        /// 数据指针（指向字符串、图片句柄或 COMBO 数据结构）
+        /// </summary>
+        public IntPtr data;
+    };
+
+    /// <summary>
+    /// 流程图节点结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, Pack = 4)]
+    public struct ExFlowChartNode
+    {
+        /// <summary>
+        /// 节点id
+        /// </summary>
+        public int id;
+        public float x;
+        public float y;
+        public float width;
+        public float height;
+        /// <summary>
+        /// 节点标题
+        /// </summary>
+        public IntPtr title;
+        /// <summary>
+        /// 节点数据列表ExFlowChartNodeData
+        /// </summary>
+        public IntPtr nodeDataList;
+        /// <summary>
+        /// 节点数据项数量
+        /// </summary>
+        public int nodeDataCount;
+        /// <summary>
+        /// 输入插槽名称数组
+        /// </summary>
+        public IntPtr inputSlots;
+        /// <summary>
+        /// 输入插槽位置数组
+        /// </summary>
+        public IntPtr inputRects;
+        /// <summary>
+        /// 输入插槽数量
+        /// </summary>
+        public int inputCount;
+        /// <summary>
+        /// 输出插槽名称数组
+        /// </summary>
+        public IntPtr outputSlots;
+        /// <summary>
+        /// 输出插槽位置数组
+        /// </summary>
+        public IntPtr outputRects;
+        /// <summary>
+        /// 输出插槽数量
+        /// </summary>
+        public int outputCount;
+    };
+
+    /// <summary>
+    /// 流程图连接线数据结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ExFlowChartConnection
+    {
+        /// <summary>
+        /// 连接线id
+        /// </summary>
+        public int id;
+        /// <summary>
+        /// 源节点id
+        /// </summary>
+        public int fromNode;
+        /// <summary>
+        /// 源插槽索引
+        /// </summary>
+        public int fromSlot;
+        /// <summary>
+        /// 目标节点id
+        /// </summary>
+        public int toNode;
+        /// <summary>
+        /// 目标插槽索引
+        /// </summary>
+        public int toSlot;
+        /// <summary>
+        /// 控制点1
+        /// </summary>
+        public ExPointF controlPoint1;
+        /// <summary>
+        /// 控制点2
+        /// </summary>
+        public ExPointF controlPoint2;
+    }
+
     /// <summary>
     /// API声明
     /// </summary>

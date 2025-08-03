@@ -3428,13 +3428,13 @@
 
         #region 路径标识_
         /// <summary>
-        /// 路径标识_缩放
-        /// </summary>
-        public const int PATH_FLAG_NORMAL = 0;
-        /// <summary>
         /// 路径标识_禁止缩放
         /// </summary>
-        public const int PATH_FLAG_DISABLESCALE = 1;
+        public const int PATH_FLAG_DISABLESCALE = 0;
+        /// <summary>
+        /// 路径标识_缩放
+        /// </summary>
+        public const int PATH_FLAG_SCALE = 1;
         #endregion
 
         #region 路径开始标识_
@@ -3916,6 +3916,252 @@
         /// 事件_标注板_鼠标移动, wParam返回鼠标所处图横坐标,lParam返回鼠标所处图纵坐标
         /// </summary>
         public const int TAGGINGBOARD_EVENT_MOUSE_MOVE = 20001;
+        #endregion
+
+        #region 属性_环形进度条_
+        /// <summary>
+        /// 属性_环形进度条_位置 
+        /// </summary>
+        public const int CIRCLEPROGRESSBAR_LONG_POS = 0;
+        /// <summary>
+        /// 属性_环形进度条_范围
+        /// </summary>
+        public const int CIRCLEPROGRESSBAR_LONG_RANGE = 1;
+        /// <summary>
+        /// 属性_环形进度条_环宽度
+        /// </summary>
+        public const int CIRCLEPROGRESSBAR_LONG_LINEHEIGHT = 2;
+        /// <summary>
+        /// 属性_环形进度条_进度条两端样式 0直线 1弧线
+        /// </summary>
+        public const int CIRCLEPROGRESSBAR_LONG_LINECAP = 3;
+        /// <summary>
+        /// 属性_环形进度条_背景颜色
+        /// </summary>
+        public const int CIRCLEPROGRESSBAR_LONG_BACKGROUNDCOLOR = 4;
+        /// <summary>
+        /// 属性_环形进度条_前景颜色
+        /// </summary>
+        public const int CIRCLEPROGRESSBAR_LONG_FOREGROUNDCOLOR = 5;
+        /// <summary>
+        /// 属性_环形进度条_进度字体句柄,无需手动销毁
+        /// </summary>
+        public const int CIRCLEPROGRESSBAR_LONG_FONT = 6;
+        #endregion
+
+        #region 属性_水波进度条_
+        /// <summary>
+        /// 属性_水波进度条_位置 0到100
+        /// </summary>
+        public const int WAVEPROGRESSBAR_LONG_POS = 0;
+        /// <summary>
+        /// 属性_水波进度条_水波宽度
+        /// </summary>
+        public const int WAVEPROGRESSBAR_LONG_WAVE_WIDTH = 1;
+        /// <summary>
+        /// 属性_水波进度条_水波高度
+        /// </summary>
+        public const int WAVEPROGRESSBAR_LONG_WAVE_HEIGHT = 2;
+        /// <summary>
+        /// 属性_水波进度条_水波左边，初始值为水波宽度取负数
+        /// </summary>
+        public const int WAVEPROGRESSBAR_LONG_LEFT_X = 3;
+        /// <summary>
+        /// 属性_环形进度条_字体句柄,无需手动销毁
+        /// </summary>
+        public const int WAVEPROGRESSBAR_LONG_FONT = 4;
+        /// <summary>
+        /// 属性_水波进度条_背景颜色
+        /// </summary>
+        public const int WAVEPROGRESSBAR_LONG_BACKGROUNDCOLOR = 5;
+        /// <summary>
+        /// 属性_水波进度条_前景颜色
+        /// </summary>
+        public const int WAVEPROGRESSBAR_LONG_FOREGROUNDCOLOR = 6;
+        #endregion
+
+        #region 消息_折线图_
+        /// <summary>
+        /// 消息_折线图_添加值 lParam: 1到100
+        /// </summary>
+        public const int LINECHART_MESSAGE_SETVALUE = 200001;
+        /// <summary>
+        /// 消息_折线图_设置背景线条色 lParam:ARGB
+        /// </summary>
+        public const int LINECHART_MESSAGE_BACKGROUNDCOLOR = 200002;
+        /// <summary>
+        /// 消息_折线图_设置填充前景色
+        /// </summary>
+        public const int LINECHART_MESSAGE_FOREGROUNDCOLOR_FILL = 200003;
+        /// <summary>
+        /// 消息_折线图_设置边缘前景色
+        /// </summary>
+        public const int LINECHART_MESSAGE_FOREGROUNDCOLOR_DRAW = 200004;
+        #endregion
+
+        #region 消息_对话盒_
+        /// <summary>
+        /// 消息_对话盒_添加表项
+        /// </summary>
+        public const int CHATBOX_MESSAGE_ADDITEM = 10010;
+        /// <summary>
+        /// 消息_对话盒_更新表项
+        /// </summary>
+        public const int CHATBOX_MESSAGE_UPDATEITEM = 10011;
+        /// <summary>
+        /// 消息_对话盒_取表项类型
+        /// </summary>
+        public const int CHATBOX_MESSAGE_GETITEMTYPE = 10012;
+        /// <summary>
+        /// 消息_对话盒_取表项数据
+        /// </summary>
+        public const int CHATBOX_MESSAGE_GETITEMDATA = 10013;
+        /// <summary>
+        /// 消息_对话盒_取表项总数,失败返回-1
+        /// </summary>
+        public const int CHATBOX_MESSAGE_GETITEMCOUNT = 10014;
+        /// <summary>
+        /// 消息_对话盒_设置用户图标
+        /// </summary>
+        public const int CHATBOX_MESSAGE_SETIMAGE_USER = 10015;
+        /// <summary>
+        /// 消息_对话盒_设置助手图标
+        /// </summary>
+        public const int CHATBOX_MESSAGE_SETIMAGE_ASSISTANT = 10016;
+        #endregion
+
+        #region 事件_对话盒_
+        /// <summary>
+        /// 事件_对话盒_点击按钮,lParam返回消息索引,从0开始
+        /// </summary>
+        public const int CHATBOX_EVENT_CLICKBUTTON = 20000;
+        /// <summary>
+        /// 事件_对话盒_点击链接,wParam返回消息索引,从0开始, lParam返回链接索引,从0开始
+        /// </summary>
+        public const int CHATBOX_EVENT_CLICKLINK = 20001;
+        #endregion
+
+        #region 项目角色_对话盒_
+        /// <summary>
+        /// 对话盒_项目角色_用户
+        /// </summary>
+        public const int CHATBOX_ITEMROLE_USER = 0;
+        /// <summary>
+        /// 对话盒_项目角色_助手
+        /// </summary>
+        public const int CHATBOX_ITEMROLE_ASSISTANT = 1;
+        #endregion
+
+        #region 项目类型_对话盒_
+        /// <summary>
+        /// 对话盒_项目类型_文本
+        /// </summary>
+        public const int CHATBOX_ITEMTYPE_TEXT = 0;
+        /// <summary>
+        /// 对话盒_项目类型_卡片
+        /// </summary>
+        public const int CHATBOX_ITEMTYPE_CARD = 1;
+        /// <summary>
+        /// 对话盒_项目类型_模式
+        /// </summary>
+        public const int CHATBOX_ITEMTYPE_BOOSTMODE = 2;
+        /// <summary>
+        /// 对话盒_项目类型_错误列表
+        /// </summary>
+        public const int CHATBOX_ITEMTYPE_ERRORLIST = 3;
+        /// <summary>
+        /// 对话盒_项目类型_信息列表
+        /// </summary>
+        public const int CHATBOX_ITEMTYPE_INFOLIST = 4;
+        /// <summary>
+        /// 对话盒_项目类型_表格列表
+        /// </summary>
+        public const int CHATBOX_ITEMTYPE_TABLELIST = 5;
+        /// <summary>
+        /// 对话盒_项目类型_链接列表
+        /// </summary>
+        public const int CHATBOX_ITEMTYPE_LINK = 6;
+        #endregion
+
+        #region 项目类型_流程图_
+        /// <summary>
+        /// 项目类型_流程图_编辑框
+        /// </summary>
+        public const int FLOWCHART_NODEDATA_TYPE_EDIT = 0;
+        /// <summary>
+        /// 项目类型_流程图_图片框
+        /// </summary>
+        public const int FLOWCHART_NODEDATA_TYPE_IMAGE = 1;
+        /// <summary>
+        /// 项目类型_流程图_选项卡
+        /// </summary>
+        public const int FLOWCHART_NODEDATA_TYPE_COMBO = 2;
+        #endregion
+
+        #region 消息_流程图_
+        /// <summary>
+        /// 消息_流程图_添加节点, lParam: ExFlowChartNode 结构指针
+        /// </summary>
+        public const int FLOWCHART_MESSAGE_ADD_NODE = 10000;
+        /// <summary>
+        /// 消息_流程图_移除节点 wParam: 节点ID
+        /// </summary>
+        public const int FLOWCHART_MESSAGE_REMOVE_NODE = 10001;
+        /// <summary>
+        /// 消息_流程图_添加连接线 lParam: ExFlowChartConnection 结构指针
+        /// </summary>
+        public const int FLOWCHART_MESSAGE_ADD_CONNECTION = 10002;
+        /// <summary>
+        /// 消息_流程图_移除连接线 wParam: 连接线ID
+        /// </summary>
+        public const int FLOWCHART_MESSAGE_REMOVE_CONNECTION = 10003;
+        /// <summary>
+        /// 消息_流程图_取节点数量
+        /// </summary>
+        public const int FLOWCHART_MESSAGE_GET_NODE_COUNT = 10004;
+        /// <summary>
+        /// 消息_流程图_取连接线数量
+        /// </summary>
+        public const int FLOWCHART_MESSAGE_GET_CONNECTION_COUNT = 10005;
+        /// <summary>
+        ///  消息_流程图_更新节点数据 wParam: 节点ID, lParam: ExFlowChartNodeData 结构指针
+        /// </summary>
+        public const int FLOWCHART_MESSAGE_UPDATE_NODEDATA = 10006;
+        #endregion
+
+        #region 消息_流程图_
+        /// <summary>
+        /// 通知_流程图_节点点击 wParam: 节点ID
+        /// </summary>
+        public const int FLOWCHART_EVENT_NODE_CLICKED = 30000;
+        /// <summary>
+        /// 通知_流程图_连接线添加 wParam: 连接线ID
+        /// </summary>
+        public const int FLOWCHART_EVENT_CONNECTION_CREATED = 30001;
+        /// <summary>
+        /// 通知_流程图_删除连接线 wParam: 连接线ID
+        /// </summary>
+        public const int FLOWCHART_EVENT_CONNECTION_REMOVED = 30002;
+        /// <summary>
+        /// 通知_流程图_节点移动 wParam: 节点ID
+        /// </summary>
+        public const int FLOWCHART_EVENT_NODE_MOVED = 30003;
+        /// <summary>
+        /// 通知_流程图_连接线选中 wParam: 节点ID
+        /// </summary>
+        public const int FLOWCHART_EVENT_CONNECTION_SELECTED = 30004;
+        /// <summary>
+        /// 通知_流程图_连接线移动 wParam: 连接线ID
+        /// </summary>
+        public const int FLOWCHART_EVENT_CONNECTION_MOVED = 30005;
+        /// <summary>
+        /// 通知_流程图_节点数据改变 wParam: 节点ID , lParam: ExFlowChartNodeComboData 结构指针
+        /// </summary>
+        public const int FLOWCHART_EVENT_NODEDATA_CHANGED = 30006;
+        /// <summary>
+        /// 通知_流程图_节点双击 wParam: 节点ID
+        /// </summary>
+        public const int FLOWCHART_EVENT_NODE_DOUBLE_CLICKED = 30007;
         #endregion
     }
 }

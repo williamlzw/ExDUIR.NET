@@ -156,7 +156,9 @@
     <Compile Include="CalendarWindow.cs" />
     <Compile Include="CarouselWindow.cs" />
     <Compile Include="CefBrowserWindow.cs" />
+    <Compile Include="ChatBoxWindow.cs" />
     <Compile Include="CheckButtonWindow.cs" />
+    <Compile Include="CircleProgressBarWindow.cs" />
     <Compile Include="ColorPickerWindow.cs" />
     <Compile Include="ComboBoxWindow.cs" />
     <Compile Include="CustomBackgroundWindow.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="EasingWindow.cs" />
     <Compile Include="EditExWindow.cs" />
     <Compile Include="EditWindow.cs" />
+    <Compile Include="FlowChartWindow.cs" />
     <Compile Include="FlowLayoutWindow.cs" />
     <Compile Include="FullScreenWindow.cs" />
     <Compile Include="GroupBoxWindow.cs" />
@@ -178,6 +181,7 @@
     <Compile Include="ImageMaskWindow.cs" />
     <Compile Include="LabelWindow.cs" />
     <Compile Include="LinearLayoutWindow.cs" />
+    <Compile Include="LineChartWindow.cs" />
     <Compile Include="ListButtonWindow.cs" />
     <Compile Include="ListViewWindow.cs" />
     <Compile Include="LoadingWindow.cs" />
@@ -214,6 +218,7 @@
     <Compile Include="TitleBarWindow.cs" />
     <Compile Include="TrayWindow.cs" />
     <Compile Include="TreeViewWindow.cs" />
+    <Compile Include="WaveProgressBarWindow.cs" />
     <Compile Include="WinFormWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -369,6 +374,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\user.png" />
+    <None Include="Resources\ai.png" />
     <None Include="Resources\mask4.jpg" />
     <None Include="Resources\mask1.png" />
     <None Include="Resources\cef.html" />

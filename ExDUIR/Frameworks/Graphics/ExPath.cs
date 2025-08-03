@@ -1,4 +1,5 @@
 ﻿using ExDuiR.NET.Native;
+using static ExDuiR.NET.Native.ExConst;
 using System;
 using System.Security.Cryptography;
 
@@ -12,7 +13,7 @@ namespace ExDuiR.NET.Frameworks.Graphics
 
         public ExPath()
         {
-            ExAPI._path_create(1, out m_hPath);
+            ExAPI._path_create(PATH_FLAG_DISABLESCALE, out m_hPath);
         }
 
         public ExPath(int hPath)
