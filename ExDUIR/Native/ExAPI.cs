@@ -1033,25 +1033,287 @@ namespace ExDuiR.NET.Native
     public struct ExPropergridChangeItemInfo
     {
         /// <summary>
-        /// 改变类型
+        /// 改变内容,注意对于颜色框 为ARGB文本数字
+        /// </summary>
+        public string text;
+        /// <summary>
+        /// 改变子项目类型  0编辑框 1日期框 2颜色框 3组合框 4按钮 5编辑框按钮组合 注：当是编辑框按钮组合的时候，此参数是自定义值
         /// </summary>
         public int type;
         /// <summary>
-        /// 改变内容,注意对于颜色框 为文本数字
+        /// 用户自行管理数据
+        /// </summary>
+        public IntPtr userData;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目按钮结构布局
+    /// </summary>
+    public struct ExPropergridItemLayoutButton
+    {
+        /// <summary>
+        /// 标题矩形
+        /// </summary>
+        public ExRect rcTitle;
+        /// <summary>
+        /// 内容矩形
+        /// </summary>
+        public ExRect rcContent;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目按钮结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    public struct ExPropergridItemInfoButton
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string title;
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string content;
+        /// <summary>
+        /// 布局，内部使用
+        /// </summary>
+        private ExPropergridItemLayoutButton layout;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目日期框结构布局
+    /// </summary>
+    public struct ExPropergridItemLayoutDateBox
+    {
+        /// <summary>
+        /// 标题矩形
+        /// </summary>
+        public ExRect rcTitle;
+        /// <summary>
+        /// 内容矩形
+        /// </summary>
+        public ExRect rcContent;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目日期框结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    public struct ExPropergridItemInfoDateBox
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string title;
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string content;
+        /// <summary>
+        /// 布局，内部使用
+        /// </summary>
+        private ExPropergridItemLayoutDateBox layout;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目编辑框结构布局
+    /// </summary>
+    public struct ExPropergridItemLayoutColorPicker
+    {
+        /// <summary>
+        /// 标题矩形
+        /// </summary>
+        public ExRect rcTitle;
+        /// <summary>
+        /// 内容矩形
+        /// </summary>
+        public ExRect rcContent;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目颜色框结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    public struct ExPropergridItemInfoColorPicker
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string title;
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string content;
+        /// <summary>
+        /// 布局，内部使用
+        /// </summary>
+        private ExPropergridItemLayoutColorPicker layout;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目编辑框结构布局
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExPropergridItemInfoComboboxUnit
+    {
+        /// <summary>
+        /// 组合框内容
         /// </summary>
         public string text;
     }
 
     /// <summary>
-    /// 属性框项目组合框子结构
+    /// 属性框项目子项目编辑框结构布局
     /// </summary>
-    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+    public struct ExPropergridItemLayoutCombobox
+    {
+        /// <summary>
+        /// 标题矩形
+        /// </summary>
+        public ExRect rcTitle;
+        /// <summary>
+        /// 内容矩形
+        /// </summary>
+        public ExRect rcContent;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目组合框结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
     public struct ExPropergridItemInfoCombobox
     {
         /// <summary>
-        /// 组合框条目内容, 默认内容为test
+        /// 标题
         /// </summary>
-        public IntPtr text;
+        public string title;
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string content;
+        /// <summary>
+        /// ExPropergridItemInfoComboboxUnit数组
+        /// </summary>
+        public IntPtr listInfo;
+        /// <summary>
+        /// 行数（数组元素数量）
+        /// </summary>
+        public int listCount;
+        /// <summary>
+        /// 布局，内部使用
+        /// </summary>
+        private ExPropergridItemLayoutCombobox layout;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目编辑框结构布局
+    /// </summary>
+    public struct ExPropergridItemLayoutEdit
+    {
+        /// <summary>
+        /// 标题矩形
+        /// </summary>
+        public ExRect rcTitle;
+        /// <summary>
+        /// 内容矩形
+        /// </summary>
+        public ExRect rcContent;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目编辑框结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    public struct ExPropergridItemInfoEdit
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string title;
+        /// <summary>
+        /// 内容
+        /// </summary>
+        public string content;
+        /// <summary>
+        /// 编辑框类型 0默认能输入任何字符 1只能输入数字 2只能输入字母 3字母数字 4只读(注：当是编辑框按钮组合的时候，此参数可自定义)
+        /// </summary>
+        public int editStyle;
+        /// <summary>
+        /// 用户自行管理数据
+        /// </summary>
+        public IntPtr userData;
+        /// <summary>
+        /// 布局，内部使用
+        /// </summary>
+        private ExPropergridItemLayoutEdit layout;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目分组结构布局
+    /// </summary>
+    public struct ExPropergridItemLayoutGroup
+    {
+        /// <summary>
+        /// 标题矩形
+        /// </summary>
+        public ExRect rcTitle;
+        /// <summary>
+        /// 图标矩形
+        /// </summary>
+        public ExRect rcImage;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目分组结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    public struct ExPropergridItemInfoGroup
+    {
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public string title;
+        /// <summary>
+        /// 项目是否展开
+        /// </summary>
+        public bool bExpanded;
+        /// <summary>
+        /// 布局，内部使用
+        /// </summary>
+        private ExPropergridItemLayoutGroup layout;
+    }
+
+    /// <summary>
+    /// 属性框项目子项目结构
+    /// </summary>
+    [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode, Pack = 4)]
+    public struct ExPropergridItemInfoSubitem
+    {
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public int type;
+        /// <summary>
+        /// 父项索引，-1表示无父项, 分组索引从0开始，与子项目索引无关
+        /// </summary>
+        public int parentIndex;
+        /// <summary>
+        /// 整个项目的矩形区域
+        /// </summary>
+        public ExRect rcItem;
+        /// <summary>
+        /// 项目总高度
+        /// </summary>
+        public int nHeight;
+        /// <summary>
+        /// 表示项目是否可见
+        /// </summary>
+        public bool bVisible;
+        /// <summary>
+        /// 数据
+        /// </summary>
+        public IntPtr data;
     }
 
     /// <summary>
@@ -1061,30 +1323,17 @@ namespace ExDuiR.NET.Native
     public class ExPropergridItemInfo
     {
         /// <summary>
-        /// 默认0,为尾部.索引从非表头开始计算,从1开始
+        /// 数据，ExPropergridItemInfoSubitem数组
         /// </summary>
-        public uint index = 0;
+        public IntPtr Items;
         /// <summary>
-        /// 标题
+        /// 项目数量
         /// </summary>
-        public IntPtr title;
+        public uint count;
         /// <summary>
-        /// 注意对于颜色框 为文本数字
+        /// 分组数量
         /// </summary>
-        public IntPtr text;
-        /// <summary>
-        /// 编辑框风格,0默认能输入任何字符 1只能输入数字 2只能输入字母 3字母数字 4只读
-        /// </summary>
-        public int editStyle = 0;
-        /// <summary>
-        /// 组合框数组内容
-        /// </summary>
-        [MarshalAsAttribute(UnmanagedType.ByValArray, SizeConst = 50, ArraySubType = UnmanagedType.Struct)]
-        public ExPropergridItemInfoCombobox[] textCombobox = new ExPropergridItemInfoCombobox[50];
-        /// <summary>
-        /// 组合框数组数量
-        /// </summary>
-        public uint comboboxNum;
+        public uint groupCount;
     };
 
     /// <summary>
@@ -1810,22 +2059,7 @@ namespace ExDuiR.NET.Native
         /// <param name="dwFlags">动画标记</param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Ex_DUIShowWindow")]
-        public static extern bool Ex_DUIShowWindow(int hExDui, int nCmdShow, int dwTimer, int dwFrames, int dwFlags);
-
-        /// <summary>
-        /// 显示窗口Ex
-        /// </summary>
-        /// <param name="hExDui"></param>
-        /// <param name="nCmdShow">相关常量:#SW_</param>
-        /// <param name="dwTimer">动画时间间隔</param>
-        /// <param name="dwFrames">动画总帧数</param>
-        /// <param name="dwFlags">动画标记.#EXA_</param>
-        /// <param name="uEasing">缓动类型常量#ET_</param>
-        /// <param name="wParam">参数1</param>
-        /// <param name="lParam">参数2</param>
-        /// <returns></returns>
-        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "Ex_DUIShowWindowEx")]
-        public static extern bool Ex_DUIShowWindowEx(int hExDui, int nCmdShow, int dwTimer, int dwFrames, int dwFlags, int uEasing, IntPtr wParam, IntPtr lParam);
+        public static extern bool Ex_DUIShowWindow(int hExDui, int nCmdShow);
 
         /// <summary>
         /// 组件默认过程
@@ -4043,6 +4277,28 @@ namespace ExDuiR.NET.Native
         public static extern bool _img_createfromstream(IStream lpStream, out int dstImg);
 
         /// <summary>
+        /// 图像创建自SVG句柄
+        /// </summary>
+        /// <param name="hSvg"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="dstImg"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_img_createfromsvg")]
+        public static extern bool _img_createfromsvg(int hSvg, int width, int height, out int dstImg);
+
+        /// <summary>
+        /// 图像创建自SVG文件
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        /// <param name="dstImg"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_img_createfromsvgfile")]
+        public static extern bool _img_createfromsvgfile(string file, int width, int height, out int dstImg);
+
+        /// <summary>
         /// 图像销毁
         /// </summary>
         /// <param name="hImg"></param>
@@ -4391,7 +4647,7 @@ namespace ExDuiR.NET.Native
         /// <param name="lpHeight"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_canvas_calctextsize")]
-        public static extern bool _canvas_calctextsize(int hCanvas, int hFont, string lpwzText, IntPtr dwLen, int dwDTFormat, IntPtr lParam, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight);
+        public static extern bool _canvas_calctextsize(int hCanvas, int hFont, string lpwzText, IntPtr dwLen, int dwDTFormat, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight);
 
         /// <summary>
         /// 画布清除背景
@@ -4694,32 +4950,28 @@ namespace ExDuiR.NET.Native
         public static extern bool _canvas_drawtextex(int hCanvas, int hFont, int crText, string lpwzText, IntPtr dwLen, int dwDTFormat, float left, float top, float right, float bottom, int iGlowsize, int crShadow, IntPtr lParam);
 
         /// <summary>
-        /// 画布画SVG从数据
+        /// 画布画SVG从句柄
         /// </summary>
         /// <param name="hCanvas"></param>
-        /// <param name="data"></param>
-        /// <param name="color"></param>
+        /// <param name="hSvg"></param>
         /// <param name="left"></param>
         /// <param name="top"></param>
-        /// <param name="right"></param>
-        /// <param name="bottom"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_canvas_drawsvg")]
-        public static extern bool _canvas_drawsvg(int hCanvas, IntPtr data, int color, float left, float top, float right, float bottom);
+        public static extern bool _canvas_drawsvg(int hCanvas, int hSvg, float left, float top, float width, float height);
 
         /// <summary>
-        /// 画布画SVG从数据
+        /// 画布画SVG从句柄2
         /// </summary>
         /// <param name="hCanvas"></param>
-        /// <param name="svgName"></param>
-        /// <param name="color"></param>
+        /// <param name="hSvg"></param>
         /// <param name="left"></param>
         /// <param name="top"></param>
-        /// <param name="right"></param>
-        /// <param name="bottom"></param>
         /// <returns></returns>
-        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_canvas_drawsvgfromfile")]
-        public static extern bool _canvas_drawsvgfromfile(int hCanvas, string svgName, int color, float left, float top, float right, float bottom);
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_canvas_drawsvg2")]
+        public static extern bool _canvas_drawsvg2(int hCanvas, int hSvg, float left, float top);
 
         /// <summary>
         /// 画布结束绘制
@@ -4928,6 +5180,74 @@ namespace ExDuiR.NET.Native
         /// <returns></returns>
         [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_canvas_setimageantialias")]
         public static extern bool _canvas_setimageantialias(int hCanvas, bool antialias);
+        #endregion
+
+        #region SVG
+        /// <summary>
+        /// SVG创建(自内存)
+        /// </summary>
+        /// <param name="data"></param>
+        /// <param name="hSvg"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_svg_create")]
+        public static extern bool _svg_create(IntPtr data, out int hSvg);
+
+        /// <summary>
+        /// SVG创建文件
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="hSvg"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_svg_createfromfile")]
+        public static extern bool _svg_createfromfile(string file, out int hSvg);
+
+        /// <summary>
+        /// SVG销毁
+        /// </summary>
+        /// <param name="hSvg"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_svg_destroy")]
+        public static extern bool _svg_destroy(int hSvg);
+
+        /// <summary>
+        /// SVG置元素填充色
+        /// </summary>
+        /// <param name="hSvg"></param>
+        /// <param name="id"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_svg_setelementfillcolor")]
+        public static extern void _svg_setelementfillcolor(int hSvg, string id, int color);
+
+        /// <summary>
+        /// SVG置元素描边色
+        /// </summary>
+        /// <param name="hSvg"></param>
+        /// <param name="id"></param>
+        /// <param name="color"></param>
+        /// <param name="strokeWidth"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_svg_setelementstrokecolor")]
+        public static extern void _svg_setelementstrokecolor(int hSvg, string id, int color, float strokeWidth = 0.0f);
+
+        /// <summary>
+        /// SVG置填充色
+        /// </summary>
+        /// <param name="hSvg"></param>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_svg_setfillcolor")]
+        public static extern void _svg_setfillcolor(int hSvg, int color);
+
+        /// <summary>
+        /// SVG置描边色
+        /// </summary>
+        /// <param name="hSvg"></param>
+        /// <param name="color"></param>
+        /// <param name="strokeWidth"></param>
+        /// <returns></returns>
+        [DllImport("libexdui.dll", CharSet = CharSet.Unicode, CallingConvention = CallingConvention.Cdecl, EntryPoint = "_svg_setstrokecolor")]
+        public static extern void _svg_setstrokecolor(int hSvg, int color, float strokeWidth = 0.0f);
         #endregion
     }
 }

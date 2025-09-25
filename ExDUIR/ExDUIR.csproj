@@ -112,6 +112,7 @@
     <Compile Include="Frameworks\ExException.cs" />
     <Compile Include="Frameworks\ExResource.cs" />
     <Compile Include="Frameworks\ExSkin.cs" />
+    <Compile Include="Frameworks\Graphics\ExSvg.cs" />
     <Compile Include="Frameworks\Graphics\ExTheme.cs" />
     <Compile Include="Frameworks\ExWindow.cs" />
     <Compile Include="Frameworks\Graphics\ExBrush.cs" />

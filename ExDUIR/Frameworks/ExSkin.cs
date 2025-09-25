@@ -113,7 +113,7 @@ namespace ExDuiR.NET.Frameworks
         /// <summary>
         /// 取/置 窗口可视
         /// </summary>
-        public bool Visible { get => WinAPI.IsWindowVisible(m_hWnd); set => ExAPI.Ex_DUIShowWindow(m_hExDUI, value ? 1 : 0, 0, 0, 0); }
+        public bool Visible { get => WinAPI.IsWindowVisible(m_hWnd); set => ExAPI.Ex_DUIShowWindow(m_hExDUI, value ? 1 : 0); }
 
         protected int m_hExDUI;
 

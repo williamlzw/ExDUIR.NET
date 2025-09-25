@@ -41,9 +41,9 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ExAPI._canvas_blur(m_hCanvas, fDeviation, ref lpRc);
         }
 
-        public bool CalcTextSize(ExFont font, string text, int dwLen, int dwDTFormat, IntPtr lParam, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight)
+        public bool CalcTextSize(ExFont font, string text, int dwLen, int dwDTFormat, float layoutWidth, float layoutHeight, out float lpWidth, out float lpHeight)
         {
-            return ExAPI._canvas_calctextsize(m_hCanvas, font.handle, text, (IntPtr)dwLen, dwDTFormat, lParam, layoutWidth, layoutHeight, out lpWidth, out lpHeight);
+            return ExAPI._canvas_calctextsize(m_hCanvas, font.handle, text, (IntPtr)dwLen, dwDTFormat, layoutWidth, layoutHeight, out lpWidth, out lpHeight);
         }
 
         public bool Clear(int nColor)
@@ -226,14 +226,9 @@ namespace ExDuiR.NET.Frameworks.Graphics
             return ret;
         }
 
-        public bool DrawSvgFromFile(string svgPath, int color, float left, float top, float right, float bottom)
+        public bool DrawSvg(int hSvg, float left, float top, float right, float bottom)
         {
-            return ExAPI._canvas_drawsvgfromfile(m_hCanvas, svgPath, color, left, top, right, bottom);
-        }
-
-        public bool DrawSvg(IntPtr data, int color, float left, float top, float right, float bottom)
-        {
-            return ExAPI._canvas_drawsvg(m_hCanvas, data, color, left, top, right, bottom);
+            return ExAPI._canvas_drawsvg(m_hCanvas, hSvg, left, top, right, bottom);
         }
 
         public bool Flush()

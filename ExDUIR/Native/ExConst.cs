@@ -3316,33 +3316,68 @@
 
         #region 消息_属性框_
         /// <summary>
-        /// 消息_属性框_添加表项 添加行到尾部 wParam:组件_类型  lParam: PGITEM 指针
+        /// 消息_属性框_添加表项 添加行到尾部 lParam: EX_PROPERTYGRID_ITEMINFO_SUBITEM 指针, 添加类型为Group分组会返回分组索引
         /// </summary>
         ///
         public const int PROPERTYGRID_MESSAGE_ADDITEM = 10010;
         /// <summary>
-        /// 消息_属性框_取表项值 wParam: 未定义    lParam:表项名  return:表项值文本指针
+        /// 消息_属性框_更新表项 注意CHATBOX_ITEMTYPE_一致才能更新 wParam:表项索引 从0开始 lParam: EX_PROPERTYGRID_ITEMINFO_SUBITEM 指针
         /// </summary>
         ///
-        public const int PROPERTYGRID_MESSAGE_GETITEMVALUE = 10011;
+        public const int PROPERTYGRID_MESSAGE_UPDATEITEM = 10011;
         /// <summary>
-        ///  消息_属性框_置表项值 wParam: 欲写入值    lParam:表项名  return:未定义
+        ///  消息_属性框_取表项类型 wParam:表项索引 从0开始，返回PROPERTYGRID_ITEMTYPE_ ,失败返回-1
         /// </summary>
         ///
-        public const int PROPERTYGRID_MESSAGE_SETITEMVALUE = 10012;
+        public const int PROPERTYGRID_MESSAGE_GETITEMTYPE = 10012;
         /// <summary>
-        ///  消息_属性框_清空项目
+        ///  消息_属性框_取表项值文本数据 wParam:表项索引 从0开始，return:表项值文本指针
         /// </summary>
         ///
-        public const int PROPERTYGRID_MESSAGE_CLEAR = 10013;
+        public const int PROPERTYGRID_MESSAGE_GETITEMVALUE = 10013;
+        /// <summary>
+        ///  消息_属性框_写表项文本值数据 wParam:表项索引 从0开始 lParam:文本值
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_MESSAGE_SETITEMVALUE = 10014;
+        /// <summary>
+        ///  消息_属性框_取表项总数,失败返回-1
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_MESSAGE_GETITEMCOUNT = 10015;
+        /// <summary>
+        ///  消息_属性框_从表项名取索引 lParam:表项名文本值 return:返回索引
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_MESSAGE_FINDITEMBYTITLE = 10016;
+        /// <summary>
+        ///  消息_属性框_清空
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_MESSAGE_CLEAR = 10017;
+        /// <summary>
+        ///  消息_属性框_取表项名文本值数据 wParam:表项索引 从0开始，return:表项名文本指针
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_MESSAGE_GETITEMNAME = 10018;
+        /// <summary>
+        ///  消息_属性框_取表项用户数据 wParam:表项索引 从0开始，return:表项数据指针 //目前针对编辑框
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_MESSAGE_GETUSERDATA = 10019;
         #endregion
 
         #region 事件_属性框_
         /// <summary>
-        /// 事件_属性框_表项值改变 wParam:行索引(不包括标题行,包括分组行和组件行,从1开始)   lParam:数据指针(可以通过"__get(数据指针,PGL_内存偏移_/////)"来获取数据)
+        /// 事件_属性框_表项值改变 wParam:行索引(包括分组行和组件行,从0开始)  lParam: ExPropergridChangeItemInfo数据指针
         /// </summary>
         ///
         public const int PROPERTYGRID_EVENT_ITEMVALUECHANGE = 10012;
+        /// <summary>
+        ///  事件_属性框_按钮被单击 wParam:行索引(包括分组行和组件行,从0开始)  lParam: ExPropergridChangeItemInfo数据指针
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_EVENT_ITEMBUTTONCLICK = 10013;
         #endregion
 
         #region 属性框_组件类型_
@@ -3350,27 +3385,32 @@
         /// 属性框_组件类型_分组
         /// </summary>
         ///
-        public const int PROPERTYGRID_OBJTYPE_GROUP = -1;
+        public const int PROPERTYGRID_ITEMTYPE_GROUP = 1;
         /// <summary>
         /// 属性框_组件类型_编辑框
         /// </summary>
         ///
-        public const int PROPERTYGRID_OBJTYPE_EDIT = 0;
-        /// <summary>
-        /// 属性框_组件类型_组合框
-        /// </summary>
-        ///
-        public const int PROPERTYGRID_OBJTYPE_COMBOBOX = 1;
-        /// <summary>
-        /// 属性框_组件类型_颜色框
-        /// </summary>
-        ///
-        public const int PROPERTYGRID_OBJTYPE_COLORPICKER = 2;
+        public const int PROPERTYGRID_ITEMTYPE_EDIT = 2;
         /// <summary>
         /// 属性框_组件类型_日期框
         /// </summary>
         ///
-        public const int PROPERTYGRID_OBJTYPE_DATEBOX = 3;
+        public const int PROPERTYGRID_ITEMTYPE_DATEBOX = 4;
+        /// <summary>
+        /// 属性框_组件类型_颜色框
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_ITEMTYPE_COLORPICKER = 8;
+        /// <summary>
+        /// 属性框_组件类型_组合框
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_ITEMTYPE_COMBOBOX = 16;
+        /// <summary>
+        /// 属性框_组件类型_按钮
+        /// </summary>
+        ///
+        public const int PROPERTYGRID_ITEMTYPE_BUTTON = 32;
         #endregion
 
         #region 报表表行风格_

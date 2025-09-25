@@ -226,7 +226,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="Resources\Default.bin" />
     <None Include="Resources\test.rtf" />
   </ItemGroup>
   <ItemGroup>
